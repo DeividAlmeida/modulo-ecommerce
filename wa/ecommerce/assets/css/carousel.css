@@ -1,0 +1,11 @@
+.shop--list .owl-next, .shop--list .owl-prev{
+  position: absolute;
+  top: 50%;
+}
+
+.shop--list .owl-next{
+  right: 0;
+}
+.shop--list .owl-prev{
+  left: 0;
+}

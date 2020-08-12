@@ -1,0 +1,279 @@
+[05-Aug-2020 18:49:38 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/conexao.php:8
+Stack trace:
+#0 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/conexao.php(8): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/index.php(3): include('/home2/teacherf...')
+#2 {main}
+  thrown in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/conexao.php on line 8
+[05-Aug-2020 18:49:48 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/conexao.php:8
+Stack trace:
+#0 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/conexao.php(8): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/index.php(3): include('/home2/teacherf...')
+#2 {main}
+  thrown in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/conexao.php on line 8
+[05-Aug-2020 18:50:53 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/conexao.php:8
+Stack trace:
+#0 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/conexao.php(8): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/index.php(3): include('/home2/teacherf...')
+#2 {main}
+  thrown in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/conexao.php on line 8
+[05-Aug-2020 18:53:47 UTC] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/index.php on line 299
+[05-Aug-2020 18:59:20 UTC] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/pagbank/index.php on line 299
+[05-Aug-2020 16:26:59 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 446
+[05-Aug-2020 16:29:49 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 442
+[05-Aug-2020 16:32:18 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 403
+[05-Aug-2020 16:33:06 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 403
+[05-Aug-2020 16:34:24 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 445
+[05-Aug-2020 16:36:14 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 404
+[05-Aug-2020 16:36:59 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:37:17 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:38:00 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:38:12 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:38:27 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:39:27 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:39:43 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:40:06 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:40:22 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:40:50 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:41:03 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:41:19 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:45:03 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 305
+[05-Aug-2020 16:45:44 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 305
+[05-Aug-2020 16:47:15 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 308
+[05-Aug-2020 16:47:42 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 400
+[05-Aug-2020 16:48:51 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 399
+[05-Aug-2020 16:49:33 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 399
+[05-Aug-2020 16:50:27 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 308
+[05-Aug-2020 16:50:48 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 399
+[05-Aug-2020 16:51:10 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 399
+[05-Aug-2020 16:51:40 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 16:52:05 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 16:52:21 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 16:54:58 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 16:55:46 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 16:57:05 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 16:57:53 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 16:58:49 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:00:18 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:01:11 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:01:34 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:02:16 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:02:38 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:03:02 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:03:31 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:03:45 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:04:46 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:05:54 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:06:22 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:06:48 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:07:19 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:08:30 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:08:47 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:09:14 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:11:32 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:11:49 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:12:36 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:12:52 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:14:47 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:16:14 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:18:35 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:21:01 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:23:25 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 17:24:34 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:25:37 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:30:58 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 396
+[05-Aug-2020 17:34:42 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 410
+[05-Aug-2020 17:35:57 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 397
+[05-Aug-2020 17:36:29 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 397
+[05-Aug-2020 17:36:54 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 397
+[05-Aug-2020 17:37:24 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 17:39:23 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 17:42:15 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 17:43:11 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 17:43:40 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 17:45:50 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 17:48:47 America/Sao_Paulo] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php:8) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 3
+[05-Aug-2020 17:48:47 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php:8) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 4
+[05-Aug-2020 17:48:47 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 17:49:26 America/Sao_Paulo] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php:8) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 3
+[05-Aug-2020 17:49:26 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php:8) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 4
+[05-Aug-2020 17:49:26 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 17:51:28 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 20:51:29 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[05-Aug-2020 17:52:37 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 20:52:37 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[05-Aug-2020 17:54:47 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 20:54:48 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[05-Aug-2020 17:55:11 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 20:55:11 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[05-Aug-2020 17:55:31 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 20:55:31 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[05-Aug-2020 17:56:35 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[05-Aug-2020 20:56:35 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 09:20:40 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[07-Aug-2020 12:20:41 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 09:21:48 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/index.php on line 411
+[07-Aug-2020 12:21:49 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 12:24:45 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 09:25:02 America/Sao_Paulo] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php:8
+Stack trace:
+#0 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php(8): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php(4): include('/home2/teacherf...')
+#2 {main}
+  thrown in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php on line 8
+[07-Aug-2020 14:12:31 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 14:14:02 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 14:19:42 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 14:21:12 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 11:21:47 America/Sao_Paulo] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php:8
+Stack trace:
+#0 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php(8): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php(4): include('/home2/teacherf...')
+#2 {main}
+  thrown in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php on line 8
+[07-Aug-2020 11:27:33 America/Sao_Paulo] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php:8
+Stack trace:
+#0 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php(8): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php(4): include('/home2/teacherf...')
+#2 {main}
+  thrown in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php on line 8
+[07-Aug-2020 11:28:31 America/Sao_Paulo] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php:8
+Stack trace:
+#0 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php(8): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php(4): include('/home2/teacherf...')
+#2 {main}
+  thrown in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/conexao.php on line 8
+[07-Aug-2020 11:29:35 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 48
+[07-Aug-2020 11:29:45 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 48
+[07-Aug-2020 14:30:22 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 11:30:50 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 48
+[07-Aug-2020 14:31:33 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 11:32:02 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 48
+[07-Aug-2020 11:35:30 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 48
+[07-Aug-2020 14:36:20 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 11:37:06 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on null in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 48
+[07-Aug-2020 14:51:50 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 14:52:22 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 14:59:41 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 15:00:24 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 15:03:16 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 15:03:33 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 15:08:04 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 15:51:41 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 15:52:46 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 15:59:13 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 16:11:52 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 16:12:50 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 16:20:47 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 16:21:12 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 16:21:46 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 16:21:54 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 16:22:14 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 16:22:49 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 16:23:02 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 16:37:03 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 16:37:26 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 16:56:30 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 16:56:52 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 17:49:21 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 17:49:39 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 17:49:58 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 17:50:21 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 17:50:35 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 17:58:03 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 17:58:18 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 17:58:59 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 17:59:06 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 18:20:13 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 18:20:20 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 18:23:21 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 18:23:29 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 18:26:29 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 18:27:06 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 18:28:02 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 18:37:35 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 15:37:36 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:37:36 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:37:36 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 18:38:18 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 15:38:19 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:38:19 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:38:19 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 18:38:48 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 15:38:49 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 15:38:49 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 15:38:49 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 18:39:23 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 15:39:24 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:39:24 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:39:24 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 18:39:38 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 15:39:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 15:39:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 15:39:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 18:40:53 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 15:40:54 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:40:54 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:40:54 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 18:41:06 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 15:41:07 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 15:41:07 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 15:41:07 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 18:41:42 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 15:41:43 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:41:43 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 15:41:43 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/pagamento.php on line 20
+[07-Aug-2020 18:41:57 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 15:41:58 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 15:41:58 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 15:41:58 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 76
+[07-Aug-2020 18:51:59 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 18:52:06 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 19:23:46 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 19:23:52 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 19:27:49 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 19:32:37 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:32:43 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:32:48 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:32:51 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:32:56 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:02 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:08 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:14 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:21 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:26 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:30 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:36 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:41 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:47 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:53 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:33:58 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:34:04 UTC] PHP Fatal error:  Call to undefined function ConfigPainel() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/configuracao.php on line 3
+[07-Aug-2020 19:34:11 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 19:34:23 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 19:35:27 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 19:41:31 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 19:42:32 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 19:42:38 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 19:44:10 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 20:03:49 UTC] PHP Warning:  Unterminated comment starting line 80 in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 20:36:19 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 21:47:17 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 18:47:37 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 18:47:37 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 18:47:37 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 21:49:35 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 18:49:45 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 18:49:45 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 18:49:45 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 80
+[07-Aug-2020 22:05:56 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 19:06:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 140
+[07-Aug-2020 19:06:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Unauthorized in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 140
+[07-Aug-2020 19:06:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/checkout/proc_pag.php on line 140
+[07-Aug-2020 22:08:40 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 22:11:37 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 22:15:26 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 22:17:03 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 22:31:31 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 22:32:04 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 22:32:14 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[07-Aug-2020 23:25:54 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0

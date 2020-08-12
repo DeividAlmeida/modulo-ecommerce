@@ -1,0 +1,286 @@
+.swal2-popup{
+  font-size: 14px !important;
+}
+.shop--product-page--header--main-photo__wrapper{
+  border: 1px solid #ebebeb;
+  position: relative;
+  max-width: 450px;
+  margin: 0 auto;
+}
+.shop--product-page--header--main-photo__tag{
+  background-color: #000;
+  border-radius: 3px;
+  color: #fff;
+  left: 30px;
+  line-height: 1;
+  padding: 6px 14px 5px;
+  position: absolute;
+  top: 20px;
+  z-index: 99;
+}
+.shop--product-page--header__name{
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+}
+.shop--product-page--header__divider{
+
+}
+.shop--product-page--header__resume{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.shop--product-page--header__price{
+  font-size: 24px;
+  font-weight: 600;
+  margin: 6px 0;
+}
+.shop--product-page--header__button{
+  color:#fff;
+  margin: 12px 0 !important;
+}
+.shop--product-page--header__categories{
+  margin-bottom: 20px;
+}
+.shop--product-page--header__categories ul{
+  margin: 0;
+  padding: 0;
+  display: inline;
+  margin-right: -4px;
+  margin-left: -4px;
+}
+.shop--product-page--header__categories li{
+  display: inline-block;
+  list-style: outside none none;
+
+  background-color: #000;
+  border-radius: 5px;
+  color: #fff;
+  line-height: 1;
+  padding: 6px 14px 5px;
+  margin: 0 4px;
+}
+.shop--product-page--header__categories li:after {
+  content: ", ";
+}
+.shop--product-page--header__categories li:last-child:after {
+  content: "";
+}
+.shop--product-page--header--gallery{
+  margin-top:20px;
+  padding: 0 70px;
+}
+.shop--product-page--header--gallery.slick-initialized .slick-slide {
+  text-align: center;
+}
+.shop--product-page--header--gallery__img{
+  outline: none !important;
+  padding: 0 5px;
+  cursor: pointer;
+}
+.shop--product-page--header--gallery a.slick-active{
+  position: relative;
+}
+.shop--product-page--header--gallery__img img{
+  border: 2px solid #fff;
+  width: 100px;
+}
+.shop--product-page--header--gallery__img.active img{
+  border: 2px solid #ccc !important;
+}
+.shop--product-page__header--share__wrapper{
+  margin-left: -7px;
+  margin-right: -7px;
+}
+
+
+.shop--product-page__header--share__link,
+.shop--product-page__header--share__icon {
+  display: inline-block
+}
+
+.shop--product-page__header--share__link {
+  text-decoration: none !important;
+  color: #fff !important;
+  margin: 0.3em;
+}
+
+.shop--product-page__header--share {
+  border-radius: 5px;
+  transition: 25ms ease-out;
+  padding: 0.3em 0.5em;
+}
+
+.shop--product-page__header--share__icon svg {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.4em;
+  vertical-align: middle;
+}
+
+.shop--product-page__header--share--small svg {
+  margin: 0;
+  vertical-align: middle
+}
+
+/* Non solid icons get a stroke */
+.shop--product-page__header--share__icon {
+  stroke: #fff;
+  fill: none
+}
+
+/* Solid icons get a fill */
+.shop--product-page__header--share__icon--solid,
+.shop--product-page__header--share__icon--solidcircle {
+  fill: #fff;
+  stroke: none
+}
+
+.shop--product-page__header--share--twitter {
+  background-color: #55acee
+}
+
+.shop--product-page__header--share--twitter:hover {
+  background-color: #2795e9
+}
+
+.shop--product-page__header--share--pinterest {
+  background-color: #bd081c
+}
+
+.shop--product-page__header--share--pinterest:hover {
+  background-color: #8c0615
+}
+
+.shop--product-page__header--share--facebook {
+  background-color: #3b5998
+}
+
+.shop--product-page__header--share--facebook:hover {
+  background-color: #2d4373
+}
+
+.shop--product-page__header--share--tumblr {
+  background-color: #35465C
+}
+
+.shop--product-page__header--share--tumblr:hover {
+  background-color: #222d3c
+}
+
+.shop--product-page__header--share--reddit {
+  background-color: #5f99cf
+}
+
+.shop--product-page__header--share--reddit:hover {
+  background-color: #3a80c1
+}
+
+.shop--product-page__header--share--google {
+  background-color: #dd4b39
+}
+
+.shop--product-page__header--share--google:hover {
+  background-color: #c23321
+}
+
+.shop--product-page__header--share--linkedin {
+  background-color: #0077b5
+}
+
+.shop--product-page__header--share--linkedin:hover {
+  background-color: #046293
+}
+
+.shop--product-page__header--share--email {
+  background-color: #777
+}
+
+.shop--product-page__header--share--email:hover {
+  background-color: #5e5e5e
+}
+
+.shop--product-page__header--share--xing {
+  background-color: #1a7576
+}
+
+.shop--product-page__header--share--xing:hover {
+  background-color: #114c4c
+}
+
+.shop--product-page__header--share--whatsapp {
+  background-color: #25D366
+}
+
+.shop--product-page__header--share--whatsapp:hover {
+  background-color: #1da851
+}
+
+.shop--product-page__header--share--hackernews {
+background-color: #FF6600
+}
+.shop--product-page__header--share--hackernews:hover, .shop--product-page__header--share--hackernews:focus {   background-color: #FB6200 }
+
+.shop--product-page__header--share--vk {
+  background-color: #507299
+}
+
+.shop--product-page__header--share--vk:hover {
+  background-color: #43648c
+}
+
+.shop--product-page__header--share--facebook {
+  background-color: #3b5998;
+  border-color: #3b5998;
+}
+
+.shop--product-page__header--share--facebook:hover,
+.shop--product-page__header--share--facebook:active {
+  background-color: #2d4373;
+  border-color: #2d4373;
+}
+
+.shop--product-page__header--share--twitter {
+  background-color: #55acee;
+  border-color: #55acee;
+}
+
+.shop--product-page__header--share--twitter:hover,
+.shop--product-page__header--share--twitter:active {
+  background-color: #2795e9;
+  border-color: #2795e9;
+}
+
+.shop--product-page__header--share--tumblr {
+  background-color: #35465C;
+  border-color: #35465C;
+}
+
+.shop--product-page__header--share--tumblr:hover,
+.shop--product-page__header--share--tumblr:active {
+  background-color: #222d3c;
+  border-color: #222d3c;
+}
+
+.shop--product-page__header--share--pinterest {
+  background-color: #bd081c;
+  border-color: #bd081c;
+}
+
+.shop--product-page__header--share--pinterest:hover,
+.shop--product-page__header--share--pinterest:active {
+  background-color: #8c0615;
+  border-color: #8c0615;
+}
+
+.shop--product-page__header--share--whatsapp {
+  background-color: #25D366;
+  border-color: #25D366;
+}
+
+.shop--product-page__header--share--whatsapp:hover,
+.shop--product-page__header--share--whatsapp:active {
+  background-color: #1DA851;
+  border-color: #1DA851;
+}
