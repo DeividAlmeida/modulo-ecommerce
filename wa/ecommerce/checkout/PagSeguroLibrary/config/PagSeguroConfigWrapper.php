@@ -1,4 +1,16 @@
 <?php
+require_once('../../../includes/funcoes.php');
+require_once('../../../database/config.database.php');
+require_once('../../../database/config.php');
+$query = DBRead('ecommerce_config','*');
+$config = [];
+  foreach ($query as $key => $row) {
+    $config[$row['id']] = $row['valor'];
+  }
+
+  define("A", $config['email_servidor']);
+  define("B", $config['email_recebimento']);
+  
 /**
  * 2007-2014 [PagSeguro Internet Ltda.]
  *
@@ -23,46 +35,28 @@
 
 class PagSeguroConfigWrapper
 {
-
+    #public $a = $config['email_servidor']; $config['email_recebimento']
     /**
      * production or sandbox
      */
     const PAGSEGURO_ENV = "sandbox";
-    /**
-     *
-     */
-    const PAGSEGURO_EMAIL = "mr.davi@bol.com.br";
-    /**
-     *
-     */
-    const PAGSEGURO_TOKEN_PRODUCTION = "09657a68-cb21-4a7a-9f55-e058f5ea8401eebab2e14fbf8f4e6465f980256b03b0c11e-85ef-401d-9360-23d433aeef9f";
-    /**
-     *
-     */
-    const PAGSEGURO_TOKEN_SANDBOX = "62AFBB5AD62049D395AE6489FC65CBCC";
-    /**
-     *
-     */
+   
+    const PAGSEGURO_EMAIL =  A;
+   
+    const PAGSEGURO_TOKEN_PRODUCTION =  B;
+    
+    const PAGSEGURO_TOKEN_SANDBOX =  B;
+    
     const PAGSEGURO_APP_ID_PRODUCTION = "your_production_application_id";
-    /**
-     *
-     */
+    
     const PAGSEGURO_APP_ID_SANDBOX = "your_sandbox_application_id";
-    /**
-     *
-     */
+    
     const PAGSEGURO_APP_KEY_PRODUCTION = "your_production_application_key";
-    /**
-     *
-     */
+    
     const PAGSEGURO_APP_KEY_SANDBOX = "your_sandbox_application_key";
-    /**
-     * UTF-8, ISO-8859-1
-     */
+    
     const PAGSEGURO_CHARSET = "UTF-8";
-    /**
-     *
-     */
+    
     const PAGSEGURO_LOG_ACTIVE = false;
     /**
      * Informe o path completo (relativo ao path da lib) para o arquivo, ex.: ../PagSeguroLibrary/logs.txt

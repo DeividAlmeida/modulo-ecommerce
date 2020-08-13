@@ -1,4 +1,5 @@
 <?php
+
   $query = DBRead('ecommerce_config','*');
 
   $config = [];
@@ -21,12 +22,12 @@
   $cod_busca_resultado .= '<script type="text/javascript">EcommerceBuscaResultado();</script>';
 ?>
 <form id="formAtualizarConfig" method="post" action="?AtualizarConfig">
-	<div class="card">
-		<div class="card-header white">
-			<strong>Configurar Catálogo</strong>
-		</div>
+  <div class="card">
+    <div class="card-header white">
+      <strong>Configurar Catálogo</strong>
+    </div>
 
-		<div class="card-body">
+    <div class="card-body">
       <button id="btnCopiarCodSite1" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(1)" data-clipboard-text='<?php echo $cod_carrinho; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Página Carrinho
       </button>
@@ -35,15 +36,15 @@
         <i class="icon icon-code"></i> Copiar Código Botão Carrinho
       </button>
 
-      <button id="btnCopiarCodSite2" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(3)" data-clipboard-text='<?php echo $cod_checkout; ?>' type="button">
+      <button id="btnCopiarCodSite3" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(3)" data-clipboard-text='<?php echo $cod_checkout; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Página Checkout
       </button>
 
-      <button id="btnCopiarCodSite3" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(4)" data-clipboard-text='<?php echo $cod_busca_buscador; ?>' type="button">
+      <button id="btnCopiarCodSite4" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(4)" data-clipboard-text='<?php echo $cod_busca_buscador; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Campo de Busca
       </button>
 
-      <button id="btnCopiarCodSite4" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(5)" data-clipboard-text='<?php echo $cod_busca_resultado; ?>' type="button">
+      <button id="btnCopiarCodSite5" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(5)" data-clipboard-text='<?php echo $cod_busca_resultado; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Página Resultado Busca
       </button>
 
@@ -55,23 +56,23 @@
 
       <hr/>
 
-			<div class="row">
-				<div class="col-md-12">
-					<div class="form-group">
-						<label for="pagina_carrinho">Página do Carrinho:</label>
-						<input type="text" name="pagina_carrinho" class="form-control" value="<?php echo $config['pagina_carrinho']; ?>">
-					</div>
-				</div>
-			</div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="pagina_carrinho">Página do Carrinho:</label>
+            <input type="text" name="pagina_carrinho" class="form-control" value="<?php echo $config['pagina_carrinho']; ?>">
+          </div>
+        </div>
+      </div>
 
       <div class="row">
-				<div class="col-md-12">
-					<div class="form-group">
-						<label for="pagina_carrinho">Página do Resultado da Busca:</label>
-						<input type="text" name="pagina_resultado_busca" class="form-control" value="<?php echo $config['pagina_resultado_busca']; ?>">
-					</div>
-				</div>
-			</div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="pagina_carrinho">Página do Resultado da Busca:</label>
+            <input type="text" name="pagina_resultado_busca" class="form-control" value="<?php echo $config['pagina_resultado_busca']; ?>">
+          </div>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-md-12">
@@ -100,12 +101,12 @@
           <div class="form-group">
             <label for="listagem_estilo">Estilo da Listagem:</label>
             <select name="listagem_estilo" class="form-control custom-select">
-							<option value="1" <?php Selected($config['listagem_estilo'], '1'); ?>>Estilo 1</option>
-							<option value="2" <?php Selected($config['listagem_estilo'], '2'); ?>>Estilo 2</option>
+              <option value="1" <?php Selected($config['listagem_estilo'], '1'); ?>>Estilo 1</option>
+              <option value="2" <?php Selected($config['listagem_estilo'], '2'); ?>>Estilo 2</option>
               <option value="3" <?php Selected($config['listagem_estilo'], '3'); ?>>Estilo 3</option>
               <option value="4" <?php Selected($config['listagem_estilo'], '4'); ?>>Estilo 4</option>
               <option value="5" <?php Selected($config['listagem_estilo'], '5'); ?>>Estilo 5</option>
-						</select>
+            </select>
           </div>
         </div>
       </div>
@@ -430,7 +431,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 d-md-none">
           <div class="form-group">
             <label>Moeda:</label>
             <div class="input-group focused">
@@ -578,32 +579,32 @@
       <h4>Configuração Busca</h4>
       <div class="row">
         <div class="col-md-4">
-					<div class="form-group">
-						<label>Limite de Resultado por Página:</label>
-						<input type="number" name="busca_limite_pagina" class="form-control" value="<?php echo $config['busca_limite_pagina']; ?>">
-					</div>
-				</div>
-
-        <div class="col-md-4">
           <div class="form-group">
-						<label>Tipo do Botão:</label>
-						<select name="busca_btn_tipo" class="form-control custom-select">
-							<option value="texto" <?php Selected($config['busca_btn_tipo'], 'texto'); ?>>Texto</option>
-							<option value="icone" <?php Selected($config['busca_btn_tipo'], 'icone'); ?>>Ícone</option>
-              <option value="ambos" <?php Selected($config['busca_btn_tipo'], 'ambos'); ?>>Ambos</option>
-						</select>
-					</div>
+            <label>Limite de Resultado por Página:</label>
+            <input type="number" name="busca_limite_pagina" class="form-control" value="<?php echo $config['busca_limite_pagina']; ?>">
+          </div>
         </div>
 
         <div class="col-md-4">
           <div class="form-group">
-						<label>Tamanho do Botão:</label>
-						<select name="busca_btn_tamanho" class="form-control custom-select">
-							<option value="pequeno" <?php Selected($config['busca_btn_tamanho'], 'pequeno'); ?>>Pequeno</option>
+            <label>Tipo do Botão:</label>
+            <select name="busca_btn_tipo" class="form-control custom-select">
+              <option value="texto" <?php Selected($config['busca_btn_tipo'], 'texto'); ?>>Texto</option>
+              <option value="icone" <?php Selected($config['busca_btn_tipo'], 'icone'); ?>>Ícone</option>
+              <option value="ambos" <?php Selected($config['busca_btn_tipo'], 'ambos'); ?>>Ambos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Tamanho do Botão:</label>
+            <select name="busca_btn_tamanho" class="form-control custom-select">
+              <option value="pequeno" <?php Selected($config['busca_btn_tamanho'], 'pequeno'); ?>>Pequeno</option>
               <option value="normal" <?php Selected($config['busca_btn_tamanho'], 'normal'); ?>>Normal</option>
               <option value="grande" <?php Selected($config['busca_btn_tamanho'], 'grande'); ?>>Grande</option>
-						</select>
-					</div>
+            </select>
+          </div>
         </div>
 
         <div class="col-md-6">
@@ -651,68 +652,102 @@
 
       <hr/>
 
-      <h4>Configuração Formulário Orçamento</h4>
-
+      <h4>Configuração do PagSeguro</h4>
       <div class="row">
-  			<div class="col-md-12">
-  				<div class="form-group">
-  					<label>E-mail de Recebimento:</label>
-  					<input type="text" name="email_recebimento" class="form-control" placeholder="Informe o E-mail de Recebimento" required="" value="<?php echo $config['email_recebimento']; ?>">
-  					<small>Para adicionar mais de um e-mail separe os e-mails com ; (ponto e virgula)</small>
-  				</div>
-  			</div>
-  		</div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Email do PagSeguro:</label>
+            <input type="text" name="email_servidor" class="form-control" value="<?php echo $config['email_servidor']; ?>">
+          </div>
+        </div>
 
-      <div class="row">
-				<div class="col-md-12">
-					<div class="form-group">
-						<label>Servidor SMTP:</label>
-						<input type="text" name="email_servidor" class="form-control" placeholder="Informe o Servidor SMTP" value="<?php echo $config['email_servidor']; ?>">
-					</div>
-				</div>
-			</div>
+        <div class="col-md-6">
+          <div class="form-group">
+              <label>Token do PagSeguro:</label>
+              <input type="text" name="email_recebimento" class="form-control" value="<?php echo $config['email_recebimento']; ?>">
+            </div>
+          </div>
+        
 
-			<div class="row">
-				<div class="col-md-4">
-					<div class="form-group">
-						<label>Usuário SMTP:</label>
-						<input type="text" name="email_usuario" class="form-control" placeholder="Informe o Usuário SMTP" value="<?php echo $config['email_usuario']; ?>">
-					</div>
-				</div>
+        <div class="d-md-none">
+          <div class="form-group">
+            <label>URL de redirecionamento:</label>
+            <i class="icon icon-question-circle tooltips" data-tooltip="Redirecionamento após compra."><span class="inner">Redirecionamento após compra.</span></i>
+            <input type="text" name="email_usuario" class="form-control" value="<?php echo $config['email_usuario']; ?>">
+          </div>
+        </div>
+      </div>
 
-				<div class="col-md-4">
-					<div class="form-group">
-						<label>Senha SMTP:</label>
-						<input type="text" name="email_senha" class="form-control" placeholder="Informe o Senha SMTP" value="<?php echo $config['email_senha']; ?>">
-					</div>
-				</div>
+        <div class="d-md-none">
+          <div class="form-group">
+            <label>URL de notificação:</label>
+            <input type="text" name="email_senha" class="form-control" value="<?php echo $config['email_senha']; ?>">
+          </div>
+        </div>
+      
 
-				<div class="col-md-4">
-					<div class="form-group">
-						<label>Porta SMTP:</label>
-						<input type="text" name="email_porta" class="form-control" placeholder="Informe a Porta SMTP" value="<?php echo $config['email_porta']; ?>">
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label>E-mail de Disparo:</label>
-						<input type="text" name="email_disparo" class="form-control" placeholder="Informe o E-mail de Disparo" value="<?php echo $config['email_disparo']; ?>">
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label>Protocolo de Segurança:</label>
-						<select name="email_protocolo_seguranca" class="form-control custom-select">
-							<option value="ssl" <?php Selected($config['email_protocolo_seguranca'], 'ssl'); ?>>SSL</option>
-							<option value="tls" <?php Selected($config['email_protocolo_seguranca'], 'tls'); ?>>TLS</option>
-						</select>
-					</div>
-				</div>
-			</div>
+      <!-- <hr/> <h4>Configuração Formulário Orçamento</h4>-->
 
-      <div class="row">
+      <div class="row d-none">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>E-mail de Recebimento:</label>
+            <input type="text" name="" class="form-control" placeholder="Informe o E-mail de Recebimento" required="" value="<?php echo $config['email_recebimento']; ?>">
+            <small>Para adicionar mais de um e-mail separe os e-mails com ; (ponto e virgula)</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-none">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Servidor SMTP:</label>
+            <input type="text" name="" class="form-control" placeholder="Informe o Servidor SMTP" value="<?php echo $config['']; ?>">
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-none">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Usuário SMTP:</label>
+            <input type="text" name="" class="form-control" placeholder="Informe o Usuário SMTP" value="<?php echo $config['']; ?>">
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Senha SMTP:</label>
+            <input type="text" name="" class="" placeholder="Informe o Senha SMTP" value="<?php echo $config['']; ?>">
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Porta SMTP:</label>
+            <input type="text" name="email_porta" class="form-control" placeholder="Informe a Porta SMTP" value="<?php echo $config['email_porta']; ?>">
+          </div>
+        </div>
+      </div>
+      <div class="row d-none">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>E-mail de Disparo:</label>
+            <input type="text" name="email_disparo" class="form-control" placeholder="Informe o E-mail de Disparo" value="<?php echo $config['email_disparo']; ?>">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Protocolo de Segurança:</label>
+            <select name="email_protocolo_seguranca" class="form-control custom-select">
+              <option value="ssl" <?php Selected($config['email_protocolo_seguranca'], 'ssl'); ?>>SSL</option>
+              <option value="tls" <?php Selected($config['email_protocolo_seguranca'], 'tls'); ?>>TLS</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-none">
         <div class="col-md-4">
           <div class="form-group">
             <label>Cor do Background:</label>
@@ -755,33 +790,33 @@
           </div>
         </div>
       </div>
-		</div>
+    </div>
 
-		<div class="card-footer white">
-			<button class="btn btn-primary float-right" type="submit">Atualizar</button>
-		</div>
-	</div>
+    <div class="card-footer white">
+      <button class="btn btn-primary float-right" type="submit">Atualizar</button>
+    </div>
+  </div>
 </form>
 
 
 <script type="text/javascript">
 function AtualizarMatrizes(){
-	$.ajax({
-	    type: "GET",
-	    cache: false,
-	    url: "ecommerce.php?AtualizarMatrizesTodosProdutos",
-	    beforeSend: function(data){
-	    	swal({
-			  title: 'Aguarde!',
-			  text: 'Estamos gerando as páginas dos produtos atualizadas.\nNão recarregue a página até a mensagem de sucesso.',
-			  type: "info",
-			  html: true,
-			  showConfirmButton: true
-			});
-	    },
-	    complete: function( data ){
-		    swal("Matrizes Atualizadas!", "Matrizes atualizadas com sucesso!", "success")
-	    }
-	});
+  $.ajax({
+      type: "GET",
+      cache: false,
+      url: "ecommerce.php?AtualizarMatrizesTodosProdutos",
+      beforeSend: function(data){
+        swal({
+        title: 'Aguarde!',
+        text: 'Estamos gerando as páginas dos produtos atualizadas.\nNão recarregue a página até a mensagem de sucesso.',
+        type: "info",
+        html: true,
+        showConfirmButton: true
+      });
+      },
+      complete: function( data ){
+        swal("Matrizes Atualizadas!", "Matrizes atualizadas com sucesso!", "success")
+      }
+  });
 }
 </script>

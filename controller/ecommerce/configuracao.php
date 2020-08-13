@@ -58,6 +58,7 @@ else if (isset($_GET['AtualizarConfig'])) {
     'produto_cor_texto_botao',
     'produto_cor_tag_categoria',
     'produto_cor_texto_tag_categoria',
+    'produto_cor_texto_descricao',
     'carrocel_cor_btn',
     'carrocel_cor_btn_texto',
     'carrocel_cor_hover_btn',
@@ -68,21 +69,16 @@ else if (isset($_GET['AtualizarConfig'])) {
     'carrocel_cor_hover_setas',
     'carrinho_cor_btns',
     'carrinho_cor_btn_finalizar',
-    'moeda',
     'cep_origem',
-    'pagina_checkout'
+    'pagina_checkout',
+
   );
 
-  foreach($campos as $campo){
-    DBUpdate('ecommerce_config', array('valor' => post($campo)), "id = '$campo'");
-  }
+  
 
-  try{
-    atualizarMatrizesTodosProdutos();
-    http_response_code(200);
-    exit();
-  } catch (\Exception $e) {
-    http_response_code(500);
-    exit();
+  foreach($campos as $campo){
+    DBUpdate('ecommerce_config', array('valor' => $campo), "id = '$campo'");
   }
+  exit();
+  
 }

@@ -1,8 +1,12 @@
 <?php
-header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
+$query = DBRead('ecommerce_config','*');
+$config = [];
+  foreach ($query as $key => $row) {
+    $config[$row['id']] = $row['valor'];
+  }
 require_once("PagSeguroLibrary/PagSeguroLibrary.php");
 
 
@@ -51,17 +55,26 @@ if (isset($_POST)) {
         }
     }
     
+    $paymentRequest->addItem('0001', 'frete',  1, post('vl_frete'));
     
-    $paymentRequest->setCurrency("BRL");  
+    $paymentRequest->setCurrency("BRL"); 
+    
+    
 
     // Referenciando a transação do PagSeguro em seu sistema  
     $paymentRequest->setReference($query);  
     
-    // URL para onde o comprador será redirecionado (GET) após o fluxo de pagamento  
-    $paymentRequest->setRedirectUrl("http://www.lojamodelo.com.br");  
+    // URL para onde o comprador será redirecionado (GET) após o fluxo de pagamento $config['email_usuario'] 
+    $paymentRequest->setRedirectUrl('https://www.teacherfelipe.com.br');
     
     // URL para onde serão enviadas notificações (POST) indicando alterações no status da transação  
-    $paymentRequest->addParameter('notificationURL', 'http://www.lojamodelo.com.br/nas'); 
+    $paymentRequest->addParameter('notificationURL', 'https://www.teacherfelipe.com.br'); 
+    
+    /*$paymentRequest->addPaymentMethodConfig('CREDIT_CARD', 0.00, 'DISCOUNT_PERCENT');  
+    $paymentRequest->addPaymentMethodConfig('EFT', 0.00, 'DISCOUNT_PERCENT');  
+    $paymentRequest->addPaymentMethodConfig('BOLETO', 0.00, 'DISCOUNT_PERCENT');  
+    $paymentRequest->addPaymentMethodConfig('DEPOSIT', 0.00, 'DISCOUNT_PERCENT');  
+    $paymentRequest->addPaymentMethodConfig('BALANCE', 0.00, 'DISCOUNT_PERCENT');*/  
     
     try {  
 
