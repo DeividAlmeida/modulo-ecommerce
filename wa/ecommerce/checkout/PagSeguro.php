@@ -25,7 +25,7 @@ if (isset($_POST)) {
       'tipo_pessoa' => post('billing_persontype'),
       'id_pessoa' => post('id_pessoa'),
       'cep' => post('billing_postcode'),
-      'bairro' => post('billing_neighborhood_field'),
+      'bairro' => post('billing_neighborhood'),
       'rua' => post('billing_address_1'),
       'numero' => post('billing_number'),
       'complemento' => post('billing_address_2'),
@@ -51,7 +51,7 @@ if (isset($_POST)) {
             $a = $fds['produto_pg'];
             $b = $fds['qtd'];
             $c = $fds['un_valor'];
-            $paymentRequest->addItem('0001', $a, $b, $c);
+            $paymentRequest->addItem($query, $a, $b, $c);
         }
     }
     

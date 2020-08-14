@@ -153,7 +153,8 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `nota` text DEFAULT NULL,
   `tipo_entrega` varchar(255) NOT NULL,
   `valor` float NOT NULL,
-  `produto` text NOT NULL
+  `produto` text NOT NULL,
+  `data` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
@@ -215,3 +216,5 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 
 UPDATE `modulos` SET `acao` = "{\"listagem\":[\"adicionar\",\"editar\",\"deletar\"],\"categoria\":[\"adicionar\",\"editar\",\"deletar\"],\"produto\":[\"adicionar\",\"editar\",\"deletar\"],\"codigo\":[\"acessar\"],\"configuracao\":[\"acessar\"]}" WHERE `modulos`.`url` = 'ecommerce.php';
 
+SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
+SET @@time_zone = '+03:00';
