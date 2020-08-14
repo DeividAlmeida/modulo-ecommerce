@@ -1,58 +1,49 @@
-            <div class="card">
-				<div class="card-header  white">					
-				<?php $query = DBRead('ecommerce_vendas', '*');?>
-				<style type="text/css">.fixed-table-loading{display: none;}</style>
-				<div class="card-body p-0">
-						<div>
-							<table id="BootstrapTable" data-toggle="table" data-pagination="true" data-locale="pt-BR" data-cache="false" data-search="true" data-show-export="true" data-export-data-type="all" data-export-types="['csv', 'excel', 'pdf']" data-mobile-responsive="true" data-click-to-select="true" data-toolbar="#toolbar" data-show-columns="true" class="table m-0 table-striped">
-								<thead>
-									<tr class="first-line">	
-										<th class="text-center">Id da venda</th>									
-										<th class="text-center">Comprador</th>
-										<th class="text-center">Valor da venda</th>										
-										<th>Ação</th>
-									</tr>
-								</thead>
-								<tbody>	<?php foreach($query as $vhs => $mima):?>							
-									<tr>
-										<td class="text-center">
-										<?php echo $mima['id'];?>
-										</td>																			
-										
-										<td class="text-center">
-										<?php echo $mima['nome'];?>											
-										</td>
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+  </head>
+  <body>
+  <?php $query = DBRead('ecommerce_vendas', '*');?>
+    <div class="card">
+        <div class="card-header  white">    
+        </div>
+        <div class="card-body p-0">
+                <div>
+                    <table id="BootstrapTable" data-show-refresh="true"  data-show-pagination-switch="true" data-detail-view="true"   data-detail-formatter="detailFormatter"  data-url="ecommerce/vendas/database.php" data-toggle="table" data-pagination="true" data-locale="pt-BR" data-cache="false" data-search="true" data-show-export="true" data-export-data-type="all" data-export-types="['csv', 'excel', 'pdf']" data-mobile-responsive="true" data-click-to-select="true" data-toolbar="#toolbar" data-show-columns="true" class="table m-0 table-striped BootstrapTable">
+                       
+      <thead>
+      <tr>
+      <center><th scope="col" data-field="Id da venda">Id da venda</th>
+      <th scope="col" data-field="Comprador">Comprador</th>
+      <th scope="col" data-field="Valor da venda">Valor da venda</th>
+    </tr>
+      </thead>
+      
+    </table>
+    </div>
+    </div>
+    <script>
+      function detailFormatter(index, row) {
+        var html = []
+        $.each(row, function (key, value) {
+          html.push('<b>' + key + ':</b> ' + value + '<br>')
+        })
+        return html.join('')
+      }
+</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/FileSaver/FileSaver.min.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/js-xlsx/xlsx.core.min.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/tableExport.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>  
 
-										<td class="text-center">
-										<?php echo "R$ ".number_format($mima['valor'], 2, ",", ".");?>		
-										</td>
-										<td>
-											<div class="dropdown">
-												<a class="" href="#" data-toggle="dropdown">
-													<i class="icon-apps blue lighten-2 avatar"></i>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end">
-													<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'configuraçao')) { ?>
-													<a class="dropdown-item" onclick="DeletarItem(<?php echo $mima['id']; ?>, 'DeletarLead');" href="#!"><i class="text-danger icon icon-remove"></i> Excluir</a>
-													<?php } ?>
-												</div>
-											</div>
-										</td>
-									</tr>
-								<?php endforeach ?>									
-								</tbody>
-							</table data-toggle="table">
-						</div>
-					</div>				
-			</div>
-
-<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-pt-BR.min.js"></script>
-<script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/FileSaver/FileSaver.min.js"></script>
-<script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/js-xlsx/xlsx.core.min.js"></script>
-<script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
-<script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
-<script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/tableExport.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
-<script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/jquery.multifield.min.js"></script>
-<script type="text/javascript" src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>assets/plugins/iconpicker/bootstrap-iconpicker.bundle.min.js"></script>
+  </body>
+</html>

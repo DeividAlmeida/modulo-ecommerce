@@ -30,6 +30,10 @@ $UrlPage	 = 'Ecommerce.php';
 
 			<span class="dropdown">
 
+			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'listagem')) { ?>
+					<a class="btn btn-sm btn-primary" href="?Vendas" >Vendas</a>
+				<?php } ?>
+
 				<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'listagem')) { ?>
 					<a class="btn btn-sm btn-primary" href="#" data-toggle="dropdown">Listagens</a>
 				<?php } ?>
@@ -145,6 +149,8 @@ $UrlPage	 = 'Ecommerce.php';
 			require_once('ecommerce/listagens/editar.php');
 		elseif (isset($_GET['VisualizarLista'])) :
 			require_once('ecommerce/listagens/item/listar.php');
+		elseif (isset($_GET['Vendas'])) :
+			require_once('ecommerce/vendas/vendas.php');
 		elseif (isset($_GET['VisualizarListaMarca'])) :
 			require_once('ecommerce/listagens/item/listar_marca.php');
 		else :
@@ -305,6 +311,7 @@ $UrlPage	 = 'Ecommerce.php';
 			$('#formAtualizarConfig').submit(function(e) {
 				e.preventDefault();
 				var data = $('#formAtualizarConfig').serialize();
+				console.log(data);
 				$.ajax({
 					data: data,
 					type: "POST",
