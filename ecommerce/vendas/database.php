@@ -2,22 +2,28 @@
 require_once('../../includes/funcoes.php');
 require_once('../../database/config.database.php');
 require_once('../../database/config.php');
-$query = DBRead('ecommerce_vendas', '*');?>
+$query = DBRead('ecommerce_vendas', '*');
+$last = end($query);
+$bay = json_decode($last['produto'], true);
+array_pop($query);
+?>
 
 [
     <?php foreach($query as $vhs => $mima):
+    
     $id = $mima['id'];    
     $pdts = json_decode($mima['produto'], true);
     $data = new DateTime();
     $data->format('d/m/Y H:i:s');
     $data = new DateTime($mima['data']);
     
-    foreach($pdts as $pdt) {$pdt['un_valor'] += number_format(floatval(str_replace(",", ".", $pdt['un_valor'])) * floatval(str_replace(",", ".", $pdt['qtd'])), 2, ".", ",");  };
+    foreach($pdts as $key => $pdt) {$pdt['un_valor'] += number_format(floatval(str_replace(",", ".", $pdt['un_valor'])) * floatval(str_replace(",", ".", $pdt['qtd'])), 2, ".", ",");  };
     ?>    
     {
-        "id": <?php echo $id;?>,        
-        "Comprador": "<div class='container-fluid'><div class='row'><div class='col-md-4'><?php echo $mima['nome'];?>",
-        "<?php if($mima['tipo_pessoa'] == 1){echo "CNPJ";}else{echo "CPF";} echo'":'.'"'.$mima['id_pessoa'].'",'; ?>
+        "id": <?php echo $id; ?>,
+         "<div class='container-fluid'><div class='row'><div class='col-md-4'><span class='d-none'>":"</spna>",                        
+        "Comprador": "<?php echo $mima['nome'];?>",
+        "<?php if($mima['tipo_pessoa'] == 2){echo "CNPJ";}else{echo "CPF";} echo'":'.'"'.$mima['id_pessoa'].'",'; ?>
         "Telefone": " <?php echo $mima['telefone'];?>",
         "Email": " <?php echo $mima['email']."</div> <div class='col-md-4'>"; ?>",
         "Data": " <?php echo $data->format('d/m/Y H:i:s');?>",
@@ -33,10 +39,36 @@ $query = DBRead('ecommerce_vendas', '*');?>
         "Rua": " <?php echo $mima['rua'];?>",
         "Número": " <?php echo $mima['numero'];?>",
         "Complemento": " <?php echo $mima['complemento']."</div></div></div>";?> ",
-        "Observação": "<hr> <?php echo $mima['nota'];?>"
-
-        
+        "Observação": "<hr> <?php echo $mima['nota'];?>",
+        "<span class='d-none'>":"<span class='d-none'>",
+        "state":""         
     },<?php endforeach ?>
   
-    {}
+    {
+
+        "id": <?php print_r($last['id']); ?>,
+        "<div class='container-fluid'><div class='row'><div class='col-md-4'><span class='d-none'>":"",                   
+        "Comprador": "<?php echo $last['nome'];?>",
+        "<?php if($last['tipo_pessoa'] == 2){echo "CNPJ";}else{echo "CPF";} print_r('":'.'"'.$last['id_pessoa'].'",'); ?>
+        "Telefone": " <?php print_r( $last['telefone']);?>",
+        "Email": " <?php print_r($last['email']."</div> <div class='col-md-4'>"); ?>",
+        "Data": " <?php echo $data->format('d/m/Y H:i:s');?>",
+        "Valor da venda": "<?php print_r("R$ ".number_format($last['valor'], 2, ",", "."));?>",
+        "Valor liquido da venda": "<?php print_r("R$ ".number_format($pdt['un_valor'], 2, ",", "."));?>",
+        "Produto": "<span><?php foreach($bay as $by) { echo "<br>". $by['produto']."Quantidade: ".$by['qtd']."<br>";   } echo "</span></div> <div class='col-md-4'>"; ?>",
+        "Tipo de Entrega": " <?php print_r($last['tipo_entrega']);?>",
+        "Valor do frete": " <?php echo  "R$ ".number_format(abs(floatval(str_replace(",", ".", $last['valor'])) - floatval(str_replace(",", ".", $pdt['un_valor']))), 2, ",", ".");  ?>",
+        "Estado": " <?php print_r($last['estado']);?>",
+        "Cidade": " <?php print_r($last['cidade']);?>",
+        "Bairro": " <?php print_r($last['bairro']);?>",
+        "Cep": " <?php print_r($last['cep']);?>",       
+        "Rua": " <?php print_r($last['rua']);?>",
+        "Número": " <?php print_r($last['numero']);?>",
+        "Complemento": " <?php print_r($last['complemento']."</div></div></div>");?> ",        
+        "Observação": "<hr> <?php print_r($last['nota']);?>",
+        "<span class='d-none'>":"<span class='d-none'>",
+        "state":"" 
+        
+    
+    }
 ]

@@ -22,3 +22,4 @@ require_once('ecommerce/c_configuracao.php');
 require_once('ecommerce/listagens.php');
 require_once('ecommerce/produtos.php');
 require_once('ecommerce/slider.php');
+require_once('ecommerce/vendas.php');
