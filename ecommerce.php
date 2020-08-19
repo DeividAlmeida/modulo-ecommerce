@@ -31,7 +31,7 @@ $UrlPage	 = 'Ecommerce.php';
 			<span class="dropdown">
 
 			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'listagem')) { ?>
-					<a class="btn btn-sm btn-primary" href="?Vendas" >Vendas</a>
+					<a class="btn btn-sm btn-primary" href="?Vendas" >Pedidos</a>
 				<?php } ?>
 
 				<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'listagem')) { ?>
@@ -311,7 +311,7 @@ $UrlPage	 = 'Ecommerce.php';
 			$('#formAtualizarConfig').submit(function(e) {
 				e.preventDefault();
 				var data = $('#formAtualizarConfig').serialize();
-				console.log(data);
+				
 				$.ajax({
 					data: data,
 					type: "POST",
@@ -358,8 +358,7 @@ $UrlPage	 = 'Ecommerce.php';
 					}
 				});
 				$('#formActionProduto').submit(function(e) {
-					var data = $(this).serializeArray();
-					console.log(data);
+					var data = $(this).serializeArray();					
 					e.preventDefault();
 					swal({
 						title: "Você tem certeza?",
@@ -380,6 +379,82 @@ $UrlPage	 = 'Ecommerce.php';
 					});
 				});
 			});
+			
+	
+	function showDetails(z){
+      $("#no-b").load('<?php echo ConfigPainel('base_url'); ?>ecommerce/vendas/editar.php?id='+z+'');
+    }       
+      function detailFormatter(index, row) { 
+        var html = []
+        $.each(row, function (key, value) {            
+          html.push('<b>' + key + ':</b> ' + value + '<br>');          
+        })        
+        return html.join('');        
+      }
+
+        $('#pedidos').submit(function(e) {
+            e.preventDefault();
+            var $table = $('#BootstrapTable');
+            var data = $(this).serializeArray();
+            console.log(data);                      				
+            swal({
+                title: "Você tem certeza?",
+                text: "Deseja realmente deletar o(s) pedido(s)?",
+                icon: "warning",
+                buttons: {
+                cancel: "Não",
+                confirm: {
+                    text: "Sim",
+                    className: "btn-primary",
+                },
+                },
+                closeOnCancel: false
+                }).then(function(isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            data: data,
+                            type: "POST",
+                            cache: false,
+                            url: "ecommerce.php?deletarPedidos", 
+                            complete: function( data ){
+                                swal("Deletados!", "Pedido(s) deletado(s).", "success");                                
+                                setImmediate(function refreshTable() {$table.bootstrapTable('refresh', {silent: false});});
+                                }
+                                
+                        });
+                    } 
+                    else {
+                        swal("Cancelado", "Pedido(s) permanece(m) salvo(s)", "error");
+                        setImmediate(function refreshTable() {$table.bootstrapTable('refresh', {silent: true});});
+                    }  
+                
+                });        
+            });
+            
+            $(document).ready(function() {
+                $("#BootstrapTable").DataTable({
+                    "language": {
+                        "sEmptyTable": "Nenhum registro encontrado",
+                        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sInfoThousands": ".",
+                        "sLengthMenu": "Mostrar _MENU_ resultados por página",
+                        "sLoadingRecords": "Carregando...",
+                        "sProcessing": "Processando...",
+                        "sZeroRecords": "Nenhum registro encontrado",
+                        "sSearch": "Pesquisar",
+                        "oPaginate": {
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior",
+                            "sFirst": "Primeiro",
+                            "sLast": "Último"
+                        },
+                    },
+                });  
+            });              
+
 		</script>
 
 		<?php if (isset($_GET['AdicionarProduto']) || isset($_GET['EditarProduto'])) { ?>
@@ -488,5 +563,14 @@ $UrlPage	 = 'Ecommerce.php';
 				});
 			</script>
 		<?php } ?>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/FileSaver/FileSaver.min.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/js-xlsx/xlsx.core.min.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/tableExport.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>  
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table-locale-all.min.js"></script>
 
 		

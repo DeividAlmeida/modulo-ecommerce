@@ -29,7 +29,7 @@ array_pop($query);
         "Data": " <?php echo $data->format('d/m/Y H:i:s');?>",
         "Valor da venda": "<?php echo "R$ ".number_format($mima['valor'], 2, ",", ".");?>",
         "Valor liquido da venda": "<?php echo "R$ ".number_format($pdt['un_valor'], 2, ",", ".");?>",
-        "Produto": "<span><?php foreach($pdts as $pd) { echo "<br>". $pd['produto']."Quantidade: ".$pd['qtd']."<br>";   } echo "</span></div> <div class='col-md-4'>"; ?>",
+        "Produto(s)": "<span><?php foreach($pdts as $pd) { echo "<br>". $pd['produto']."Quantidade: ".$pd['qtd']."<br>";   } echo "</span></div> <div class='col-md-4'>"; ?>",
         "Tipo de Entrega": " <?php echo $mima['tipo_entrega'];?>",
         "Valor do frete": " <?php echo  "R$ ".number_format(abs(floatval(str_replace(",", ".", $mima['valor'])) - floatval(str_replace(",", ".", $pdt['un_valor']))), 2, ",", ".");  ?>",
         "Estado": " <?php echo $mima['estado'];?>",
@@ -41,6 +41,7 @@ array_pop($query);
         "Complemento": " <?php echo $mima['complemento']."</div></div></div>";?> ",
         "Observação": "<hr> <?php echo $mima['nota'];?>",
         "<span class='d-none'>":"<span class='d-none'>",
+        "<i class='fa fa-pencil'></i>":"<center><a style='cursor:pointer' data-target='#Modal' data-toggle='modal' onclick='showDetails(<?php echo $id; ?>)'><i class='text-center text-primary icon icon-pencil' aria-hidden='true'></i></a></center>",
         "state":""         
     },<?php endforeach ?>
   
@@ -55,7 +56,7 @@ array_pop($query);
         "Data": " <?php echo $data->format('d/m/Y H:i:s');?>",
         "Valor da venda": "<?php print_r("R$ ".number_format($last['valor'], 2, ",", "."));?>",
         "Valor liquido da venda": "<?php print_r("R$ ".number_format($pdt['un_valor'], 2, ",", "."));?>",
-        "Produto": "<span><?php foreach($bay as $by) { echo "<br>". $by['produto']."Quantidade: ".$by['qtd']."<br>";   } echo "</span></div> <div class='col-md-4'>"; ?>",
+        "Produto(s)": "<span><?php foreach($bay as $by) { echo "<br>". $by['produto']."Quantidade: ".$by['qtd']."<br>";   } echo "</span></div> <div class='col-md-4'>"; ?>",
         "Tipo de Entrega": " <?php print_r($last['tipo_entrega']);?>",
         "Valor do frete": " <?php echo  "R$ ".number_format(abs(floatval(str_replace(",", ".", $last['valor'])) - floatval(str_replace(",", ".", $pdt['un_valor']))), 2, ",", ".");  ?>",
         "Estado": " <?php print_r($last['estado']);?>",
@@ -67,6 +68,7 @@ array_pop($query);
         "Complemento": " <?php print_r($last['complemento']."</div></div></div>");?> ",        
         "Observação": "<hr> <?php print_r($last['nota']);?>",
         "<span class='d-none'>":"<span class='d-none'>",
+        "<i class='fa fa-pencil'></i>":"<center><a style='cursor:pointer' data-target='#Modal' data-toggle='modal' onclick='showDetails(<?php print_r($last['id']); ?>)'><i class='text-center text-primary icon icon-pencil' aria-hidden='true'></i></a></center>",
         "state":"" 
         
     
