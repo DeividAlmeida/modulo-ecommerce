@@ -1,5 +1,5 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET time_zone = "-03:00";
 
 INSERT INTO `modulos` (`nome`, `url`, `icone`, `status`, `ordem`, `tabela`, `cod_head`, `data_atualizacao`, `chave`)
 SELECT 'Ecommerce', 'ecommerce.php', 'icon-shopping-bag', 1, 0, 'ecommerce', 'ecommerce/ecommerce.js', '2019-05-07', '72b4b1d7ce2b514a981a49b1db5790a7';
@@ -158,7 +158,32 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `status` varchar(255) NOT NULL,
   `data` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-ALTER TABLE `ecommerce_vendas` ADD  AFTER `data`, ADD  AFTER `rastreamento`;
+
+
+-- CONFIGURAR E-MAIL DE NOTIFICAÇÃO
+
+CREATE TABLE IF NOT EXISTS `ecommerce_config_email` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `nome` varchar(255) NOT NULL,
+  `remetente` varchar(255) NOT NULL,
+  `t_pagamento_pendente` varchar(255) DEFAULT NULL,
+  `pagamento_pendente` text,
+  `t_processando` varchar(255) DEFAULT NULL,
+  `processando` text,
+  `t_aguardando` varchar(255) DEFAULT NULL,
+  `aguardando` text,
+  `t_pedido_enviado` varchar(255) DEFAULT NULL,
+  `pedido_enviado` text NOT NULL,
+  `t_concluido` varchar(255) NOT NULL,
+  `concluido` text NOT NULL,
+  `t_cancelado` varchar(255) NOT NULL,
+  `cancelado` text NOT NULL,
+  `t_reembolsado` varchar(255) NOT NULL,
+  `reembolsado` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `ecommerce_config_email` (`id`, `nome`, `remetente`, `t_pagamento_pendente`, `pagamento_pendente`, `t_processando`, `processando`, `t_aguardando`, `aguardando`, `t_pedido_enviado`, `pedido_enviado`, `t_concluido`, `concluido`, `t_cancelado`, `cancelado`, `t_reembolsado`, `reembolsado`) VALUES
+('1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('pagina_carrinho', ''),

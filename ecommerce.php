@@ -102,9 +102,17 @@ $UrlPage	 = 'Ecommerce.php';
 				</div>
 			</span>
 			
-			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'configuracao', 'acessar')) { ?>
-				<a class="btn btn-sm btn-primary" href="?Config">Configuração</a>
+			<span class="dropdown">
+				<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'configuracao', 'acessar')) { ?>
+					<a class="btn btn-sm btn-primary" href="#" data-toggle="dropdown">Configuração</a>
+					<div class="dropdown-menu dropdown-menu-left" x-placement="bottom">
+						<a class="dropdown-item" href="?Config">Configurações Gerais</a>
+						<a class="dropdown-item" href="?configEntrega">Configurações de Entrega</a>
+						<a class="dropdown-item" href="?configPagamento">Configurações de Pagamento</a>
+						<a class="dropdown-item" href="?configEmail">Configurações de Email</a>
+					</div>					
 <?php } ?>
+			</span>
 <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'codigo', 'acessar')) { ?>
 			<button class="btn btn-sm behance text-white" data-toggle="modal" data-target="#Ajuda"><i class="icon-question-circle"></i></button>
 <?php } ?>
@@ -112,7 +120,13 @@ $UrlPage	 = 'Ecommerce.php';
 
 		<?php
 		if (isset($_GET['Config'])) :
-			require_once('ecommerce/configuracao.php');
+			require_once('ecommerce/configuracao/configuracao.php');
+		elseif (isset($_GET['configEntrega'])) :
+			require_once('ecommerce/configuracao/entrega.php');
+		elseif (isset($_GET['configPagamento'])) :
+			require_once('ecommerce/configuracao/pagamento.php');
+		elseif (isset($_GET['configEmail'])) :
+			require_once('ecommerce/configuracao/email.php');
 		elseif (isset($_GET['AdicionarCategoria'])) :
 			require_once('ecommerce/categorias/add.php');
 		elseif (isset($_GET['EditarCategoria'])) :
@@ -308,6 +322,7 @@ $UrlPage	 = 'Ecommerce.php';
 					}
 				}
 			});
+
 			$('#formAtualizarConfig').submit(function(e) {
 				e.preventDefault();
 				var data = $('#formAtualizarConfig').serialize();
@@ -321,7 +336,7 @@ $UrlPage	 = 'Ecommerce.php';
 						swal({
 							title: 'Aguarde!',
 							text: 'Estamos gerando as páginas dos produtos atualizadas.\nNão recarregue a página até a mensagem de sucesso.',
-							type: "info",
+							icone: "info",
 							html: true,
 							showConfirmButton: true
 						});
@@ -331,6 +346,7 @@ $UrlPage	 = 'Ecommerce.php';
 					}
 				});
 			});
+
 			$('.adicionarListagemItem').click(function() {
 				var dataURL = $(this).attr('data-href');
 				$('#modalAdicionarItemListagem .modal-body').load(dataURL, function() {
@@ -339,6 +355,7 @@ $UrlPage	 = 'Ecommerce.php';
 					});
 				});
 			});
+
 			$(function() {
 				$('[data-toggle="tooltip"]').tooltip();
 
@@ -357,6 +374,7 @@ $UrlPage	 = 'Ecommerce.php';
 						$("#ckbCheckAll").prop("checked", false);
 					}
 				});
+
 				$('#formActionProduto').submit(function(e) {
 					var data = $(this).serializeArray();					
 					e.preventDefault();
@@ -379,6 +397,7 @@ $UrlPage	 = 'Ecommerce.php';
 					});
 				});
 			});
+
 		$('#savet').click(function(){
 			setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
 		});	
@@ -397,11 +416,34 @@ $UrlPage	 = 'Ecommerce.php';
 			let j = document.getElementById('status'+d).value;  
       xhttp.open("GET", "ecommerce.php?statusPedido="+d+"&status="+j, true);
       xhttp.onload = function(){
-            swal("Status Atualizado!", "Satus do pedido atualizado com sucesso!", "success");                              
+            swal("Status Atualizado!", "Status do pedido atualizado com sucesso! \n Notificação enviada ao cliente com sucesso!", "success");                              
         setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
         } 
 			xhttp.send();
-		}
+		};
+
+		$('#emails').submit(function(e) {
+			e.preventDefault();            
+			var data = $(this).serializeArray();
+			$.ajax({
+				data: data,
+				type: "POST",
+				cache: false,
+				url: "ecommerce.php?editaEmail",
+				beforeSend: function(data){
+					swal({
+					title: 'Aguarde!',
+					text: 'Estamos salvando as notificações.\nNão recarregue a página até a mensagem de sucesso.',
+					icone: "info",
+					html: true,
+					showConfirmButton: true
+				});
+				},
+				complete: function( data ){
+					swal("Notificações Atualizadas!", "Notificações atualizadas com sucesso!", "success")
+				}
+			});
+		});
         $('#pedidos').submit(function(e) {
             e.preventDefault();            
             var data = $(this).serializeArray();                     				

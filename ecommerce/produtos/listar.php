@@ -15,7 +15,7 @@
     <table id="DataTableListaProdutos" class="table table-striped">
       <thead>
         <tr>
-          <th class="no-sort" style="font-weight: bold;"><input type="checkbox" id="ckbCheckAll" /></th>
+        <th class="no-sort" style="font-weight: bold;"><input type="checkbox" id="ckbCheckAll" /></th>
           <th style="font-weight: bold;">ID</th>
           <th class="no-sort" style="font-weight: bold;">FOTO CAPA</th>
           <th style="font-weight: bold;">NOME</th>

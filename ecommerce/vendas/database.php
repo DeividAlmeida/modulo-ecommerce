@@ -16,7 +16,6 @@ array_pop($query);
     $data = new DateTime();
     $data->format('d/m/Y H:i:s');
     $data = new DateTime($mima['data']);
-    $status = ", document.getElementById('status').value";
     foreach($pdts as $key => $pdt) {$pdt['un_valor'] += number_format(floatval(str_replace(",", ".", $pdt['un_valor'])) * floatval(str_replace(",", ".", $pdt['qtd'])), 2, ".", ",");  };
     ?>    
     {
@@ -42,7 +41,7 @@ array_pop($query);
         "Complemento": "<?php echo $mima['complemento']."</div></div></div>";?>",
         "Observação": "<hr> <?php echo $mima['nota'];?>",
         "<span class='d-none'>":"<span class='d-none'>",
-        "Status do Pedido": "<select name='tipo_pessoa' onchange='status(<?php echo $id ?>)' id='status<?php echo $id ?>' class='form-control custom-select'><option value='Pagamento Pendente' <?php Selected($mima['status'], 'Pagamento Pendente'); ?>>Pagamento Pendente</option><option value='Processando' <?php Selected($mima['status'], 'Processando'); ?>>Processando</option><option value='Aguardando' <?php Selected($mima['status'], 'Aguardando'); ?>>Aguardando</option><option value='Pedido Enviado' <?php Selected($mima['status'], 'Pedido Enviado'); ?>>Pedido Enviado</option><option value='Concluido' <?php Selected($mima['status'], 'Concluido'); ?>>Concluido</option><option value='Cancelado' <?php Selected($mima['status'], 'Cancelado'); ?>>Cancelado</option><option value='Reembolsado' <?php Selected($mima['status'], 'Reembolsado'); ?>>Reembolsado</option></select>",
+        "Status do Pedido": "<select name='tipo_pessoa' onchange='status(<?php echo $id ?>)' id='status<?php echo $id ?>' class='form-control custom-select'><option  disabled selected>Altere o status do pedido</option><option value='pagamento_pendente' <?php Selected($mima['status'], 'pagamento_pendente'); ?>>Pagamento Pendente</option><option value='processando' <?php Selected($mima['status'], 'processando'); ?>>Processando</option><option value='aguardando' <?php Selected($mima['status'], 'aguardando'); ?>>Aguardando</option><option value='pedido_enviado' <?php Selected($mima['status'], 'pedido_enviado'); ?>>Pedido Enviado</option><option value='concluido' <?php Selected($mima['status'], 'concluido'); ?>>Concluido</option><option value='cancelado' <?php Selected($mima['status'], 'cancelado'); ?>>Cancelado</option><option value='reembolsado' <?php Selected($mima['status'], 'reembolsado'); ?>>Reembolsado</option></select>",
         "<i class='fa fa-pencil'></i>":"<center><a style='cursor:pointer' data-target='#Modal' data-toggle='modal' onclick='showDetails(<?php echo $id; ?>)'><i class='text-center text-primary icon icon-pencil' aria-hidden='true'></i></a></center>",
         "state":""         
     },<?php endforeach ?>
@@ -71,7 +70,7 @@ array_pop($query);
         "Complemento": "<?php print_r($last['complemento']."</div></div></div>");?> ",        
         "Observação": "<hr> <?php print_r($last['nota']);?>",
         "<span class='d-none'>":"<span class='d-none'>",
-        "Status do Pedido": "<select name='tipo_pessoa' onchange='status(<?php print_r($last['id']); ?>)' id='status<?php print_r($last['id']); ?>' class='form-control custom-select'><option value='Pagamento Pendente' <?php Selected($last['status'], 'Pagamento Pendente'); ?>>Pagamento Pendente</option><option value='Processando' <?php Selected($last['status'], 'Processando'); ?>>Processando</option><option value='Aguardando' <?php Selected($last['status'], 'Aguardando'); ?>>Aguardando</option><option value='Pedido Enviado' <?php Selected($last['status'], 'Pedido Enviado'); ?>>Pedido Enviado</option><option value='Concluido' <?php Selected($last['status'], 'Concluido'); ?>>Concluido</option><option value='Cancelado' <?php Selected($last['status'], 'Cancelado'); ?>>Cancelado</option><option value='Reembolsado' <?php Selected($last['status'], 'Reembolsado'); ?>>Reembolsado</option></select>",
+        "Status do Pedido": "<select name='tipo_pessoa' onchange='status(<?php print_r($last['id']); ?>)' id='status<?php print_r($last['id']); ?>' class='form-control custom-select'><option  disabled selected>Altere o status do pedido</option><option value='pagamento_pendente' <?php Selected($last['status'], 'pagamento_pendente'); ?>>Pagamento Pendente</option><option value='processando' <?php Selected($last['status'], 'processando'); ?>>Processando</option><option value='aguardando' <?php Selected($last['status'], 'aguardando'); ?>>Aguardando</option><option value='pedido_enviado' <?php Selected($last['status'], 'pedido_enviado'); ?>>Pedido Enviado</option><option value='concluido' <?php Selected($last['status'], 'concluido'); ?>>Concluido</option><option value='cancelado' <?php Selected($last['status'], 'cancelado'); ?>>Cancelado</option><option value='reembolsado' <?php Selected($last['status'], 'reembolsado'); ?>>Reembolsado</option></select>",
         "<i class='fa fa-pencil'></i>":"<center><a style='cursor:pointer' data-target='#Modal' data-toggle='modal' onclick='showDetails(<?php print_r($last['id']); ?>)'><i class='text-center text-primary icon icon-pencil' aria-hidden='true'></i></a></center>",
         "state":"" 
         

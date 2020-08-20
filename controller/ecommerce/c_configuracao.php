@@ -86,3 +86,26 @@ else if (isset($_GET['AtualizarConfig'])) {
     exit();
   }
 }
+if(isset($_GET['editaEmail'])){
+  $data = array(
+    'nome'                  => post('nome'),
+    'remetente'             => post('remetente'),
+    't_pagamento_pendente'  => post('t_pagamento_pendente'),
+    'pagamento_pendente'    => post('pagamento_pendente'),
+    't_processando'         => post('t_processando'),
+    'processando'           => post('processando'),
+    't_aguardando'          => post('t_aguardando'),
+    'aguardando'            => post('aguardando'),
+    't_pedido_enviado'      => post('t_pedido_enviado'),
+    'pedido_enviado'        => post('pedido_enviado'),
+    't_concluido'           => post('t_concluido'),
+    'concluido'             => post('concluido'),
+    't_cancelado'           => post('t_cancelado'),
+    'cancelado'             => post('cancelado'),
+    't_reembolsado'         => post('t_reembolsado'),
+    'reembolsado'           => post('reembolsado')
+
+  );
+  $query  = DBUpdate('ecommerce_config_email', $data, "id = '1'");
+}
+

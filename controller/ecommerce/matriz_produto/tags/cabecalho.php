@@ -32,15 +32,12 @@ ob_start();
       display: none !important;
     }
   }
-
-
+  
 .input-number {
   width: 40px;
   padding: 0 12px;
   text-align: center;
   outline: none;
-
-
 }
 
 .input-number,

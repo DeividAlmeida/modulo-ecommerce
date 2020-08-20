@@ -217,13 +217,6 @@ $config = [];
 																<div class="row">
 																	<div class="col-lg-6">
 																		<strong><center>Revisão do pedido</center></strong><br>
-																		<table class="shop_table review-order woocommerce-checkout-review-order-table">
-																			<thead>
-																				<tr>
-																					<th class="product-name">Produto</th>
-																					<th class="product-total">Subtotal</th>
-																				</tr>
-																			</thead>
 																		<?php
 																			if(isset($_SESSION["cart"]) && is_array($_SESSION["cart"]) && count($_SESSION["cart"]) > 0) { ?>
 																			<tbody>
@@ -231,7 +224,13 @@ $config = [];
 																				<?php foreach($_SESSION["cart"] as $id => $qtd ){
 																				$query = DBRead('ecommerce', '*', "WHERE id = $qtd[0]");
 																				$produto = $query[0];?>
-																		
+																		<table class="shop_table review-order woocommerce-checkout-review-order-table">
+																			<thead>
+																				<tr>
+																					<th class="product-name">Produto</th>
+																					<th class="product-total">Subtotal</th>
+																				</tr>
+																			</thead>
 																				<tr class="cart_item">
 																				    <input type="hidden" name="produto[]" id="produto<?php echo $id ?>" value="">
 																				    <input type="hidden" name="produto_pg[]" id="produto_pg" value="<?php echo $produto['nome']; ?>">
@@ -291,7 +290,6 @@ $config = [];
 																							document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
 																							document.getElementById("valor").value = c;
 																							document.getElementById("tipo_entrega").value = "PAC";
-																							document.getElementById("vl_frete").value = z;
 																					  };
 																					  Cfrete1 = (z) =>{
 																						  const a = document.getElementById("expresso").value;	
@@ -301,8 +299,7 @@ $config = [];
 																							document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
 																							document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
 																							document.getElementById("valor").value = b;
-																							document.getElementById("tipo_entrega").value = "SEDEX";
-																							document.getElementById("vl_frete").value = z;
+																							document.getElementById("tipo_entrega").value = "Sedex";
 																					  };
                                                                                     });
                                                                                 </script>											 																										
@@ -346,8 +343,7 @@ $config = [];
 																						</span>
 																					</h3><br>
 																					<input required type="hidden" name="valor" id="valor" value="">
-																					<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
-																					<input required type="hidden" name="vl_frete" id="vl_frete" value="">
+																					<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">																					
 																					<center><input type="submit"  value="Finalizar compra" ></center>
 																				</div>
 																			</div>
