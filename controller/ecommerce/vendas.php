@@ -28,7 +28,16 @@ if (isset($_GET['editarPedido'])) {
     'numero'            => post('numero'),
     'complemento'       => post('complemento'),
     'valor'             => post('valor'),
-    'produto'           =>$_POST['venda']
+    'rastreamento'      => post('rastreamento'),
+    'produto'           => $_POST['venda']
+  );
+  $query  = DBUpdate('ecommerce_vendas', $data, "id = {$id}");
+}
+if (isset($_GET['statusPedido'])) {
+  $id     = get('statusPedido');
+
+  $data = array(
+    'status'   => get('status'),
   );
   $query  = DBUpdate('ecommerce_vendas', $data, "id = {$id}");
 }

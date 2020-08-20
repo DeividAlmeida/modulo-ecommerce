@@ -154,9 +154,11 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `tipo_entrega` varchar(255) NOT NULL,
   `valor` float NOT NULL,
   `produto` text NOT NULL,
+  `rastreamento` text NULL,
+  `status` varchar(255) NOT NULL,
   `data` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
+ALTER TABLE `ecommerce_vendas` ADD  AFTER `data`, ADD  AFTER `rastreamento`;
 
 INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('pagina_carrinho', ''),

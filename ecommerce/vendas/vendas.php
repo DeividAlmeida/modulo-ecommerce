@@ -20,7 +20,8 @@
         <th scope="col" data-field="id" data-sortable="true">Id do Pedido</th>
         <th scope="col" data-field="Comprador" data-sortable="true">Comprador</th>
         <th scope="col" data-field="Valor da venda" data-sortable="true">Valor da Venda</th>
-        <th scope="col" data-field="Data" data-sortable="true">Data</th>
+        <th scope="col" data-field="Data do Pedido" data-sortable="true">Data do Pedido</th>
+        <th scope="col" data-field="Status do Pedido" data-sortable="true">Status do Pedido</th>
         <th scope="col" data-field="<i class='fa fa-pencil'></i>" data-sortable="true">Editar Pedito</th>
         
     </tr>
@@ -31,7 +32,7 @@
     </div>
     </form>
 
-    <div class="modal fade"  id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade"  id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div  class="modal-dialog  modal-lg" role="document">
     <div  class="modal-content">
       <div class="modal-content b-0">
@@ -44,7 +45,7 @@
 
           </div>
           <div class="modal-footer">
-          <button id="showSelectedRows" class="btn btn-primary" type="submit"><i class="icon icon-floppy-o"></i>Salvar Mudanças</button>        
+          <button id="savet" class="btn btn-primary" type="submit"><i class="icon icon-floppy-o"></i>Salvar Mudanças</button>        
         </form>
       </div>          
           </div>          
@@ -52,9 +53,3 @@
     </div>
   </div>
 </div>
-<script>
-$('#showSelectedRows').click(function(){
-  setImmediate(function refreshTable() {$table.bootstrapTable('refresh', {silent: false});});
-  }
-});
-</script>

@@ -8,6 +8,15 @@
 ?>
 <div class="card-body">
     <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Código de Rastreamento: </label>
+                <input class="form-control" type="text" name="rastreamento"  value="<?php echo $read[0]['rastreamento'];?>">
+            </div>
+        </div>
+    </div>  
+<hr>
+    <div class="row">
         <input type="hidden" name="id" value="<?php print_r($read[0]['id']); ?>">
         <div class="col-md-6">
             <div class="form-group">
@@ -100,7 +109,7 @@
             </div>
             <div class="form-group">
                 <label>Complemento: </label>
-                <input class="form-control" type="text" name="complemento" required value="<?php echo $read[0]['complemento'];?>">
+                <input class="form-control" type="text" name="complemento" value="<?php echo $read[0]['complemento'];?>">
             </div>      
         </div>
     </div>
@@ -131,7 +140,6 @@
   <script>
 $('#editarPedido').submit(function(e) {
     e.preventDefault();
-    var $table = $('#BootstrapTable');
     var data = $(this).serializeArray();
     console.log(data);
     $.ajax({
@@ -141,7 +149,7 @@ $('#editarPedido').submit(function(e) {
         url: "ecommerce.php?editarPedido", 
         complete: function( data ){
             swal("Pedido Atualizado!", "Pedido atualizado com sucesso!", "success");                              
-        setImmediate(function refreshTable() {$table.bootstrapTable('refresh', {silent: false});});
+        setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
         }                                
     });            
 });

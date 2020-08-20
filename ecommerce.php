@@ -379,24 +379,32 @@ $UrlPage	 = 'Ecommerce.php';
 					});
 				});
 			});
-			
-	
-	function showDetails(z){
-      $("#no-b").load('<?php echo ConfigPainel('base_url'); ?>ecommerce/vendas/editar.php?id='+z+'');
-    }       
-      function detailFormatter(index, row) { 
-        var html = []
-        $.each(row, function (key, value) {            
-          html.push('<b>' + key + ':</b> ' + value + '<br>');          
-        })        
-        return html.join('');        
-      }
-
+		$('#savet').click(function(){
+			setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
+		});	
+		function showDetails(z){
+		$("#no-b").load('<?php echo ConfigPainel('base_url'); ?>ecommerce/vendas/editar.php?id='+z+'');
+		}       
+		function detailFormatter(index, row) { 
+		var html = []
+		$.each(row, function (key, value) {            
+			html.push('<b>' + key + ':</b> ' + value + '<br>');          
+		})        
+		return html.join('');        
+		}
+		function status(d){
+			var xhttp = new XMLHttpRequest();
+			let j = document.getElementById('status'+d).value;  
+      xhttp.open("GET", "ecommerce.php?statusPedido="+d+"&status="+j, true);
+      xhttp.onload = function(){
+            swal("Status Atualizado!", "Satus do pedido atualizado com sucesso!", "success");                              
+        setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
+        } 
+			xhttp.send();
+		}
         $('#pedidos').submit(function(e) {
-            e.preventDefault();
-            var $table = $('#BootstrapTable');
-            var data = $(this).serializeArray();
-            console.log(data);                      				
+            e.preventDefault();            
+            var data = $(this).serializeArray();                     				
             swal({
                 title: "Você tem certeza?",
                 text: "Deseja realmente deletar o(s) pedido(s)?",
@@ -418,14 +426,14 @@ $UrlPage	 = 'Ecommerce.php';
                             url: "ecommerce.php?deletarPedidos", 
                             complete: function( data ){
                                 swal("Deletados!", "Pedido(s) deletado(s).", "success");                                
-                                setImmediate(function refreshTable() {$table.bootstrapTable('refresh', {silent: false});});
+                                setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
                                 }
                                 
                         });
                     } 
                     else {
                         swal("Cancelado", "Pedido(s) permanece(m) salvo(s)", "error");
-                        setImmediate(function refreshTable() {$table.bootstrapTable('refresh', {silent: true});});
+                        setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: true});});
                     }  
                 
                 });        
@@ -564,7 +572,7 @@ $UrlPage	 = 'Ecommerce.php';
 			</script>
 		<?php } ?>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
     <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/FileSaver/FileSaver.min.js"></script>
     <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/js-xlsx/xlsx.core.min.js"></script>
     <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>

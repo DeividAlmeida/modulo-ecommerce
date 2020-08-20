@@ -16,7 +16,7 @@ array_pop($query);
     $data = new DateTime();
     $data->format('d/m/Y H:i:s');
     $data = new DateTime($mima['data']);
-    
+    $status = ", document.getElementById('status').value";
     foreach($pdts as $key => $pdt) {$pdt['un_valor'] += number_format(floatval(str_replace(",", ".", $pdt['un_valor'])) * floatval(str_replace(",", ".", $pdt['qtd'])), 2, ".", ",");  };
     ?>    
     {
@@ -26,21 +26,23 @@ array_pop($query);
         "<?php if($mima['tipo_pessoa'] == 2){echo "CNPJ";}else{echo "CPF";} echo'":'.'"'.$mima['id_pessoa'].'",'; ?>
         "Telefone": " <?php echo $mima['telefone'];?>",
         "Email": " <?php echo $mima['email']."</div> <div class='col-md-4'>"; ?>",
-        "Data": " <?php echo $data->format('d/m/Y H:i:s');?>",
+        "Data do Pedido": " <?php echo $data->format('d/m/Y H:i:s');?>",
         "Valor da venda": "<?php echo "R$ ".number_format($mima['valor'], 2, ",", ".");?>",
         "Valor liquido da venda": "<?php echo "R$ ".number_format($pdt['un_valor'], 2, ",", ".");?>",
         "Produto(s)": "<span><?php foreach($pdts as $pd) { echo "<br>". $pd['produto']."Quantidade: ".$pd['qtd']."<br>";   } echo "</span></div> <div class='col-md-4'>"; ?>",
-        "Tipo de Entrega": " <?php echo $mima['tipo_entrega'];?>",
+        "Tipo de Entrega": "<?php echo $mima['tipo_entrega'];?>",
+        "Código de Rastreamento": "<?php echo $mima['rastreamento'];?>",
         "Valor do frete": " <?php echo  "R$ ".number_format(abs(floatval(str_replace(",", ".", $mima['valor'])) - floatval(str_replace(",", ".", $pdt['un_valor']))), 2, ",", ".");  ?>",
-        "Estado": " <?php echo $mima['estado'];?>",
-        "Cidade": " <?php echo $mima['cidade'];?>",
-        "Bairro": " <?php echo $mima['bairro'];?>",
-        "Cep": " <?php echo $mima['cep'];?>",       
-        "Rua": " <?php echo $mima['rua'];?>",
-        "Número": " <?php echo $mima['numero'];?>",
-        "Complemento": " <?php echo $mima['complemento']."</div></div></div>";?> ",
+        "Estado": "<?php echo $mima['estado'];?>",
+        "Cidade": "<?php echo $mima['cidade'];?>",
+        "Bairro": "<?php echo $mima['bairro'];?>",
+        "Cep": "<?php echo $mima['cep'];?>",       
+        "Rua": "<?php echo $mima['rua'];?>",
+        "Número": "<?php echo $mima['numero'];?>",
+        "Complemento": "<?php echo $mima['complemento']."</div></div></div>";?>",
         "Observação": "<hr> <?php echo $mima['nota'];?>",
         "<span class='d-none'>":"<span class='d-none'>",
+        "Status do Pedido": "<select name='tipo_pessoa' onchange='status(<?php echo $id ?>)' id='status<?php echo $id ?>' class='form-control custom-select'><option value='Pagamento Pendente' <?php Selected($mima['status'], 'Pagamento Pendente'); ?>>Pagamento Pendente</option><option value='Processando' <?php Selected($mima['status'], 'Processando'); ?>>Processando</option><option value='Aguardando' <?php Selected($mima['status'], 'Aguardando'); ?>>Aguardando</option><option value='Pedido Enviado' <?php Selected($mima['status'], 'Pedido Enviado'); ?>>Pedido Enviado</option><option value='Concluido' <?php Selected($mima['status'], 'Concluido'); ?>>Concluido</option><option value='Cancelado' <?php Selected($mima['status'], 'Cancelado'); ?>>Cancelado</option><option value='Reembolsado' <?php Selected($mima['status'], 'Reembolsado'); ?>>Reembolsado</option></select>",
         "<i class='fa fa-pencil'></i>":"<center><a style='cursor:pointer' data-target='#Modal' data-toggle='modal' onclick='showDetails(<?php echo $id; ?>)'><i class='text-center text-primary icon icon-pencil' aria-hidden='true'></i></a></center>",
         "state":""         
     },<?php endforeach ?>
@@ -51,26 +53,35 @@ array_pop($query);
         "<div class='container-fluid'><div class='row'><div class='col-md-4'><span class='d-none'>":"",                   
         "Comprador": "<?php echo $last['nome'];?>",
         "<?php if($last['tipo_pessoa'] == 2){echo "CNPJ";}else{echo "CPF";} print_r('":'.'"'.$last['id_pessoa'].'",'); ?>
-        "Telefone": " <?php print_r( $last['telefone']);?>",
-        "Email": " <?php print_r($last['email']."</div> <div class='col-md-4'>"); ?>",
-        "Data": " <?php echo $data->format('d/m/Y H:i:s');?>",
+        "Telefone": "<?php print_r( $last['telefone']);?>",
+        "Email": "<?php print_r($last['email']."</div> <div class='col-md-4'>"); ?>",
+        "Data do Pedido": " <?php echo $data->format('d/m/Y H:i:s');?>",
         "Valor da venda": "<?php print_r("R$ ".number_format($last['valor'], 2, ",", "."));?>",
         "Valor liquido da venda": "<?php print_r("R$ ".number_format($pdt['un_valor'], 2, ",", "."));?>",
         "Produto(s)": "<span><?php foreach($bay as $by) { echo "<br>". $by['produto']."Quantidade: ".$by['qtd']."<br>";   } echo "</span></div> <div class='col-md-4'>"; ?>",
-        "Tipo de Entrega": " <?php print_r($last['tipo_entrega']);?>",
-        "Valor do frete": " <?php echo  "R$ ".number_format(abs(floatval(str_replace(",", ".", $last['valor'])) - floatval(str_replace(",", ".", $pdt['un_valor']))), 2, ",", ".");  ?>",
-        "Estado": " <?php print_r($last['estado']);?>",
-        "Cidade": " <?php print_r($last['cidade']);?>",
-        "Bairro": " <?php print_r($last['bairro']);?>",
-        "Cep": " <?php print_r($last['cep']);?>",       
-        "Rua": " <?php print_r($last['rua']);?>",
-        "Número": " <?php print_r($last['numero']);?>",
-        "Complemento": " <?php print_r($last['complemento']."</div></div></div>");?> ",        
+        "Tipo de Entrega": "<?php print_r($last['tipo_entrega']);?>",
+        "Código de Rastreamento": "<?php print_r($last['rastreamento']);?>",
+        "Valor do frete": "<?php echo  "R$ ".number_format(abs(floatval(str_replace(",", ".", $last['valor'])) - floatval(str_replace(",", ".", $pdt['un_valor']))), 2, ",", ".");  ?>",
+        "Estado": "<?php print_r($last['estado']);?>",
+        "Cidade": "<?php print_r($last['cidade']);?>",
+        "Bairro": "<?php print_r($last['bairro']);?>",
+        "Cep": "<?php print_r($last['cep']);?>",       
+        "Rua": "<?php print_r($last['rua']);?>",
+        "Número": "<?php print_r($last['numero']);?>",
+        "Complemento": "<?php print_r($last['complemento']."</div></div></div>");?> ",        
         "Observação": "<hr> <?php print_r($last['nota']);?>",
         "<span class='d-none'>":"<span class='d-none'>",
+        "Status do Pedido": "<select name='tipo_pessoa' onchange='status(<?php print_r($last['id']); ?>)' id='status<?php print_r($last['id']); ?>' class='form-control custom-select'><option value='Pagamento Pendente' <?php Selected($last['status'], 'Pagamento Pendente'); ?>>Pagamento Pendente</option><option value='Processando' <?php Selected($last['status'], 'Processando'); ?>>Processando</option><option value='Aguardando' <?php Selected($last['status'], 'Aguardando'); ?>>Aguardando</option><option value='Pedido Enviado' <?php Selected($last['status'], 'Pedido Enviado'); ?>>Pedido Enviado</option><option value='Concluido' <?php Selected($last['status'], 'Concluido'); ?>>Concluido</option><option value='Cancelado' <?php Selected($last['status'], 'Cancelado'); ?>>Cancelado</option><option value='Reembolsado' <?php Selected($last['status'], 'Reembolsado'); ?>>Reembolsado</option></select>",
         "<i class='fa fa-pencil'></i>":"<center><a style='cursor:pointer' data-target='#Modal' data-toggle='modal' onclick='showDetails(<?php print_r($last['id']); ?>)'><i class='text-center text-primary icon icon-pencil' aria-hidden='true'></i></a></center>",
         "state":"" 
         
     
     }
 ]
+
+
+
+
+
+ 
+
