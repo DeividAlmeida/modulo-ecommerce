@@ -122,6 +122,8 @@ $UrlPage	 = 'Ecommerce.php';
 		if (isset($_GET['Config'])) :
 			require_once('ecommerce/configuracao/configuracao.php');
 		elseif (isset($_GET['configEntrega'])) :
+			require_once('ecommerce/configuracao/listar-entrega.php');
+		elseif (isset($_GET['editarEntrega'])) :
 			require_once('ecommerce/configuracao/entrega.php');
 		elseif (isset($_GET['configPagamento'])) :
 			require_once('ecommerce/configuracao/pagamento.php');
@@ -283,6 +285,8 @@ $UrlPage	 = 'Ecommerce.php';
 		<?php require_once('includes/footer.php'); ?>
 
 		<script type="text/javascript">
+	
+
 			$("#DataTableListaProdutos").DataTable({
 				"pageLength": 10,
 				"processing": true,
@@ -336,7 +340,7 @@ $UrlPage	 = 'Ecommerce.php';
 						swal({
 							title: 'Aguarde!',
 							text: 'Estamos gerando as páginas dos produtos atualizadas.\nNão recarregue a página até a mensagem de sucesso.',
-							icone: "info",
+							icon: "info",
 							html: true,
 							showConfirmButton: true
 						});
@@ -398,29 +402,30 @@ $UrlPage	 = 'Ecommerce.php';
 				});
 			});
 
-		$('#savet').click(function(){
-			setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
-		});	
-		function showDetails(z){
-		$("#no-b").load('<?php echo ConfigPainel('base_url'); ?>ecommerce/vendas/editar.php?id='+z+'');
-		}       
-		function detailFormatter(index, row) { 
-		var html = []
-		$.each(row, function (key, value) {            
-			html.push('<b>' + key + ':</b> ' + value + '<br>');          
-		})        
-		return html.join('');        
-		}
-		function status(d){
-			var xhttp = new XMLHttpRequest();
-			let j = document.getElementById('status'+d).value;  
-      xhttp.open("GET", "ecommerce.php?statusPedido="+d+"&status="+j, true);
-      xhttp.onload = function(){
-            swal("Status Atualizado!", "Status do pedido atualizado com sucesso! \n Notificação enviada ao cliente com sucesso!", "success");                              
-        setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
-        } 
-			xhttp.send();
-		};
+			$('#entrega').submit(function(e) {
+			e.preventDefault();            
+			var data = $(this).serializeArray();
+			$.ajax({
+				data: data,
+				type: "POST",
+				cache: false,
+				url: "ecommerce.php?editaEntrega",
+				beforeSend: function(data){
+					swal({
+					title: 'Aguarde!',
+					text: 'Estamos salvando suas informações de contato.\nNão recarregue a página até a mensagem de sucesso.',
+					icon: "info",
+					html: true,
+					showConfirmButton: true
+				});
+				},
+				complete: function( data ){
+					swal("Informações de contato Atualizadas!", "Informações de contato atualizadas com sucesso!", "success")
+				}
+			});
+		});
+
+//Edição de E-mails de Notificação
 
 		$('#emails').submit(function(e) {
 			e.preventDefault();            
@@ -434,7 +439,7 @@ $UrlPage	 = 'Ecommerce.php';
 					swal({
 					title: 'Aguarde!',
 					text: 'Estamos salvando as notificações.\nNão recarregue a página até a mensagem de sucesso.',
-					icone: "info",
+					icon: "info",
 					html: true,
 					showConfirmButton: true
 				});
@@ -444,73 +449,12 @@ $UrlPage	 = 'Ecommerce.php';
 				}
 			});
 		});
-        $('#pedidos').submit(function(e) {
-            e.preventDefault();            
-            var data = $(this).serializeArray();                     				
-            swal({
-                title: "Você tem certeza?",
-                text: "Deseja realmente deletar o(s) pedido(s)?",
-                icon: "warning",
-                buttons: {
-                cancel: "Não",
-                confirm: {
-                    text: "Sim",
-                    className: "btn-primary",
-                },
-                },
-                closeOnCancel: false
-                }).then(function(isConfirm) {
-                    if (isConfirm) {
-                        $.ajax({
-                            data: data,
-                            type: "POST",
-                            cache: false,
-                            url: "ecommerce.php?deletarPedidos", 
-                            complete: function( data ){
-                                swal("Deletados!", "Pedido(s) deletado(s).", "success");                                
-                                setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
-                                }
-                                
-                        });
-                    } 
-                    else {
-                        swal("Cancelado", "Pedido(s) permanece(m) salvo(s)", "error");
-                        setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: true});});
-                    }  
-                
-                });        
-            });
-            
-            $(document).ready(function() {
-                $("#BootstrapTable").DataTable({
-                    "language": {
-                        "sEmptyTable": "Nenhum registro encontrado",
-                        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-                        "sInfoPostFix": "",
-                        "sInfoThousands": ".",
-                        "sLengthMenu": "Mostrar _MENU_ resultados por página",
-                        "sLoadingRecords": "Carregando...",
-                        "sProcessing": "Processando...",
-                        "sZeroRecords": "Nenhum registro encontrado",
-                        "sSearch": "Pesquisar",
-                        "oPaginate": {
-                            "sNext": "Próximo",
-                            "sPrevious": "Anterior",
-                            "sFirst": "Primeiro",
-                            "sLast": "Último"
-                        },
-                    },
-                });  
-            });              
-
 		</script>
 
-		<?php if (isset($_GET['AdicionarProduto']) || isset($_GET['EditarProduto'])) { ?>
-			<script type="text/javascript" src="css_js/speakingurl.min.js"></script>
-			<script type="text/javascript" src="css_js/jquery.stringtoslug.min.js"></script>
-			<script type="text/javascript">
+<?php if (isset($_GET['AdicionarProduto']) || isset($_GET['EditarProduto'])) { ?>
+	<script type="text/javascript" src="css_js/speakingurl.min.js"></script>
+	<script type="text/javascript" src="css_js/jquery.stringtoslug.min.js"></script>
+	<script type="text/javascript">
 				// Função: Gerador de ID único
 				var ID = function() {
 					return Math.random().toString(36).substr(2, 9);
@@ -602,17 +546,23 @@ $UrlPage	 = 'Ecommerce.php';
 							});
 						}
 					});
+
 					<?php if (isset($_GET['AdicionarProduto'])) { ?>
 						addLinhaFotoProduto();
 					<?php } ?>
+
 					<?php if (isset($_GET['EditarProduto'])) { ?>
 						$('.produto-categorias').val([<?php echo $string_ids_categorias; ?>]).change();
 						$('.produto-atributos').val([<?php echo $string_ids_marcas; ?>]).change();
 						$('.produto-prod_relacionados').val([<?php echo $string_ids_prod_relacionado; ?>]).change();
 					<?php } ?>
 				});
-			</script>
+
+</script>
 		<?php } ?>
+
+<?php if (isset($_GET['Vendas']) || isset($_GET['configEntrega'])) { ?>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
     <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/FileSaver/FileSaver.min.js"></script>
@@ -622,5 +572,125 @@ $UrlPage	 = 'Ecommerce.php';
     <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/tableExport.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>  
     <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table-locale-all.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+<script>
+
+//Recarrega a tabela após edição de pedido na tabla de pedidos	
+
+		$('#savet').click(function(){
+			setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
+		});	
+
+//Carrega a o arquivo /ecommerce/vendas/editar.php no modal da tabela de pedidos
+
+		function showDetails(z){
+			$("#no-b").load('<?php echo ConfigPainel('base_url'); ?>ecommerce/vendas/editar.php?id='+z+'');
+		}
+
+//Carrega a o arquivo /ecommerce/vendas/database.php no view details da tabela de pedidos
+
+		function detailFormatter(index, row) { 
+			var html = []
+			$.each(row, function (key, value) {            
+				html.push('<b>' + key + ':</b> ' + value + '<br>');          
+			})        
+			return html.join('');        
+		}
+
+//Alteração do status do pedido e envio de notificação ao cliente na tabela de pedidos
+
+	function status(d){
+		var xhttp = new XMLHttpRequest();
+		let j = document.getElementById('status'+d).value;  
+        xhttp.open("GET", "ecommerce.php?statusPedido="+d+"&status="+j, true);
+
+//Alteração do status e envio da notificação em progresso tabela de pedidos
+
+	    xhttp.onprogress = function () {
+			swal({
+				title: 'Aguarde!',
+				text: 'Estamos alterando o status e enviando a notificação\n para o cliente.Não recarregue a página até a mensagem de sucesso.',
+				icon: "info",
+				html: true,
+				showConfirmButton: true
+		 });
+	};
+
+//Recarregando a tabela de pedidos após editar o status
+
+    	xhttp.onload = function(){
+            swal("Status Atualizado!", "Status do pedido atualizado com sucesso! \n Notificação enviada ao cliente com sucesso!", "success");                              
+        setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
+        } 
+			xhttp.send();
+		};
+
+//Deletar pedidos na tabela de pedidos
+
+        $('#pedidos').submit(function(e) {
+            e.preventDefault();            
+            var data = $(this).serializeArray();                     				
+            swal({
+                title: "Você tem certeza?",
+                text: "Deseja realmente deletar o(s) pedido(s)?",
+                icon: "warning",
+                buttons: {
+                cancel: "Não",
+                confirm: {
+                    text: "Sim",
+                    className: "btn-primary",
+                },
+                },
+                closeOnCancel: false
+                }).then(function(isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            data: data,
+                            type: "POST",
+                            cache: false,
+                            url: "ecommerce.php?deletarPedidos", 
+                            complete: function( data ){
+                                swal("Deletados!", "Pedido(s) deletado(s).", "success");                                
+                                setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
+                                }   
+                        });
+                    } 
+                    else {
+                        swal("Cancelado", "Pedido(s) permanece(m) salvo(s)", "error");
+                        setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: true});});
+                    }  
+                
+                });        
+            });
+
+//Alterar a Linguagem da tabele de pedidos
+
+		$(document).ready(function() {				
+			$("#BootstrapTable").DataTable({
+				"language": {
+					"sEmptyTable": "Nenhum registro encontrado",
+					"sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+					"sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+					"sInfoFiltered": "(Filtrados de _MAX_ registros)",
+					"sInfoPostFix": "",
+					"sInfoThousands": ".",
+					"sLengthMenu": "Mostrar _MENU_ resultados por página",
+					"sLoadingRecords": "Carregando...",
+					"sProcessing": "Processando...",
+					"sZeroRecords": "Nenhum registro encontrado",
+					"sSearch": "Pesquisar",
+					"oPaginate": {
+						"sNext": "Próximo",
+						"sPrevious": "Anterior",
+						"sFirst": "Primeiro",
+						"sLast": "Último"
+					},
+				},
+			});  
+		});              
+
+</script>
+<?php } ?>
 
 		

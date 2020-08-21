@@ -1,4 +1,4 @@
-<?php
+o<?php
 
   $query = DBRead('ecommerce_config','*');
 
@@ -445,18 +445,13 @@
           </div>
         </div>
 
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Cep de Origem:</label>
-              <input type="text" name="cep_origem" class="form-control" placeholder="Informe o Cep de onde o Produto sairá" value="<?php echo $config['cep_origem']; ?>">				
-            </div>
-          </div>
+        
         </div>      
       <hr />
 
       <h4>Configuração Carrinho</h4>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="form-group">
             <label>Cor Botões:</label>
             <div class="color-picker input-group colorpicker-element focused">
@@ -470,7 +465,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="form-group">
             <label>Cor Botão Finalizar:</label>
             <div class="color-picker input-group colorpicker-element focused">
@@ -649,148 +644,6 @@
           </div>
         </div>
       </div>
-
-      <hr/>
-
-      <h4>Configuração do PagSeguro</h4>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Email do PagSeguro:</label>
-            <input type="text" name="email_servidor" class="form-control" value="<?php echo $config['email_servidor']; ?>">
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="form-group">
-              <label>Token do PagSeguro:</label>
-              <input type="text" name="email_recebimento" class="form-control" value="<?php echo $config['email_recebimento']; ?>">
-            </div>
-          </div>
-        
-
-        <div class="d-md-none">
-          <div class="form-group">
-            <label>URL de redirecionamento:</label>
-            <i class="icon icon-question-circle tooltips" data-tooltip="Redirecionamento após compra."><span class="inner">Redirecionamento após compra.</span></i>
-            <input type="text" name="email_usuario" class="form-control" value="<?php echo $config['email_usuario']; ?>">
-          </div>
-        </div>
-      </div>
-
-        <div class="d-md-none">
-          <div class="form-group">
-            <label>URL de notificação:</label>
-            <input type="text" name="email_senha" class="form-control" value="<?php echo $config['email_senha']; ?>">
-          </div>
-        </div>
-      
-
-      <!-- <hr/> <h4>Configuração Formulário Orçamento</h4>-->
-
-      <div class="row d-none">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label>E-mail de Recebimento:</label>
-            <input type="text" name="" class="form-control" placeholder="Informe o E-mail de Recebimento" required="" value="<?php echo $config['email_recebimento']; ?>">
-            <small>Para adicionar mais de um e-mail separe os e-mails com ; (ponto e virgula)</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="row d-none">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label>Servidor SMTP:</label>
-            <input type="text" name="" class="form-control" placeholder="Informe o Servidor SMTP" value="<?php echo $config['']; ?>">
-          </div>
-        </div>
-      </div>
-
-      <div class="row d-none">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Usuário SMTP:</label>
-            <input type="text" name="" class="form-control" placeholder="Informe o Usuário SMTP" value="<?php echo $config['']; ?>">
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Senha SMTP:</label>
-            <input type="text" name="" class="" placeholder="Informe o Senha SMTP" value="<?php echo $config['']; ?>">
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Porta SMTP:</label>
-            <input type="text" name="email_porta" class="form-control" placeholder="Informe a Porta SMTP" value="<?php echo $config['email_porta']; ?>">
-          </div>
-        </div>
-      </div>
-      <div class="row d-none">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>E-mail de Disparo:</label>
-            <input type="text" name="email_disparo" class="form-control" placeholder="Informe o E-mail de Disparo" value="<?php echo $config['email_disparo']; ?>">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Protocolo de Segurança:</label>
-            <select name="email_protocolo_seguranca" class="form-control custom-select">
-              <option value="ssl" <?php Selected($config['email_protocolo_seguranca'], 'ssl'); ?>>SSL</option>
-              <option value="tls" <?php Selected($config['email_protocolo_seguranca'], 'tls'); ?>>TLS</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="row d-none">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Cor do Background:</label>
-            <div class="color-picker input-group colorpicker-element focused">
-              <input type="text" class="form-control" name="email_cor_bg" value="<?php echo $config['email_cor_bg'];?>">
-              <span class="input-group-append">
-                <span class="input-group-text add-on white">
-                  <i class="circle"></i>
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Cor do fundo do cabeçalho :</label>
-            <div class="color-picker input-group colorpicker-element focused">
-              <input type="text" class="form-control" name="email_cor_header_bg" value="<?php echo $config['email_cor_header_bg'];?>">
-              <span class="input-group-append">
-                <span class="input-group-text add-on white">
-                  <i class="circle"></i>
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Cor do texto do cabeçalho :</label>
-            <div class="color-picker input-group colorpicker-element focused">
-              <input type="text" class="form-control" name="email_cor_header_texto" value="<?php echo $config['email_cor_header_texto'];?>">
-              <span class="input-group-append">
-                <span class="input-group-text add-on white">
-                  <i class="circle"></i>
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="card-footer white">
       <button class="btn btn-primary float-right" type="submit">Atualizar</button>

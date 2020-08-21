@@ -1,7 +1,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
 
-
   <form id="pedidos" method="POST">
   <?php $query = DBRead('ecommerce_vendas', '*');?>
     <div class="card">
@@ -10,19 +9,19 @@
         <button id="showSelectedRows" class="btn btn-primary" type="submit"><i class="fa fa-trash"></i> Excluir em Massa</button>
        
         </div>
-        <div class="card-body p-0">
+        <div class="card-body">
                 <div>
-                    <table class="table m-0 table-striped BootstrapTable" id="BootstrapTable"    data-checkbox-header="true"  data-click-to-select="true"   data-id-field="id" data-select-item-name="id[]" data-maintain-meta-data="true"  data-show-refresh="true"  data-show-pagination-switch="true" data-detail-view="true"   data-detail-formatter="detailFormatter"  data-url="ecommerce/vendas/database.php" data-toggle="table" data-pagination="true" data-locale="pt-BR" data-cache="false" data-search="true" data-show-export="true" data-export-data-type="all" data-export-types="['csv', 'excel', 'pdf']" data-mobile-responsive="true" data-click-to-select="true" data-toolbar="#toolbar" data-show-columns="true" >
+                    <table class="table  table-striped BootstrapTable" id="BootstrapTable"    data-checkbox-header="true"  data-click-to-select="true"   data-id-field="id" data-select-item-name="id[]" data-maintain-meta-data="true"  data-show-refresh="true"  data-show-pagination-switch="true" data-detail-view="true"   data-detail-formatter="detailFormatter"  data-url="ecommerce/vendas/database.php" data-toggle="table" data-pagination="true" data-locale="pt-BR" data-cache="false" data-search="true" data-show-export="true" data-export-data-type="all" data-export-types="['csv', 'excel', 'pdf']" data-mobile-responsive="true" data-click-to-select="true" data-toolbar="#toolbar" data-show-columns="true" >
                        
-      <thead>
-    <tr>
+      <thead >
+    <tr >
         <th data-field="state" data-checkbox="true"></th>
-        <th scope="col" data-field="id" data-sortable="true">Id do Pedido</th>
-        <th scope="col" data-field="Comprador" data-sortable="true">Comprador</th>
-        <th scope="col" data-field="Valor da venda" data-sortable="true">Valor da Venda</th>
-        <th scope="col" data-field="Data do Pedido" data-sortable="true">Data do Pedido</th>
-        <th scope="col" data-field="Status do Pedido" data-sortable="true">Status do Pedido</th>
-        <th scope="col" data-field="<i class='fa fa-pencil'></i>" data-sortable="true">Editar Pedito</th>
+        <th scope="col" data-field="id" data-sortable="true" > <span style="font-weight: bold; font-size:16px;">Id do Pedido<span></th>
+        <th scope="col" data-field="Comprador" data-sortable="true" > <span style="font-weight: bold; font-size:16px;">Comprador<span></th>
+        <th scope="col" data-field="Valor da venda" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Valor da Venda<span></th>
+        <th scope="col" data-field="Data do Pedido" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Data do Pedido<span></th>
+        <th scope="col" data-field="Status do Pedido" data-sortable="true"><span style="font-weight: bold; font-size:16px;">Status do Pedido<span></th>
+        <th scope="col" data-field="<i class='fa fa-pencil'></i>" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Editar Pedito<span></th>
         
     </tr>
       </thead>

@@ -44,16 +44,16 @@ if (isset($_GET['statusPedido'])) {
   $readm = DBRead('ecommerce_config_email','*',"WHERE id = '1'")[0];
 
   if ($query != 0) {
-    $remetente = $readm['remetente'];
-    $destinatario = $read['email'];
-    $nome = $readm['nome'];
-    $message = $readm[$status];
+$remetente = $readm['remetente'];
+$destinatario = $read['email'];
+$nome = $readm['nome'];
+$message = $readm[$status];
 $assunto = $nome." : Pedido #".$id." ".$readm["t_".$status];
 $headers = "MIME-Version: 1.1" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $headers .= 'From: '.$nome.'<'.$remetente.'>'. "\r\n";
-$headers .= "Return-Path: $remetente\n"; // return-path
-$headers .= "Reply-To: $remetente\n"; // Endereço (devidamente validado) que o seu usuário informou no contato
+$headers .= "Return-Path: $remetente\n"; 
+$headers .= "Reply-To: $remetente\n"; 
 $envio = mail($destinatario, $assunto,  $message, $headers, "-f$remetente");
 
 }

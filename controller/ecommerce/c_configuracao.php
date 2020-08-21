@@ -18,17 +18,17 @@ if (isset($_GET['AtualizarMatrizesTodosProdutos'])) {
 else if (isset($_GET['AtualizarConfig'])) {
   $campos = array(
     'pagina_carrinho',
+    
     'email_recebimento',
     'email_usuario',
     'email_senha',
     'email_porta',
-    'email_servidor',
     'email_protocolo_seguranca',
     'email_disparo',
-    'email_recebimento',
     'email_cor_bg',
     'email_cor_header_bg',
     'email_cor_header_texto',
+    
     'matriz_produto',
     'pagina_resultado_busca',
     'listagem_cor_titulo',
@@ -69,8 +69,6 @@ else if (isset($_GET['AtualizarConfig'])) {
     'carrinho_cor_btns',
     'carrinho_cor_btn_finalizar',
     'moeda',
-    'cep_origem',
-    'pagina_checkout'
   );
 
   foreach($campos as $campo){
@@ -108,4 +106,35 @@ if(isset($_GET['editaEmail'])){
   );
   $query  = DBUpdate('ecommerce_config_email', $data, "id = '1'");
 }
+if(isset($_GET['editaEntrega'])){
+  $data = array(
+    'estado'         => post('estado'),
+    'cidade'         => post('cidade'),
+    'bairro'         => post('bairro'),
+    'rua'            => post('rua'),
+    'numero'         => post('numero'),
+    'cep'            => post('cep'),
+    'telefone'       => post('telefone'),
+    'email'          => post('email'),
+    'complemento'    => post('complemento')
 
+  );
+  $query  = DBUpdate('ecommerce_config_entrega', $data, "id = '1'");
+}
+
+
+if(isset($_GET['statusEntrega'])){
+  $status =$_GET['statusEntrega'];
+  if($status == "true"){
+    $callback = "checked";
+  }else{ $callback = ""; }
+  $query  = DBUpdate('ecommerce_config_entrega', array('entrega' => $callback), "id = '1'");
+}
+
+if(isset($_GET['statusRetirada'])){
+  $status =$_GET['statusRetirada'];
+  if($status == "true"){
+    $callback = "checked";
+  }else{ $callback = ""; }
+  $query  = DBUpdate('ecommerce_config_entrega', array('retirada' => $callback), "id = '1'");
+}

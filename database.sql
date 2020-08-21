@@ -182,6 +182,26 @@ CREATE TABLE IF NOT EXISTS `ecommerce_config_email` (
   `reembolsado` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- CONFIGURAR ENTREGA DE PRODUTO
+
+CREATE TABLE IF NOT EXISTS `ecommerce_config_entrega` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `estado` varchar(255) DEFAULT NULL,
+  `cidade` varchar(255) DEFAULT NULL,
+  `bairro` varchar(255) DEFAULT NULL,
+  `rua` varchar(255) DEFAULT NULL,
+  `numero` varchar(255) DEFAULT NULL,
+  `cep` varchar(255) DEFAULT NULL,
+  `telefone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `complemento` text DEFAULT NULL,
+  `entrega` VARCHAR(255) DEFAULT NULL, 
+  `retirada` VARCHAR(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `ecommerce_config_entrega` (`id`, `estado`, `cidade`, `bairro`, `rua`, `numero`, `cep`, `telefone`, `email`, `complemento`, `entrega`, `retirada`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
 INSERT INTO `ecommerce_config_email` (`id`, `nome`, `remetente`, `t_pagamento_pendente`, `pagamento_pendente`, `t_processando`, `processando`, `t_aguardando`, `aguardando`, `t_pedido_enviado`, `pedido_enviado`, `t_concluido`, `concluido`, `t_cancelado`, `cancelado`, `t_reembolsado`, `reembolsado`) VALUES
 ('1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
