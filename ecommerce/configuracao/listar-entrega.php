@@ -4,7 +4,7 @@
   .slow  .toggle-group { transition: left 0.7s; -webkit-transition: left 0.7s; }</style>
 <div class="card  white table-responsive">
     <div class="card-header white d-flex justify-content-center">
-        <a id="showSelectedRows" class="btn btn-primary" href="?editarEntrega" type="submit"><i class="icon icon-floppy-o"></i>Editar</a>
+        <a id="showSelectedRows" onclick="edit()" class="btn btn-primary" data-target='#Modal' data-toggle='modal'><i class="icon icon-floppy-o"></i>Editar</a>
     </div>
     <div class="card-body white">  
         <strong>Tipos de entrega</strong>
@@ -29,6 +29,28 @@
         </table>
     </div>
 </div>
+
+<div class="modal fade"  id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div  class="modal-dialog  modal-lg" role="document">
+    <div  class="modal-content">
+      <div class="modal-content b-0">
+          <div class="modal-header r-0 bg-primary">
+            <h3 class="modal-title text-white text-white" id="exampleModalLabel">Edite as Informações de Entrega</h3>
+            <a href="#" data-dismiss="modal" aria-label="Close" class="paper-nav-toggle paper-nav-white active"><i></i></a>
+          </div>
+          <form id="entregar" method="POST"> 
+          <div class="modal-body no-b" id="no-b">
+
+          </div>
+          <div class="modal-footer">
+          <button  class="btn btn-primary" type="submit"><i class="icon icon-floppy-o"></i>Salvar Mudanças</button>        
+        </form>
+      </div>          
+          </div>          
+        </div>
+    </div>
+  </div>
+</div>
 <script>
 retirada = (a) => {
 	var xhttp = new XMLHttpRequest();  
@@ -43,4 +65,7 @@ entrega = (a) => {
     xhttp.onload = () =>{swal("Status Atualizado!", "Status de entrega pelos correios atualizado com sucesso!", "success");}                               
     xhttp.send()
 };
-</script>
+function edit(){
+    $("#no-b").load('<?php echo ConfigPainel('base_url'); ?>ecommerce/configuracao/entrega.php');
+}
+</script>]

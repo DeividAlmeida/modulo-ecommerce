@@ -1,4 +1,4 @@
-<?php header('Access-Control-Allow-Origin: *');
+<?php
   require_once('../../includes/funcoes.php');
   require_once('../../database/config.database.php');
   require_once('../../database/config.php');
@@ -8,7 +8,7 @@
 ?>
 <div class="card-body">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
             <div class="form-group">
                 <label>Código de Rastreamento: </label>
                 <input class="form-control" type="text" name="rastreamento"  value="<?php echo $read[0]['rastreamento'];?>">
@@ -78,7 +78,7 @@
                     <option value="PI" <?php Selected($read[0]['estado'], "PI"); ?>>Piauí</option>
                     <option value="RJ" <?php Selected($read[0]['estado'], "RJ"); ?>>Rio de Janeiro</option>
                     <option value="RN" <?php Selected($read[0]['estado'], "RN"); ?>>Rio Grande do Norte</option>
-                    <option value="RS" <?php Selected($read[0]['estado'], "AC"); ?>>Rio Grande do Sul</option>
+                    <option value="RS" <?php Selected($read[0]['estado'], "RS"); ?>>Rio Grande do Sul</option>
                     <option value="RO" <?php Selected($read[0]['estado'], "RO"); ?>>Rondônia</option>
                     <option value="RR" <?php Selected($read[0]['estado'], "RR"); ?>>Roraima</option>
                     <option value="SC" <?php Selected($read[0]['estado'], "SC"); ?>>Santa Catarina</option>

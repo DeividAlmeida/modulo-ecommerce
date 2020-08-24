@@ -123,10 +123,8 @@ $UrlPage	 = 'Ecommerce.php';
 			require_once('ecommerce/configuracao/configuracao.php');
 		elseif (isset($_GET['configEntrega'])) :
 			require_once('ecommerce/configuracao/listar-entrega.php');
-		elseif (isset($_GET['editarEntrega'])) :
-			require_once('ecommerce/configuracao/entrega.php');
 		elseif (isset($_GET['configPagamento'])) :
-			require_once('ecommerce/configuracao/pagamento.php');
+			require_once('ecommerce/configuracao/listar-meios-pagamentos.php');
 		elseif (isset($_GET['configEmail'])) :
 			require_once('ecommerce/configuracao/email.php');
 		elseif (isset($_GET['AdicionarCategoria'])) :
@@ -402,28 +400,7 @@ $UrlPage	 = 'Ecommerce.php';
 				});
 			});
 
-			$('#entrega').submit(function(e) {
-			e.preventDefault();            
-			var data = $(this).serializeArray();
-			$.ajax({
-				data: data,
-				type: "POST",
-				cache: false,
-				url: "ecommerce.php?editaEntrega",
-				beforeSend: function(data){
-					swal({
-					title: 'Aguarde!',
-					text: 'Estamos salvando suas informações de contato.\nNão recarregue a página até a mensagem de sucesso.',
-					icon: "info",
-					html: true,
-					showConfirmButton: true
-				});
-				},
-				complete: function( data ){
-					swal("Informações de contato Atualizadas!", "Informações de contato atualizadas com sucesso!", "success")
-				}
-			});
-		});
+			
 
 //Edição de E-mails de Notificação
 
@@ -561,7 +538,7 @@ $UrlPage	 = 'Ecommerce.php';
 </script>
 		<?php } ?>
 
-<?php if (isset($_GET['Vendas']) || isset($_GET['configEntrega'])) { ?>
+<?php if (isset($_GET['Vendas'])) { ?>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
@@ -692,5 +669,11 @@ $UrlPage	 = 'Ecommerce.php';
 
 </script>
 <?php } ?>
+<?php if (isset($_GET['configEntrega']) || isset($_GET['configPagamento'])) { ?>
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
+
+</script>
+<?php } ?>
 		

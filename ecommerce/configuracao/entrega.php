@@ -1,8 +1,13 @@
-<?php $read = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; ?>
-<form id="entrega" method="post" >
+<?php 
+require_once('../../includes/funcoes.php');
+require_once('../../database/config.database.php');
+require_once('../../database/config.php');
+
+$read = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; ?>
+
     <div class="card">
         <div class="card-header white">
-        <strong>Configurar de Entrega do produto</strong>
+        <strong>Configurar de Entrega do Produto</strong>
     </div>
     <div class="card-body">        
         <div class="row">
@@ -31,7 +36,7 @@
                     <option value="PI" <?php Selected($read['estado'], "PI"); ?>>Piauí</option>
                     <option value="RJ" <?php Selected($read['estado'], "RJ"); ?>>Rio de Janeiro</option>
                     <option value="RN" <?php Selected($read['estado'], "RN"); ?>>Rio Grande do Norte</option>
-                    <option value="RS" <?php Selected($read['estado'], "AC"); ?>>Rio Grande do Sul</option>
+                    <option value="RS" <?php Selected($read['estado'], "RS"); ?>>Rio Grande do Sul</option>
                     <option value="RO" <?php Selected($read['estado'], "RO"); ?>>Rondônia</option>
                     <option value="RR" <?php Selected($read['estado'], "RR"); ?>>Roraima</option>
                     <option value="SC" <?php Selected($read['estado'], "SC"); ?>>Santa Catarina</option>
@@ -89,8 +94,30 @@
                 </div>                
             </div>
         </div>
-        <div class="card-footer white">
-            <button class="btn btn-primary float-right" type="submit">Atualizar</button>
-        </div>   
+
     </div>
-</form>
+
+<script>
+        $('#entregar').submit(function(e) {
+			e.preventDefault();            
+			var data = $(this).serializeArray();
+			$.ajax({
+				data: data,
+				type: "POST",
+				cache: false,
+				url: "ecommerce.php?editaEntrega",
+				beforeSend: function(data){
+					swal({
+					title: 'Aguarde!',
+					text: 'Estamos salvando suas informações de contato.\nNão recarregue a página até a mensagem de sucesso.',
+					icon: "info",
+					html: true,
+					showConfirmButton: true
+				});
+				},
+				complete: function( data ){
+					swal("Informações de contato Atualizadas!", "Informações de contato atualizadas com sucesso!", "success")
+				}
+			});
+		});
+</script>

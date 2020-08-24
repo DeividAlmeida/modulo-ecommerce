@@ -199,6 +199,29 @@ CREATE TABLE IF NOT EXISTS `ecommerce_config_entrega` (
   `retirada` VARCHAR(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- CONFIGURAR PAGSEGURO
+
+CREATE TABLE  IF NOT EXISTS `ecommerce_config_pagseguro` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `email` varchar(255) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- CONFIGURAR DEPOSITO EM CONTA
+
+CREATE TABLE IF NOT EXISTS `ecommerce_config_deposito` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `titulo` varchar(255) DEFAULT NULL,
+  `descricao` varchar(255) DEFAULT NULL,
+  `instucoes` varchar(255) DEFAULT NULL,
+  `detalhes` text,
+  `status` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `ecommerce_config_deposito` (`id`, `titulo`, `descricao`, `instucoes`, `detalhes`, `status`) VALUES
+(1, '', '', '', '', '');
+
 INSERT INTO `ecommerce_config_entrega` (`id`, `estado`, `cidade`, `bairro`, `rua`, `numero`, `cep`, `telefone`, `email`, `complemento`, `entrega`, `retirada`) VALUES
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
