@@ -4,6 +4,7 @@ header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
+$retirada = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; 
 $query = DBRead('ecommerce_config','*');
 $config = [];
   foreach ($query as $key => $row) {
@@ -219,11 +220,8 @@ $config = [];
 																		<strong><center>Revisão do pedido</center></strong><br>
 																		<?php
 																			if(isset($_SESSION["cart"]) && is_array($_SESSION["cart"]) && count($_SESSION["cart"]) > 0) { ?>
-																			<tbody>
-																			
-																				<?php foreach($_SESSION["cart"] as $id => $qtd ){
-																				$query = DBRead('ecommerce', '*', "WHERE id = $qtd[0]");
-																				$produto = $query[0];?>
+																			<tbody>																		
+																				
 																		<table class="shop_table review-order woocommerce-checkout-review-order-table">
 																			<thead>
 																				<tr>
@@ -231,6 +229,9 @@ $config = [];
 																					<th class="product-total">Subtotal</th>
 																				</tr>
 																			</thead>
+                                      <?php foreach($_SESSION["cart"] as $id => $qtd ){
+																				$query = DBRead('ecommerce', '*', "WHERE id = $qtd[0]");
+																				$produto = $query[0];?>
 																				<tr class="cart_item">
 																				    <input type="hidden" name="produto[]" id="produto<?php echo $id ?>" value="">
 																				    <input type="hidden" name="produto_pg[]" id="produto_pg" value="<?php echo $produto['nome']; ?>">
@@ -271,38 +272,60 @@ $config = [];
 																					</td>
 																				</tr>
 																				<tr class="woocommerce-shipping-totals shipping">
-																					<td><strong><center>Entrega</center></strong><br> <span id="frete"></span></td>
+																					<td><strong><center>Entrega</center></strong><br> <span id="frete"></span><br>
+
+                                              <?php if($retirada['retirada'] == "checked") { ?> <br>  
+																					    <div style="margin-left:10px;"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;' value="00,00"  > 
+																					    <label for="retirada" style="cursor:pointer;" for="retirada"><b>Retirada na loja</b> Valor: R$ 00,00</label></div> 
+                                              <script>
+                                                    document.getElementById("retirada").addEventListener("change", function() {
+                                                      const z = 0;
+                                                      const a = document.getElementById("retirada").value;
+                                                      const b = z + <?php echo $total_carrinho; ?>;
+                                                      const c = b.toFixed(2).toString().replace(".",",");																					  
+                                                      document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
+                                                      document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
+                                                      document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
+                                                      document.getElementById("valor").value = c;
+                                                      document.getElementById("tipo_entrega").value = "Retirada na Loja";
+                                                  });
+                                              </script>
+                                              <?php } ?>
+                                              </td>
+
 																					<td data-title="Entrega" > <span id="f_valor" ></span></td>
 																				</tr>																			
-																				<script>
-                                                                                    $(document).ready(function(){
-                                                                                      $("#cepdestino").change(function(){
-                                                                                    	const cep = document.getElementById('cepdestino').value;
-                                                                                    	$("#frete").load('<?php echo ConfigPainel('base_url')?>wa/ecommerce/checkout/preload/');
-                                                                                    	$("#frete").load('https://nameless-atoll-10880.herokuapp.com/'+cep+'<?php echo "/".$config['cep_origem']."/".$total_peso."/".$total_comprimento."/".$total_altura."/".$total_largura; ?>');
-                                                                                      });
-																					  Cfrete = (z) =>{
-																						  const a = document.getElementById("normal").value;
-																						  const b = z + <?php echo $total_carrinho; ?>;
-																						  const c = b.toFixed(2).toString().replace(".",",");																					  
-																							document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
-																							document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
-																							document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
-																							document.getElementById("valor").value = c;
-																							document.getElementById("tipo_entrega").value = "PAC";
-																					  };
-																					  Cfrete1 = (z) =>{
-																						  const a = document.getElementById("expresso").value;	
-																						  const b = z + <?php echo $total_carrinho ?>;
-																						  const c = b.toFixed(2).toString().replace(".",",");																					 
-																							document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
-																							document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
-																							document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
-																							document.getElementById("valor").value = b;
-																							document.getElementById("tipo_entrega").value = "Sedex";
-																					  };
-                                                                                    });
-                                                                                </script>											 																										
+																				<script>                                          
+                                        <?php if($retirada['entrega'] == "checked") { ?>
+                                              $(document).ready(function(){
+                                                $("#cepdestino").change(function(){
+                                                const cep = document.getElementById('cepdestino').value;
+                                                $("#frete").load('<?php echo ConfigPainel('base_url')?>wa/ecommerce/checkout/preload/');
+                                                $("#frete").load('https://nameless-atoll-10880.herokuapp.com/'+cep+'<?php echo "/".$config['cep_origem']."/".$total_peso."/".$total_comprimento."/".$total_altura."/".$total_largura; ?>');
+                                                });
+                                              Cfrete = (z) =>{
+                                                const a = document.getElementById("normal").value;
+                                                const b = z + <?php echo $total_carrinho; ?>;
+                                                const c = b.toFixed(2).toString().replace(".",",");																					  
+                                                document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
+                                                document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
+                                                document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
+                                                document.getElementById("valor").value = c;
+                                                document.getElementById("tipo_entrega").value = "PAC";
+                                              };
+                                              Cfrete1 = (z) =>{
+                                                const a = document.getElementById("expresso").value;	
+                                                const b = z + <?php echo $total_carrinho ?>;
+                                                const c = b.toFixed(2).toString().replace(".",",");																					 
+                                                document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
+                                                document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
+                                                document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
+                                                document.getElementById("valor").value = b;
+                                                document.getElementById("tipo_entrega").value = "Sedex";
+                                              };                                              
+                                            });
+                                          <?php } ?>
+                                    </script>											 																										
 																				<tr class="order-total">
 																					<th>Total</th>
 																					<td>

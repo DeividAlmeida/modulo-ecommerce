@@ -7,7 +7,7 @@ $statusd = DBRead('ecommerce_config_deposito','*',"WHERE id = '1'")[0];
   .slow  .toggle-group { transition: left 0.7s; -webkit-transition: left 0.7s; }</style>
 <div class="card  white table-responsive">
     <div class="card-header white ">
-    <strong>Tipos de entrega</strong>
+    <strong>Meios de Pagamento</strong>
     </div>
     <div class="card-body white">  
         
@@ -16,7 +16,7 @@ $statusd = DBRead('ecommerce_config_deposito','*',"WHERE id = '1'")[0];
                 <tr >
                     <th style="font-weight: bold; font-size:16px;" scope="col">Tipo</th>
                     <th style="font-weight: bold; font-size:18px;" scope="col">Status</th>
-                    <th style="font-weight: bold; font-size:18px;" scope="col">Editar</th>
+                    <th style="font-weight: bold; font-size:18px;" scope="col"><center>Editar</center></th>
                     
                 </tr>
             </thead>

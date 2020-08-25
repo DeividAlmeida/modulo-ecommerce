@@ -98,26 +98,18 @@ $read = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; ?>
     </div>
 
 <script>
-        $('#entregar').submit(function(e) {
-			e.preventDefault();            
-			var data = $(this).serializeArray();
-			$.ajax({
-				data: data,
-				type: "POST",
-				cache: false,
-				url: "ecommerce.php?editaEntrega",
-				beforeSend: function(data){
-					swal({
-					title: 'Aguarde!',
-					text: 'Estamos salvando suas informações de contato.\nNão recarregue a página até a mensagem de sucesso.',
-					icon: "info",
-					html: true,
-					showConfirmButton: true
-				});
-				},
-				complete: function( data ){
-					swal("Informações de contato Atualizadas!", "Informações de contato atualizadas com sucesso!", "success")
-				}
-			});
-		});
+$('#entregar').submit(function(e) {
+    e.preventDefault();            
+    var data = $(this).serializeArray();
+    $.ajax({
+        async:   false,
+        data: data,
+        type: "POST",
+        cache: false,
+        url: "ecommerce.php?editaEntrega",
+        complete: function( data ){
+            swal("Informações de contato Atualizadas!", "Informações de contato atualizadas com sucesso!", "success")
+        }
+    });
+});
 </script>

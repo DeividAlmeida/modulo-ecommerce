@@ -31,19 +31,11 @@ require_once('../../database/config.php');
                 e.preventDefault();            
                 var data = $(this).serializeArray();
                 $.ajax({
+                    async:   false,
                     data: data,
                     type: "POST",
                     cache: false,
                     url: "ecommerce.php?pagseguro",
-                    beforeSend: function(data){
-                        swal({
-                        title: 'Aguarde!',
-                        text: 'Estamos salvando suas informações de pagamento.\nNão recarregue a página até a mensagem de sucesso.',
-                        icon: "info",
-                        html: true,
-                        showConfirmButton: true
-                    });
-                    },
                     complete: function( data ){
                         swal("Informações de pagamento Atualizadas!", "Informações de pagamento atualizadas com sucesso!", "success")
                     }
@@ -60,19 +52,11 @@ require_once('../../database/config.php');
                     e.preventDefault();            
                     var data = $(this).serializeArray();
                     $.ajax({
+                        async:   false,
                         data: data,
                         type: "POST",
                         cache: false,
                         url: "ecommerce.php?deposito",
-                        beforeSend: function(data){
-                            swal({
-                            title: 'Aguarde!',
-                            text: 'Estamos salvando suas informações de pagamento.\nNão recarregue a página até a mensagem de sucesso.',
-                            icon: "info",
-                            html: true,
-                            showConfirmButton: true
-                        });
-                        },
                         complete: function( data ){
                             swal("Informações de pagamento Atualizadas!", "Informações de pagamento atualizadas com sucesso!", "success")
                         }

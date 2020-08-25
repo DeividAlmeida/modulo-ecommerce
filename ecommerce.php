@@ -541,15 +541,14 @@ $UrlPage	 = 'Ecommerce.php';
 <?php if (isset($_GET['Vendas'])) { ?>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
-    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/FileSaver/FileSaver.min.js"></script>
-    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/js-xlsx/xlsx.core.min.js"></script>
-    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
-    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
-    <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/plugins/tableExport.jquery.plugin/tableExport.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>  
-    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table-locale-all.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	<script src="css_js/bootstrap-table.min.js"></script>
+    <script src="css_js/plugins/tableExport.jquery.plugin/libs/FileSaver/FileSaver.min.js"></script>
+    <script src="css_js/plugins/tableExport.jquery.plugin/libs/js-xlsx/xlsx.core.min.js"></script>
+    <script src="css_js/plugins/tableExport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
+    <script src="css_js/plugins/tableExport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="css_js/plugins/tableExport.jquery.plugin/tableExport.min.js"></script>
+    <script src="css_js/plugins/tableExport.jquery.plugin/bootstrap-table-export.min.js"></script>  
+    <script src="css_js/plugins/tableExport.jquery.plugin/bootstrap-table-locale-all.min.js"></script>
 
 <script>
 
@@ -671,7 +670,7 @@ $UrlPage	 = 'Ecommerce.php';
 <?php } ?>
 <?php if (isset($_GET['configEntrega']) || isset($_GET['configPagamento'])) { ?>
 	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	<script src="css_js/bootstrap4-toggle.min.js"></script>
 
 
 </script>

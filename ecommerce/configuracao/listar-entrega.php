@@ -43,7 +43,7 @@
 
           </div>
           <div class="modal-footer">
-          <button  class="btn btn-primary" type="submit"><i class="icon icon-floppy-o"></i>Salvar Mudanças</button>        
+          <button  class="btn btn-primary" id="wait" type="submit"><i class="icon icon-floppy-o"></i>Salvar Mudanças</button>        
         </form>
       </div>          
           </div>          
@@ -65,6 +65,8 @@ entrega = (a) => {
     xhttp.onload = () =>{swal("Status Atualizado!", "Status de entrega pelos correios atualizado com sucesso!", "success");}                               
     xhttp.send()
 };
+
+
 function edit(){
     $("#no-b").load('<?php echo ConfigPainel('base_url'); ?>ecommerce/configuracao/entrega.php');
 }

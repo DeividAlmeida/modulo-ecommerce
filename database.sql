@@ -222,6 +222,9 @@ CREATE TABLE IF NOT EXISTS `ecommerce_config_deposito` (
 INSERT INTO `ecommerce_config_deposito` (`id`, `titulo`, `descricao`, `instucoes`, `detalhes`, `status`) VALUES
 (1, '', '', '', '', '');
 
+INSERT INTO `ecommerce_config_pagseguro` (`id`, `email`, `token`, `status`) VALUES
+(1, '', '', '');
+
 INSERT INTO `ecommerce_config_entrega` (`id`, `estado`, `cidade`, `bairro`, `rua`, `numero`, `cep`, `telefone`, `email`, `complemento`, `entrega`, `retirada`) VALUES
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 

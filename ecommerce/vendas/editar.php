@@ -143,15 +143,27 @@ $('#editarPedido').submit(function(e) {
     var data = $(this).serializeArray();
     console.log(data);
     $.ajax({
+        async:   false,
         data: data,
         type: "POST",
         cache: false,
         url: "ecommerce.php?editarPedido", 
+        beforeSend: function(data){
+					swal({
+					title: 'Aguarde!',
+					text: 'Estamos salvando as informações do pedido.\nNão recarregue a página até a mensagem de sucesso.',
+					icon: "info",
+					html: true,
+					showConfirmButton: true
+				});
+				},
         complete: function( data ){
             swal("Pedido Atualizado!", "Pedido atualizado com sucesso!", "success");                              
         setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
-        }                                
+        }
+                                      
     });            
-});
+}); 
+
   </script>
   
