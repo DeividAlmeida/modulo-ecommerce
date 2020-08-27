@@ -37,6 +37,7 @@ if (isset($_POST)) {
       'tipo_entrega' => post('tipo_entrega'),
       'valor' => post('valor'),
       'produto' => $_POST['venda'],
+      'tipo_pagamento'=>post('payment_method')
     );
     $query = DBCreate('ecommerce_vendas', $data, true);
     $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$query}'");
@@ -54,8 +55,8 @@ if (isset($_POST)) {
             $paymentRequest->addItem($query, $a, $b, $c);
         }
     }
-    
-    $paymentRequest->addItem('0001', 'frete',  1, post('vl_frete'));
+
+    if(post('tipo_entrega') == "Retirada na Loja"){}else{ $paymentRequest->addItem('0001', 'frete',  1, post('vl_frete')); }
     
     $paymentRequest->setCurrency("BRL"); 
     

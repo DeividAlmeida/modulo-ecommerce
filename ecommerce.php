@@ -383,7 +383,7 @@ $UrlPage	 = 'Ecommerce.php';
 					swal({
 						title: "Você tem certeza?",
 						text: "Deseja realmente deletar esses produtos?",
-						type: "warning",
+						icon: "warning",
 						buttons: {
 							cancel: "Não",
 							confirm: {
@@ -577,29 +577,47 @@ $UrlPage	 = 'Ecommerce.php';
 //Alteração do status do pedido e envio de notificação ao cliente na tabela de pedidos
 
 	function status(d){
-		var xhttp = new XMLHttpRequest();
-		let j = document.getElementById('status'+d).value;  
-        xhttp.open("GET", "ecommerce.php?statusPedido="+d+"&status="+j, true);
+		swal({
+				title: "Você tem certeza?",
+				text: "Deseja realmente alterar o status do pedido \ne enviar um email de notificação para o cliente?",
+				icon: "warning",
+				buttons: {
+					cancel: "Não",
+					confirm: {
+						text: "Sim",
+						className: "btn-primary",
+					},
+				},
+				closeOnCancel: false
+			}).then(function(isConfirm) {
+				if (isConfirm) {
+					var xhttp = new XMLHttpRequest();
+					let j = document.getElementById('status'+d).value;  
+					xhttp.open("GET", "ecommerce.php?statusPedido="+d+"&status="+j, true);
 
 //Alteração do status e envio da notificação em progresso tabela de pedidos
 
-	    xhttp.onprogress = function () {
-			swal({
-				title: 'Aguarde!',
-				text: 'Estamos alterando o status e enviando a notificação\n para o cliente.Não recarregue a página até a mensagem de sucesso.',
-				icon: "info",
-				html: true,
-				showConfirmButton: true
-		 });
-	};
+					xhttp.onprogress = function () {
+						swal({
+							title: 'Aguarde!',
+							text: 'Estamos alterando o status e enviando a notificação\n para o cliente.Não recarregue a página até a mensagem de sucesso.',
+							icon: "info",
+							html: true,
+							showConfirmButton: true
+						});
+					};
 
 //Recarregando a tabela de pedidos após editar o status
 
-    	xhttp.onload = function(){
-            swal("Status Atualizado!", "Status do pedido atualizado com sucesso! \n Notificação enviada ao cliente com sucesso!", "success");                              
-        setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
-        } 
-			xhttp.send();
+					xhttp.onload = function(){
+						swal("Status Atualizado!", "Status do pedido atualizado com sucesso! \n Notificação enviada ao cliente com sucesso!", "success");                              
+					setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
+					} 
+						xhttp.send();
+				}
+				else{ setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
+				};
+			});
 		};
 
 //Deletar pedidos na tabela de pedidos

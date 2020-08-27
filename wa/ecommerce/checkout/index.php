@@ -290,7 +290,7 @@ $config = [];
                                                       document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
                                                       document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                       document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
-                                                      document.getElementById("valor").value = c;
+                                                      document.getElementById("valor").value = b;
                                                       document.getElementById("tipo_entrega").value = "Retirada na Loja";
                                                   });
                                               </script>
@@ -314,7 +314,8 @@ $config = [];
                                                 document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
                                                 document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                 document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
-                                                document.getElementById("valor").value = c;
+                                                document.getElementById("valor").value = b;
+                                                document.getElementById("vl_frete").value = z.toFixed(2).toString().replace(",",".");
                                                 document.getElementById("tipo_entrega").value = "PAC";
                                               };
                                               Cfrete1 = (z) =>{
@@ -325,6 +326,7 @@ $config = [];
                                                 document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                 document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                 document.getElementById("valor").value = b;
+                                                document.getElementById("vl_frete").value =  z.toFixed(2).toString().replace(",",".");
                                                 document.getElementById("tipo_entrega").value = "Sedex";
                                               };                                              
                                             });
@@ -353,7 +355,7 @@ $config = [];
 								<ul class="wc_payment_methods payment_methods methods">
                                  <?php if($pagseguro['status'] == "checked"): ?> 
                                     <li class="wc_payment_method payment_method_pagseguro">
-                                        <input id="payment_method_pagseguro" type="radio" required class="input-radio" name="payment_method" value="pagseguro" checked="checked" >
+                                        <input id="payment_method_pagseguro" type="radio" required class="input-radio" name="payment_method" value="Pagseguro" checked="checked" >
                                         <label for="payment_method_pagseguro" style="cursor:pointer">
                                           Pagar com <img src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/checkout/PagSeguroLibrary/img/pagseguro.png" />	
                                         </label>                                                                                
@@ -361,7 +363,7 @@ $config = [];
                                   <?php endif ?>
                                   <?php if($deposito['status'] == "checked"): ?>
                                     <li class="wc_payment_method payment_method_traferencia">
-                                        <input id="payment_method_deposito" type="radio" required class="input-radio" name="payment_method" value="deposito">
+                                        <input id="payment_method_deposito" type="radio" required class="input-radio" name="payment_method" value="Depósito">
                                         <label for="payment_method_deposito" style="cursor:pointer">
                                           Pagar com depósito em conta bancária	
                                         </label>                                                                                
@@ -405,6 +407,7 @@ $config = [];
 									</h3><br>
 									<input required type="hidden" name="valor" id="valor" value="">
 									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
+									<input required type="hidden" name="vl_frete" id="vl_frete" value="">
 									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked" ): else: ?>
 									<center><input type="submit"  value="Finalizar compra" ></center>
 									<?php endif ?>

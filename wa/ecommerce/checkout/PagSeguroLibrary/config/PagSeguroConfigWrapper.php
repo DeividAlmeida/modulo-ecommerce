@@ -2,14 +2,10 @@
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
-$query = DBRead('ecommerce_config','*');
-$config = [];
-  foreach ($query as $key => $row) {
-    $config[$row['id']] = $row['valor'];
-  }
+$config = DBRead('ecommerce_config_pagseguro','*',"WHERE id = '1'")[0];
 
-  define("A", $config['email_servidor']);
-  define("B", $config['email_recebimento']);
+  define("A", $config['email']);
+  define("B", $config['token']);
   
 /**
  * 2007-2014 [PagSeguro Internet Ltda.]

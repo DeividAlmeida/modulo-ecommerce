@@ -152,6 +152,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `email` varchar(255) NOT NULL,
   `nota` text DEFAULT NULL,
   `tipo_entrega` varchar(255) NOT NULL,
+  'tipo_pagamento' varchar(255) NOT NULL,
   `valor` float NOT NULL,
   `produto` text NOT NULL,
   `rastreamento` text NULL,
