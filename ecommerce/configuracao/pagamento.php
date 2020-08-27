@@ -88,7 +88,7 @@ require_once('../../database/config.php');
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="descricao">Descrição:</label>
-                    <input type="text" name="descricao" class="form-control" placeholder="Número da sua loja física" value="<?php echo $read['descricao']; ?>">
+                    <input type="text" name="descricao" class="form-control" value="<?php echo $read['descricao']; ?>">
                 </div>
             </div>
             <div class="col-md-12">

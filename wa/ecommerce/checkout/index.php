@@ -4,7 +4,9 @@ header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
-$retirada = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; 
+$retirada = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0];
+$deposito = DBRead('ecommerce_config_deposito','*',"WHERE id = '1'")[0];
+$pagseguro = DBRead('ecommerce_config_pagseguro','*',"WHERE id = '1'")[0]; 
 $query = DBRead('ecommerce_config','*');
 $config = [];
   foreach ($query as $key => $row) {
@@ -25,6 +27,8 @@ $config = [];
 		
 		<meta http-equiv="Content-Type" content="charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		
+
 		<div class="page-wrapper">
 			<div id="main" class="column1 boxed">
 				<div class="container">
@@ -36,7 +40,7 @@ $config = [];
 										<div class="page-content" style="margin:30px;">
 											<div class="woocommerce">
 												<br>
-												<form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo ConfigPainel('base_url'); ?>wa/ecommerce/checkout/PagSeguro.php" enctype="multipart/form-data"  style="position: static; zoom: 1;">
+												<form name="checkout" method="post" class="checkout woocommerce-checkout" id="fcheckout" action="<?php echo ConfigPainel('base_url'); ?>wa/ecommerce/checkout/PagSeguro.php" enctype="multipart/form-data"  style="position: static; zoom: 1;">
 													<div class="row">		
 														<div class="col-lg-4" id="customer_details">
 															<div class="woocommerce-billing-fields clearfix">	
@@ -326,65 +330,101 @@ $config = [];
                                             });
                                           <?php } ?>
                                     </script>											 																										
-																				<tr class="order-total">
-																					<th>Total</th>
-																					<td>
-																						<strong>
-																							<span class="woocommerce-Price-amount amount">
-																								<center><span class="woocommerce-Price-currencySymbol" id="total"  style="white-space: nowrap"></span><center>
-																							</span>
-																						</strong> 
-																					</td>
-																				</tr>
-																			</tfoot>
-																			
-																			<?php } else {?>
-																			<span>Seu carrinho está vazio!</span>
-																			<? } ?>
-																		</table>
-																	</div>
-																	<div class="col-lg-6">
-																		<div id="payment" class="woocommerce-checkout-payment">
-																			<center><strong>Métodos de Pagamento</center></strong><br>
-																			<ul class="wc_payment_methods payment_methods methods">
-                                                                            	<li class="wc_payment_method payment_method_pagseguro">
-                                                                            	    <input id="payment_method_pagseguro" type="radio" class="input-radio" name="payment_method" value="pagseguro" checked="checked" data-order_button_text="Realizar pagamento" style="display: none;">
-                                                                        	        <label for="payment_method_pagseguro">
-                                                                        		        Pagar com <img src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/checkout/PagSeguroLibrary/img/pagseguro.png" />	
-                                                                        		    </label>
-                                                                        			<div class="payment_box payment_method_pagseguro"></div>
-                                                                            	</li>
-                                                                            </ul>
-																			<div class="form-row place-order">
-																					<h3>Total Geral:&nbsp;&nbsp;
-																						<span>
-																							<strong>
-																								<span class="woocommerce-Price-amount amount" id="valor_geral">
-																									
-																								</span>
-																							</strong> 
-																						</span>
-																					</h3><br>
-																					<input required type="hidden" name="valor" id="valor" value="">
-																					<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">																					
-																					<center><input type="submit"  value="Finalizar compra" ></center>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</form>
-												</div>
-											</div>
-										</article>
-									</div>
+									<tr class="order-total">
+										<th>Total</th>
+										<td>
+											<strong>
+												<span class="woocommerce-Price-amount amount">
+													<center><span class="woocommerce-Price-currencySymbol" id="total"  style="white-space: nowrap"></span><center>
+												</span>
+											</strong> 
+										</td>
+									</tr>
+								</tfoot>
+								
+								<?php } else {?>
+								<span>Seu carrinho está vazio!</span>
+								<? } ?>
+							</table>
+						</div>
+						<div class="col-lg-6">
+							<div id="payment" class="woocommerce-checkout-payment">
+								<center><strong>Métodos de Pagamento</center></strong><br>
+								<ul class="wc_payment_methods payment_methods methods">
+                                 <?php if($pagseguro['status'] == "checked"): ?> 
+                                    <li class="wc_payment_method payment_method_pagseguro">
+                                        <input id="payment_method_pagseguro" type="radio" required class="input-radio" name="payment_method" value="pagseguro" checked="checked" >
+                                        <label for="payment_method_pagseguro" style="cursor:pointer">
+                                          Pagar com <img src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/checkout/PagSeguroLibrary/img/pagseguro.png" />	
+                                        </label>                                                                                
+                                    </li>
+                                  <?php endif ?>
+                                  <?php if($deposito['status'] == "checked"): ?>
+                                    <li class="wc_payment_method payment_method_traferencia">
+                                        <input id="payment_method_deposito" type="radio" required class="input-radio" name="payment_method" value="deposito">
+                                        <label for="payment_method_deposito" style="cursor:pointer">
+                                          Pagar com depósito em conta bancária	
+                                        </label>                                                                                
+                                    </li>
+                                   <script>
+                                    $('#fcheckout').submit(function(e) {
+                                          if(document.getElementById('payment_method_deposito').checked){
+                                              e.preventDefault();            
+                                              var adata = $(this).serializeArray();
+                                              $.ajax({
+                                                data: adata,
+                                                type:    "POST",
+                                                cache:   false,
+                                                url:     UrlPainel+'wa/ecommerce/checkout/PagSeguro.php',
+                                                success: function (adata) {
+                                                  $.ajax({
+                                                      type:    "GET",
+                                                      cache:   false,
+                                                      url:     UrlPainel+'wa/ecommerce/checkout/detalhes.php',
+                                                      success: function (data) {
+                                    
+                                                        jQuery('#EcommerceCheckout').html(data);
+                                                      },
+                                                  });
+                                                }, 
+                                              });           
+                                            };
+                                      });
+                                    </script>
+                                    <?php endif ?>
+                                  </ul>
+						        <div class="form-row place-order">
+									<h3>Total Geral:&nbsp;&nbsp;
+										<span>
+											<strong>
+												<span class="woocommerce-Price-amount amount" id="valor_geral">
+													
+												</span>
+											</strong> 
+										</span>
+									</h3><br>
+									<input required type="hidden" name="valor" id="valor" value="">
+									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
+									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked" ): else: ?>
+									<center><input type="submit"  value="Finalizar compra" ></center>
+									<?php endif ?>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</form>
+</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 				<div id="fb-root" class=" fb_reset">
 					<div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
 						<div>							
@@ -408,5 +448,5 @@ $config = [];
 				if(d){b.style.display = "block";g.style.display = "block";c.style.display = "none"}
 				else if(e){b.style.display = "block";g.style.display = "none";c.style.display = "block"}
 				else if(f){b.style.display = "none";g.style.display = "block";c.style.display = "none"}
-			}
-		</script>
+      };
+      </script>
