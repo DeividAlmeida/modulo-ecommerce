@@ -42,12 +42,13 @@ if (isset($_GET['statusPedido'])) {
   $query  = DBUpdate('ecommerce_vendas', $data, "id = {$id}");
   $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$id}'")[0];
   $readm = DBRead('ecommerce_config_email','*',"WHERE id = '1'")[0];
-
+  $link = "<br><br><br><p> <h3><strong>Observação: </strong></h3> <h5> Você poderá acompanhar o status do sepedido no seguinte link</h5>".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($id)."</p>";
+ 
   if ($query != 0) {
 $remetente = $readm['remetente'];
 $destinatario = $read['email'];
 $nome = $readm['nome'];
-$message = $readm[$status];
+$message = $readm[$status].$link;
 $assunto = $nome." : Pedido #".$id." ".$readm["t_".$status];
 $headers = "MIME-Version: 1.1" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
