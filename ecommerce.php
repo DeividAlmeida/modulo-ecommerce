@@ -30,7 +30,7 @@ $UrlPage	 = 'Ecommerce.php';
 
 			<span class="dropdown">
 
-			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'listagem')) { ?>
+			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos')) { ?>
 					<a class="btn btn-sm btn-primary" href="?Vendas" >Pedidos</a>
 				<?php } ?>
 
@@ -62,13 +62,13 @@ $UrlPage	 = 'Ecommerce.php';
 
 			<span class="dropdown">
 
-			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria')) { ?>
+			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'marca')) { ?>
 				<a class="btn btn-sm btn-primary" href="#" data-toggle="dropdown">Marcas</a>
 			<?php } ?>
 
 				<div class="dropdown-menu dropdown-menu-left" x-placement="bottom-end">
 					<a class="dropdown-item" href="?ListarMarca">Marcas cadastradas</a>
-					<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'adicionar')) { ?>
+					<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'marca', 'adicionar')) { ?>
 						<a class="dropdown-item" href="?AdicionarMarca">Cadastrar marca</a>
 					<?php } ?>
 				</div>
@@ -76,13 +76,13 @@ $UrlPage	 = 'Ecommerce.php';
 
 			<span class="dropdown">
 
-			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria')) { ?>
+			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'atributo')) { ?>
 				<a class="btn btn-sm btn-primary" href="#" data-toggle="dropdown">Atributos</a>
 			<?php } ?>
 
 				<div class="dropdown-menu dropdown-menu-left" x-placement="bottom-end">
 					<a class="dropdown-item" href="?ListarAtributo">Atributos cadastrados</a>
-					<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'adicionar')) { ?>
+					<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'atributo', 'adicionar')) { ?>
 						<a class="dropdown-item" href="?AdicionarAtributo">Cadastrar atributo</a>
 					<?php } ?>
 				</div>
@@ -111,7 +111,7 @@ $UrlPage	 = 'Ecommerce.php';
 						<a class="dropdown-item" href="?configPagamento">Configurações de Pagamento</a>
 						<a class="dropdown-item" href="?configEmail">Configurações de Email</a>
 					</div>					
-<?php } ?>
+				<?php } ?>
 			</span>
 <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'codigo', 'acessar')) { ?>
 			<button class="btn btn-sm behance text-white" data-toggle="modal" data-target="#Ajuda"><i class="icon-question-circle"></i></button>

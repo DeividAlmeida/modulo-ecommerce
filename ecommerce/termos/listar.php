@@ -6,7 +6,7 @@ $id = $_GET['ListarTermo'];
   <div class="card-header white">
     <strong>Termo</strong>
 
-    <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'adicionar')) { ?>
+    <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'termo', 'adicionar')) { ?>
       <a class="btn btn-sm btn-primary" href="?AdicionarTermo=<?php echo $_GET['ListarTermo'];?>">Adicionar</a>
       <?php } ?>
   </div>
@@ -37,12 +37,12 @@ $id = $_GET['ListarTermo'];
                       </a>
 
                       <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end">
-                      <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'editar')) { ?>
+                      <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'termo', 'editar')) { ?>
                         <a class="dropdown-item" href="?EditarTermo=<?php echo $dados['id']; ?>"><i class="text-primary icon icon-pencil"></i> Editar</a>
                         <?php } ?>
 
                         <?php if ($dados['id'] != 0) { ?>
-                          <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'deletar')) { ?>
+                          <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'termo', 'deletar')) { ?>
                             <a class="dropdown-item" onclick="DeletarItem(<?php echo $dados['id']; ?>, 'DeletarTermo');" href="#!"><i class="text-danger icon icon-remove"></i> Excluir</a>
                             <?php } ?>
                         <?php } ?>

@@ -1,5 +1,5 @@
 <?php
-  if(!checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'adicionar')){ Redireciona('./index.php'); }
+  if(!checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'atributo', 'adicionar')){ Redireciona('./index.php'); }
 ?>
 
 <form method="post" action="?AddAtributo">

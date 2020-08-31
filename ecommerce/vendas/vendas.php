@@ -5,9 +5,9 @@
   <?php $query = DBRead('ecommerce_vendas', '*');?>
     <div class="card">
         <div class="card-header  white"> 
-     
+        <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos', 'deletar')) { ?>
         <button id="showSelectedRows" class="btn btn-primary" type="submit"><i class="fa fa-trash"></i> Excluir em Massa</button>
-       
+        <?php } ?>
         </div>
         <div class="card-body">
                 <div>
@@ -15,14 +15,18 @@
                        
       <thead >
     <tr >
+        <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos', 'deletar')) { ?>
         <th data-field="state" data-checkbox="true"></th>
+        <?php } ?>
         <th scope="col" data-field="id" data-sortable="true" > <span style="font-weight: bold; font-size:16px;">Id do Pedido<span></th>
         <th scope="col" data-field="Comprador" data-sortable="true" > <span style="font-weight: bold; font-size:16px;">Comprador<span></th>
         <th scope="col" data-field="Valor da venda" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Valor da Venda<span></th>
         <th scope="col" data-field="Data do Pedido" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Data do Pedido<span></th>
+        <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos', 'notificar')) { ?>
         <th scope="col" data-field="Status do Pedido" data-sortable="true"><span style="font-weight: bold; font-size:16px;">Status do Pedido<span></th>
+        <?php }elseif(checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos', 'editar')) {  ?>
         <th scope="col" data-field="<i class='fa fa-pencil'></i>" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Editar Pedito<span></th>
-        
+        <?php } ?>
     </tr>
       </thead>
       

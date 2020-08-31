@@ -1,5 +1,5 @@
 <?php
-  if(!checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'adicionar')){ Redireciona('./index.php'); }
+  if(!checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'termo', 'adicionar')){ Redireciona('./index.php'); }
 ?>
 
 <form method="post" action="?AddTermo=<?php echo $_GET['AdicionarTermo'];?>">

@@ -166,12 +166,6 @@ ob_start();
         	</script>
         <?php } } ?> 
 
-		<script> 
-
-		    alerta = () => {
-			alert("Por favor, preencha todos os campos antes de efetuar a compra!");
-		   }    
-        	</script>
         
 <span class="input-number-decrement">–</span><input class="input-number" type="text" id="quantidade" value="1" min="1" max="999"><span class="input-number-increment" style="margin-right: 30px;">+</span> <a <?php if(isset($atributos)){ echo "style='display:none;'";}else{echo "style='display:inline;'";} ?>  id="piupiu" class="shop--product-page--header__button btn btn-lg" 
 <?php echo (!empty($produto['link_venda'])) ? "href='{$produto["link_venda"]}' target='{$produto["target_link"]}'" : 'onclick="CarrinhoAdd('.$produto["id"].', '."'{$config["pagina_carrinho"]}'".', document.getElementById('."'quantidade'".').value,'.' document.getElementById('."'valor'".').getAttribute('."'valor-final'".')'; if(isset($atributos)){ echo ', document.getElementById('."'valor'".').getAttribute('."'index-final'".')';}else{echo " ";} echo ', sessionStorage.setItem(document.getElementById('."'valor'".').getAttribute('."'index-final'".'), document.getElementById('."'valor'".').getAttribute('."'id-final'".')))"'; ?>>
@@ -220,7 +214,7 @@ ob_start();
     </div>
   </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 
 	(function() {

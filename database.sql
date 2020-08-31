@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce_config` (
 
 -- VENDAS
 CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `tipo_pessoa` varchar(255) NOT NULL,
   `id_pessoa` varchar(255) NOT NULL,
@@ -152,12 +152,12 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `email` varchar(255) NOT NULL,
   `nota` text DEFAULT NULL,
   `tipo_entrega` varchar(255) NOT NULL,
-  'tipo_pagamento' varchar(255) NOT NULL,
+  `tipo_pagamento` varchar(255) NOT NULL,
   `valor` float NOT NULL,
   `produto` text NOT NULL,
-  `rastreamento` text NULL,
-  `status` varchar(255) NOT NULL,
-  `data` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
+  `data` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
+  `rastreamento` text NOT NULL,
+  `status` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
@@ -288,7 +288,7 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('cep_origem', '');
 
 
-UPDATE `modulos` SET `acao` = "{\"listagem\":[\"adicionar\",\"editar\",\"deletar\"],\"categoria\":[\"adicionar\",\"editar\",\"deletar\"],\"produto\":[\"adicionar\",\"editar\",\"deletar\"],\"codigo\":[\"acessar\"],\"configuracao\":[\"acessar\"]}" WHERE `modulos`.`url` = 'ecommerce.php';
+UPDATE `modulos` SET `acao` = "{\"pedidos\":[\"notificar\",\"editar\",\"deletar\"],\"listagem\":[\"adicionar\",\"editar\",\"deletar\"],\"categoria\":[\"adicionar\",\"editar\",\"deletar\"],\"marca\":[\"adicionar\",\"editar\",\"deletar\"],\"atributo\":[\"adicionar\",\"editar\",\"deletar\"],\"termo\":[\"adicionar\",\"editar\",\"deletar\"],\"produto\":[\"adicionar\",\"editar\",\"deletar\"],\"codigo\":[\"acessar\"],\"configuracao\":[\"acessar\"]}" WHERE `modulos`.`url` = 'ecommerce.php';
 
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 SET @@time_zone = '+03:00';

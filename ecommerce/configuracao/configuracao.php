@@ -1,4 +1,4 @@
-o<?php
+<?php
 
   $query = DBRead('ecommerce_config','*');
 

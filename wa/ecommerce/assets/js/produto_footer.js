@@ -1,4 +1,4 @@
-$(window).load(function () {
+$(window).on('load', function() {
   // Slide de fotos
   $('.shop--product-page--header--gallery').slick({
     infinite: true,

@@ -1,5 +1,5 @@
 <?php
-if(!checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'editar')){ Redireciona('./index.php'); }
+if(!checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'termo', 'editar')){ Redireciona('./index.php'); }
 $id     = get('EditarTermo');
 $query  = DBRead('ecommerce_termos','*',"WHERE id = '{$id}'");
 if (is_array($query)) {

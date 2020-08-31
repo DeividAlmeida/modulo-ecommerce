@@ -5,29 +5,29 @@ function CountProductView(id) {
     url: UrlPainel + 'wa/ecommerce/produto/count_view.php?id=' + id
   });
 }
-function CatalogoProdutosRelacionadosListagem(id) {
+function EcommerceRelacionadosListagem(id) {
   $.ajax({
     type: "GET",
     cache: false,
     url: UrlPainel + 'wa/ecommerce/produtos_relacionados?id=' + id,
     success: function (data) {
-      jQuery('#CatalogoProdutosRelacionadosListagem').html(data);
+      jQuery('#EcommerceRelacionadosListagem').html(data);
     },
     error: function (data) {
-      setTimeout(function () { CatalogoProdutosRelacionadosListagem(id); }, 5000);
+      setTimeout(function () { EcommerceRelacionadosListagem(id); }, 5000);
     },
   });
 }
-function CatalogoProdutosMaisVistos() {
+function EcommerceMaisVistos() {
   $.ajax({
     type: "GET",
     cache: false,
     url: UrlPainel + 'wa/ecommerce/produtos_mais_vistos',
     success: function (data) {
-      jQuery('#CatalogoProdutosMaisVistos').html(data);
+      jQuery('#EcommerceMaisVistos').html(data);
     },
     error: function (data) {
-      setTimeout(function () { CatalogoProdutosMaisVistos(); }, 5000);
+      setTimeout(function () { EcommerceMaisVistos(); }, 5000);
     },
   });
 }

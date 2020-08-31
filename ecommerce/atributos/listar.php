@@ -4,7 +4,7 @@
   <div class="card-header white">
     <strong>Atributo</strong>
 
-    <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'adicionar')) { ?>
+    <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'atributo', 'adicionar')) { ?>
       <a class="btn btn-sm btn-primary" href="?AdicionarAtributo">Adicionar</a>
       <?php } ?>
   </div>
@@ -42,12 +42,12 @@
                       </a>
 
                       <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end">
-                      <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'editar')) { ?>
+                      <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'atributo', 'editar')) { ?>
                         <a class="dropdown-item" href="?EditarAtributo=<?php echo $dados['id']; ?>"><i class="text-primary icon icon-pencil"></i> Editar</a>
                         <?php } ?>
 
                         <?php if ($dados['id'] != 0) { ?>
-                          <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'categoria', 'deletar')) { ?>
+                          <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'atributo', 'deletar')) { ?>
                             <a class="dropdown-item" onclick="DeletarItem(<?php echo $dados['id']; ?>, 'DeletarAtributo');" href="#!"><i class="text-danger icon icon-remove"></i> Excluir</a>
                             <?php } ?>
                         <?php } ?>
