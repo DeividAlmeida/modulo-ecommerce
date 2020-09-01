@@ -155,31 +155,7 @@
                   </span>
                 </span>
               </div>
-            </div>
-
-          <!-- `a_consultar` enum('S', 'N') DEFAULT 'N' -->
-          <div class="form-group">
-            <label>A consultar:</label>
-            <select name="a_consultar" required class="form-control custom-select">
-              <option value="N" selected>Não</option>
-              <option value="S">Sim</option>
-            </select>
-          </div>
-
-          <!-- `link_venda` varchar(255) DEFAULT NULL -->
-          <div class="form-group">
-            <label>Link venda: </label>
-            <input class="form-control" name="link_venda" >
-          </div>
-
-          <!-- `target_link` enum('_self','_blank') NOT NULL DEFAULT '_self' -->
-          <div class="form-group">
-            <label>Abrir link em: </label>
-            <select name="target_link" required class="form-control custom-select">
-              <option value="_blank" selected>Nova Aba</option>
-              <option value="_self">Mesma aba</option>
-            </select>
-          </div>
+            </div>  
 
           <!-- `btn_texto` varchar(255) DEFAULT NULL -->
           <div class="form-group">            
@@ -189,7 +165,7 @@
           <!-- `ordem_manual` int(11) -->
           <div class="form-group">
             <label>Ordem Manual: </label>
-            <input class="form-control" name="ordem_manual" type="number" required>
+            <input class="form-control" name="ordem_manual" type="number" value="1">
           </div>
         </div>
         

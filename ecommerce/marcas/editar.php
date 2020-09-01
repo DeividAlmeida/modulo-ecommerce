@@ -29,7 +29,7 @@ if (is_array($query)) {
               <!-- Imagem -->
               <div class="form-group">
                 <label>Imagem:</label>
-                <input class="form-control" type="file" multiple accept='image/*' name="imagem">
+                <input class="form-control" type="file" multiple accept='image/*' name="imagem" >
               </div>  
 
               <button class="btnSubmit btn btn-primary float-right" type="submit">Atualizar</button>

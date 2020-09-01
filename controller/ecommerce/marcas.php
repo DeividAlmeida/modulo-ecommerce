@@ -39,10 +39,16 @@ if (isset($_GET['AtualizarMarca'])) {
   $id   = get('AtualizarMarca');
   $data = array(
     'nome'      => post('nome'),
-    'descricao' => post('descricao'),
-    'imagem' => $handle->file_dst_name
+    'descricao' => post('descricao')
+
   );
 
+  if($_FILES['imagem']['name'] == null){}else{
+    $data5 = array(
+      'imagem' => $handle->file_dst_name
+    );
+    $query5 = DBUpdate('ecommerce_marcas', $data5, "id = '{$id}'");
+  }
   $query = DBUpdate('ecommerce_marcas', $data, "id = '{$id}'");
   if ($query != 0) {
     Redireciona('?ListarMarca&sucesso');

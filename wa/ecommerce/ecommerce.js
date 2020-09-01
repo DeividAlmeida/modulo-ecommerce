@@ -136,3 +136,12 @@ function CarrinhoAdd(id, carrinho_url, qtd, vlf, att){
     }
   });
 }
+alerta = () =>{
+    
+    Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor preencha todos os campos antes de efetuar a compra!'
+        })
+    
+} 

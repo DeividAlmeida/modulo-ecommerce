@@ -217,31 +217,7 @@ if (is_array($query)) { ?>
                 </span>
               </div>
             </div>
-
-            <!-- `a_consultar` enum('S', 'N') DEFAULT 'N' -->
-            <div class="form-group">
-              <label>A consultar:</label>
-              <select name="a_consultar" required class="form-control custom-select">
-                <option value="N" <?php Selected($dados['a_consultar'], "N"); ?>>Não</option>
-                <option value="S" <?php Selected($dados['a_consultar'], "S"); ?>>Sim</option>
-              </select>
-            </div>
-
-            <!-- `link_venda` varchar(255) DEFAULT NULL -->
-            <div class="form-group">
-              <label>Link venda: </label>
-              <input class="form-control" name="link_venda" value="<?php echo $dados['link_venda'];?>">
-            </div>
-
-            <!-- `target_link` enum('_self','_blank') NOT NULL DEFAULT '_self' -->
-            <div class="form-group">
-              <label>Abrir link em: </label>
-              <select name="target_link" required class="form-control custom-select">
-                <option value="_blank" <?php Selected($dados['target_link'], "_blank"); ?>>Nova Aba</option>
-                <option value="_self" <?php Selected($dados['target_link'], "_self"); ?>>Mesma aba</option>
-              </select>
-            </div>
-
+            
             <!-- `btn_texto` varchar(255) DEFAULT NULL -->
           <div class="form-group">            
             <input class="form-control" name="btn_texto" type="hidden" value="Comprar">

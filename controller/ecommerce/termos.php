@@ -25,7 +25,6 @@ if (isset($_GET['AtualizarTermo'])) {
   $id   = get('AtualizarTermo');
   $data = array(
     'nome'      => post('nome'),
-    'id_atributo'       => $id
   );
 
   $query = DBUpdate('ecommerce_termos', $data, "id = '{$id}'");

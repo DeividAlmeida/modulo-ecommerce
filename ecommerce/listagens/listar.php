@@ -35,7 +35,7 @@ $query = DBRead('ecommerce_listas', '*');
           <h5 class="font-weight-normal s-14">Quant. Categorias</h5>
           <span class="s-48 font-weight-lighter text-primary"><?php echo $contagem_categorias; ?></span>
         </div>
-        <div class="p-5 light">
+        <div class="p-5">
           <h5 class="font-weight-normal s-14">Quant. Marcas</h5>
           <span class="s-48 font-weight-lighter text-primary"><?php echo $contagem_marcas; ?></span>
         </div>
