@@ -17,18 +17,9 @@ if (isset($_GET['AtualizarMatrizesTodosProdutos'])) {
 }
 else if (isset($_GET['AtualizarConfig'])) {
   $campos = array(
-    'pagina_carrinho',
-    
-    'email_recebimento',
-    'email_usuario',
-    'email_senha',
-    'email_porta',
-    'email_protocolo_seguranca',
-    'email_disparo',
-    'email_cor_bg',
-    'email_cor_header_bg',
-    'email_cor_header_texto',
-    
+    'pagina_carrinho', 
+    'pagina_checkout',
+    'produto_cor_texto_descricao',   
     'matriz_produto',
     'pagina_resultado_busca',
     'listagem_cor_titulo',
@@ -68,7 +59,7 @@ else if (isset($_GET['AtualizarConfig'])) {
     'carrocel_cor_hover_setas',
     'carrinho_cor_btns',
     'carrinho_cor_btn_finalizar',
-    'moeda',
+    'moeda'
   );
 
   foreach($campos as $campo){

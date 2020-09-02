@@ -125,6 +125,7 @@ function CarrinhoAdd(id, carrinho_url, qtd, vlf, att){
       $('.shop--product-page--header__button').html("Adicionando ao carrinho...");
     },
     success: function () {
+      EcommerceBtnCarrinho();
       $('.shop--product-page--header__button').html("Comprar");
       Swal.fire({
         type:  'success',

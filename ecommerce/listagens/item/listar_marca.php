@@ -7,7 +7,7 @@ $query = DBRead('ecommerce_lista_marca','*', "WHERE `id_lista` = $id");
   <div class="card-header white">
     <strong>Marcas da Listagem > #<?php echo $id ; ?></strong>
     <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'listagem', 'adicionar')) { ?>
-      <a class="adicionarListagemItem tooltips" data-tooltip="Adicionar" href="#" data-href="ecommerce.php?AdicionarItemLista=<?php echo $id; ?>">
+      <a class="adicionarListagemItem tooltips" data-tooltip="Adicionar" href="#" data-href="ecommerce.php?AdicionarMarcaLista=<?php echo $id; ?>">
         <i class="icon-plus blue lighten-2 avatar"></i>
       </a>
       <?php } ?>

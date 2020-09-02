@@ -16,7 +16,7 @@ foreach ($query as $key => $row) {
 $total_itens = 0;
 if(!empty($_SESSION["cart"])){
   foreach($_SESSION["cart"] as $qtd){
-    $total_itens += $qtd;
+    $total_itens += $qtd[1];
   }
 }
 ?>

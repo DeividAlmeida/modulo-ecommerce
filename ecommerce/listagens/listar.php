@@ -76,8 +76,8 @@ $query = DBRead('ecommerce_listas', '*');
             </tr>
 
             <?php foreach ($query as $dados) {
-              $CodSite  = '<div id="CatalogoProdutosListagem' . $dados['id'] . '" ></div>' . "\n";
-              $CodSite .= '<script type="text/javascript">CatalogoProdutosListagem(' . $dados['id'] . ',1);</script>';
+              $CodSite  = '<div id="EcommerceListagem' . $dados['id'] . '" ></div>' . "\n";
+              $CodSite .= '<script type="text/javascript">EcommerceListagem(' . $dados['id'] . ',1);</script>';
             ?>
               <tr>
                 <td><?php echo $dados['id']; ?></td>

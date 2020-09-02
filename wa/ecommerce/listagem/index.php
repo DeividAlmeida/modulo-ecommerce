@@ -40,6 +40,10 @@
 		case '4':
 			require_once('tipo/tipo_4.php');
 			break;
+		// Marcas	
+		case '5':
+			require_once('tipo/tipo_5.php');
+			break;
 		default:
 			require_once('tipo/tipo_1.php');
 	}
@@ -105,7 +109,7 @@
 				<?php if ($i <= '1') { ?>
 						<button type="hidden" class="btn btn-default btn-xs hidden" disabled>Anterior</button>
 				<?php } elseif ($i >= '2') { $i = $i - '1'; ?>
-						<button type="button" class="btn btn-default btn-xs" onclick="CatalogoProdutosListagem(<?php echo $id; ?>,'<?php echo $i; ?>');">Anterior</button>
+						<button type="button" class="btn btn-default btn-xs" onclick="EcommerceListagem(<?php echo $id; ?>,'<?php echo $i; ?>');">Anterior</button>
 				<?php } ?>
 					<?php $i = $pag; ?>
 				<?php if ($numPaginas >= '1' && $numPaginas < '9') { $numPaginas = '0'.$numPaginas; } elseif ($numPaginas > '9') { $numPaginas = $numPaginas; } ?>

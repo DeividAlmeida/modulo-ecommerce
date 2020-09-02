@@ -20,7 +20,7 @@
             <label>Tipo:</label>
             <select class="form-control custom-select" name="tipo">
               <option value="1" selected>Categoria</option>
-              <option value="5" selected>Marca</option>
+              <option value="5">Marca</option>
               <option value="2">Mais Vistos</option>
               <option value="3">Mais Vendidos</option>
               <option value="4">Mais Recentes</option>

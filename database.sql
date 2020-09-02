@@ -125,6 +125,13 @@ CREATE TABLE IF NOT EXISTS `ecommerce_lista_categoria` (
   `id_categoria` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- LISTAGEM - MARCAS
+CREATE TABLE IF NOT EXISTS `ecommerce_lista_marca` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id_lista` int(11) NOT NULL,
+  `id_marca` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 -- CONFIGURAÇÃO DO CATALOGO
 CREATE TABLE IF NOT EXISTS `ecommerce_config` (
   `id` varchar(255) NOT NULL,
@@ -233,16 +240,6 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('pagina_carrinho', ''),
 ('pagina_resultado_busca', ''),
 ('pagina_checkout', ''),
-('email_servidor', ''),
-('email_usuario', ''),
-('email_senha', ''),
-('email_porta', ''),
-('email_protocolo_seguranca', 'ssl'),
-('email_disparo', ''),
-('email_recebimento', ''),
-('email_cor_bg', ''),
-('email_cor_header_bg', ''),
-('email_cor_header_texto', ''),
 ('matriz_produto', ''),
 ('listagem_cor_titulo', ''),
 ('listagem_cor_preco', ''),
@@ -282,7 +279,7 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('carrinho_cor_btns', ''),
 ('carrinho_cor_btn_finalizar', ''),
 ('moeda', 'R&#x00024;'),
-('cep_origem', '');
+
 
 
 UPDATE `modulos` SET `acao` = "{\"pedidos\":[\"notificar\",\"editar\",\"deletar\"],\"listagem\":[\"adicionar\",\"editar\",\"deletar\"],\"categoria\":[\"adicionar\",\"editar\",\"deletar\"],\"marca\":[\"adicionar\",\"editar\",\"deletar\"],\"atributo\":[\"adicionar\",\"editar\",\"deletar\"],\"termo\":[\"adicionar\",\"editar\",\"deletar\"],\"produto\":[\"adicionar\",\"editar\",\"deletar\"],\"codigo\":[\"acessar\"],\"configuracao\":[\"acessar\"]}" WHERE `modulos`.`url` = 'ecommerce.php';
