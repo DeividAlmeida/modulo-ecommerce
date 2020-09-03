@@ -4,9 +4,9 @@ $marcas_lista = DBRead('ecommerce_lista_marca','id_marca',"WHERE id_lista = '{$i
 
 $ids_marca = array();
 
-if(count($marcas_lista) == 0){
+if(!is_array($marcas_lista)){
   ?>
-    Insira uma marca para exibir seus produtos.
+    <center>Insira uma marca para exibir seus produtos.</center>
   <?php
   exit;
 }
@@ -25,7 +25,7 @@ foreach ($lista_produtos as $linha) {
 
 if(count($ids_produtos) == 0){
   ?>
-    Não há produtos para exibir nessa listagem com essas configurações. Confira as configurações e os produtos cadastrados.
+    <center>Não há produtos para exibir nessa listagem com essas configurações. Confira as configurações e os produtos cadastrados.</center>
   <?php
   exit;
 }

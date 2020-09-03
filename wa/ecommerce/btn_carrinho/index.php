@@ -14,12 +14,13 @@ foreach ($query as $key => $row) {
 }
 
 $total_itens = 0;
-if(!empty($_SESSION["cart"])){
-  foreach($_SESSION["cart"] as $qtd){
+if(!empty($_SESSION["car"])){
+  foreach($_SESSION["car"] as $qtd){
     $total_itens += $qtd[1];
   }
 }
 ?>
+<meta charset="UTF-8">
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>/wa/ecommerce/assets/css/btn_carrinho.css">
 <style>
 .shop--cart-dropdown .dropdown-toggle{
@@ -46,14 +47,14 @@ if(!empty($_SESSION["cart"])){
     <span class="fa fa-shopping-cart"></span> Carrinho (<?php echo $total_itens; ?>)
   </span>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <?php if(!empty($_SESSION["cart"])){ ?>
+    <?php if(!empty($_SESSION["car"])){ ?>
       <ul class="shop--cart-dropdown--list">
         <?php
         $total_carrinho = 0;
         $i=0;
-        foreach($_SESSION["cart"] as $id => $qtd ) {
+        foreach($_SESSION["car"] as $qtd ) {
           if ($i < 3) {
-            $query = DBRead('ecommerce', '*', "WHERE id = $id");
+            $query = DBRead('ecommerce', '*', "WHERE id = $qtd[0]");
             $produto = $query[0];
 
             // Carregando Fotos do produto
@@ -69,7 +70,7 @@ if(!empty($_SESSION["cart"])){
             // URL da imagem da capa
             $url_img_capa = RemoveHttpS(ConfigPainel('base_url'))."wa/ecommerce/uploads/".$foto_capa['uniq'];
 
-            $total_carrinho += $produto['preco']*$qtd;
+            $total_carrinho += $produto['preco']*$qtd[1];
             $i++;
           ?>
           <li class="shop--cart-dropdown--list__item">
@@ -78,8 +79,8 @@ if(!empty($_SESSION["cart"])){
             </div>
             <div>
               <h4 class="shop--cart-dropdown--list__title"><?php echo $produto['nome']; ?></h4>
-              <div class="shop--cart-dropdown--list__qty"><?php echo $qtd; ?></div>
-              <div class="shop--cart-dropdown--list__price"><?php echo $config['moeda'].' '.number_format(number_format($produto['preco'],2,",",".")*$qtd, 2, ',', '.'); ?></div>
+              <div class="shop--cart-dropdown--list__qty"><?php echo $qtd[1]; ?></div>
+              <div class="shop--cart-dropdown--list__price"><?php echo $config['moeda'].' '.number_format(number_format($produto['preco'],2,",",".")*$qtd[1], 2, ',', '.'); ?></div>
             </div>
           </li>
         <?php } else { ?>

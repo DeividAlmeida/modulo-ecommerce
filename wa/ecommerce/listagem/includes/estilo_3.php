@@ -180,7 +180,6 @@
               </div>
               <div class="shop--product__action">
                 <a class="btn-see btn btn-primary" href="<?php echo $url;?>">Ver Produto</a>
-                <a class="btn-buy btn btn-primary" <?php echo (!empty($produto['link_venda'])) ? "href='{$produto["link_venda"]}'" : 'onclick="CarrinhoAdd('.$produto["id"].', '."'{$config["pagina_carrinho"]}'".')"'; ?>>Comprar</a>
               </div>
             </div>
             

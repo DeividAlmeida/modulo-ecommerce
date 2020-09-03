@@ -4,9 +4,9 @@ $categorias_lista = DBRead('ecommerce_lista_categoria','id_categoria',"WHERE id_
 
 $ids_categoria = array();
 
-if(count($categorias_lista) == 0){
+if(!is_array($categorias_lista)){
   ?>
-    Insira uma categoria para exibir seus produtos.
+    <center>Insira uma categoria para exibir seus produtos.</center>
   <?php
   exit;
 }
@@ -25,7 +25,7 @@ foreach ($lista_produtos as $linha) {
 
 if(count($ids_produtos) == 0){
   ?>
-    Não há produtos para exibir nessa listagem com essas configurações. Confira as configurações e os produtos cadastrados.
+    <center>Não há produtos para exibir nessa listagem com essas configurações. Confira as configurações e os produtos cadastrados.</center>
   <?php
   exit;
 }

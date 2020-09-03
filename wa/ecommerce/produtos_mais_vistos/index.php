@@ -51,5 +51,5 @@ switch ($config['listagem_estilo']) {
 		break;
 }
 ?>
-
+<meta charset="UTF-8">
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>/epack/css/elements/animate.css">

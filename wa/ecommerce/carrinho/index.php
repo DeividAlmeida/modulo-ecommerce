@@ -28,8 +28,9 @@ $total_carrinho = 0;
 <div class="shop--cart">
 
 <?php
-if(isset($_SESSION["cart"]) && is_array($_SESSION["cart"]) && count($_SESSION["cart"]) > 0){
+if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car"]) > 0){
 ?>
+	<meta charset="UTF-8">
 	<div class="shop--cart__block"></div>
 	<div class="table-responsive">
 	<table id="shop--cart--table" class="shop--cart--table table m-0 table-striped">
@@ -41,7 +42,7 @@ if(isset($_SESSION["cart"]) && is_array($_SESSION["cart"]) && count($_SESSION["c
 	    <th>Total</th>
 	  </tr>
 
-	  <?php foreach($_SESSION["cart"] as $id => $qtd ){
+	  <?php foreach($_SESSION["car"] as $id => $qtd ){
 	    $query = DBRead('ecommerce', '*', "WHERE id = $qtd[0]");
 	    $produto = $query[0];
 

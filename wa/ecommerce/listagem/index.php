@@ -102,6 +102,7 @@
 ?>
 
 <?php if($lista['mostrar_paginacao'] == 'S'){ ?>
+	<meta charset="UTF-8">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px">
 		<center>
 			<div class="btn-group" role="group" aria-label="...">

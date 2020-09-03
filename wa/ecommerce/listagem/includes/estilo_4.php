@@ -164,7 +164,7 @@
                 <?php } ?>
               </a>
               <div class="shop--product__action">
-                <a class="btn-buy btn btn-primary btn-block" <?php echo (!empty($produto['link_venda'])) ? "href='{$produto["link_venda"]}'" : 'onclick="CarrinhoAdd('.$produto["id"].', '."'{$config["pagina_carrinho"]}'".')"'; ?>>Comprar</a>
+                <a class="btn-buy btn btn-primary btn-block" href="<?php echo $url;?>"><span class="fa fa-eye"></span></a>
               </div>
             </div>
             <div class="shop--product__content">

@@ -57,6 +57,7 @@ switch ($config['busca_btn_tamanho']) {
   background-color: <?php echo $config['busca_btn_cor_hover']; ?> !important;
 }
 </style>
+<meta charset="UTF-8">
 <form class="shop--search-bar" action="<?php echo $config['pagina_resultado_busca']; ?>" method="get" role="form">
   <div class="input-group <?php echo $tamanho_barra; ?> add-on">
     <input type="text" name="b" class="form-control" placeholder="Pesquisar Produtos">

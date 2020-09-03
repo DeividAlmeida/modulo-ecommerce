@@ -30,7 +30,7 @@ $config = [];
 .product-name{
     color: <?php echo $config['carrinho_cor_btn_finalizar']; ?> !important;
 }
-</style>		
+</style>			
 		
 		<meta http-equiv="Content-Type" content="charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -230,7 +230,7 @@ $config = [];
 																	<div class="col-lg-6">
 																		<strong><center>Revisão do pedido</center></strong><br>
 																		<?php
-																			if(isset($_SESSION["cart"]) && is_array($_SESSION["cart"]) && count($_SESSION["cart"]) > 0) { ?>
+																			if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car"]) > 0) { ?>
 																			<tbody>																		
 																				
 																		<table class="shop_table review-order woocommerce-checkout-review-order-table">
@@ -240,16 +240,16 @@ $config = [];
 																					<th class="product-total">Subtotal</th>
 																				</tr>
 																			</thead>
-                                      <?php foreach($_SESSION["cart"] as $id => $qtd ){
+                                      <?php foreach($_SESSION["car"] as $id => $qtd ){
 																				$query = DBRead('ecommerce', '*', "WHERE id = $qtd[0]");
 																				$produto = $query[0];?>
 																				<tr class="cart_item">
-																				    <input type="hidden" name="produto[]" id="produto"<?php echo $id ?>" value="" >
+																				    <input type="hidden" name="produto[]" id="produto<?php echo $id ?>" value="">
 																				    <input type="hidden" name="produto_pg[]" id="produto_pg" value="<?php echo $produto['nome']; ?>">
 																			        <input type="hidden" name="qtd[]" id="qtd_fl" value="<?php  echo $qtd[1]; ?>">
 																			        <input type="hidden" name="un_valor[]" id="un_valor" value="<?php echo floatval(str_replace(",", ".", $qtd[2])); ?>">
 																				<td class="product-name"><strong><center><?php echo $produto['nome']; ?></center></strong><br>
-																					<span class="product-name" id="trm<?php echo $id ?>">
+																					<span id="trm<?php echo $id ?>">
 																					
 																						<script>
 																							const a = document.getElementById("trm<?php echo $id ?>");
@@ -416,7 +416,7 @@ $config = [];
 									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
 									<input required type="hidden" name="vl_frete" id="vl_frete" value="">
 									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked" ): else: ?>
-									<center><input type="submit"  value="Finalizar compra" id="cartCheckout" ></center>
+									<center><input type="submit" id="cartCheckout"  value="Finalizar compra" ></center>
 									<?php endif ?>
 								</div>
 							</div>
