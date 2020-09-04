@@ -198,6 +198,7 @@ $UrlPage	 = 'Ecommerce.php';
 					<p>
 						1- Recomendamos desativar efeitos parallax em páginas onde o módulo será integrado.<br>
 						2- Bloqueie o acesso somente as páginas matrizes pelo robots.txt para que não sejam indexadas.<br>
+						3- Como o painel valida API’s de pagamento e entrega é necessário que seu painel seja acessado em https: e não apenas http.<br>
 					</p>
 					<hr />
 					<h5>Tags de Integração:</h5>

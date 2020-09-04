@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce_lista_marca` (
   `id_marca` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- CONFIGURAÇÃO DO CATALOGO
+-- CONFIGURAÇÃO DO ECOMMERCE
 CREATE TABLE IF NOT EXISTS `ecommerce_config` (
   `id` varchar(255) NOT NULL,
   `valor` varchar(255) DEFAULT NULL,
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce_config` (
 
 -- VENDAS
 CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
- `id` int(11) NOT NULL,
+ `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nome` varchar(255) NOT NULL,
   `tipo_pessoa` varchar(255) NOT NULL,
   `id_pessoa` varchar(255) NOT NULL,
@@ -184,6 +184,11 @@ CREATE TABLE IF NOT EXISTS `ecommerce_config_email` (
   `t_cancelado` varchar(255) NOT NULL,
   `cancelado` text NOT NULL,
   `t_reembolsado` varchar(255) NOT NULL,
+  `email_usuario` varchar(255) DEFAULT NULL,
+  `email_senha` varchar(255) DEFAULT NULL,
+  `email_porta` varchar(255) DEFAULT NULL,
+  `email_servidor` varchar(255) DEFAULT NULL,
+  `email_protocolo_seguranca` varchar(255) DEFAULT NULL,
   `reembolsado` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

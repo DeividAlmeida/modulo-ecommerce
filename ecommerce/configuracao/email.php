@@ -19,6 +19,47 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Servidor SMTP:</label>
+                    <input type="text" name="email_servidor" class="form-control" placeholder="Informe o Servidor SMTP" value="<?php echo $query['email_servidor']; ?>">
+                </div>
+            </div>
+            <div class="col-md-6">
+					<div class="form-group">
+						<label>Protocolo de Segurança:</label>
+						<select name="email_protocolo_seguranca" class="form-control custom-select">
+							<option value="ssl" <?php Selected($query['email_protocolo_seguranca'], 'ssl'); ?>>SSL</option>
+							<option value="tls" <?php Selected($query['email_protocolo_seguranca'], 'tls'); ?>>TLS</option>
+						</select>
+					</div>
+				</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Usuário SMTP:</label>
+                    <input type="text" name="email_usuario" class="form-control" placeholder="Informe o Usuário SMTP" value="<?php echo $query['email_usuario']; ?>">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Senha SMTP:</label>
+                    <input type="text" name="email_senha" class="form-control" placeholder="Informe o Senha SMTP" value="<?php echo $query['email_senha']; ?>">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Porta SMTP:</label>
+                    <input type="text" name="email_porta" class="form-control" placeholder="Informe a Porta SMTP" value="<?php echo $query['email_porta']; ?>">
+                </div>
+            </div>
+        </div>
+        
         <hr>
         <div class="row">
             <div class="col-md-4">
@@ -98,6 +139,6 @@
         </div>
         <div class="card-footer white">
             <button class="btn btn-primary float-right" type="submit">Atualizar</button>
-        </div>   
+        </div>  
     </div>
 </form>

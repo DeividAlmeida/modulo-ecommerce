@@ -35,7 +35,7 @@ class PagSeguroConfigWrapper
     /**
      * production or sandbox
      */
-    const PAGSEGURO_ENV = "sandbox";
+    const PAGSEGURO_ENV = "production";
    
     const PAGSEGURO_EMAIL =  A;
    

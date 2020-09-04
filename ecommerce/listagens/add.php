@@ -76,7 +76,7 @@
 
           <!-- `paginacao` int(11) -->
           <div class="form-group">
-            <label>Páginas: </label>
+            <label>Quantidade de produto por página: </label>
             <input class="form-control" name="paginacao" required type="number">
           </div>
 

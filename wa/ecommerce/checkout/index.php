@@ -4,6 +4,7 @@ header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
+$read = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; 
 $retirada = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0];
 $deposito = DBRead('ecommerce_config_deposito','*',"WHERE id = '1'")[0];
 $pagseguro = DBRead('ecommerce_config_pagseguro','*',"WHERE id = '1'")[0]; 
@@ -286,8 +287,8 @@ $config = [];
 																					<td><strong><center>Entrega</center></strong><br> <span id="frete"></span><br>
 
                                               <?php if($retirada['retirada'] == "checked") { ?> <br>  
-																					    <div style="margin-left:10px;"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;' value="00,00"  > 
-																					    <label for="retirada" style="cursor:pointer;" for="retirada"><b>Retirada na loja</b> Valor: R$ 00,00</label></div> 
+																					    <div style="margin-left:0px; white-space: nowrap"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;white-space: nowrap' value="00,00"  > 
+																					    <label for="retirada" style="cursor:pointer; white-space: nowrap" for="retirada"><b>Retirada na loja</b> Valor: R$ 00,00</label></div> 
                                               <script>
                                                     document.getElementById("retirada").addEventListener("change", function() {
                                                       const z = 0;
@@ -312,7 +313,7 @@ $config = [];
                                                 $("#cepdestino").change(function(){
                                                 const cep = document.getElementById('cepdestino').value;
                                                 $("#frete").load('<?php echo ConfigPainel('base_url')?>wa/ecommerce/checkout/preload/');
-                                                $("#frete").load('https://nameless-atoll-10880.herokuapp.com/'+cep+'<?php echo "/".$config['cep_origem']."/".$total_peso."/".$total_comprimento."/".$total_altura."/".$total_largura; ?>');
+                                                $("#frete").load('https://nameless-atoll-10880.herokuapp.com/'+cep+'<?php echo "/".$read['cep']."/".$total_peso."/".$total_comprimento."/".$total_altura."/".$total_largura; ?>');
                                                 });
                                               Cfrete = (z) =>{
                                                 const a = document.getElementById("normal").value;
