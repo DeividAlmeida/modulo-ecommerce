@@ -1,8 +1,8 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "-03:00";
+SET time_zone = "+03:00";
 
-INSERT INTO `modulos` (`nome`, `url`, `icone`, `status`, `ordem`, `tabela`, `cod_head`, `data_atualizacao`, `chave`)
-SELECT 'Ecommerce', 'ecommerce.php', 'icon-shopping-bag', 1, 0, 'ecommerce', 'ecommerce/ecommerce.js', '2019-05-07', '72b4b1d7ce2b514a981a49b1db5790a7';
+INSERT INTO `modulos` (`nome`, `url`, `icone`, `status`, `ordem`, `tabela`, `cod_head`, `data_atualizacao`, `chave`, `acao`)
+SELECT "Ecommerce", "ecommerce.php", "icon-shopping-bag", 1, 0, "ecommerce", "ecommerce/ecommerce.js", "2019-05-07", "72b4b1d7ce2b514a981a49b1db5790a7", "{\"pedidos\":[\"notificar\",\"editar\",\"deletar\"],\"listagem\":[\"adicionar\",\"editar\",\"deletar\"],\"categoria\":[\"adicionar\",\"editar\",\"deletar\"],\"marca\":[\"adicionar\",\"editar\",\"deletar\"],\"atributo\":[\"adicionar\",\"editar\",\"deletar\"],\"termo\":[\"adicionar\",\"editar\",\"deletar\"],\"produto\":[\"adicionar\",\"editar\",\"deletar\"],\"codigo\":[\"acessar\"],\"configuracao\":[\"acessar\"]}";
 
 -- CATEGORIA
 CREATE TABLE IF NOT EXISTS `ecommerce_categorias` (
@@ -284,10 +284,6 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('carrinho_cor_btns', ''),
 ('carrinho_cor_btn_finalizar', ''),
 ('moeda', 'R&#x00024;'),
-
-
-
-UPDATE `modulos` SET `acao` = "{\"pedidos\":[\"notificar\",\"editar\",\"deletar\"],\"listagem\":[\"adicionar\",\"editar\",\"deletar\"],\"categoria\":[\"adicionar\",\"editar\",\"deletar\"],\"marca\":[\"adicionar\",\"editar\",\"deletar\"],\"atributo\":[\"adicionar\",\"editar\",\"deletar\"],\"termo\":[\"adicionar\",\"editar\",\"deletar\"],\"produto\":[\"adicionar\",\"editar\",\"deletar\"],\"codigo\":[\"acessar\"],\"configuracao\":[\"acessar\"]}" WHERE `modulos`.`url` = 'ecommerce.php';
 
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 SET @@time_zone = '+03:00';
