@@ -1,8 +1,11 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+
+
+
 
   <form id="pedidos" method="POST">
-  <?php $query = DBRead('ecommerce_vendas', '*');?>
+  <?php $query = DBRead('ecommerce_vendas', '*'); ?>
     <div class="card">
         <div class="card-header  white"> 
         <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos', 'deletar')) { ?>

@@ -593,8 +593,12 @@ $UrlPage	 = 'Ecommerce.php';
 			}).then(function(isConfirm) {
 				if (isConfirm) {
 					var xhttp = new XMLHttpRequest();
-					let j = document.getElementById('status'+d).value;  
-					xhttp.open("GET", "ecommerce.php?statusPedido="+d+"&status="+j, true);
+					let s = document.getElementById('status'+d);
+					let j = s.value; 
+					var x = s.selectedIndex;
+  					var y = s.options;
+					let f = y[x].getAttribute('cor');
+					xhttp.open("GET", "ecommerce.php?statusPedido="+d+"&cor="+f+"&status="+j, true);
 
 //Alteração do status e envio da notificação em progresso tabela de pedidos
 

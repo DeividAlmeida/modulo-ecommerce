@@ -161,6 +161,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `produto` text NOT NULL,
   `data` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
   `rastreamento` text NOT NULL,
+  `cor_status` varchar(255) DEFAULT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

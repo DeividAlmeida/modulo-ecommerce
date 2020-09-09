@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
@@ -8,22 +7,6 @@ $config = [];
   foreach ($query as $key => $row) {
     $config[$row['id']] = $row['valor'];
   }
-
-foreach($_SESSION["car"] as $a => $b ){
- $db = DBRead('ecommerce', '*', "WHERE id = $b[0]")[0]; 
- $c = $db['estoque'] - $b[1];
-
- if($db['diminuir_est'] == "sim"){
-  
-    $data5 = array(
-     'estoque' => $c,
-     );
-    
-   DBUpdate('ecommerce', $data5, "id = $b[0]");  
- }
-
-}
-  
 require_once("PagSeguroLibrary/PagSeguroLibrary.php");
 
 

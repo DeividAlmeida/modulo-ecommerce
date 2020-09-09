@@ -36,8 +36,10 @@ if (isset($_GET['editarPedido'])) {
 if (isset($_GET['statusPedido'])) {
   $id     = get('statusPedido');
   $status = get('status');
+  $cor = get('cor');
   $data = array(
     'status'   => $status,
+    'cor_status'   => $cor
   );
   $query  = DBUpdate('ecommerce_vendas', $data, "id = {$id}");
   $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$id}'")[0];
