@@ -44,7 +44,7 @@ if (isset($_GET['statusPedido'])) {
   $query  = DBUpdate('ecommerce_vendas', $data, "id = {$id}");
   $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$id}'")[0];
   $readm = DBRead('ecommerce_config_email','*',"WHERE id = '1'")[0];
-  $link = "<br><br><br><p> <h3><strong>Observação: </strong></h3> <h5> Você poderá acompanhar o status do sepedido no seguinte link</h5>".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($id)."</p>";
+  $link = "<br><br><br><p> <h3>Observação: </h3> <h5> Você poderá acompanhar o status do seu pedido no seguinte link</h5>".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($id)."</p>";
  
   if ($query != 0) {
 
@@ -117,14 +117,8 @@ $mail->Body = $readm[$status].$link;
  
 // Envia o e-mail 
 $enviado = $mail->Send(); 
- 
-// Exibe uma mensagem de resultado 
-if ($enviado) 
-{ 
-    "algo"; 
-} else { 
-     echo "Houve um erro enviando o email: ".$mail->ErrorInfo; 
-} 
+
+
  
 
 }

@@ -25,7 +25,6 @@ $config = [];
 
 }
   
-
   
 require_once("PagSeguroLibrary/PagSeguroLibrary.php");
 
@@ -61,8 +60,11 @@ if (isset($_POST)) {
     );
     $query = DBCreate('ecommerce_vendas', $data, true);
     $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$query}'");
-    
-    $paymentRequest = new PagSeguroPaymentRequest(); 
+    require_once('../../../controller/ecommerce/email_vendedor.php');
+    if( post('payment_method') == "Depósito"){require_once('../../../controller/ecommerce/email_cliente_retirada.php');}else{
+        require_once('../../../controller/ecommerce/email_cliente.php');
+    }
+        $paymentRequest = new PagSeguroPaymentRequest(); 
     
     foreach($read as $r){
         $pdt = json_decode($r['produto'], true);
@@ -74,10 +76,12 @@ if (isset($_POST)) {
             $paymentRequest->addItem($query, $a, $b, $c);
         }
     }
-
-    if(post('tipo_entrega') == "Retirada na Loja"){}else{ $paymentRequest->addItem('0001', 'frete',  1, post('vl_frete')); }
     
-    $paymentRequest->setCurrency("BRL"); 
+    
+
+    if(post('tipo_entrega') == "Retirada na Loja"){}else{ 
+        $paymentRequest->addItem('0001', 'frete',  1, post('vl_frete')); }
+        $paymentRequest->setCurrency("BRL"); 
     
     
 
@@ -113,6 +117,7 @@ if (isset($_POST)) {
     Redireciona(var_dump($_POST));
   }
   exit;
+        
 }
    
 

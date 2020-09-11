@@ -15,8 +15,9 @@ $p = json_decode($read['produto'], true);
 <!DOCTYPE html>
 <html lang=”pt-br”>
     <head>
-    <meta charset=”UTF-8”>
-    <link rel="stylesheet" href="<?php echo ConfigPainel('base_url'); ?>assets/css/app.css">
+        <meta charset=”UTF-8”>
+        <link rel="stylesheet" href="<?php echo ConfigPainel('base_url'); ?>assets/css/app.css">
+        <title>Acompanhamento do pedido id: <?php echo $read['id']; ?> </title>
     </head>
     <body>
         <div class="card">
@@ -29,8 +30,8 @@ $p = json_decode($read['produto'], true);
 
             <div class="card-body">
                 <div class="contaner-fluid">
-                    <div class="row justify-content-md-center">
-                        <div class="card col-sm-3" style="padding:0px;margin-right:3%;">
+                    <div class="row justify-content-lg-center">
+                        <div class="card col-sm-3" style="padding:0px;margin-right:3%;margin-top:2%">
                             <div class="card-header" style="background-color:#fff; color: #86939e; font-size:13px">
                                 SEUS DADOS
                             </div>
@@ -40,8 +41,8 @@ $p = json_decode($read['produto'], true);
                                 <b>Telefone: </b><?php echo $read['telefone']; ?> <br>
                                 <b>Email: </b><?php echo $read['email']; ?>  <br>
                             </div>
-                        </div> 
-                        <div class="card col-sm-3" style="padding:0px; margin-right:3%;">
+                        </div>
+                        <div class="card col-lg-3" style="padding:0px; margin-right:3%;margin-top:2%;">
                             <div class="card-header white" style="background-color:#fff; color: #86939e; font-size:13px">
                                 DETALHES DO SEU PEDIDO #<?php echo $read['id']; ?>
                             </div>
@@ -51,19 +52,16 @@ $p = json_decode($read['produto'], true);
                                 <b>Valor da Compra: </b><?php echo "R$ ".number_format($read['valor'], 2, ",", ".");?>
                             </div>
                         </div>
-                        <div class="card col-sm-3" style="padding:0px; ">
+                        <div class="card col-lg-3" style="padding:0px;margin-top:2%; ">
                             <div class="card-header white" style="background-color:#fff; color: #86939e; font-size:13px">
                                 SUA COMPRA
                             </div>
-                            
-                            <div class="card-body" style="color: #86939e">
+                            <div class="card-body" style="color: #86939e;padding:10px;">
                                 <table style="width:100%">
                             <?php foreach($p as $pd):                            
                                 $zx = $pd['id_pdt'];
-                                $r = DBRead('ecommerce','*',"WHERE id = '{$zx}'")[0];
+                                $r = DBRead('ecommerce','id',"WHERE id = '{$zx}'")[0];                         
                                 $fotos   = DBRead('ecommerce_prod_imagens','*', "WHERE id_produto = {$zx}");
-                                $termo   = DBRead('ecommerce_prod_termos','*', "WHERE id_produto = {$zx}")[0];
-                                $termos =  array_unique($termo);
                                 $capa   = DBRead('ecommerce','*', "WHERE id = {$zx}")[0];
                                 if(is_array($fotos)){
                                     foreach($fotos as $foto){
@@ -75,18 +73,16 @@ $p = json_decode($read['produto'], true);
                                 ?>
                                     <tr style="font-size:12px;">
                                         <td><img src="<?php echo RemoveHttpS(ConfigPainel('base_url'))."wa/ecommerce/uploads/".$foto['uniq']; ?>" height="50"/></td>
-                                        <td ><b>Produto: </b> <?php echo $capa['nome'] ?><br><?php foreach($termos as $att){ 
-                                        $atributo   = DBRead('ecommerce_atributos','*', "WHERE id = {$att}")[0];
-                                        echo "<b>".$atributo['nome']." </b>";
-                                        }  ?>
-                                        :  <br><b>Quantidade: </b> <?php echo $pd['qtd']; ?></td>
+                                        <td style="padding-left:10px;" >Produto: <?php echo $capa['nome'] ?>
+                                        <?php $vai = str_replace($capa['nome'] , "", $pd['produto']); echo $vai; ?>
+                                        Quantidade: <?php echo $pd['qtd']; ?><hr></td>
                                         <td><?php echo "R$ ".number_format($pd['un_valor'], 2, ",", ".");?></td>
-                                    </tr>
+                                    </tr> 
                                     <?php endforeach ?>
                                 </table>
                             </div>
                         </div>
-                        <div class="card col-sm-3" style="padding:0px; margin-right:3%; margin-top:2%;">
+                        <div class="card col-lg-3" style="padding:0px; margin-right:3%; margin-top:2%;">
                             <div class="card-header white" style="background-color:#fff; color: #86939e; font-size:13px">
                                 CÓDIGO DE RASTREIO
                             </div>
@@ -96,7 +92,7 @@ $p = json_decode($read['produto'], true);
                                 <a style="text-decoration:none" class="btn btn-primary btn-xs" href="https://linketrack.com/track?utm_source=link&codigo=<?php echo $read['rastreamento']; ?>" target="_blank">Rastrear Pedidos</a>
                             </div>
                         </div>
-                        <div class="card col-sm-3" style="padding:0px;margin-top:2%;">
+                        <div class="card col-lg-3" style="padding:0px;margin-top:2%;">
                             <div class="card-header white" style="background-color:#fff; color: #86939e; font-size:13px">
                                 STATUS DO PEDIDO
                             </div>
@@ -109,6 +105,7 @@ $p = json_decode($read['produto'], true);
                 </div>
             </div>   
         </div>
+        <span id="asd"></span>
         <script>
             window.onload = function() {
                 const pagamento_pendente = 'Pagamento Pendente';
@@ -117,6 +114,11 @@ $p = json_decode($read['produto'], true);
                 const pedido_enviado = 'Pedido Enviado';
                 const concluido = 'Concluido';
                 document.getElementById('bar').innerHTML = "<p style='background-color:#<?php echo $read['cor_status']; ?>; '>" + <?php echo $read['status']; ?> + "</p>";
+                const produto<?php echo $pd['id_pdt']; ?> =  "<?php echo $pd['produto']; ?>";
+                const out<?php echo $pd['id_pdt']; ?> = "<?php echo $capa['nome'] ?>";
+                const clear<?php echo $pd['id_pdt']; ?> = produto<?php echo $pd['id_pdt']; ?>.replace("<?php echo $capa['nome'] ?>", "");
+                //alert(clear<?php echo $pd['id_pdt']; ?>);
+                                            
             };
     </script>
     </body>
