@@ -6,6 +6,8 @@ require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
 require_once('controller.php');
 
+
+
 $query = DBRead('ecommerce_config','*');
 
 $config = [];
@@ -116,3 +118,4 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/assets/css/carrinho.css">
 <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
 <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/assets/js/carrinho.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

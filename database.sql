@@ -288,3 +288,5 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 SET @@time_zone = '+03:00';
+
+ALTER TABLE `ecommerce_vendas` ADD `cor_status` VARCHAR(255) NULL AFTER `status`;

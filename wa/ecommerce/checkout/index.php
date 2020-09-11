@@ -249,6 +249,7 @@ $config = [];
 																				    <input type="hidden" name="produto_pg[]" id="produto_pg" value="<?php echo $produto['nome']; ?>">
 																			        <input type="hidden" name="qtd[]" id="qtd_fl" value="<?php  echo $qtd[1]; ?>">
 																			        <input type="hidden" name="un_valor[]" id="un_valor" value="<?php echo floatval(str_replace(",", ".", $qtd[2])); ?>">
+																				    <input type="hidden" name="id_pdt[]" id="id_pdt" value="<?php  echo $qtd[0]; ?>">
 																				<td class="product-name"><strong><center><?php echo $produto['nome']; ?></center></strong><br>
 																					<span id="trm<?php echo $id ?>">
 																					

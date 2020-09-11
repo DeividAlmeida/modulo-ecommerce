@@ -5,6 +5,11 @@ require_once('../../database/config.php');
 $query = DBRead('ecommerce_vendas', '*');
 $last = end($query);
 $bay = json_decode($last['produto'], true);
+foreach($bay as $keyl => $pdtl){$pdtl['un_valor'] += number_format(floatval(str_replace(",", ".", $pdtl['un_valor'])) * floatval(str_replace(",", ".", $pdtl['qtd'])), 2, ".", ",");  };
+
+$datal = new DateTime();
+$datal->format('d/m/Y H:i:s');
+$datal = new DateTime($last['data']);
 array_pop($query);
 ?>
 [
@@ -15,6 +20,7 @@ array_pop($query);
     $data = new DateTime();
     $data->format('d/m/Y H:i:s');
     $data = new DateTime($mima['data']);
+
     foreach($pdts as $key => $pdt) {$pdt['un_valor'] += number_format(floatval(str_replace(",", ".", $pdt['un_valor'])) * floatval(str_replace(",", ".", $pdt['qtd'])), 2, ".", ",");  };
     ?>    
     {
@@ -54,10 +60,10 @@ array_pop($query);
         "<?php if($last['tipo_pessoa'] == 2){echo "CNPJ";}else{echo "CPF";} print_r('":'.'"'.$last['id_pessoa'].'",'); ?>
         "Telefone": "<?php print_r( $last['telefone']);?>",
         "Email": "<?php print_r($last['email']."</div> <div class='col-md-4'>"); ?>",
-        "Data do Pedido": " <?php echo $data->format('d/m/Y H:i:s');?>",
+        "Data do Pedido": " <?php print_r($datal->format('d/m/Y H:i:s'));?>",
         "Forma de Pagamento": "<?php print_r( $last['tipo_pagamento']);?>",
         "Valor da venda": "<?php print_r("R$ ".number_format($last['valor'], 2, ",", "."));?>",
-        "Valor liquido da venda": "<?php print_r("R$ ".number_format($pdt['un_valor'], 2, ",", "."));?>",
+        "Valor liquido da venda": "<?php print_r("R$ ".number_format($pdtl['un_valor'], 2, ",", "."));?>",
         "Produto(s)": "<span><?php foreach($bay as $by) { echo "<br>". $by['produto']."Quantidade: ".$by['qtd']."<br>";   } echo "</span></div> <div class='col-md-4'>"; ?>",
         "Tipo de Entrega": "<?php print_r($last['tipo_entrega']);?>",
         "Código de Rastreamento": "<?php print_r($last['rastreamento']);?>",

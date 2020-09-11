@@ -133,6 +133,10 @@
                 <label>Valor Unitário: </label>
                 <input class="form-control" type="num" name="un_valor[]" required value="<?php print_r($pdt['un_valor']); ?>">
             </div>
+            <div class="form-group">
+                <label>Id do Produto: </label>
+                <input class="form-control" type="num" name="id_pdt[]" required value="<?php print_r($pdt['id_pdt']); ?>">
+            </div>
         </div>
             <?php endforeach ?>            
 </div>

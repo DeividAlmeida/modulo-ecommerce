@@ -1,24 +1,44 @@
 <?php
+session_start();
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
-$query = DBRead('ecommerce_config','*');
+$query2 = DBRead('ecommerce_config','*');
 $config = [];
-  foreach ($query as $key => $row) {
+  foreach ($query2 as $key => $row) {
     $config[$row['id']] = $row['valor'];
   }
+
+    foreach($_SESSION["car"] as $a => $b ){
+ $db = DBRead('ecommerce', '*', "WHERE id = $b[0]")[0]; 
+ $c = $db['estoque'] - $b[1];
+ 
+ if($db['diminuir_est'] == "sim"){
+  
+    $data5 = array(
+     'estoque' => $c,
+     );
+    
+   DBUpdate('ecommerce', $data5, "id = $b[0]");  
+ }
+
+
+}
+  
+
+  
 require_once("PagSeguroLibrary/PagSeguroLibrary.php");
 
 
-$resources = array_combine(array_keys($_POST['produto']), array_map(function ($qtd, $produto, $un_valor, $produto_pg) {
-    return compact('qtd', 'produto', 'un_valor', 'produto_pg');
-},$_POST['qtd'], $_POST['produto'], $_POST['un_valor'], $_POST['produto_pg']));
+$resources = array_combine(array_keys($_POST['produto']), array_map(function ($qtd, $produto, $un_valor, $produto_pg, $id_pdt) {
+    return compact('qtd', 'produto', 'un_valor', 'produto_pg', 'id_pdt' );
+},$_POST['qtd'], $_POST['produto'], $_POST['un_valor'], $_POST['produto_pg'], $_POST['id_pdt']));
 $_POST['venda'] = json_encode($resources, JSON_FORCE_OBJECT);
 
 
 
 if (isset($_POST)) {
-
+    
     $nome = post('billing_first_name')." ".post('billing_last_name');
     $data = array(
       'nome'      => $nome,
@@ -41,7 +61,6 @@ if (isset($_POST)) {
     );
     $query = DBCreate('ecommerce_vendas', $data, true);
     $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$query}'");
-    
     
     $paymentRequest = new PagSeguroPaymentRequest(); 
     

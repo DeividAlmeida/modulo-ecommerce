@@ -4,7 +4,7 @@ function EcommerceListagem(id, pag){
     cache: false,
     url: UrlPainel+'wa/ecommerce/listagem?id='+id+'&pag='+pag,
     beforeSend: function (data){
-      //$("#SimpleSlideWA"+id).html("<center><br><img src=\""+UrlPainel+"wa/css_js/loading.gif\"><br>Carregando...<br></center>");
+      //$("#SimpleSlideWA"+id).html("<center><br><img src=¥""+UrlPainel+"wa/css_js/loading.gif¥"><br>Carregando...<br></center>");
     },
     success: function (data) {
       jQuery('#EcommerceListagem'+id).html(data);
@@ -88,7 +88,7 @@ function EcommerceSlider(id){
     cache: false,
     url: UrlPainel+'wa/ecommerce/slider?id='+id,
     beforeSend: function (data){
-      //$("#SimpleSlideWA"+id).html("<center><br><img src=\""+UrlPainel+"wa/css_js/loading.gif\"><br>Carregando...<br></center>");
+      //$("#SimpleSlideWA"+id).html("<center><br><img src=¥""+UrlPainel+"wa/css_js/loading.gif¥"><br>Carregando...<br></center>");
     },
     success: function (data) {
       jQuery('#EcommerceSlider'+id).html(data);
@@ -117,7 +117,14 @@ function shopUpdateListView(idList, isGrid, columnClass){
   });
 }
 function CarrinhoAdd(id, carrinho_url, qtd, vlf, att){  
-  $.ajax({
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', UrlPainel+'wa/ecommerce/carrinho?Saldo='+id, false);
+    xhttp.setRequestHeader('Content-Type',  'text/xml');
+    xhttp.send(null);
+   const wo = parseInt(xhttp.responseText, 10);
+  if( wo >= qtd){
+      $.ajax({
     type: 	"GET",
     cache: 	false,
     url: 		UrlPainel+'wa/ecommerce/carrinho?AddItem='+id+"&qtd="+qtd+"&vlf="+vlf+"&att="+att,
@@ -132,17 +139,28 @@ function CarrinhoAdd(id, carrinho_url, qtd, vlf, att){
 				title: "Item adicionado no carrinho",
         showConfirmButton: false,
         showCloseButton: true,
-        html: '<p>Clique no botão abaixo para ir para o carrinho ou clique no X para continuar comprando</p><a class="btn btn-primary shop--modal-add-product__btn" href="'+carrinho_url+'">Ver carrinho</a>'
+        html: '<p>Clique no botão abaixo para ir para o carrinho ou clique no X para continuar comprando</p><a class="btn btn-primary shop--modal-add-product__btn" href="'+carrinho_url+'">Ver carrinho</a>'
 			});
     }
   });
+  }else{
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Infelizmente não temos estoque suficiente para suprir essa demanda. Nós temos '+ xhttp.responseText +' unidade(s) desse produto em estoque.',
+          showConfirmButton: false,
+          showCloseButton: true,
+        });
+}
 }
 alerta = () =>{
     
     Swal.fire({
-          icon: 'error',
+          type: 'error',
           title: 'Oops...',
-          text: 'Por favor preencha todos os campos antes de efetuar a compra!'
-        })
-    
+          text: 'Por favor preencha todos os campos antes de efetuar a compra!',
+          showConfirmButton: false,
+          showCloseButton: true,
+        });
+
 } 

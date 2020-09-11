@@ -17,7 +17,14 @@
     var  pdt = parent.attr("pdt");
     var  vlf = parent.attr("vlf");
 
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', UrlPainel+'wa/ecommerce/carrinho?Saldo='+pdt, false);
+    xhttp.setRequestHeader('Content-Type',  'text/xml');
+    xhttp.send(null);
+    const wo = parseInt(xhttp.responseText, 10);
 
+    
+    if(wo >= qtd){
     $.ajax({
       type: 	"GET",
       cache: 	false,
@@ -26,10 +33,21 @@
         $('.shop--cart__block').addClass("is-active");
       },
       success: function () {
-        EcommerceCarrinho();
+       new EcommerceCarrinho();
       }
     });
+    }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          html: '<p style="font-size:15px">Infelizmente não temos estoque suficiente para suprir essa demanda. Nós temos '+ xhttp.responseText +' unidade(s) desse produto em estoque.</p>',
+          showConfirmButton: false,
+          showCloseButton: true,
+        });
+}
   })
+      
+
 
   // Remove item do carrinho
   $('.cart_qtd_delete').click(function(){
@@ -45,7 +63,7 @@
         $('.shop--cart__block').addClass("is-active");
       },
       success: function () {
-        EcommerceCarrinho();
+      new  EcommerceCarrinho();
       }
     });
   })
