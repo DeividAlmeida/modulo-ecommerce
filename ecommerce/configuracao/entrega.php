@@ -78,7 +78,7 @@ $read = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; ?>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="telefone">Telefone de contato:</label>
-                    <input type="text" name="telefone" class="form-control" placeholder="Telefone de contato da sua loja" value="<?php echo $read['telefone']; ?>">
+                    <input required minlength="11" maxlength="11" type="num" name="telefone" class="form-control" placeholder="Telefone de contato da sua loja" value="<?php echo $read['telefone']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail de contato:</label>

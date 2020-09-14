@@ -21,7 +21,7 @@
         <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos', 'deletar')) { ?>
         <th data-field="state" data-checkbox="true"></th>
         <?php } ?>
-        <th scope="col" data-field="id" data-sortable="true" > <span style="font-weight: bold; font-size:16px;">Id do Pedido<span></th>
+        <th scope="col" data-field="<div class='card-header white' style='padding:0px'> DADOS DO PEDIDO ID" data-sortable="true" > <span style="font-weight: bold; font-size:16px;">Id do Pedido<span></th>
         <th scope="col" data-field="Comprador" data-sortable="true" > <span style="font-weight: bold; font-size:16px;">Comprador<span></th>
         <th scope="col" data-field="Valor da venda" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Valor da Venda<span></th>
         <th scope="col" data-field="Data do Pedido" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Data do Pedido<span></th>

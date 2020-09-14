@@ -70,4 +70,7 @@ entrega = (a) => {
 function edit(){
     $("#no-b").load('<?php echo ConfigPainel('base_url'); ?>ecommerce/configuracao/entrega.php');
 }
-</script>]
+
+
+</script>
+

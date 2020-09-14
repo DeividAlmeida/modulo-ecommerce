@@ -23,7 +23,7 @@ $p = json_decode($read['produto'], true);
         <div class="card">
             <div class="card-header text-left" style="background-color:#000133">
                 <p class="">
-                    <h5 style=" font-size:15px; color:#fff; margin-left:60%; ">Telefone: <?php echo $reading['telefone']; ?></h5>
+                    <h5 style=" font-size:15px; color:#fff; margin-left:60%; ">Telefone: <span id="numchange"></span></h5>
                     <h5 style=" font-size:15px; color:#fff; margin-left:60%; ">Email: <?php echo $reading['email']; ?></h5>
                 </p>
             </div>
@@ -117,8 +117,12 @@ $p = json_decode($read['produto'], true);
                 const produto<?php echo $pd['id_pdt']; ?> =  "<?php echo $pd['produto']; ?>";
                 const out<?php echo $pd['id_pdt']; ?> = "<?php echo $capa['nome'] ?>";
                 const clear<?php echo $pd['id_pdt']; ?> = produto<?php echo $pd['id_pdt']; ?>.replace("<?php echo $capa['nome'] ?>", "");
-                //alert(clear<?php echo $pd['id_pdt']; ?>);
-                                            
+
+
+                var BRNumber = "<?php echo $reading['telefone']; ?>".match(/(\d{2})(\d{1})(\d{4})(\d{4})/);
+                BRNumber = "(" + BRNumber[1] + ") " + BRNumber[2] + " " + BRNumber[3]+ "-" + BRNumber[4];
+                document.getElementById("numchange").innerHTML = BRNumber;
+                                       
             };
     </script>
     </body>
