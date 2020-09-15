@@ -121,7 +121,7 @@
 				<?php } ?>
 					<?php $i = $pag; ?>
 				<?php if ($i >= 1 && $i < $numPaginas) { $i++; ?>
-						<button type="button" class="btn btn-default btn-xs" onclick="CatalogoProdutosListagem(<?php echo $id; ?>,'<?php echo $i; ?>');">Próximo</button>
+						<button type="button" class="btn btn-default btn-xs" onclick="EcommerceListagem(<?php echo $id; ?>,'<?php echo $i; ?>');">Próximo</button>
 				<?php } elseif ($i == $numPaginas) { ?>
 						<button type="button" class="btn btn-default btn-xs hidden" disabled>Próximo</button>
 				<?php } ?>

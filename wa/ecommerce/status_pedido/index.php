@@ -5,7 +5,7 @@ require_once('../../../database/config.php');
 
 $id = base64_decode($_GET['Z']);
 $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$id}'")[0];
-
+$readed = DBRead('ecommerce_config_link','*',"WHERE id = '1'")[0]; 
 $reading = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; 
 $data = new DateTime();
 $data->format('d/m/Y H:i:s');
@@ -13,19 +13,32 @@ $data = new DateTime($read['data']);
 $p = json_decode($read['produto'], true);
 ?>
 <!DOCTYPE html>
-<html lang=”pt-br”>
+<html lang='pt-br'>
     <head>
         <meta charset=”UTF-8”>
         <link rel="stylesheet" href="<?php echo ConfigPainel('base_url'); ?>assets/css/app.css">
         <title>Acompanhamento do pedido id: <?php echo $read['id']; ?> </title>
     </head>
     <body>
-        <div class="card">
-            <div class="card-header text-left" style="background-color:#000133">
-                <p class="">
-                    <h5 style=" font-size:15px; color:#fff; margin-left:60%; ">Telefone: <span id="numchange"></span></h5>
-                    <h5 style=" font-size:15px; color:#fff; margin-left:60%; ">Email: <?php echo $reading['email']; ?></h5>
-                </p>
+        <div class="card" style="height:100%;">
+            <div class="card-header text-left" style="background-color:<?php echo $readed['cabecalho'];?>">
+            <table style="width:100%">
+                <tr>
+                    <td>
+                    <?php if(empty($readed['logo'])){ ?>
+                            <img id="learn" src=""  />
+                        <?php }else{ ?>
+                            <img  style="min-width:50%; height:auto; position:relative;" id="learn" src="../../../wa/ecommerce/uploads/<?php echo $readed['logo']; ?>"  />
+                        <?php } ?>
+                    </td>
+                    <td>
+                        <p class="">
+                            <h5 style=" font-size:15px; color:<?php echo $readed['texto'];?>; margin-left:30%; ">Telefone: <span id="numchange"></span></h5>
+                            <h5 style=" font-size:15px; color:<?php echo $readed['texto'];?>; margin-left:30%; ">Email: <?php echo $reading['email']; ?></h5>
+                        </p>
+                    </td>
+                </tr>
+            </table>
             </div>
 
             <div class="card-body">
@@ -103,7 +116,8 @@ $p = json_decode($read['produto'], true);
                         </div>
                     </div>     
                 </div>
-            </div>   
+            </div>
+            <div class="card-footer white" style="border-color:#fff"></div> 
         </div>
         <span id="asd"></span>
         <script>
@@ -113,6 +127,8 @@ $p = json_decode($read['produto'], true);
                 const aguardando = 'Aguardando';
                 const pedido_enviado = 'Pedido Enviado';
                 const concluido = 'Concluido';
+                const cancelado = 'Cancelado';
+                const reembolsado = 'Reembolsado';
                 document.getElementById('bar').innerHTML = "<p style='background-color:#<?php echo $read['cor_status']; ?>; '>" + <?php echo $read['status']; ?> + "</p>";
                 const produto<?php echo $pd['id_pdt']; ?> =  "<?php echo $pd['produto']; ?>";
                 const out<?php echo $pd['id_pdt']; ?> = "<?php echo $capa['nome'] ?>";

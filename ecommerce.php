@@ -110,6 +110,7 @@ $UrlPage	 = 'Ecommerce.php';
 						<a class="dropdown-item" href="?configEntrega">Configurações de Entrega</a>
 						<a class="dropdown-item" href="?configPagamento">Configurações de Pagamento</a>
 						<a class="dropdown-item" href="?configEmail">Configurações de Email</a>
+						<a class="dropdown-item" href="?configLink">Configurações de Link do Cliente</a>
 					</div>					
 				<?php } ?>
 			</span>
@@ -127,6 +128,8 @@ $UrlPage	 = 'Ecommerce.php';
 			require_once('ecommerce/configuracao/listar-meios-pagamentos.php');
 		elseif (isset($_GET['configEmail'])) :
 			require_once('ecommerce/configuracao/email.php');
+		elseif (isset($_GET['configLink'])) :
+			require_once('ecommerce/configuracao/link.php');
 		elseif (isset($_GET['AdicionarCategoria'])) :
 			require_once('ecommerce/categorias/add.php');
 		elseif (isset($_GET['EditarCategoria'])) :
@@ -694,8 +697,6 @@ $UrlPage	 = 'Ecommerce.php';
 <?php if (isset($_GET['configEntrega']) || isset($_GET['configPagamento'])) { ?>
 	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	<script src="css_js/bootstrap4-toggle.min.js"></script>
-
-
 </script>
 <?php } ?>
 		

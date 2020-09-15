@@ -230,6 +230,15 @@ CREATE TABLE IF NOT EXISTS `ecommerce_config_deposito` (
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- CONFIGURAR LINK DE ACOMPANHAMENTO
+
+CREATE TABLE IF NOT EXISTS `ecommerce_config_link` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `logo` varchar(255) DEFAULT NULL,
+  `cabecalho` varchar(255) DEFAULT NULL,
+  `texto` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 INSERT INTO `ecommerce_config_deposito` (`id`, `titulo`, `descricao`, `instucoes`, `detalhes`, `status`) VALUES
 (1, '', '', '', '', '');
 
@@ -241,6 +250,9 @@ INSERT INTO `ecommerce_config_entrega` (`id`, `estado`, `cidade`, `bairro`, `rua
 
 INSERT INTO `ecommerce_config_email` (`id`, `nome`, `remetente`, `t_pagamento_pendente`, `pagamento_pendente`, `t_processando`, `processando`, `t_aguardando`, `aguardando`, `t_pedido_enviado`, `pedido_enviado`, `t_concluido`, `concluido`, `t_cancelado`, `cancelado`, `t_reembolsado`, `reembolsado`) VALUES
 ('1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+
+INSERT INTO `ecommerce_config_link` (`id`, `logo`, `cabecalho`, `texto`) VALUES
+(1, '', '', '');
 
 INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('pagina_carrinho', ''),

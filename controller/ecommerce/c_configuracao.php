@@ -174,3 +174,19 @@ if(isset($_GET['statusDeposito'])){
   }else{ $callback = ""; }
   $query  = DBUpdate('ecommerce_config_deposito', array('status' => $callback), "id = '1'");
 }
+
+if(isset($_GET['editaLink'])){
+  $upload_folder = 'wa/ecommerce/uploads/';
+  $handle = new Upload($_FILES['img']);
+  $handle->file_new_name_body = md5(uniqid(rand(), true));
+  $handle->Process($upload_folder);
+
+  $data = array(
+    'cabecalho'       => post('cabecalho'),
+    'texto'           => post('texto')
+  );
+
+  $query  = DBUpdate('ecommerce_config_link', $data, "id = '1'");
+  if(empty($_FILES['img']['name'])){}else{DBUpdate('ecommerce_config_link', array('logo'   => $handle->file_dst_name), "id = '1'");}
+ 
+}
