@@ -28,7 +28,7 @@ $p = json_decode($read['produto'], true);
                     <?php if(empty($readed['logo'])){ ?>
                             <img id="learn" src=""  />
                         <?php }else{ ?>
-                            <img  style="min-width:50%; height:auto; position:relative;" id="learn" src="../../../wa/ecommerce/uploads/<?php echo $readed['logo']; ?>"  />
+                            <img  style="position:relative;" id="learn" src="../../../wa/ecommerce/uploads/<?php echo $readed['logo']; ?>"  />
                         <?php } ?>
                     </td>
                     <td>
@@ -41,10 +41,10 @@ $p = json_decode($read['produto'], true);
             </table>
             </div>
 
-            <div class="card-body">
+            <div class="card-body" style=" padding-left: 10%; padding-right: 10%;">
                 <div class="contaner-fluid">
                     <div class="row justify-content-lg-center">
-                        <div class="card col-sm-3" style="padding:0px;margin-right:3%;margin-top:2%">
+                        <div class="card col-lg-3" style="padding:0px;margin-right:3%;margin-top:2%">
                             <div class="card-header" style="background-color:#fff; color: #86939e; font-size:13px">
                                 SEUS DADOS
                             </div>
@@ -85,7 +85,7 @@ $p = json_decode($read['produto'], true);
                                 }
                                 ?>
                                     <tr style="font-size:12px;">
-                                        <td><img src="<?php echo RemoveHttpS(ConfigPainel('base_url'))."wa/ecommerce/uploads/".$foto['uniq']; ?>" height="50"/></td>
+                                        <td><img src="<?php echo RemoveHttpS(ConfigPainel('base_url'))."wa/ecommerce/uploads/".$foto['uniq']; ?>" height="auto" width="70"/></td>
                                         <td style="padding-left:10px;" >Produto: <?php echo $capa['nome'] ?>
                                         <?php $vai = str_replace($capa['nome'] , "", $pd['produto']); echo $vai; ?>
                                         Quantidade: <?php echo $pd['qtd']; ?><hr></td>
@@ -129,12 +129,13 @@ $p = json_decode($read['produto'], true);
                 const concluido = 'Concluido';
                 const cancelado = 'Cancelado';
                 const reembolsado = 'Reembolsado';
-                document.getElementById('bar').innerHTML = "<p style='background-color:#<?php echo $read['cor_status']; ?>; '>" + <?php echo $read['status']; ?> + "</p>";
+                <?php if(empty($read['cor_status'])){ ?>
+                document.getElementById('bar').innerHTML = "<p style='background-color:#e4f9d8'>Processando</p>";<?php } else{ ?>
+                const a = document.getElementById('bar').innerHTML = "<p style='background-color:#<?php echo $read['cor_status']; ?>; '>" + <?php echo $read['status']; ?> + "</p>";<?php } ?>
                 const produto<?php echo $pd['id_pdt']; ?> =  "<?php echo $pd['produto']; ?>";
                 const out<?php echo $pd['id_pdt']; ?> = "<?php echo $capa['nome'] ?>";
                 const clear<?php echo $pd['id_pdt']; ?> = produto<?php echo $pd['id_pdt']; ?>.replace("<?php echo $capa['nome'] ?>", "");
-
-
+// Formato do telefone
                 var BRNumber = "<?php echo $reading['telefone']; ?>".match(/(\d{2})(\d{1})(\d{4})(\d{4})/);
                 BRNumber = "(" + BRNumber[1] + ") " + BRNumber[2] + " " + BRNumber[3]+ "-" + BRNumber[4];
                 document.getElementById("numchange").innerHTML = BRNumber;

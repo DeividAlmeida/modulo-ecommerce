@@ -27,7 +27,7 @@ $mailr->Password = $readm['email_senha'] ;
 $mailr->SMTPOptions = array( $readm['email_protocolo_seguranca'] => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ) ); 
  
 // Você pode habilitar esta opção caso tenha problemas. Assim pode identificar mensagens de erro. 
- $mailr->SMTPDebug = 2; 
+//$mailr->SMTPDebug = 2; 
  
 // Define o remetente 
 // Seu e-mail 
@@ -80,7 +80,6 @@ $dtls = json_decode($deposito['detalhes'], true); foreach( $dtls as $key => $dtl
 $instru = "<footer><p>" .$deposito['instucoes']. "</p></footer>";
 
 $endr = "
-
     <p>Você encontrará nossa loja no seguinte endereço:<br>
     Estado: ". $retirada['estado']."<br>
     Cidade: ". $retirada['cidade']."<br>
@@ -90,8 +89,8 @@ $endr = "
     CEP: ". $retirada['cep']."<br>
     Telefone: ". $retirada['telefone']."</p><br>";
     
-  $link = "<p>Para pedidos com retirada em nossa loja favor retirar no endereço abaixo: ".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($query)."</p>";
+$link = "<p> Para pedidos com retirada em nossa loja favor retirar no endereço abaixo: ".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($query)."</p>";
     
-$mailr->Body = $apre.$enviar.$instru.$endr.$link;
+$mailr->Body = $apre.$endr.$link;
 
 $enviado = $mailr->Send(); 
