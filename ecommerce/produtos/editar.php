@@ -32,9 +32,10 @@ $lista_ids_categorias = DBRead('ecommerce_prod_categorias', 'id_categoria', "WHE
 
 // Varre todos os ID de categoria da lista, cria uma array, e transforma logo em seguida em uma string
 $ids_categorias = array();
+if(is_array($lista_ids_categorias)){
 foreach ($lista_ids_categorias as $linha) {
   array_push($ids_categorias, $linha['id_categoria']);
-}
+}}
 $string_ids_categorias = implode(",", $ids_categorias);
 
 
@@ -166,28 +167,28 @@ if (is_array($query)) { ?>
                 <!-- `peso` varchar(255) DEFAULT NULL-->
             <div class="form-group">
                 <label>Peso: <i class="icon icon-question-circle tooltips" data-tooltip="Encomenda com embalagem." ></i></label>
-                <input class="form-control" name="peso" placeholder="Unidade de media kg" required value="<?php echo $dados['peso'];?>">          
+                <input class="form-control" name="peso" placeholder="Unidade de medida kg" required value="<?php echo $dados['peso'];?>">          
             </div>
         </div>
         <div class="col-md-3">
             <!-- `comprimento` varchar(255) DEFAULT NULL-->
             <div class="form-group">
                 <label>Comprimento: <i class="icon icon-question-circle tooltips" data-tooltip="Encomenda com embalagem." ></i></label>
-                <input class="form-control" name="comprimento" placeholder="Unidade de media cm" required value="<?php echo $dados['comprimento'];?>">          
+                <input class="form-control" name="comprimento" placeholder="Unidade de medida cm" required value="<?php echo $dados['comprimento'];?>">          
             </div>
         </div>
         <div class="col-md-3">
            <!-- `altura` varchar(255) DEFAULT NULL-->
            <div class="form-group">
                 <label>Altura: <i class="icon icon-question-circle tooltips" data-tooltip="Encomenda com embalagem." ></i></label>
-                <input class="form-control" name="altura" placeholder="Unidade de media cm" required value="<?php echo $dados['altura'];?>">          
+                <input class="form-control" name="altura" placeholder="Unidade de medida cm" required value="<?php echo $dados['altura'];?>">          
             </div>
         </div>
         <div class="col-md-3">
             <!-- `largura` varchar(255) DEFAULT NULL-->
            <div class="form-group">
                 <label>Largura: <i class="icon icon-question-circle tooltips" data-tooltip="Encomenda com embalagem." ></i></label>
-                <input class="form-control" name="largura" placeholder="Unidade de media cm" required value="<?php echo $dados['largura'];?>">          
+                <input class="form-control" name="largura" placeholder="Unidade de medida cm" required value="<?php echo $dados['largura'];?>">          
             </div> 
         </div>
     </div>    

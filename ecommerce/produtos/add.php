@@ -106,28 +106,28 @@
                 <!-- `peso` varchar(255) DEFAULT NULL-->
             <div class="form-group">
                 <label>Peso: <i class="icon icon-question-circle tooltips" data-tooltip="Encomenda com embalagem." ></i></label>
-                <input class="form-control" name="peso" placeholder="Unidade de media kg" required>          
+                <input class="form-control" name="peso" placeholder="Unidade de medida kg" required>          
             </div>
         </div>
         <div class="col-md-3">
             <!-- `comprimento` varchar(255) DEFAULT NULL-->
             <div class="form-group">
                 <label>Comprimento: <i class="icon icon-question-circle tooltips" data-tooltip="Encomenda com embalagem." ></i></label>
-                <input class="form-control" name="comprimento" placeholder="Unidade de media cm" required>          
+                <input class="form-control" name="comprimento" placeholder="Unidade de medida cm" required>          
             </div>
         </div>
         <div class="col-md-3">
            <!-- `altura` varchar(255) DEFAULT NULL-->
            <div class="form-group">
                 <label>Altura: <i class="icon icon-question-circle tooltips" data-tooltip="Encomenda com embalagem." ></i></label>
-                <input class="form-control" name="altura" placeholder="Unidade de media cm" required>          
+                <input class="form-control" name="altura" placeholder="Unidade de medida cm" required>          
             </div>
         </div>
         <div class="col-md-3">
             <!-- `largura` varchar(255) DEFAULT NULL-->
            <div class="form-group">
                 <label>Largura: <i class="icon icon-question-circle tooltips" data-tooltip="Encomenda com embalagem." ></i></label>
-                <input class="form-control" name="largura" placeholder="Unidade de media cm" required>          
+                <input class="form-control" name="largura" placeholder="Unidade de medida cm" required>          
             </div> 
         </div>
     </div>

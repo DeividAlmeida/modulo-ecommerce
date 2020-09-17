@@ -19,8 +19,8 @@ $p = json_decode($read['produto'], true);
         <link rel="stylesheet" href="<?php echo ConfigPainel('base_url'); ?>assets/css/app.css">
         <title>Acompanhamento do pedido id: <?php echo $read['id']; ?> </title>
     </head>
-    <body>
-        <div class="card" style="height:100%;">
+    <body style="background-color: #fff;">
+       <div class="card" style="width: 80%; margin-left:10%; margin-right:10%; margin-top:5%; margin-bottom:5%">
             <div class="card-header text-left" style="background-color:<?php echo $readed['cabecalho'];?>">
             <table style="width:100%">
                 <tr>
@@ -41,7 +41,7 @@ $p = json_decode($read['produto'], true);
             </table>
             </div>
 
-            <div class="card-body" style=" padding-left: 10%; padding-right: 10%;">
+            <div class="card-body" >
                 <div class="contaner-fluid">
                     <div class="row justify-content-lg-center">
                         <div class="card col-lg-3" style="padding:0px;margin-right:3%;margin-top:2%">
@@ -119,7 +119,6 @@ $p = json_decode($read['produto'], true);
             </div>
             <div class="card-footer white" style="border-color:#fff"></div> 
         </div>
-        <span id="asd"></span>
         <script>
             window.onload = function() {
                 const pagamento_pendente = 'Pagamento Pendente';
@@ -142,5 +141,5 @@ $p = json_decode($read['produto'], true);
                                        
             };
     </script>
-    </body>
+    </center></body>
 <html>

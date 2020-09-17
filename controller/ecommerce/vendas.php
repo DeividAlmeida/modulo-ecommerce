@@ -80,7 +80,7 @@ $mail->Password = $readm['email_senha'] ;
 $mail->SMTPOptions = array( $readm['email_protocolo_seguranca'] => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ) ); 
  
 // Você pode habilitar esta opção caso tenha problemas. Assim pode identificar mensagens de erro. 
- $mail->SMTPDebug = 2; 
+// $mail->SMTPDebug = 2; 
  
 // Define o remetente 
 // Seu e-mail 
@@ -107,7 +107,7 @@ $mail->IsHTML(true);
 $mail->CharSet = 'UTF-8'; 
  
 // Assunto da mensagem 
-$mail->Subject = $readm['nome']." : Pedido #".$id." ".$readm["t_".$status]; 
+$mail->Subject = "Pedido #".$id." ".$readm["t_".$status]; 
  
 // Corpo do email 
 $mail->Body = $readm[$status].$link; 

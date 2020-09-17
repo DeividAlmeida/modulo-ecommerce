@@ -59,7 +59,7 @@ $mail->CharSet = 'UTF-8';
 $mail->Subject = "Novo pedido #".$query; 
  
 // Corpo do email 
-$mail->Body = $nome . " fez uma compra no valor de R$ ".number_format(post('valor'), 2, ",", "."); 
+$mail->Body = $nome . " fez uma compra no valor R$ ".number_format(post('valor'), 2, ",", "."); 
  
 // Opcional: Anexos 
 // $mail->AddAttachment("/home/usuario/public_html/documento.pdf", "documento.pdf"); 

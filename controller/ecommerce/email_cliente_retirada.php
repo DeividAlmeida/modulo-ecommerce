@@ -55,7 +55,7 @@ $mailr->CharSet = 'UTF-8';
  
 // Assunto da mensagem 
 $mailr->Subject = "Recebemos o seu pedido #".$query; 
- $apre = "Olá ". $nome.", vimos que você fez um novo pedido. Seu pedido está sendo processado e você receberá um email acada mudança de status do seu pedido. Segue abaixo informações úteis.<br>";
+ $apre = "Olá ". $nome.", vimos que você fez um novo pedido. Seu pedido está sendo processado e você receberá um e-mail a cada mudança de status do seu pedido. Segue abaixo informações úteis.<br>";
 $dtls = json_decode($deposito['detalhes'], true); foreach( $dtls as $key => $dtl): $enviar .= 
 "<p>". $dtl['banco'] ."</p> 
 <table style='width:40%, border: 1px solid black'>
@@ -81,7 +81,7 @@ $instru = "<footer><p>" .$deposito['instucoes']. "</p></footer>";
 
 $endr = "
 
-    <p>Você encontrará nossa loja no seguinte endereço:<br>
+    <p>Para pedidos com retirada em nossa loja favor retirar no endereço abaixo:<br>
     Estado: ". $retirada['estado']."<br>
     Cidade: ". $retirada['cidade']."<br>
     Bairro: ". $retirada['bairro']."<br>
@@ -90,7 +90,7 @@ $endr = "
     CEP: ". $retirada['cep']."<br>
     Telefone: ". $retirada['telefone']."</p><br>";
     
-  $link = "<p>Para pedidos com retirada em nossa loja favor retirar no endereço abaixo: ".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($query)."</p>";
+  $link = "<p>Você poderá acompanhar o status do seu pedido no seguinte link ".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($query)."</p>";
     
 $mailr->Body = $apre.$enviar.$instru.$endr.$link;
 

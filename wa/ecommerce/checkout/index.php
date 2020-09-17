@@ -380,6 +380,12 @@ $config = [];
                                    <script>
                                     $('#fcheckout').submit(function(e) {
                                           if(document.getElementById('payment_method_deposito').checked){
+                                          	const w = document.getElementById("f_valor").innerHTML;
+                                          	const ttl = document.getElementById("total").innerHTML;
+                                        	const ww = document.getElementById("tipo_entrega").value;
+                                            sessionStorage.setItem("vfrete", w);
+                                            sessionStorage.setItem("frete", ww);
+                                            sessionStorage.setItem("ttl", ttl);
                                               e.preventDefault();            
                                               var adata = $(this).serializeArray();
                                               $.ajax({

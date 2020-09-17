@@ -92,6 +92,7 @@ if(isset($_GET['editaEmail'])){
     't_cancelado'           => post('t_cancelado'),
     'cancelado'             => post('cancelado'),
     't_reembolsado'         => post('t_reembolsado'),
+    'reembolsado'             => post('reembolsado'),
     'email_usuario'         => post('email_usuario'),
     'email_senha'           => post('email_senha'),
     'email_porta'           => post('email_porta'),
