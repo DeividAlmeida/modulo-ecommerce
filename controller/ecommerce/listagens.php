@@ -22,7 +22,7 @@ if (isset($_GET['AddItemLista'])) {
 // Excluir Categoria
 if (isset($_GET['DeletarCategoriaLista'])) {
   $id         = get('DeletarCategoriaLista');
-  $i_query    = DBRead('ecommerce_lista_categoria','*',"WHERE id_lista = '{$id}'");
+  $i_query    = DBRead('ecommerce_lista_categoria','*',"WHERE id = '{$id}'");
 	$item        = $i_query[0];
 
   $query = DBDelete('ecommerce_lista_categoria',"id = '{$id}'");
