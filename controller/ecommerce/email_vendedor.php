@@ -57,9 +57,134 @@ $mail->CharSet = 'UTF-8';
  
 // Assunto da mensagem 
 $mail->Subject = "Novo pedido #".$query; 
+
+
+foreach( $read  as $k => $abs){ $npdts = json_decode($abs['produto'], true);foreach($npdts as $npdt){; $produto .= "
+
+        <tr>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+                <p class='MsoNormal'>
+                    <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>". $npdt['produto']
+                    ."</span>
+                </p>
+            </td>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+                <p class='MsoNormal'>
+                    <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>". $npdt['qtd']
+                    ."</span>
+                </p>
+            </td>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+                <p class='MsoNormal'>
+                    <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>R$ ".
+                   number_format(floatval(str_replace(",", ".", $npdt['un_valor'])), 2, ",", ".")
+                    ."</span>
+                </p>
+            </td>
+        </tr>
+"; } };
+
+$into = "
+
+<table border='1' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;border:solid #e5e5e5 1.0pt'>
+    <thead>
+        <tr>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt'>
+                <p class='MsoNormal'>
+                    <b>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>Produto
+                        </span>
+                    </b>
+                </p>
+            </td>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt'>
+                <p class='MsoNormal'>
+                    <b>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>Quantidade
+                        </span>
+                    </b>
+                </p>
+            </td>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt'>
+                <p class='MsoNormal'>
+                    <b>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>Preço
+                        </span>
+                    </b>
+                </p>
+            </td>
+        </tr>
+    </thead>
+    <tbody>".
+    $produto
+." <tr>
+        <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>
+                    <b>Tipo de Entrega</b>
+                </span>
+            </p>
+        </td>
+        <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>".
+                     post('tipo_entrega')
+                ."</span>
+            </p>
+        </td>
+        <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>R$ ".
+                   number_format(floatval(str_replace(",", ".", post('vl_frete'))), 2, ",", ".") 
+                ."</span>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan='2' style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>
+                    <b>TOTAL</b>
+                </span>
+            </p>
+        </td>
+        <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>R$ ".
+                    number_format(floatval(str_replace(",", ".", post('valor'))), 2, ",", ".")
+                ."</span>
+            </p>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+";
+$info = "<div >
+        <table style='width:40%, border: 1px solid black'>
+            <tr style='border: 1px solid black'>
+                <td style=''>
+                    <h1 style=''>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:white;font-weight:normal'>
+                            Novo pedido: #".$query ."
+                        </span>
+                    </h1>
+                </td>
+            </tr>
+            <tr style='border: 1px solid black'>
+                <td>
+                    <p style='margin-right:0cm;margin-bottom:12.0pt;margin-left:0cm;line-height:150%'>
+                        <span style='font-size:10.5pt;line-height:150%;font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>Você recebeu o seguinte pedido de ".$nome.":</span>
+                    </p>
+                </td>
+            </tr>"
+            .$into.
+        "</table>
+        </div>
+";
  
 // Corpo do email 
-$mail->Body = $nome . " fez uma compra no valor R$ ".number_format(post('valor'), 2, ",", "."); 
+$mail->Body = $info; 
  
 // Opcional: Anexos 
 // $mail->AddAttachment("/home/usuario/public_html/documento.pdf", "documento.pdf"); 

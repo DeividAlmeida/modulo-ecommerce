@@ -91,7 +91,123 @@ $endr = "
     Telefone: ". $retirada['telefone']."</p><br>";
     
   $link = "<p>Você poderá acompanhar o status do seu pedido no seguinte link ".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($query)."</p>";
-    
-$mailr->Body = $apre.$enviar.$instru.$endr.$link;
+  
+ foreach( $read  as $bb => $absb){ $npdtsb = json_decode($absb['produto'], true);foreach($npdtsb as $npdtb){; $produtob .= "
+
+        <tr>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+                <p class='MsoNormal'>
+                    <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>". $npdtb['produto']
+                    ."</span>
+                </p>
+            </td>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+                <p class='MsoNormal'>
+                    <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>". $npdtb['qtd']
+                    ."</span>
+                </p>
+            </td>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+                <p class='MsoNormal'>
+                    <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>R$ ".
+                   number_format(floatval(str_replace(",", ".", $npdtb['un_valor'])), 2, ",", ".")
+                    ."</span>
+                </p>
+            </td>
+        </tr>
+"; } };
+
+$intob = "
+
+<table border='1' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;border:solid #e5e5e5 1.0pt'>
+    <thead>
+        <tr>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt'>
+                <p class='MsoNormal'>
+                    <b>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>Produto
+                        </span>
+                    </b>
+                </p>
+            </td>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt'>
+                <p class='MsoNormal'>
+                    <b>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>Quantidade
+                        </span>
+                    </b>
+                </p>
+            </td>
+            <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt'>
+                <p class='MsoNormal'>
+                    <b>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>Preço
+                        </span>
+                    </b>
+                </p>
+            </td>
+        </tr>
+    </thead>
+    <tbody>".
+    $produtob
+." <tr>
+        <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>
+                    <b>Tipo de Entrega</b>
+                </span>
+            </p>
+        </td>
+        <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>".
+                     post('tipo_entrega')
+                ."</span>
+            </p>
+        </td>
+        <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>R$ ".
+                   number_format(floatval(str_replace(",", ".", post('vl_frete'))), 2, ",", ".") 
+                ."</span>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan='2' style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>
+                    <b>TOTAL</b>
+                </span>
+            </p>
+        </td>
+        <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>R$ ".
+                    number_format(floatval(str_replace(",", ".", post('valor'))), 2, ",", ".")
+                ."</span>
+            </p>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+";
+$infob = "<div >
+        <table style='width:40%, border: 1px solid black'>
+            <tr style='border: 1px solid black'>
+                <td >
+                    <p>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:white;font-weight:normal'>
+                            Pedido: #".$query ."
+                        </span>
+                    </p>
+                </td>
+            </tr>"
+            .$intob.
+        "</table>
+        </div>
+";   
+$mailr->Body = $apre.$infob.$enviar.$instru.$endr.$link;
 
 $enviado = $mailr->Send(); 

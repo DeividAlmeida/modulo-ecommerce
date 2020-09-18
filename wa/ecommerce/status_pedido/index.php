@@ -20,7 +20,7 @@ $p = json_decode($read['produto'], true);
         <title>Acompanhamento do pedido id: <?php echo $read['id']; ?> </title>
     </head>
     <body style="background-color: #fff;">
-       <div class="card" style="width: 80%; margin-left:10%; margin-right:10%; margin-top:5%; margin-bottom:5%">
+       <div class="card" style="">
             <div class="card-header text-left" style="background-color:<?php echo $readed['cabecalho'];?>">
             <table style="width:100%">
                 <tr>
@@ -28,7 +28,7 @@ $p = json_decode($read['produto'], true);
                     <?php if(empty($readed['logo'])){ ?>
                             <img id="learn" src=""  />
                         <?php }else{ ?>
-                            <img  style="position:relative;" id="learn" src="../../../wa/ecommerce/uploads/<?php echo $readed['logo']; ?>"  />
+                            <img  style="position:relative; margin-left:30%" id="learn" src="../../../wa/ecommerce/uploads/<?php echo $readed['logo']; ?>"  />
                         <?php } ?>
                     </td>
                     <td>
@@ -41,7 +41,7 @@ $p = json_decode($read['produto'], true);
             </table>
             </div>
 
-            <div class="card-body" >
+            <div class="card-body" style="margin-left:5%; margin-right:5%;">
                 <div class="contaner-fluid">
                     <div class="row justify-content-lg-center">
                         <div class="card col-lg-3" style="padding:0px;margin-right:3%;margin-top:2%">
