@@ -165,7 +165,7 @@ $info = "<div >
             <tr style='border: 1px solid black'>
                 <td style=''>
                     <h1 style=''>
-                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:white;font-weight:normal'>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;font-weight:normal'>
                             Novo pedido: #".$query ."
                         </span>
                     </h1>

@@ -65,7 +65,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="t_pagamento_pendente">Título  Pagamento Pendente:</label>
-                    <input type="text" name="t_pagamento_pendente" class="form-control" placeholder="Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_pagamento_pendente']; ?>">
+                    <input type="text" name="t_pagamento_pendente" class="form-control" placeholder="[Nome da Loja]: Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_pagamento_pendente']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="pagamento_pendente">Mensagem Pagamento Pendente:</label>
@@ -75,7 +75,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="t_processando">Título  Processando:</label>
-                    <input type="text" name="t_processando" class="form-control" placeholder="Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_processando']; ?>">
+                    <input type="text" name="t_processando" class="form-control" placeholder="[Nome da Loja]: Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_processando']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="processando">Mensagem Processando:</label>
@@ -85,7 +85,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="t_aguardando">Título  Aguardando:</label>
-                    <input type="text" name="t_aguardando" class="form-control" placeholder="Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_aguardando']; ?>">
+                    <input type="text" name="t_aguardando" class="form-control" placeholder="[Nome da Loja]: Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_aguardando']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="aguardando">Mensagem Aguardando:</label>
@@ -97,7 +97,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="t_pedido_enviado">Título  Pedido Enviado:</label>
-                    <input type="text" name="t_pedido_enviado" class="form-control" placeholder="Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_pedido_enviado']; ?>">
+                    <input type="text" name="t_pedido_enviado" class="form-control" placeholder="[Nome da Loja]: Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_pedido_enviado']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="pedido_enviado">Mensagem Pedido Enviado:</label>
@@ -107,7 +107,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="t_concluido">Título Concluído:</label>
-                    <input type="text" name="t_concluido" class="form-control" placeholder="Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_concluido']; ?>">
+                    <input type="text" name="t_concluido" class="form-control" placeholder="[Nome da Loja]: Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_concluido']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="concluido">Mensagem Concluído:</label>
@@ -117,7 +117,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="t_cancelado">Título  Cancelado:</label>
-                    <input type="text" name="t_cancelado" class="form-control" placeholder="Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_cancelado']; ?>">
+                    <input type="text" name="t_cancelado" class="form-control" placeholder="[Nome da Loja]: Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_cancelado']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="cancelado">Mensagem Cancelado:</label>
@@ -129,7 +129,7 @@
             <div class="col-md-4">
             <div class="form-group">
                     <label for="t_reembolsado">Título  Reembolsado:</label>
-                    <input type="text" name="t_reembolsado" class="form-control" placeholder="Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_reembolsado']; ?>">
+                    <input type="text" name="t_reembolsado" class="form-control" placeholder="[Nome da Loja]: Pedido #[Número do pedido] Seu Título" value="<?php echo $query['t_reembolsado']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="reembolsado">Mensagem Reembolsado:</label>

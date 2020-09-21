@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `data` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
   `rastreamento` text NOT NULL,
   `cor_status` varchar(255) DEFAULT NULL,
+  `vl_frete` float NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -301,4 +302,4 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 SET @@time_zone = '+03:00';
 
-ALTER TABLE `ecommerce_vendas` ADD `cor_status` VARCHAR(255) NULL AFTER `status`;
+ALTER TABLE `ecommerce_vendas` ADD `vl_frete` float NOT NULL AFTER `cor_status`;

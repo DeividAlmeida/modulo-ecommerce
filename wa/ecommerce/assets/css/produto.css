@@ -53,12 +53,19 @@
 .shop--product-page--header__categories li{
   display: inline-block;
   list-style: outside none none;
+
   background-color: #000;
   border-radius: 5px;
   color: #fff;
   line-height: 1;
   padding: 6px 14px 5px;
   margin: 0 4px;
+}
+.shop--product-page--header__categories li:after {
+  content: ", ";
+}
+.shop--product-page--header__categories li:last-child:after {
+  content: "";
 }
 .shop--product-page--header--gallery{
   margin-top:20px;

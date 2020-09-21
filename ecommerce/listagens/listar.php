@@ -86,7 +86,7 @@ $query = DBRead('ecommerce_listas', '*');
                   <td>
                     <?php if ($dados['tipo'] == '1') { ?>
                       <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'listagem', 'adicionar')) { ?>
-                        <a class="adicionarListagemItem tooltips" data-tooltip="Adicionar" href="#" data-href='ecommerce.php?AdicionarItemLista=<?php echo $dados['id'];?>'>
+                        <a class="adicionarListagemItem tooltips" data-tooltip="Adicionar" href="#" data-href='ecommerce.php?AdicionarItemLista=<?php echo $dados['tipo'];?>'>
                           <i class="icon-plus blue lighten-2 avatar"></i>
                         </a>
                       <?php } ?>

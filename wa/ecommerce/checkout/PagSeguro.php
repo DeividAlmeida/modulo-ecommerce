@@ -56,7 +56,8 @@ if (isset($_POST)) {
       'tipo_entrega' => post('tipo_entrega'),
       'valor' => post('valor'),
       'produto' => $_POST['venda'],
-      'tipo_pagamento'=>post('payment_method')
+      'tipo_pagamento'=>post('payment_method'),
+      'vl_frete' => post('vl_frete')
     );
     $query = DBCreate('ecommerce_vendas', $data, true);
     $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$query}'");

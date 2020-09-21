@@ -59,7 +59,7 @@ $query = DBRead('ecommerce_lista_marca','*', "WHERE `id_lista` = $id");
   <?php } else { ?>
     <div class="card-body">
     <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'listagem', 'adicionar')) { ?>
-      <div class="alert alert-info">Nenhuma marca adicionada a essa listagem até o momento, <a class="adicionarListagemItem" href="#" data-href="ecommerce.php?AdicionarMarcaLista=<?php echo $id ; ?>">clique aqui</a> para adicionar.</div>
+      <div class="alert alert-info">Nenhum marca a essa listagem adicionada até o momento, <a class="adicionarListagemItem" href="#" data-href="ecommerce.php?AdicionarMarcaLista=<?php echo $id ; ?>">clique aqui</a> para adicionar.</div>
       <?php } ?>
     </div>
   <?php } ?>

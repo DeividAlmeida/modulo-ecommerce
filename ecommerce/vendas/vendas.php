@@ -14,9 +14,7 @@
         </div>
         <div class="card-body">
                 <div>
-                    <table class="table  table-striped BootstrapTable" id="BootstrapTable"    data-checkbox-header="true"  data-click-to-select="true"   data-id-field="id" data-select-item-name="id[]" data-maintain-meta-data="true"  data-show-refresh="true"  data-show-pagination-switch="true" data-detail-view="true"  
-                     data-detail-formatter="detailFormatter"  data-url="ecommerce/vendas/database.php" data-toggle="table" data-pagination="true" data-locale="pt-BR" data-cache="false" data-search="true" data-show-export="true" data-export-data-type="all" data-export-types="['csv', 'excel', 'pdf']" data-mobile-responsive="true" 
-                     data-click-to-select="true" data-toolbar="#toolbar" data-show-columns="true"   >
+                    <table class="table  table-striped BootstrapTable" id="BootstrapTable"    data-checkbox-header="true"  data-click-to-select="true"   data-id-field="id" data-select-item-name="id[]" data-maintain-meta-data="true"  data-show-refresh="true"  data-show-pagination-switch="true" data-detail-view="true"   data-detail-formatter="detailFormatter"  data-url="ecommerce/vendas/database.php" data-toggle="table" data-pagination="true" data-locale="pt-BR" data-cache="false" data-search="true" data-show-export="true" data-export-data-type="all" data-export-types="['csv', 'excel', 'pdf']" data-mobile-responsive="true" data-click-to-select="true" data-toolbar="#toolbar" data-show-columns="true" >
                        
       <thead >
     <tr >
@@ -31,7 +29,7 @@
         <th scope="col" data-field="Status do Pedido" data-sortable="true"><span style="font-weight: bold; font-size:16px;">Status do Pedido<span></th>
         <?php } ?>
         <?php if(checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos', 'editar')) {?>
-        <th scope="col" data-field="<i class='fa fa-pencil'></i>" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Editar Pedido<span></th>
+        <th scope="col" data-field="<i class='fa fa-pencil'></i>" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Editar Pedito<span></th>
         <?php } ?>
     </tr>
       </thead>

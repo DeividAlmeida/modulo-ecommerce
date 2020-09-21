@@ -198,7 +198,7 @@ $infob = "<div >
             <tr style='border: 1px solid black'>
                 <td >
                     <p>
-                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:white;font-weight:normal'>
+                        <span style='font-family:&quot;Helvetica&quot;,sans-serif;font-weight:normal'>
                             Pedido: #".$query ."
                         </span>
                     </p>
