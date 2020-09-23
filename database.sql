@@ -297,7 +297,7 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('carrocel_cor_hover_setas', ''),
 ('carrinho_cor_btns', ''),
 ('carrinho_cor_btn_finalizar', ''),
-('moeda', 'R&#x00024;'),
+('moeda', 'R&#x00024;')
 
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 SET @@time_zone = '+03:00';

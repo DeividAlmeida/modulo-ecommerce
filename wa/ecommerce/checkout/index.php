@@ -48,7 +48,7 @@ $config = [];
 										<div class="page-content" style="margin:30px;">
 											<div class="woocommerce">
 												<br>
-												<form name="checkout" method="post" class="checkout woocommerce-checkout" id="fcheckout" action="<?php echo ConfigPainel('base_url'); ?>wa/ecommerce/checkout/PagSeguro.php" enctype="multipart/form-data"  style="position: static; zoom: 1;">
+												<form name="checkout" method="post" class="checkout woocommerce-checkout" id="fcheckout" action="<?php echo ConfigPainel('base_url'); ?>wa/ecommerce/checkout/composer.php" enctype="multipart/form-data"  style="position: static; zoom: 1;">
 													<div class="row">		
 														<div class="col-lg-4" id="customer_details">
 															<div class="woocommerce-billing-fields clearfix">	
@@ -364,7 +364,7 @@ $config = [];
 								<ul class="wc_payment_methods payment_methods methods">
                                  <?php if($pagseguro['status'] == "checked"): ?> 
                                     <li class="wc_payment_method payment_method_pagseguro">
-                                        <input id="payment_method_pagseguro" type="radio" required class="input-radio" name="payment_method" value="Pagseguro" checked="checked" >
+                                        <input id="payment_method_pagseguro" type="radio" required class="input-radio" name="payment_method" value="PagSeguro" checked="checked" >
                                         <label for="payment_method_pagseguro" style="cursor:pointer">
                                           Pagar com <img src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/checkout/PagSeguroLibrary/img/pagseguro.png" />	
                                         </label>                                                                                
