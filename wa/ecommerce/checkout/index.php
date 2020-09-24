@@ -4,6 +4,7 @@ header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
+$plugins =  DBRead('ecommerce_plugins','*', "WHERE status = 'checked'");
 $read = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; 
 $retirada = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0];
 $deposito = DBRead('ecommerce_config_deposito','*',"WHERE id = '1'")[0];
@@ -364,12 +365,27 @@ $config = [];
 								<ul class="wc_payment_methods payment_methods methods">
                                  <?php if($pagseguro['status'] == "checked"): ?> 
                                     <li class="wc_payment_method payment_method_pagseguro">
-                                        <input id="payment_method_pagseguro" type="radio" required class="input-radio" name="payment_method" value="PagSeguro" checked="checked" >
+                                        <input id="payment_method_pagseguro" type="radio" required class="input-radio" name="payment_method" value="PagSeguro" onclick="compose('PagSeguro.php')" >
                                         <label for="payment_method_pagseguro" style="cursor:pointer">
                                           Pagar com <img src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/checkout/PagSeguroLibrary/img/pagseguro.png" />	
                                         </label>                                                                                
                                     </li>
                                   <?php endif ?>
+                                  <?php if(!empty($plugins)){ foreach($plugins as $keyp => $plugin){ ?>
+                                        <li class="wc_payment_method payment_method_traferencia">
+                                        <input id="payment_method_<?php echo $plugin['nome']; ?>" type="radio" required class="input-radio" name="payment_method" value="<?php echo $plugin['titulo']; ?>" onclick="compose(<?php echo "'../../../".$plugin['path']."/wa/index.php'"; ?>)">
+                                        <label for="payment_method_<?php echo $plugin['nome']; ?>" style="cursor:pointer">
+                                          Pagar com <?php if(!empty($plugin['img'])) { ?>
+                                          <img style="width:auto; height:23px;" src="<?php echo RemoveHttpS(ConfigPainel('base_url')). $plugin['img'].'"/>'; } ?>
+                                        </label>                                                                                
+                                    </li>
+                                    <?php }} ?>
+                                    <script>
+                                    compose = (a) => {
+                                    document.getElementById('composer').value=a;
+                                    }
+                                    </script>
+                                    <input type="hidden" id="composer" name="composer">
                                   <?php if($deposito['status'] == "checked"): ?>
                                     <li class="wc_payment_method payment_method_traferencia">
                                         <input id="payment_method_deposito" type="radio" required class="input-radio" name="payment_method" value="Depósito">
@@ -417,7 +433,7 @@ $config = [];
 									<input required type="hidden" name="valor" id="valor" value="">
 									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
 									<input required type="hidden" name="vl_frete" id="vl_frete" value="">
-									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked" ): else: ?>
+									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked"  && empty($plugins) ): else: ?>
 									<center><input type="submit" id="cartCheckout"  value="Finalizar compra" ></center>
 									<?php endif ?>
 								</div>

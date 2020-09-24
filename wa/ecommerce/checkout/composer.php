@@ -63,6 +63,6 @@ if (isset($_POST)) {
     require_once('../../../controller/ecommerce/email_cliente.php');
     }
        
-$route = post('payment_method').".php";
+$route = post('composer');
 require($route);
 }
