@@ -117,7 +117,8 @@ function shopUpdateListView(idList, isGrid, columnClass){
   });
 }
 function CarrinhoAdd(id, carrinho_url, qtd, vlf, att){  
-    
+  
+  if(att === void(0)){ att = Math.floor(Math.random() * 10);}
     var xhttp = new XMLHttpRequest();
     xhttp.open('GET', UrlPainel+'wa/ecommerce/carrinho?Saldo='+id, false);
     xhttp.setRequestHeader('Content-Type',  'text/xml');
