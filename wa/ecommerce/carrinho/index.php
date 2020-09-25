@@ -34,7 +34,7 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 ?>
 	<meta charset="UTF-8">
 	<div class="shop--cart__block"></div>
-	<div class="table-responsive">
+	<div class="table-responsive-sm">
 	<table id="shop--cart--table" class="shop--cart--table table m-0 table-striped">
 	  <tr>
 	    <th>Imagem</th>
@@ -69,16 +69,15 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 
 	    <tr>
 	      <td><img src="<?php echo $url_img_capa ?>" alt="Foto Produto <?php echo $produto['nome']; ?>" width="100"></td>
-		  <td><?php echo $produto['nome']; ?><br><span id="trm<?php echo $id ?>">
+		  <td><?php echo $produto['nome']; ?><br><span style="word-wrap: normal" id="trm<?php echo $id ?>">
 		  <script> 
 		  const a = document.getElementById("trm<?php echo $id ?>");
 		  const b = sessionStorage.getItem("<?php echo $id ?>");
 		  let c = a.innerHTML = b;
 		   </script></span></td>
-	      <td id="cart_qtd_<?php echo $id; ?>" pdt="<?php echo $qtd[0]; ?>" vlf="<?php echo $qtd[2]; ?>">
-					<input class="cart_qtd" type="number" value="<?php echo $qtd[1]; ?>"/>
-					<button class="cart_qtd_update btn btn-sm btn-primary">Atualizar</button>
-					<button class="cart_qtd_delete btn btn-sm btn-primary">Remover</button>
+	      <td id="cart_qtd_<?php echo $id; ?>" pdt="<?php echo $qtd[0]; ?>" vlf="<?php echo $qtd[2]; ?>" style="white-space: nowrap;">
+					<input class="cart_qtd" type="number" style="width:50px;" value="<?php echo $qtd[1]; ?>"/>
+					<button class="cart_qtd_delete btn btn-sm btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 				</td>
 		<?php if ($produto['a_consultar'] <> 'S') { ?>
 	      <td><?php echo $config['moeda'].''.$qtd[2]; ?></td>

@@ -1,13 +1,10 @@
 (function($) {
   'use strict';
 
-  // Imprimir carrinho
-  $('#cartPrint').click(function(){
-    printJS('shop--cart--table', 'html')
-  });
+
 
   // Atualizar carrinho
-  $('.cart_qtd_update').click(function(){
+  $('.cart_qtd').change(function(){
     var parent = $(this).parent();
     var btn_id = parent.attr('id');
 
@@ -29,11 +26,17 @@
       type: 	"GET",
       cache: 	false,
       url: 		UrlPainel+'wa/ecommerce/carrinho/?UpdateQtd='+id+'&qtd='+qtd+'&pdt='+pdt+'&vlf='+vlf,
-      beforeSend: function (data){
-        $('.shop--cart__block').addClass("is-active");
-      },
+
       success: function () {
-       new EcommerceCarrinho();
+       new EcommerceBtnCarrinho();
+       Swal.fire({
+          icon: 'success',
+          title: 'Atualizado',
+          html: '<p style="font-size:15px">Carrinho atualizado com sucesso.</p>',
+          showConfirmButton: false,
+          showCloseButton: true,
+        });
+
       }
     });
     }else{
@@ -59,10 +62,8 @@
       type: 	"GET",
       cache: 	false,
       url: 		UrlPainel+'wa/ecommerce/carrinho/?RemItem='+id_produto,
-      beforeSend: function (data){
-        $('.shop--cart__block').addClass("is-active");
-      },
       success: function () {
+      new EcommerceBtnCarrinho();
       new  EcommerceCarrinho();
       }
     });
