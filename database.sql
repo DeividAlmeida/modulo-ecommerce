@@ -56,6 +56,7 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('carrinho_cor_btn_finalizar', ''),
 ('moeda', 'R&#x00024;')
 
+
 -- CATEGORIA
 CREATE TABLE IF NOT EXISTS `ecommerce_categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -283,6 +284,17 @@ CREATE TABLE IF NOT EXISTS `ecommerce_config_link` (
   `logo` varchar(255) DEFAULT NULL,
   `cabecalho` varchar(255) DEFAULT NULL,
   `texto` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- PLUG-INS
+CREATE TABLE IF NOT EXISTS `ecommerce_plugins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `titulo` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `tipo` VARCHAR(255) NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `ecommerce_config_deposito` (`id`, `titulo`, `descricao`, `instucoes`, `detalhes`, `status`) VALUES

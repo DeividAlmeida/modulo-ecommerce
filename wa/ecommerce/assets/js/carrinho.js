@@ -29,6 +29,7 @@
 
       success: function () {
        new EcommerceBtnCarrinho();
+       new  EcommerceCarrinho();
        Swal.fire({
           icon: 'success',
           title: 'Atualizado',
