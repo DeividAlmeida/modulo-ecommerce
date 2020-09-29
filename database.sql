@@ -54,7 +54,7 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('carrocel_cor_hover_setas', ''),
 ('carrinho_cor_btns', ''),
 ('carrinho_cor_btn_finalizar', ''),
-('moeda', 'R&#x00024;')
+('moeda', 'R&#x00024;');
 
 
 -- CATEGORIA
@@ -206,10 +206,10 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `valor` float NOT NULL,
   `produto` text NOT NULL,
   `data` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
-  `rastreamento` text NOT NULL,
+  `rastreamento` text DEFAULT NULL,
   `cor_status` varchar(255) DEFAULT NULL,
-  `vl_frete` float NOT NULL,
-  `status` varchar(255) NOT NULL
+  `vl_frete` float DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
