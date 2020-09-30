@@ -23,3 +23,10 @@ require_once('ecommerce/listagens.php');
 require_once('ecommerce/produtos.php');
 require_once('ecommerce/slider.php');
 require_once('ecommerce/vendas.php');
+
+$plugins = DBRead('ecommerce_plugins','*');
+if(!empty($plugins)){
+    foreach($plugins as $key => $plugin){
+        require_once('ecommerce/'.$plugin['nome'].'.php');
+    }
+}

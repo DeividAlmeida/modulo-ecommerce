@@ -395,7 +395,11 @@ $config = [];
                                     </li>
                                    <script>
                                     $('#fcheckout').submit(function(e) {
+                                    
                                           if(document.getElementById('payment_method_deposito').checked){
+-                                            sessionStorage.setItem("vfrete", document.getElementById("f_valor").innerHTML);
+-                                            sessionStorage.setItem("frete", document.getElementById("tipo_entrega").value);
+-                                            sessionStorage.setItem("ttl", document.getElementById("total").innerHTML);
                                               e.preventDefault();            
                                               var adata = $(this).serializeArray();
                                               $.ajax({
