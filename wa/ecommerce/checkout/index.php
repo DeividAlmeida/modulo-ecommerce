@@ -258,7 +258,11 @@ $config = [];
 																							const a = document.getElementById("trm<?php echo $id ?>");
 																							const b = sessionStorage.getItem("<?php echo $id ?>");
 																							let c = a.innerHTML = b;
+																							if(c !== null){
 																							document.getElementById("produto<?php echo $id ?>").value = "<?php echo $produto['nome']; ?>" +"<br>"+c;
+																							}else{
+																							   document.getElementById("produto<?php echo $id ?>").value = "<?php echo $produto['nome']; ?>"; 
+																							}
 																						</script>
 																					</span><hr>																				
 																				<span class="product-quantity"><span> Quantidade: </span><?php  echo $qtd[1]; ?></span>
@@ -385,7 +389,7 @@ $config = [];
                                     document.getElementById('composer').value=a;
                                     }
                                     </script>
-                                    <input type="hidden" id="composer" name="composer">
+                                    <input type="hidden" id="composer" name="composer" value='PagSeguro.php'>
                                   <?php if($deposito['status'] == "checked"): ?>
                                     <li class="wc_payment_method payment_method_traferencia">
                                         <input id="payment_method_deposito" type="radio" required class="input-radio" name="payment_method" value="Depósito">
@@ -406,14 +410,14 @@ $config = [];
                                                 data: adata,
                                                 type:    "POST",
                                                 cache:   false,
-                                                url:     UrlPainel+'wa/ecommerce/checkout/PagSeguro.php',
+                                                url:     UrlPainel+'wa/ecommerce/checkout/composer.php',
                                                 success: function (adata) {
                                                   $.ajax({
                                                       type:    "GET",
                                                       cache:   false,
                                                       url:     UrlPainel+'wa/ecommerce/checkout/detalhes.php',
                                                       success: function (data) {
-                                    
+                                                        
                                                         jQuery('#EcommerceCheckout').html(data);
                                                       },
                                                   });

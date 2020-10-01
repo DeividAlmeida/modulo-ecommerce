@@ -27,7 +27,6 @@ $total_carrinho = 0;
 </style>
 <meta http-equiv="Content-Type" content="charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
 <div class="card">
   	<div class="card-header">
@@ -125,7 +124,7 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 
 				</td>
 		<?php if ($produto['a_consultar'] <> 'S') { ?>
-	      <td><?php echo $config['moeda'].''.$qtd[2]; ?></td>
+	      <td><?php echo $config['moeda'].''.number_format($qtd[2], 2, ",", "."); ?></td>
 	      <td><?php echo $config['moeda'].' '.number_format(floatval(str_replace(",", ".", $qtd[2])) * floatval(str_replace(",", ".", $qtd[1])), 2, ",", "."); ?></td>
 	  	<?php } else { ?>
 	  		<td>A Consultar</td>
@@ -212,3 +211,5 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 		<hr class="my-2">
 		<footer class="text-center"><p class="font-weight-normal"><?php echo $retirada['complemento']?></p></footer>
 	</div>
+	<?php session_destroy(); ?>
+	<script> new EcommerceBtnCarrinho(); </script>
