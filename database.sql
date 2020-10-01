@@ -203,12 +203,12 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `nota` text DEFAULT NULL,
   `tipo_entrega` varchar(255) NOT NULL,
   `tipo_pagamento` varchar(255) NOT NULL,
-  `valor` float NOT NULL,
+  `valor` float(50,2) NOT NULL,
   `produto` text NOT NULL,
   `data` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
   `rastreamento` text DEFAULT NULL,
   `cor_status` varchar(255) DEFAULT NULL,
-  `vl_frete` float DEFAULT NULL,
+  `vl_frete` float(50,2) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -314,4 +314,4 @@ INSERT INTO `ecommerce_config_link` (`id`, `logo`, `cabecalho`, `texto`) VALUES
 
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 
-ALTER TABLE `ecommerce_vendas` ADD `vl_frete` float NOT NULL AFTER `cor_status`;
+ALTER TABLE `ecommerce_vendas` CHANGE `valor` `valor` FLOAT(50,2) NOT NULL;

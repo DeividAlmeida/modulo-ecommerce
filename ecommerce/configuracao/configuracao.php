@@ -431,7 +431,7 @@
           </div>
         </div>
 
-        <div class="col-md-4 d-md-none">
+        <div class="col-md-4">
           <div class="form-group">
             <label>Moeda:</label>
             <div class="input-group focused">
