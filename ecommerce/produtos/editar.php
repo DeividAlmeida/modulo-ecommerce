@@ -156,7 +156,7 @@ if (is_array($query)) { ?>
             <label>Diminuir estoque:</label>            
               <select name="diminuir_est" required class="form-control custom-select">
               <option value="sim" <?php Selected($dados['diminuir_est'], "sim"); ?>>Sim</option>
-                <option value="sim" <?php Selected($dados['diminuir_est'], "não"); ?>>Não</option>
+                <option value="não" <?php Selected($dados['diminuir_est'], "não"); ?>>Não</option>
             </select>            
           </div>            
           </div>

@@ -1,5 +1,4 @@
-<?php
-  
+<?php 
 $statusp = DBRead('ecommerce_config_pagseguro','*',"WHERE id = '1'")[0];
 $statusd = DBRead('ecommerce_config_deposito','*',"WHERE id = '1'")[0];
 $plugins =  DBRead('ecommerce_plugins','*', "WHERE tipo = 'gateways'");
