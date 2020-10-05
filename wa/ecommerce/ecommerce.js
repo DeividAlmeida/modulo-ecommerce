@@ -27,6 +27,7 @@ function EcommerceCarrinho(){
     },
   });
 }
+
 function EcommerceCheckout(){
   $.ajax({
     type:    "GET",
@@ -37,6 +38,19 @@ function EcommerceCheckout(){
     },
     error: function (data) {
       setTimeout(function(){ EcommerceCheckout(); }, 5000);
+    },
+  });
+}
+function EcommerceCheckoutEu(){
+  $.ajax({
+    type:    "GET",
+    cache:   false,
+    url:     UrlPainel+'wa/ecommerce/checkout/eu.php',
+    success: function (data) {
+      jQuery('#EcommerceCheckoutEu').html(data);
+    },
+    error: function (data) {
+      setTimeout(function(){ EcommerceCheckoutEu(); }, 5000);
     },
   });
 }
@@ -53,6 +67,7 @@ function EcommerceBtnCarrinho(){
     },
   });
 }
+
 function EcommerceBuscaResultado(pag){
   const urlParams = new URLSearchParams(window.location.search);
   const busca     = urlParams.get('b');

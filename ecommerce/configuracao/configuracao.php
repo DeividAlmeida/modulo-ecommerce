@@ -14,6 +14,9 @@
 
   $cod_checkout  = '<div id="EcommerceCheckout" ></div>'."\n";
   $cod_checkout .= '<script type="text/javascript">EcommerceCheckout();</script>';
+  
+  $cod_checkout_eu  = '<div id="EcommerceCheckoutEu" ></div>'."\n";
+  $cod_checkout_eu .= '<script type="text/javascript">EcommerceCheckoutEu();</script>';
 
   $cod_busca_buscador  = '<div id="EcommerceBuscador" ></div>'."\n";
   $cod_busca_buscador .= '<script type="text/javascript">EcommerceBuscador();</script>';
@@ -38,6 +41,10 @@
 
       <button id="btnCopiarCodSite3" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(3)" data-clipboard-text='<?php echo $cod_checkout; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Página Checkout
+      </button>
+      
+      <button id="btnCopiarCodSite6" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(6)" data-clipboard-text='<?php echo $cod_checkout_eu; ?>' type="button">
+        <i class="icon icon-code"></i> Copiar Código Página Checkout Europeu
       </button>
 
       <button id="btnCopiarCodSite4" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(4)" data-clipboard-text='<?php echo $cod_busca_buscador; ?>' type="button">

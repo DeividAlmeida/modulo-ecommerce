@@ -27,7 +27,7 @@ if(!empty($query)){ array_pop($query); };
          "<div class='container-fluid'><div class='row'><div class='col-3 card white' style='display: inline; margin-right:15px; flex: 2; font-size: 12px;'><span class='d-none'>":"",                        
          "<div class='card-header white' style='padding:0px'> DADOS DO CLIENTE</div><span class='d-none'>": "</span>",
         "Comprador": "<?php echo $mima['nome'];?>",
-        "<?php if($mima['tipo_pessoa'] == 2){echo "CNPJ";}else{echo "CPF";} echo'":'.'"'.$mima['id_pessoa'].'",'; ?>
+        <?php if($mima['id_pessoa'] == 'N/A'){}else{?> "<?php if($mima['tipo_pessoa'] == 2){echo "CNPJ";}else{echo "CPF";} echo'":'.'"'.$mima['id_pessoa'].'",'; }?>
         "Telefone": " <?php echo $mima['telefone'];?>",
         "Email": " <?php echo $mima['email']."</div> <div class='col-3 card  white' style='display: inline; margin-right:15px; flex: 2;font-size: 12px;padding: 0 5px 0 5px '>"; ?>",
         "<div class='card-header white' style='padding:0px'> DADOS DO PEDIDO ID": "<?php echo $id; ?></div>",
@@ -41,10 +41,10 @@ if(!empty($query)){ array_pop($query); };
         "Tipo de Entrega": "<?php echo $mima['tipo_entrega'];?>",
         "Código de Rastreamento": "<?php echo $mima['rastreamento'];?>",
         "Valor do frete": " <?php  echo "R$ ".number_format($mima['vl_frete'], 2, ",", "."); ?>",
-        "Estado": "<?php echo $mima['estado'];?>",
+        <?php if($mima['id_pessoa'] == 'N/A'){}else{ ?>"Estado": "<?php echo $mima['estado']; ?>", <?php }?>
         "Cidade": "<?php echo $mima['cidade'];?>",
-        "Bairro": "<?php echo $mima['bairro'];?>",
-        "Cep": "<?php echo $mima['cep'];?>",       
+        <?php if($mima['id_pessoa'] == 'N/A'){}else{ ?>"Bairro": "<?php echo $mima['bairro'];?>", <?php }?>
+        "Código Postal": "<?php echo $mima['cep'];?>",       
         "Rua": "<?php echo $mima['rua'];?>",
         "Número": "<?php echo $mima['numero'];?>",
         "Complemento": "<?php echo $mima['complemento']. "</div> <div class='col-3 card  white' style='display: inline;  flex: 2;'>"; ?> ",  
@@ -61,7 +61,7 @@ if(!empty($query)){ array_pop($query); };
         "<div class='container-fluid'><div class='row'><div class='col-3 card white' style='display: inline; margin-right:15px; flex: 2; font-size: 12px;'><span class='d-none'>":"",                   
         "<div class='card-header white' style='padding:0px'> DADOS DO CLIENTE</div><span class='d-none'>": "</span>",
         "Comprador": "<?php echo $last['nome'];?>",
-        "<?php if($last['tipo_pessoa'] == 2){echo "CNPJ";}else{echo "CPF";} print_r('":'.'"'.$last['id_pessoa'].'",'); ?>
+        <?php if($last['id_pessoa'] == 'N/A'){}else{?> "<?php if($last['tipo_pessoa'] == 2){echo "CNPJ";}else{echo "CPF";} print_r('":'.'"'.$last['id_pessoa'].'",'); } ?>
         "Telefone": "<?php print_r( $last['telefone']);?>",
         "Email": "<?php print_r($last['email']."</div> <div class='col-3 card  white' style='display: inline; margin-right:15px; flex: 2;font-size: 12px; padding: 0 5px 0 5px'>"); ?>",
         "<div class='card-header white' style='padding:0px'> DADOS DO PEDIDO ID": "<?php print_r($last['id']);?></div>",
@@ -75,10 +75,10 @@ if(!empty($query)){ array_pop($query); };
         "Tipo de Entrega": "<?php print_r($last['tipo_entrega']);?>",
         "Código de Rastreamento": "<?php print_r($last['rastreamento']);?>",
         "Valor do frete": "<?php print_r("R$ ".number_format($last['vl_frete'], 2, ",", ".")); ?>",
-        "Estado": "<?php print_r($last['estado']);?>",
+        <?php if($last['id_pessoa'] == 'N/A'){}else{?>"Estado": "<?php print_r($last['estado']);?>", <?php }?>
         "Cidade": "<?php print_r($last['cidade']);?>",
-        "Bairro": "<?php print_r($last['bairro']);?>",
-        "Cep": "<?php print_r($last['cep']);?>",       
+        <?php if($last['id_pessoa'] == 'N/A'){}else{?>"Bairro": "<?php print_r($last['bairro']);?>", <?php }?>
+        "Código Postal": "<?php print_r($last['cep']);?>",       
         "Rua": "<?php print_r($last['rua']);?>",
         "Número": "<?php print_r($last['numero']);?>",
         "Complemento": "<?php print_r($last['complemento']. "</div> <div class='col-3 card  white' style='display: inline;  flex: 2;'>");?> ",        
