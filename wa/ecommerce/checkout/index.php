@@ -305,7 +305,8 @@ $config = [];
                                                       document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                       document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                       document.getElementById("valor").value = b;
-                                                      document.getElementById("tipo_entrega").value = "Retirada na Loja";
+													  document.getElementById("tipo_entrega").value = "Retirada na Loja";
+													  document.getElementById("vl_frete").value = 0;
                                                   });
                                               </script>
                                               <?php } ?>

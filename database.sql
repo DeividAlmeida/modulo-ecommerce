@@ -307,7 +307,7 @@ INSERT INTO `ecommerce_config_entrega` (`id`, `estado`, `cidade`, `bairro`, `rua
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 INSERT INTO `ecommerce_config_email` (`id`, `nome`, `remetente`, `t_pagamento_pendente`, `pagamento_pendente`, `t_processando`, `processando`, `t_aguardando`, `aguardando`, `t_pedido_enviado`, `pedido_enviado`, `t_concluido`, `concluido`, `t_cancelado`, `cancelado`, `t_reembolsado`, `reembolsado`) VALUES
-('1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+(1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 INSERT INTO `ecommerce_config_link` (`id`, `logo`, `cabecalho`, `texto`) VALUES
 (1, '', '', '');

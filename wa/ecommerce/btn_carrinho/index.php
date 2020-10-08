@@ -40,6 +40,9 @@ if(!empty($_SESSION["car"])){
 .container, .container-fluid{
   overflow-x: visible !important;
 }
+.dropdown-menu{
+    z-index: 100000 !important;
+}
 </style>
 
 <div class="dropdown shop--cart-dropdown">

@@ -31,27 +31,27 @@
     </div>
 
     <div class="card-body">
-      <button id="btnCopiarCodSite1" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(1)" data-clipboard-text='<?php echo $cod_carrinho; ?>' type="button">
+      <button id="btnCopiarCodSite1" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(1)" data-clipboard-text='<?php echo $cod_carrinho; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Página Carrinho
       </button>
 
-      <button id="btnCopiarCodSite2" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(2)" data-clipboard-text='<?php echo $cod_btn_carrinho; ?>' type="button">
+      <button id="btnCopiarCodSite2" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(2)" data-clipboard-text='<?php echo $cod_btn_carrinho; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Botão Carrinho
       </button>
 
-      <button id="btnCopiarCodSite3" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(3)" data-clipboard-text='<?php echo $cod_checkout; ?>' type="button">
+      <button id="btnCopiarCodSite3" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(3)" data-clipboard-text='<?php echo $cod_checkout; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Página Checkout
       </button>
       
-      <button id="btnCopiarCodSite6" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(6)" data-clipboard-text='<?php echo $cod_checkout_eu; ?>' type="button">
+      <button id="btnCopiarCodSite6" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(6)" data-clipboard-text='<?php echo $cod_checkout_eu; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Página Checkout Europeu
       </button>
 
-      <button id="btnCopiarCodSite4" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(4)" data-clipboard-text='<?php echo $cod_busca_buscador; ?>' type="button">
+      <button id="btnCopiarCodSite4" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(4)" data-clipboard-text='<?php echo $cod_busca_buscador; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Campo de Busca
       </button>
 
-      <button id="btnCopiarCodSite5" class="btn btn-primary btn-xs" onclick="CopiadoCodSite(5)" data-clipboard-text='<?php echo $cod_busca_resultado; ?>' type="button">
+      <button id="btnCopiarCodSite5" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(5)" data-clipboard-text='<?php echo $cod_busca_resultado; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Página Resultado Busca
       </button>
 
