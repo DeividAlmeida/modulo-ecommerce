@@ -314,4 +314,3 @@ INSERT INTO `ecommerce_config_link` (`id`, `logo`, `cabecalho`, `texto`) VALUES
 
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 
-ALTER TABLE `ecommerce_vendas` CHANGE `valor` `valor` FLOAT(50,2) NOT NULL;
