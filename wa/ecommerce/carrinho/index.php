@@ -80,7 +80,7 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 					<button class="cart_qtd_delete btn btn-sm btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 				</td>
 		<?php if ($produto['a_consultar'] <> 'S') { ?>
-	      <td><?php echo $config['moeda'].''.$qtd[2]; ?></td>
+	      <td><?php echo $config['moeda'].''.str_replace(".",",",$qtd[2]); ?></td>
 	      <td><?php echo $config['moeda'].' '.number_format(floatval(str_replace(",", ".", $qtd[2])) * floatval(str_replace(",", ".", $qtd[1])), 2, ",", "."); ?></td>
 	  	<?php } else { ?>
 	  		<td>A Consultar</td>

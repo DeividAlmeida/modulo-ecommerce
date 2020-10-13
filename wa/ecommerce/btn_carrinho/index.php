@@ -41,7 +41,8 @@ if(!empty($_SESSION["car"])){
   overflow-x: visible !important;
 }
 .dropdown-menu{
-    z-index: 100000 !important;
+    z-index:100000 !important;
+    left: -100px !important;
 }
 </style>
 
@@ -83,7 +84,7 @@ if(!empty($_SESSION["car"])){
             <div>
               <h4 class="shop--cart-dropdown--list__title"><?php echo $produto['nome']; ?></h4>
               <div class="shop--cart-dropdown--list__qty"><?php echo $qtd[1]; ?></div>
-              <div class="shop--cart-dropdown--list__price"><?php echo $config['moeda'].' '.number_format(number_format($produto['preco'],2,",",".")*$qtd[1], 2, ',', '.'); ?></div>
+              <div class="shop--cart-dropdown--list__price"><?php echo $config['moeda'].' '.str_replace(".",",",$produto['preco'] * $qtd[1]); ?></div>
             </div>
           </li>
         <?php } else { ?>

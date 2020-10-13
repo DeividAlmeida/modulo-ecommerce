@@ -73,7 +73,7 @@
             <!-- `preco` decimal(10,2) NOT NULL -->
           <div class="form-group">
             <label>Preço: </label>
-            <input class="form-control" name="preco" required min="1" step="any">
+            <input class="form-control" name="preco" step="0.01" type="number" min="1" required>
           </div>
 
           <div class="form-group">

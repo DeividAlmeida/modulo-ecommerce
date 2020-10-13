@@ -100,11 +100,11 @@ ob_start();
   </div>
   <div class="col-md-6">
     <h4 class="shop--product-page--header__name"><?php echo $produto['nome']; ?></h4>
-    <div class="shop--product-page--header__price" id="valor" <?php if(isset($atributos)){ foreach($atributos as $atributo){ print_r("data-".$atributo['id']."='0'"); print_r(" id-".$atributo['id']."='0'"); print_r(" index-".$atributo['id']."='0'");}} ?> data-valor="<?php echo number_format($produto['preco'],2); ?>" valor-final="<?php echo number_format($produto['preco'],2); ?>" quantidade="1" id-final="0" index-final="" >
+    <div class="shop--product-page--header__price" id="valor" <?php if(isset($atributos)){ foreach($atributos as $atributo){ print_r("data-".$atributo['id']."='0'"); print_r(" id-".$atributo['id']."='0'"); print_r(" index-".$atributo['id']."='0'");}} ?> data-valor="<?php echo floatval($produto['preco']); ?>" valor-final="<?php echo floatval($produto['preco']); ?>" quantidade="1" id-final="0" index-final="" >
       <?php if($produto['a_consultar'] == 'S') {?>
         A consultar
       <?php } else { ?>
-        <?= $config['moeda'] ?> <?php echo number_format($produto['preco'],2,",","."); ?>
+        <?= $config['moeda'] ?> <?php echo str_replace(".",",",$produto['preco']); ?>
       <?php } ?>
     </div>
 
@@ -158,7 +158,7 @@ ob_start();
             var l = document.getElementById("valor").setAttribute("id-final", g);
             var n = document.getElementById("valor").setAttribute("index-final", m);
             var o = c / b;
-            var p = o.toFixed(2).replace(".", ",");
+            var p = o.toFixed(2);
             var f = document.getElementById("valor").setAttribute("valor-final", p);
 					if(<?php  foreach($atributos as $atributo){ print_r("document.getElementById('mySelect".$atributo['id']."').value != '' &&");  }; ?> z > 0){document.getElementById("piupiu").style.display = "inline";document.getElementById("frajola").style.display = "none";}
 					else{document.getElementById("piupiu").style.display = "none";document.getElementById("frajola").style.display = "inline";}

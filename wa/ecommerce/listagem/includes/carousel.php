@@ -61,7 +61,7 @@
 <div class="row">
   <div class="span12 shop--list">
     <div id="CaroulselCatalogoProduto<?php echo $uniqid; ?>" class="cpe-product-calousel owl-carousel owl-theme">
-      <?php foreach ($produtos as $produto) {
+      <?php if(is_array($produtos)){ foreach ($produtos as $produto) {
         $nome_arquivo    = $produto['url'].'-'.$produto['id'].".html";
         $url             = ConfigPainel('site_url').$nome_arquivo;
       ?>
@@ -79,7 +79,7 @@
             </div>
           </div>
         </div>
-      <?php } ?>
+      <?php } } ?>
     </div>
   </div>
 </div>
