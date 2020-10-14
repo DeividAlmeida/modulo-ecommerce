@@ -4,7 +4,8 @@ header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
-$plugins =  DBRead('ecommerce_plugins','*', "WHERE status = 'checked'");
+$gateways =  DBRead('ecommerce_plugins','*', "WHERE status = 'checked' AND tipo='gateways'");
+$deliveries =  DBRead('ecommerce_plugins','*', "WHERE status = 'checked' AND tipo='delivery'");
 $read = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; 
 $retirada = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0];
 $deposito = DBRead('ecommerce_config_deposito','*',"WHERE id = '1'")[0];
@@ -53,7 +54,7 @@ $config = [];
 													<div class="row">		
 														<div class="col-lg-4" id="customer_details">
 															<div class="woocommerce-billing-fields clearfix">	
-																<center><strong>Detalhes de cobrança</strong></center><br>	
+																<center><strong> Detalhes de cobrança</strong></center><br>	
 																<div class="woocommerce-billing-fields__field-wrapper">
 																	<p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_first_name_field" data-priority="10">
 																		<label for="billing_first_name" class="">Nome&nbsp;<abbr class="required" title="obrigatório">*</abbr>
@@ -290,9 +291,10 @@ $config = [];
 																					</td>
 																				</tr>
 																				<tr class="woocommerce-shipping-totals shipping">
-																					<td><strong><center>Entrega</center></strong><br> <span id="frete"></span><br>
-
-                                              <?php if($retirada['retirada'] == "checked") { ?> <br>  
+																					<td><strong><center>Entrega</center></strong> <span id="frete"></span>
+                                                                                        <?php if(!empty($deliveries)){ foreach($deliveries as $kyd => $dvy){ ?>
+                                                                                        <span id="<?php echo $dvy['id']; ?>" for=""></span>
+                                              <?php }} if($retirada['retirada'] == "checked") { ?>  
 																					    <div style="margin-left:0px; white-space: nowrap"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;white-space: nowrap' value="00,00"  > 
 																					    <label for="retirada" style="cursor:pointer; white-space: nowrap" for="retirada"><b>Retirada na loja</b> Valor: R$ 00,00</label></div> 
                                               <script>
@@ -314,14 +316,16 @@ $config = [];
 
 																					<td data-title="Entrega" > <span id="f_valor" ></span></td>
 																				</tr>																			
-																				<script>                                          
-                                        <?php if($retirada['entrega'] == "checked") { ?>
-                                              $(document).ready(function(){
-                                                $("#cepdestino").change(function(){
-                                                const cep = document.getElementById('cepdestino').value;
+									<script> 
+									    $(document).ready(function(){
+                                             $("#cepdestino").change(function(){
+                                                 const cep = document.getElementById('cepdestino').value;
+                                                <?php if(!empty($deliveries)){ foreach($deliveries as $keyd => $delivery){ ?>
+                                                $("<?php echo '#'.$delivery['id']; ?>").load('<?php echo ConfigPainel('base_url').$delivery['path']."/wa/index.php?peso=".$total_peso; ?>&id='+cep);
+                                                <?php }} if($retirada['entrega'] == "checked") { ?>
                                                 $("#frete").load('<?php echo ConfigPainel('base_url')?>wa/ecommerce/checkout/preload/');
                                                 $("#frete").load('https://nameless-atoll-10880.herokuapp.com/'+cep+'<?php echo "/".$read['cep']."/".$total_peso."/".$total_comprimento."/".$total_altura."/".$total_largura; ?>');
-                                                });
+                                               
                                               Cfrete = (z) =>{
                                                 const a = document.getElementById("normal").value;
                                                 const b = z + <?php echo $total_carrinho; ?>;
@@ -343,9 +347,10 @@ $config = [];
                                                 document.getElementById("valor").value = b;
                                                 document.getElementById("vl_frete").value =  z.toFixed(2).toString().replace(",",".");
                                                 document.getElementById("tipo_entrega").value = "Sedex";
-                                              };                                              
-                                            });
+                                              }
                                           <?php } ?>
+                                            });
+                                        });
                                     </script>											 																										
 									<tr class="order-total">
 										<th>Total</th>
@@ -376,7 +381,7 @@ $config = [];
                                         </label>                                                                                
                                     </li>
                                   <?php endif ?>
-                                  <?php if(!empty($plugins)){ foreach($plugins as $keyp => $plugin){ ?>
+                                  <?php if(!empty($gateways)){ foreach($gateways as $keyp => $plugin){ ?>
                                         <li class="wc_payment_method payment_method_traferencia">
                                         <input id="payment_method_<?php echo $plugin['nome']; ?>" type="radio" required class="input-radio" name="payment_method" value="<?php echo $plugin['titulo']; ?>" onclick="compose(<?php echo "'../../../".$plugin['path']."/wa/index.php'"; ?>)">
                                         <label for="payment_method_<?php echo $plugin['nome']; ?>" style="cursor:pointer">
@@ -442,7 +447,7 @@ $config = [];
 									<input required type="hidden" name="valor" id="valor" value="">
 									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
 									<input required type="hidden" name="vl_frete" id="vl_frete" value="">
-									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked"  && empty($plugins) ): else: ?>
+									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked"  && empty($gateways) ): else: ?>
 									<center><input type="submit" id="cartCheckout"  value="Finalizar compra" ></center>
 									<?php endif ?>
 								</div>

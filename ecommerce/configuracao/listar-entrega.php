@@ -63,6 +63,8 @@
         </div>          
     </div>
 </div>
+
+
 <span id="mod"></span>
 <script>
 retirada = (a) => {
@@ -99,5 +101,8 @@ document.getElementById('mod').innerHTML = modal;
 <?php if(isset($_GET['salvo'])){ ?>
     swal("Informações Atualizadas!", "Informações atualizadas com sucesso!", "success")
 <?php }?>
+
+
+
 </script>
 
