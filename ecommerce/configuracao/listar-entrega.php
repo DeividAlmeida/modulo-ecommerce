@@ -63,8 +63,6 @@
         </div>          
     </div>
 </div>
-
-
 <span id="mod"></span>
 <script>
 retirada = (a) => {
@@ -94,15 +92,9 @@ plugin = (a, b) => {
 };
 
 edita_plugin = (a, b) => {
-    const modal ="<div class='modal fade'  id='Modal"+b+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'><div  class='modal-dialog  modal-lg' role='document'><div  class='modal-content'><div class='modal-content b-0'><div class='modal-header r-0 bg-primary'><h3 class='modal-title text-white text-white' id='exampleModalLabel'>Edite as Informações de Pagamento</h3><a href='#' data-dismiss='modal' aria-label='Close' class='paper-nav-toggle paper-nav-white active'><i></i></a></div> <form id='"+b+"' method='post' action='ecommerce.php?"+b+"'><div class='modal-body ' id='no-"+b+"'></div><div class='modal-footer'><button class='btn btn-primary' type='submit'><i class='icon icon-floppy-o'></i>Salvar Mudanças</button></div></form> </div>  </div>    </div> </div>";
+    const modal ="<div class='modal fade'  id='Modal"+b+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'><div  class='modal-dialog  modal-lg' role='document'><div  class='modal-content'><div class='modal-content b-0'><div class='modal-header r-0 bg-primary'><h3 class='modal-title text-white text-white' id='exampleModalLabel'>Edite as Informações de Pagamento</h3><a href='#' data-dismiss='modal' aria-label='Close' class='paper-nav-toggle paper-nav-white active'><i></i></a></div> <div class='modal-body ' id='no-"+b+"'></div><div class='modal-footer'><button class='btn btn-primary' type='submit' onclick='post()'><i class='icon icon-floppy-o'></i>Salvar Mudanças</button></div> </div>  </div>    </div> </div>";
 document.getElementById('mod').innerHTML = modal;
     $("#no-"+b).load(a);
 }
-<?php if(isset($_GET['salvo'])){ ?>
-    swal("Informações Atualizadas!", "Informações atualizadas com sucesso!", "success")
-<?php }?>
-
-
-
 </script>
 

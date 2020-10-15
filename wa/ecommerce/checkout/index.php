@@ -295,8 +295,8 @@ $config = [];
                                                                                         <?php if(!empty($deliveries)){ foreach($deliveries as $kyd => $dvy){ ?>
                                                                                         <span id="<?php echo $dvy['id']; ?>" for=""></span>
                                               <?php }} if($retirada['retirada'] == "checked") { ?>  
-																					    <div style="margin-left:0px; white-space: nowrap"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;white-space: nowrap' value="00,00"  > 
-																					    <label for="retirada" style="cursor:pointer; white-space: nowrap" for="retirada"><b>Retirada na loja</b> Valor: R$ 00,00</label></div> 
+																					    <label for="retirada" style="cursor:pointer; margin-left:10px;" for="retirada"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;white-space: nowrap' value="00,00"  > 
+																					    <b>Retirada na loja</b><br>Valor do frete: R$ 0,00 / Prazo de entrega: imediato.</label> 
                                               <script>
                                                     document.getElementById("retirada").addEventListener("change", function() {
                                                       const z = 0;
@@ -321,7 +321,19 @@ $config = [];
                                              $("#cepdestino").change(function(){
                                                  const cep = document.getElementById('cepdestino').value;
                                                 <?php if(!empty($deliveries)){ foreach($deliveries as $keyd => $delivery){ ?>
-                                                $("<?php echo '#'.$delivery['id']; ?>").load('<?php echo ConfigPainel('base_url').$delivery['path']."/wa/index.php?peso=".$total_peso; ?>&id='+cep);
+                                                $("<?php echo '#'.$delivery['id']; ?>").load('<?php echo ConfigPainel('base_url').$delivery['path']."/wa/index.php?peso=".$total_peso."&valorcarrinho=".$total_carrinho; ?>&id='+cep);
+                                                  
+                                                 D<?php echo $delivery['id']; ?> = (z) =>{
+                                                    const a = document.getElementById("<?php echo $delivery['nome']; ?>").value;	
+                                                    const b = z + <?php echo $total_carrinho ?>;
+                                                    const c = b.toFixed(2).toString().replace(".",",");																					 
+                                                    document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
+                                                    document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
+                                                    document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
+                                                    document.getElementById("valor").value = b;
+                                                    document.getElementById("vl_frete").value =  z;
+                                                    document.getElementById("tipo_entrega").value = "<?php echo $delivery['titulo']; ?>";
+                                                }
                                                 <?php }} if($retirada['entrega'] == "checked") { ?>
                                                 $("#frete").load('<?php echo ConfigPainel('base_url')?>wa/ecommerce/checkout/preload/');
                                                 $("#frete").load('https://nameless-atoll-10880.herokuapp.com/'+cep+'<?php echo "/".$read['cep']."/".$total_peso."/".$total_comprimento."/".$total_altura."/".$total_largura; ?>');
