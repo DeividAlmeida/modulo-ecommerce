@@ -15,7 +15,7 @@ require_once("PagSeguroLibrary/PagSeguroLibrary.php");
     
     
 
-    if(post('tipo_entrega') == "Retirada na Loja"){}else{ 
+    if(post('tipo_entrega') == "Retirada na Loja" || post('tipo_entrega') == "Frete Grátis" ){}else{ 
         $paymentRequest->addItem('0001', 'frete',  1, post('vl_frete')); }
         $paymentRequest->setCurrency("BRL"); 
     

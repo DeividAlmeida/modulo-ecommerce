@@ -105,7 +105,7 @@ $config = [];
 																			<abbr class="required" title="obrigatório">*</abbr>
 																		</label>
 																		<span class="woocommerce-input-wrapper">
-																			<input required id="cepdestino" type="tel" class="input-text " name="billing_postcode" id="billing_postcode" placeholder="" value="" autocomplete="postal-code">
+																			<input pattern="[0-9]+$" required id="cepdestino" type="text" maxlength='7' minlength='7' class="input-text " name="billing_postcode" id="billing_postcode" placeholder="99999999" value="" autocomplete="postal-code">
 																		</span>
 																	</p>
 																	<p class="form-row form-row-last address-field validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_address_1_field" data-priority="50">
