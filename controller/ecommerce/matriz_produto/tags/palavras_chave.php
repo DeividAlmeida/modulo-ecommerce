@@ -1,3 +1,3 @@
 <?php
 
-$matriz = str_replace('[WAC_ECOMMERCE_PROD_PALAVRAS_CHAVE]', $produto['palavras_chave'], $matriz);
+$matriz = str_replace('[WAC_ECOMMERCE_PROD_PALAVRAS_CHAVES]', $produto['palavras_chave'], $matriz);

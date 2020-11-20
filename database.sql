@@ -119,6 +119,18 @@ CREATE TABLE IF NOT EXISTS `ecommerce_prod_categorias` (
   `id_categoria` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+
+-- CUPOM
+CREATE TABLE IF NOT EXISTS `ecommerce_cupom` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `codigo` text DEFAULT NULL,
+  `tipo` text DEFAULT NULL,
+  `frete` text DEFAULT NULL,
+  `data` text DEFAULT NULL,
+  `valor` decimal(10,2) DEFAULT NULL,
+  `descricao` text DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 -- PRODUTO - TERMOS
 CREATE TABLE IF NOT EXISTS `ecommerce_prod_termos` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,

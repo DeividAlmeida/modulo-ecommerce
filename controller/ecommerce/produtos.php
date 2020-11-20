@@ -494,3 +494,44 @@ if(isset($_GET['DeletarProdutoTermo'])){
   DBDelete('ecommerce_prod_termos',"id = {$id}");
 
 }
+
+if(isset($_GET['AddCupom'])){
+   
+     $data = array(
+      'codigo'         => post('codigo'),
+      'descricao'      => post('descricao'),
+      'tipo'           => post('tipo'),
+      'valor'          => post('valor'),   
+      'frete'          => post('frete'),   
+      'data'           => post('data')  
+    );
+    $query = DBCreate('ecommerce_cupom', $data);
+    if(!$query) { Redireciona('?AdicionarCupom&erro'); }else{
+      Redireciona('?ListarCupons&sucesso');
+    }
+  }
+
+  if(isset($_GET['DeletarCupom'])){
+    $id =  get('DeletarCupom');
+    $query = DBDelete('ecommerce_cupom',"id = {$id}");
+    if(!$query) { Redireciona('?AdicionarCupom&erro'); }else{
+      Redireciona('?ListarCupons&sucesso');
+    }
+  }
+  if(isset($_GET['EditCupom'])){
+    
+  $id =  get('EditCupom');
+  $data = array(
+    'codigo'         => post('codigo'),
+    'descricao'      => post('descricao'),
+    'tipo'           => post('tipo'),
+    'valor'          => post('valor'),   
+    'frete'          => post('frete'),   
+    'data'           => post('data')  
+  );
+  $query = DBUpdate('ecommerce_cupom', $data, "id = {$id}");
+
+    if(!$query) { Redireciona('?AdicionarCupom&erro'); }else{
+      Redireciona('?ListarCupons&sucesso');
+    }
+  }
