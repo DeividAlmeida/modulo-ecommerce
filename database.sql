@@ -127,6 +127,17 @@ CREATE TABLE IF NOT EXISTS `ecommerce_cupom` (
   `tipo` text DEFAULT NULL,
   `frete` text DEFAULT NULL,
   `data` text DEFAULT NULL,
+  `produtos` text DEFAULT NULL,
+  `ex_produtos` text DEFAULT NULL,
+  `categorias` text DEFAULT NULL,
+  `ex_categorias` text DEFAULT NULL,
+  `limite_cupom` text DEFAULT NULL,
+  `gasto_mi` text DEFAULT NULL,
+  `gasto_ma` text DEFAULT NULL,
+  `uso` text DEFAULT NULL,
+  `ex_oferta` text DEFAULT NULL,
+  `emails` text DEFAULT NULL,
+  `limite_cliente` text DEFAULT NULL,
   `valor` decimal(10,2) DEFAULT NULL,
   `descricao` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

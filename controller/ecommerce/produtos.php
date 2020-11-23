@@ -503,7 +503,18 @@ if(isset($_GET['AddCupom'])){
       'tipo'           => post('tipo'),
       'valor'          => post('valor'),   
       'frete'          => post('frete'),   
-      'data'           => post('data')  
+      'produtos'       => post('produtos'),   
+      'ex_produtos'    => post('ex_produtos'),   
+      'categorias'     => post('categorias'),   
+      'ex_categorias'  => post('ex_categorias'),   
+      'limite_cupom'   => post('limite_cupom'),   
+      'gasto_mi'       => post('gasto_mi'),   
+      'gasto_ma'       => post('gasto_ma'),   
+      'uso'            => post('uso'),   
+      'ex_oferta'      => post('ex_oferta'),   
+      'emails'         => post('emails'),   
+      'limite_cliente' => post('limite_cliente'),     
+      'data'           => post('data') 
     );
     $query = DBCreate('ecommerce_cupom', $data);
     if(!$query) { Redireciona('?AdicionarCupom&erro'); }else{
@@ -527,6 +538,17 @@ if(isset($_GET['AddCupom'])){
     'tipo'           => post('tipo'),
     'valor'          => post('valor'),   
     'frete'          => post('frete'),   
+    'produtos'       => post('produtos'),   
+    'ex_produtos'    => post('ex_produtos'),   
+    'categorias'     => post('categorias'),   
+    'ex_categorias'  => post('ex_categorias'),   
+    'limite_cupom'   => post('limite_cupom'),   
+    'gasto_mi'       => post('gasto_mi'),   
+    'gasto_ma'       => post('gasto_ma'),   
+    'uso'            => post('uso'),   
+    'ex_oferta'      => post('ex_oferta'),   
+    'emails'         => post('emails'),   
+    'limite_cliente' => post('limite_cliente'),     
     'data'           => post('data')  
   );
   $query = DBUpdate('ecommerce_cupom', $data, "id = {$id}");
