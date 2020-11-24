@@ -1,3 +1,11 @@
+<?php 
+$produtos = DBRead('ecommerce','*'); 
+$categorias = DBRead('ecommerce_categorias','*'); 
+$pdts = json_decode($query['produtos'], true);
+$ex_pdts = json_decode($query['ex_produtos'], true);
+$ctrs = json_decode($query['categorias'], true);
+$ex_ctrs = json_decode($query['ex_categorias'], true);
+?>
 <script src='https://unpkg.com/react/umd/react.development.js'></script>
 <script src='https://unpkg.com/react-dom/umd/react-dom.development.js'></script>
 <script>
@@ -145,28 +153,45 @@ else if(isset($_GET['AdicionarCupom'])){ ?>
             ),
             React.createElement("div",{className: "form-group"},
                 React.createElement("lable",null, "Tipo de Desconto:"),
-                React.createElement("select",{className: "form-control", name: "tipo", type: "text", required: true},
+                React.createElement("select",{className: "form-control", name: "tipo", required: true},
                 React.createElement("option", {value: "Ford", disabled:true, selected:true}, "Ford"),
                 React.createElement("option", {value: "WV"}, "WV"),
                 React.createElement("option", {value: "Tesla"}, "Tesla"),
                 
                 ),),
             React.createElement("div",{className: "form-group"},
-                React.createElement("lable",null, "Produtos:"),
-                React.createElement("input",{ className: "form-control", name: "produtos", type:"text"}),
-                ),
+                React.createElement("lable",null, "Produtos"),
+                React.createElement("select",{className: "form-control  produto-categorias",multiple: "multiple", name: "produtos[]"},
+                <?php forEach($produtos as $produto){ ?>
+                React.createElement("option", {value: "<?php echo $produto['nome'] ?>"}, "<?php echo $produto['nome'] ?>"),
+                <?php } ?>
+                
+                ),),
             React.createElement("div",{className: "form-group"},
-                React.createElement("lable",null, "Excluir Produtos:"),
-                React.createElement("input",{ className: "form-control", name: "ex_produtos", type:"text"}),
-                ),
+                React.createElement("lable",null, "Excluir Produtos"),
+                React.createElement("select",{className: "form-control  produto-categorias",multiple: "multiple", name: "ex_produtos[]"},
+                <?php forEach($produtos as $produto){ ?>
+                React.createElement("option", {value: "<?php echo $produto['nome'] ?>"}, "<?php echo $produto['nome'] ?>"),
+                <?php } ?>
+                
+                ),),
             React.createElement("div",{className: "form-group"},
-                React.createElement("lable",null, "Categorias:"),
-                React.createElement("input",{ className: "form-control", name: "categorias", type:"text"}),
-                ),
+                React.createElement("lable",null, "Categorias"),
+                React.createElement("select",{className: "form-control  produto-categorias",multiple: "multiple", name: "categorias[]"},
+                <?php forEach($categorias as $categoria){ ?>
+                React.createElement("option", {value: "<?php echo $categoria['nome'] ?>"}, "<?php echo $categoria['nome'] ?>"),
+                <?php } ?>
+                
+                ),),
+                
             React.createElement("div",{className: "form-group"},
-                React.createElement("lable",null, "Excluir Categorias:"),
-                React.createElement("input",{ className: "form-control", name: "ex_categorias", type:"text"}),
-                ),
+                React.createElement("lable",null, "Excluir Categorias"),
+                React.createElement("select",{className: "form-control  produto-categorias",multiple: "multiple", name: "ex_categorias[]"},
+                <?php forEach($categorias as $categoria){ ?>
+                React.createElement("option", {value: "<?php echo $categoria['nome'] ?>"}, "<?php echo $categoria['nome'] ?>"),
+                <?php } ?>
+                
+                ),),
             React.createElement("div",{className: "form-group"},
                 React.createElement("lable",null, "Limite de uso por cupom:"),
                 React.createElement("input",{ className: "form-control", name: "limite_cupom", type:"text"}),
@@ -242,32 +267,58 @@ ReactDOM.render(
             ),
             React.createElement("div",{className: "form-group"},
                 React.createElement("lable",null, "Tipo de Desconto:"),
-                React.createElement("select",{className: "form-control", name: "tipo", type: "text", required: true, defaultValue: "<?php echo $query['tipo'] ?>"},
+                React.createElement("select",{className: "form-control", name: "tipo",  required: true, defaultValue: "<?php echo $query['tipo'] ?>"},
                 React.createElement("option", {value: "Ford", disabled:true, selected:true}, "Ford"),
                 React.createElement("option", {value: "WV"}, "WV"),
                 React.createElement("option", {value: "Tesla"}, "Tesla"),
                 
                 ),),
             React.createElement("div",{className: "form-group"},
-                React.createElement("lable",null, "Produtos:"),
-                React.createElement("input",{ className: "form-control", name: "produtos", type:"text", defaultValue: "<?php echo $query['produtos'] ?>"}),
-                ),
+                React.createElement("lable",null, "Produtos"),
+                React.createElement("select",{className: "form-control  produto-categorias",multiple: "multiple", name: "produtos[]"},
+                <?php if(!empty($pdts)){ forEach($pdts as $pdt){ ?>
+                React.createElement("option", {value: "<?php echo $pdt['id'] ?>", selected:true}, "<?php echo $pdt['id'] ?>"),
+                <?php } } ?>
+                <?php forEach($produtos as $produto){ ?>
+                React.createElement("option", {value: "<?php echo $produto['nome'] ?>"}, "<?php echo $produto['nome'] ?>"),
+                <?php } ?>
+                
+                ),),
             React.createElement("div",{className: "form-group"},
-                React.createElement("lable",null, "Excluir Produtos:"),
-                React.createElement("input",{ className: "form-control", name: "ex_produtos", type:"text", defaultValue: "<?php echo $query['ex_produtos'] ?>"}),
-                ),
+                React.createElement("lable",null, "Excluir Produtos"),
+                React.createElement("select",{className: "form-control  produto-categorias",multiple: "multiple", name: "ex_produtos[]"},
+                <?php if(!empty($ex_pdts)){ forEach($ex_pdts as $ex_pdt){ ?>
+                React.createElement("option", {value: "<?php echo $ex_pdt['id'] ?>", selected:true}, "<?php echo $ex_pdt['id'] ?>"),
+                <?php }} ?>
+                <?php  forEach($produtos as $produto){ ?>
+                React.createElement("option", {value: "<?php echo $produto['nome'] ?>"}, "<?php echo $produto['nome'] ?>"),
+                <?php } ?>
+                
+                ),),
             React.createElement("div",{className: "form-group"},
-                React.createElement("lable",null, "Categorias:"),
-                React.createElement("input",{ className: "form-control", name: "categorias", type:"text", defaultValue: "<?php echo $query['categorias'] ?>"}),
-                ),
+                React.createElement("lable",null, "Categorias"),
+                React.createElement("select",{className: "form-control  produto-categorias",multiple: "multiple", name: "categorias[]",  },
+                <?php if(!empty($ctrs)){ forEach($ctrs as $ctr){ ?>
+                React.createElement("option", {value: "<?php echo $ctr['id'] ?>", selected:true}, "<?php echo $ctr['id'] ?>"),
+                <?php }} ?>
+                <?php forEach($categorias as $categoria){ ?>
+                React.createElement("option", {value: "<?php echo $categoria['nome'] ?>"}, "<?php echo $categoria['nome'] ?>"),
+                <?php } ?>
+                
+                ),),
+                
             React.createElement("div",{className: "form-group"},
-                React.createElement("lable",null, "Excluir Categorias:"),
-                React.createElement("input",{ className: "form-control", name: "ex_categorias", type:"text", defaultValue: "<?php echo $query['ex_categorias'] ?>"}),
-                ),
-            React.createElement("div",{className: "form-group"},
-                React.createElement("lable",null, "Limite de uso por cupom:"),
-                React.createElement("input",{ className: "form-control", name: "limite_cupom", type:"text", defaultValue: "<?php echo $query['limite_cupom'] ?>"}),
-                ),
+                React.createElement("lable",null, "Excluir Categorias"),
+                React.createElement("select",{className: "form-control  produto-categorias",multiple: "multiple", name: "ex_categorias[]"},
+                <?php if(!empty($ex_ctrs)){ forEach($ex_ctrs as $ex_ctr){ ?>
+                React.createElement("option", {value: "<?php echo $ex_ctr['id'] ?>", selected:true}, "<?php echo $ex_ctr['id'] ?>"),
+                <?php } } ?>
+                <?php forEach($categorias as $categoria){ ?>
+                React.createElement("option", {value: "<?php echo $categoria['nome'] ?>"}, "<?php echo $categoria['nome'] ?>"),
+                <?php } ?>
+                
+                ),),            
+            
             ), 
             
            React.createElement("div",{className: "col-md-6"},
@@ -307,6 +358,7 @@ ReactDOM.render(
                 React.createElement("lable",null, "Limite de uso por cliente:"),
                 React.createElement("input",{ className: "form-control", name: "limite_cliente", type:"text", defaultValue: "<?php echo $query['limite_cliente'] ?>"}),
                 ),
+            
         ))),
         React.createElement("div",{className: "card-footer white"},                
                 React.createElement("button",{ className: "btnSubmit btn btn-primary float-right", type:"submit"}, "Cadastrar"),

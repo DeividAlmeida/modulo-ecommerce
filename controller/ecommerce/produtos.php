@@ -496,6 +496,32 @@ if(isset($_GET['DeletarProdutoTermo'])){
 }
 
 if(isset($_GET['AddCupom'])){
+    
+    
+if(isset($_POST['produtos'])){
+        $resources = array_combine(array_keys($_POST['produtos']), array_map(function ($id) {
+        return compact('id');
+        }, $_POST['produtos']));
+        $_POST['produto'] =    json_encode($resources, JSON_FORCE_OBJECT); 
+  }
+if(isset($_POST['ex_produtos'])){
+        $resources1 = array_combine(array_keys($_POST['ex_produtos']), array_map(function ($id) {
+        return compact('id');
+        }, $_POST['ex_produtos']));
+        $_POST['ex_produto'] =    json_encode($resources1, JSON_FORCE_OBJECT);
+}
+if(isset($_POST['categorias'])){    
+        $resources2 = array_combine(array_keys($_POST['categorias']), array_map(function ($id) {
+        return compact('id');
+        }, $_POST['categorias']));
+        $_POST['categoria'] =    json_encode($resources2, JSON_FORCE_OBJECT);
+}
+if(isset($_POST['ex_categorias'])){ 
+        $resources3 = array_combine(array_keys($_POST['ex_categorias']), array_map(function ($id) {
+        return compact('id');
+        }, $_POST['ex_categorias']));
+        $_POST['ex_categoria'] =    json_encode($resources3, JSON_FORCE_OBJECT);
+}
    
      $data = array(
       'codigo'         => post('codigo'),
@@ -503,10 +529,10 @@ if(isset($_GET['AddCupom'])){
       'tipo'           => post('tipo'),
       'valor'          => post('valor'),   
       'frete'          => post('frete'),   
-      'produtos'       => post('produtos'),   
-      'ex_produtos'    => post('ex_produtos'),   
-      'categorias'     => post('categorias'),   
-      'ex_categorias'  => post('ex_categorias'),   
+      'produtos'       => $_POST['produto'],   
+      'ex_produtos'    => $_POST['ex_produto'],   
+      'categorias'     => $_POST['categoria'],   
+      'ex_categorias'  => $_POST['ex_categoria'],   
       'limite_cupom'   => post('limite_cupom'),   
       'gasto_mi'       => post('gasto_mi'),   
       'gasto_ma'       => post('gasto_ma'),   
@@ -529,7 +555,35 @@ if(isset($_GET['AddCupom'])){
       Redireciona('?ListarCupons&sucesso');
     }
   }
-  if(isset($_GET['EditCupom'])){
+if(isset($_GET['EditCupom'])){
+
+if(isset($_POST['produtos'])){
+        $resources = array_combine(array_keys($_POST['produtos']), array_map(function ($id) {
+        return compact('id');
+        }, $_POST['produtos']));
+        $_POST['produto'] =    json_encode($resources, JSON_FORCE_OBJECT); 
+  }
+if(isset($_POST['ex_produtos'])){
+        $resources1 = array_combine(array_keys($_POST['ex_produtos']), array_map(function ($id) {
+        return compact('id');
+        }, $_POST['ex_produtos']));
+        $_POST['ex_produto'] =    json_encode($resources1, JSON_FORCE_OBJECT);
+}
+if(isset($_POST['categorias'])){    
+        $resources2 = array_combine(array_keys($_POST['categorias']), array_map(function ($id) {
+        return compact('id');
+        }, $_POST['categorias']));
+        $_POST['categoria'] =    json_encode($resources2, JSON_FORCE_OBJECT);
+}
+if(isset($_POST['ex_categorias'])){ 
+        $resources3 = array_combine(array_keys($_POST['ex_categorias']), array_map(function ($id) {
+        return compact('id');
+        }, $_POST['ex_categorias']));
+        $_POST['ex_categoria'] =    json_encode($resources3, JSON_FORCE_OBJECT);
+} 
+ 
+   
+
     
   $id =  get('EditCupom');
   $data = array(
@@ -538,10 +592,10 @@ if(isset($_GET['AddCupom'])){
     'tipo'           => post('tipo'),
     'valor'          => post('valor'),   
     'frete'          => post('frete'),   
-    'produtos'       => post('produtos'),   
-    'ex_produtos'    => post('ex_produtos'),   
-    'categorias'     => post('categorias'),   
-    'ex_categorias'  => post('ex_categorias'),   
+    'produtos'       =>  $_POST['produto'],   
+    'ex_produtos'    =>  $_POST['ex_produto'],   
+    'categorias'     =>  $_POST['categoria'] ,   
+    'ex_categorias'  =>  $_POST['ex_categoria'],   
     'limite_cupom'   => post('limite_cupom'),   
     'gasto_mi'       => post('gasto_mi'),   
     'gasto_ma'       => post('gasto_ma'),   

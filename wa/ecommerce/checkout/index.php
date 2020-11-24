@@ -9,7 +9,8 @@ $deliveries =  DBRead('ecommerce_plugins','*', "WHERE status = 'checked' AND tip
 $read = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0]; 
 $retirada = DBRead('ecommerce_config_entrega','*',"WHERE id = '1'")[0];
 $deposito = DBRead('ecommerce_config_deposito','*',"WHERE id = '1'")[0];
-$pagseguro = DBRead('ecommerce_config_pagseguro','*',"WHERE id = '1'")[0]; 
+$pagseguro = DBRead('ecommerce_config_pagseguro','*',"WHERE id = '1'")[0];
+$cupons  = DBRead('ecommerce_cupom','*');
 $query = DBRead('ecommerce_config','*');
 $config = [];
   foreach ($query as $key => $row) {
@@ -204,6 +205,34 @@ $config = [];
 																			<input required type="email" class="input-text " name="billing_email" id="billing_email" placeholder="" value="" autocomplete="email username">
 																		</span>
 																	</p>
+																	<p class="form-row form-row-wide validate-required validate-email woocommerce-invalid woocommerce-invalid-required-field" id="billing_email_field" data-priority="110">
+																		<label for="billing_email" class="">Cupom de desconto&nbsp;
+																		</label>
+																		<span class="woocommerce-input-wrapper">
+																			<input  type="text" class="input-text" name="cupom" id="cupom" placeholder="" value="" >
+																		    <script>
+																		       let cupons = [<?php if(!empty($cupons)){ foreach($cupons as $cupom){ echo "'".$cupom['codigo']."',"; } } ?>];
+																	           let get  = document.getElementById("cupom");
+																	           let existe = "não";
+																	            get.addEventListener("change", () => { 
+																	                if(get.value != ""){
+    																	                for(i=0; i<cupons.length; i++){
+    																	                    if(cupons[i] == get.value){
+    																	                        
+    																	                        existe = "sim";
+    																	                        break;
+    																	                    }
+    																	                    else{
+    																	                        existe = "não";
+    																	                    }
+    																	                }
+    																	                console.log(existe);
+    																	            }
+																	            })
+																	        </script>
+																		</span>
+																	</p>
+																	
 																	<div id="wcbcf-mailsuggest" style="color: rgb(204, 0, 0); font-size: small;">
 																	</div>
 																</div>
@@ -503,4 +532,5 @@ $config = [];
 				else if(e){b.style.display = "block";g.style.display = "none";c.style.display = "block"}
 				else if(f){b.style.display = "none";g.style.display = "block";c.style.display = "none"}
       };
+      
       </script>
