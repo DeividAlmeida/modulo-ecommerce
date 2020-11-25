@@ -214,19 +214,32 @@ $config = [];
 																		       let cupons = [<?php if(!empty($cupons)){ foreach($cupons as $cupom){ echo "'".$cupom['codigo']."',"; } } ?>];
 																	           let get  = document.getElementById("cupom");
 																	           let existe = "não";
-																	            get.addEventListener("change", () => { 
+																	           get.addEventListener("change", () => { 
+																	               var form = new FormData();
+																	               let itens = document.getElementsByName('id_pdt[]');
+    																	           for(i=0; i< itens.length; i++){
+    																	               form.append([i], itens[i].value);
+    																	           }
 																	                if(get.value != ""){
     																	                for(i=0; i<cupons.length; i++){
     																	                    if(cupons[i] == get.value){
     																	                        
-    																	                        existe = "sim";
+    																	                        fetch(UrlPainel+'wa/ecommerce/apis/cupons.php?id='+cupons[i], {
+                                                                                                      method: "POST",
+                                                                                                      body: form
+                                                                                                    }).then((res)=>{
+                                                                                                       res.text().then(data =>{
+                                                                                                          alert(data); 
+                                                                                                       });
+                                                                                                    });
     																	                        break;
     																	                    }
     																	                    else{
-    																	                        existe = "não";
+    																	                        
+    																	                        console.log(existe);
     																	                    }
     																	                }
-    																	                console.log(existe);
+    																	                
     																	            }
 																	            })
 																	        </script>
