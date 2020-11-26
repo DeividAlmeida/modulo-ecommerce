@@ -210,39 +210,6 @@ $config = [];
 																		</label>
 																		<span class="woocommerce-input-wrapper">
 																			<input  type="text" class="input-text" name="cupom" id="cupom" placeholder="" value="" >
-																		    <script>
-																		       let cupons = [<?php if(!empty($cupons)){ foreach($cupons as $cupom){ echo "'".$cupom['codigo']."',"; } } ?>];
-																	           let get  = document.getElementById("cupom");
-																	           let existe = "não";
-																	           get.addEventListener("change", () => { 
-																	               var form = new FormData();
-																	               let itens = document.getElementsByName('id_pdt[]');
-    																	           for(i=0; i< itens.length; i++){
-    																	               form.append([i], itens[i].value);
-    																	           }
-																	                if(get.value != ""){
-    																	                for(i=0; i<cupons.length; i++){
-    																	                    if(cupons[i] == get.value){
-    																	                        
-    																	                        fetch(UrlPainel+'wa/ecommerce/apis/cupons.php?id='+cupons[i], {
-                                                                                                      method: "POST",
-                                                                                                      body: form
-                                                                                                    }).then((res)=>{
-                                                                                                       res.text().then(data =>{
-                                                                                                          alert(data); 
-                                                                                                       });
-                                                                                                    });
-    																	                        break;
-    																	                    }
-    																	                    else{
-    																	                        
-    																	                        console.log(existe);
-    																	                    }
-    																	                }
-    																	                
-    																	            }
-																	            })
-																	        </script>
 																		</span>
 																	</p>
 																	
@@ -333,6 +300,10 @@ $config = [];
 																					</td>
 																				</tr>
 																				<tr class="woocommerce-shipping-totals shipping">
+																				    <td><strong><center>Desconto</center></strong> <span id="desconto"></span>
+																				    <td><span id="d_valor"><?php echo $config['moeda']." 00,00"; ?></span>
+																				</tr>
+																				<tr class="woocommerce-shipping-totals shipping">
 																					<td><strong><center>Entrega</center></strong> <span id="frete"></span>
                                                                                         <?php if(!empty($deliveries)){ foreach($deliveries as $kyd => $dvy){ ?>
                                                                                         <span id="<?php echo $dvy['id']; ?>" for=""></span>
@@ -343,7 +314,8 @@ $config = [];
                                                     document.getElementById("retirada").addEventListener("change", function() {
                                                       const z = 0;
                                                       const a = document.getElementById("retirada").value;
-                                                      const b = z + <?php echo $total_carrinho; ?>;
+                                                      const v = parseFloat(document.getElementById('v_desconto').value);
+                                                      const b = z - v + <?php echo $total_carrinho; ?>;
                                                       const c = b.toFixed(2).toString().replace(".",",");																					  
                                                       document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
                                                       document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
@@ -367,7 +339,8 @@ $config = [];
                                                   
                                                  D<?php echo $delivery['id']; ?> = (z) =>{
                                                     const a = document.getElementById("<?php echo $delivery['nome']; ?>").value;	
-                                                    const b = z + <?php echo $total_carrinho ?>;
+                                                    const v = parseFloat(document.getElementById('v_desconto').value);
+                                                    const b = z - v + <?php echo $total_carrinho; ?>;
                                                     const c = b.toFixed(2).toString().replace(".",",");																					 
                                                     document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
                                                     document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
@@ -382,7 +355,8 @@ $config = [];
                                                
                                               Cfrete = (z) =>{
                                                 const a = document.getElementById("normal").value;
-                                                const b = z + <?php echo $total_carrinho; ?>;
+                                                const v = parseFloat(document.getElementById('v_desconto').value);
+                                                const b = z - v + <?php echo $total_carrinho; ?>;
                                                 const c = b.toFixed(2).toString().replace(".",",");																					  
                                                 document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
                                                 document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
@@ -393,7 +367,8 @@ $config = [];
                                               };
                                               Cfrete1 = (z) =>{
                                                 const a = document.getElementById("expresso").value;	
-                                                const b = z + <?php echo $total_carrinho ?>;
+                                                const v = parseFloat(document.getElementById('v_desconto').value);
+                                                const b = z - v + <?php echo $total_carrinho; ?>;
                                                 const c = b.toFixed(2).toString().replace(".",",");																					 
                                                 document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
                                                 document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
@@ -405,7 +380,45 @@ $config = [];
                                           <?php } ?>
                                             });
                                         });
-                                    </script>											 																										
+
+								       let get  = document.getElementById("cupom");
+							           let existe = "não";
+							           let desconto = document.getElementById('d_valor');
+							           let valor_d = document.getElementById('v_desconto');
+							           let frete = document.getElementById('vl_frete');
+							           let total = document.getElementById('valor');
+							           let veiw_total = document.getElementById('total');
+							           let geral = document.getElementById('valor_geral');
+							           get.addEventListener("change", () => { 
+							               desconto.innerHTML =  "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
+							               var form = new FormData();
+							               let itens = document.getElementsByName('id_pdt[]');
+								           for(i=0; i< itens.length; i++){
+								               form.append([i], itens[i].value);
+								           }
+					                        fetch(UrlPainel+'wa/ecommerce/apis/cupons.php?id='+get.value, {
+                                                method: "POST",
+                                                body: form
+                                            }).then((res)=>{
+                                                res.text().then(data =>{
+                                                    if(data == "0"){
+                                                        desconto.innerHTML = "<?php echo $config['moeda']?> 00,00";
+                                                        valor_d.value = 0.00;
+                                                    }
+                                                    else{
+                                                        desconto.innerHTML = "<?php echo $config['moeda']?> "+ data.replace(".", ",");
+                                                        valor_d.value = data;
+                                                    }
+                                                    if(frete.value != ""){
+                                                        let soma = <?php echo $total_carrinho; ?> + parseFloat(frete.value) - valor_d.value;
+                                                        total.value = soma;
+                                                        veiw_total.innerHTML = "<?php echo $config['moeda']?> "+ soma.toFixed(2).toString().replace('.', ',');
+                                                        geral.innerHTML = "<?php echo $config['moeda']?> "+ soma.toFixed(2).toString().replace('.', ',');
+                                                    }
+                                                });
+                                            });
+							            })
+							    </script>
 									<tr class="order-total">
 										<th>Total</th>
 										<td>
@@ -499,6 +512,7 @@ $config = [];
 										</span>
 									</h3><br>
 									<input required type="hidden" name="valor" id="valor" value="">
+									<input  type="hidden" name="v_desconto" id="v_desconto" value="0.00">
 									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
 									<input required type="hidden" name="vl_frete" id="vl_frete" value="">
 									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked"  && empty($gateways) ): else: ?>
