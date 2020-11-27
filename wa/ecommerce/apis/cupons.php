@@ -10,6 +10,9 @@ $produto = json_decode($cupons['produtos'],true);
 $ex_produto = json_decode($cupons['ex_produtos'],true);
 $categoria_compra = json_decode($cupons['categorias'],true);
 $ex_categoria_compra = json_decode($cupons['categorias'],true);
+$qtd = $_POST['quantidade'];
+$quantidade = 1;
+unset($_POST['quantidade']);
     foreach($_POST as $key => $value){
         $compra  = DBRead('ecommerce','*',"WHERE id = '{$value}'")[0];
         $categoria = DBRead('ecommerce_prod_categorias','*',"WHERE id_produto = '{$value}'")[0];
@@ -18,7 +21,8 @@ $ex_categoria_compra = json_decode($cupons['categorias'],true);
         if(empty($produto) && !empty($ex_produto)){
             foreach($ex_produto as $fora){
                 if($compra['nome'] != $fora['id']){
-                    $desconto = $cupons['valor'];
+                    $desconto += $cupons['valor'];
+                    $quantidade = $qtd;
                 }
             }
         }
@@ -26,6 +30,7 @@ $ex_categoria_compra = json_decode($cupons['categorias'],true);
             foreach($produto as $dentro){
                 if($compra['nome'] == $dentro['id']){
                     $desconto = $cupons['valor']; 
+                    $quantidade = $qtd;
                 }    
             }
         }
@@ -33,6 +38,7 @@ $ex_categoria_compra = json_decode($cupons['categorias'],true);
             foreach($ex_categoria_compra as $ca_fora){
                 if($compra['nome'] != $ca_fora['id']){
                     $desconto = $cupons['valor'];
+                    $quantidade = $qtd;
                 }
             }
         }
@@ -40,8 +46,9 @@ $ex_categoria_compra = json_decode($cupons['categorias'],true);
             foreach($categoria_compra as $cc){ 
                 if($categoria_nome['nome'] == $cc['id']){
                     $desconto = $cupons['valor'];
+                    $quantidade = $qtd;
                 }
             }
         }
     }
-echo $desconto;
+echo $desconto * $quantidade;

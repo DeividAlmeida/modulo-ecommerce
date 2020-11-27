@@ -205,13 +205,6 @@ $config = [];
 																			<input required type="email" class="input-text " name="billing_email" id="billing_email" placeholder="" value="" autocomplete="email username">
 																		</span>
 																	</p>
-																	<p class="form-row form-row-wide validate-required validate-email woocommerce-invalid woocommerce-invalid-required-field" id="billing_email_field" data-priority="110">
-																		<label for="billing_email" class="">Cupom de desconto&nbsp;
-																		</label>
-																		<span class="woocommerce-input-wrapper">
-																			<input  type="text" class="input-text" name="cupom" id="cupom" placeholder="" value="" >
-																		</span>
-																	</p>
 																	
 																	<div id="wcbcf-mailsuggest" style="color: rgb(204, 0, 0); font-size: small;">
 																	</div>
@@ -380,44 +373,6 @@ $config = [];
                                           <?php } ?>
                                             });
                                         });
-
-								       let get  = document.getElementById("cupom");
-							           let existe = "não";
-							           let desconto = document.getElementById('d_valor');
-							           let valor_d = document.getElementById('v_desconto');
-							           let frete = document.getElementById('vl_frete');
-							           let total = document.getElementById('valor');
-							           let veiw_total = document.getElementById('total');
-							           let geral = document.getElementById('valor_geral');
-							           get.addEventListener("change", () => { 
-							               desconto.innerHTML =  "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
-							               var form = new FormData();
-							               let itens = document.getElementsByName('id_pdt[]');
-								           for(i=0; i< itens.length; i++){
-								               form.append([i], itens[i].value);
-								           }
-					                        fetch(UrlPainel+'wa/ecommerce/apis/cupons.php?id='+get.value, {
-                                                method: "POST",
-                                                body: form
-                                            }).then((res)=>{
-                                                res.text().then(data =>{
-                                                    if(data == "0"){
-                                                        desconto.innerHTML = "<?php echo $config['moeda']?> 00,00";
-                                                        valor_d.value = 0.00;
-                                                    }
-                                                    else{
-                                                        desconto.innerHTML = "<?php echo $config['moeda']?> "+ data.replace(".", ",");
-                                                        valor_d.value = data;
-                                                    }
-                                                    if(frete.value != ""){
-                                                        let soma = <?php echo $total_carrinho; ?> + parseFloat(frete.value) - valor_d.value;
-                                                        total.value = soma;
-                                                        veiw_total.innerHTML = "<?php echo $config['moeda']?> "+ soma.toFixed(2).toString().replace('.', ',');
-                                                        geral.innerHTML = "<?php echo $config['moeda']?> "+ soma.toFixed(2).toString().replace('.', ',');
-                                                    }
-                                                });
-                                            });
-							            })
 							    </script>
 									<tr class="order-total">
 										<th>Total</th>
