@@ -11,18 +11,18 @@ $ex_produto = json_decode($cupons['ex_produtos'],true);
 $categoria_compra = json_decode($cupons['categorias'],true);
 $ex_categoria_compra = json_decode($cupons['categorias'],true);
 $qtd = $_POST['quantidade'];
-$quantidade = 1;
+$quantidade = 0;
 unset($_POST['quantidade']);
     foreach($_POST as $key => $value){
-        $compra  = DBRead('ecommerce','*',"WHERE id = '{$value}'")[0];
-        $categoria = DBRead('ecommerce_prod_categorias','*',"WHERE id_produto = '{$value}'")[0];
+        $compra  = DBRead('ecommerce','*',"WHERE id = '{$key}'")[0];
+        $categoria = DBRead('ecommerce_prod_categorias','*',"WHERE id_produto = '{$key}'")[0];
         $categoria_nome = DBRead('ecommerce_categorias','*',"WHERE id = '{$categoria['id_categoria']}'")[0];
         
         if(empty($produto) && !empty($ex_produto)){
             foreach($ex_produto as $fora){
                 if($compra['nome'] != $fora['id']){
-                    $desconto += $cupons['valor'];
-                    $quantidade = $qtd;
+                    $desconto = $cupons['valor'];
+                    $quantidade += $value;
                 }
             }
         }
@@ -30,7 +30,7 @@ unset($_POST['quantidade']);
             foreach($produto as $dentro){
                 if($compra['nome'] == $dentro['id']){
                     $desconto = $cupons['valor']; 
-                    $quantidade = $qtd;
+                    $quantidade += $value;
                 }    
             }
         }
@@ -38,7 +38,7 @@ unset($_POST['quantidade']);
             foreach($ex_categoria_compra as $ca_fora){
                 if($compra['nome'] != $ca_fora['id']){
                     $desconto = $cupons['valor'];
-                    $quantidade = $qtd;
+                    $quantidade += $value;
                 }
             }
         }
@@ -46,9 +46,13 @@ unset($_POST['quantidade']);
             foreach($categoria_compra as $cc){ 
                 if($categoria_nome['nome'] == $cc['id']){
                     $desconto = $cupons['valor'];
-                    $quantidade = $qtd;
+                    $quantidade += $value;
                 }
             }
         }
     }
-echo $desconto * $quantidade;
+    $resposta = array(
+        "desconto" => $quantidade * $desconto,
+        "acumular" => $cupons['uso']
+    );
+echo json_encode($resposta);    

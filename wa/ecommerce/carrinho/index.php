@@ -96,7 +96,7 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 		<tr>
 			<td colspan="3"></td>
 			<td><strong>Total</strong></td>
-			<td><?php echo $config['moeda'].' '.number_format ($total_carrinho, 2, ",", ".") ?></td>
+			<td id="total"><?php echo $config['moeda'].' '.number_format ($total_carrinho, 2, ",", ".") ?></td>
 		</tr>
 	</table>
 	</div>
@@ -129,47 +129,51 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-window.onload = sessionStorage.setItem('cuponsUsados', '');
+let existe = sessionStorage.getItem('cuponsUsados');
+if(sessionStorage.getItem('cuponsUsados') == null){ sessionStorage.setItem('cuponsUsados', '')};
+
 function Cupom(get){ 
     let desconto = document.getElementById('desconto');
     desconto.innerHTML =  "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
     let frete = document.getElementById('vl_frete');
     let total = document.getElementById('valor');
     let geral = document.getElementById('valor_geral');
+    let cupons = sessionStorage.getItem("cuponsUsados").split(',');
     let qtd = 0;
     let vlf = 0;
+    let quantidade = document.getElementsByClassName('cart_qtd');
     var form = new FormData();
     let itens = document.getElementsByClassName('produtos');
-    let cupons = sessionStorage.getItem("cuponsUsados").split(',');
+    let v_total = document.getElementById('total');
+    let abate = <?php echo $total_carrinho; ?>;
     for(i=0; i< itens.length; i++){
-       form.append([i], itens[i].getAttribute("pdt"));
-       qtd += parseInt(document.getElementsByClassName('cart_qtd')[i].value);
+       form.append(itens[i].getAttribute("pdt"), parseInt(document.getElementsByClassName('cart_qtd')[i].value));
     }
-   form.append("quantidade", qtd);
+    
+   
     fetch(UrlPainel+'wa/ecommerce/apis/cupons.php?id='+get, {
         method: "POST",
         body: form
-    }).then((res)=>{
-        res.text().then(data =>{
-            
-            if(data == "0"){
-                desconto.innerHTML = "<?php echo $config['moeda']?> 0,00";
+    }).then( (res) => { res.json().then(data =>{
+            if(data.acumular != "on"){
+                    cupons.push(get);
+                    sessionStorage.setItem("cuponsUsados", cupons);
+                    sessionStorage.setItem("cupom"+get, data.desconto);
+                    let unique = [...new Set(cupons)];
+                    for(a=1; a<unique.length;a++){
+                        vlf += parseFloat(sessionStorage.getItem("cupom"+unique[a]));
+                    }
+                    sessionStorage.setItem("totalDesconto", vlf);
+                    let totalDesconto = sessionStorage.getItem('totalDesconto');
+                    desconto.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(totalDesconto).toFixed(2).toString().replace(".", ",");
+                    v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat( abate - totalDesconto).toFixed(2).toString().replace(".", ",");
+            }else{
                 
+                sessionStorage.setItem("totalDesconto", data.desconto);
+                    let totalDesconto = sessionStorage.getItem('totalDesconto');
+                    desconto.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(totalDesconto).toFixed(2).toString().replace(".", ",");
+                    v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat( abate - totalDesconto).toFixed(2).toString().replace(".", ",");
             }
-            else{
-                
-                cupons.push(get);
-                sessionStorage.setItem("cuponsUsados", cupons);
-                sessionStorage.setItem("cupom"+get, data);
-                let unique = [...new Set(cupons)];
-                for(a=1; a<unique.length;a++){
-                    vlf += parseFloat(sessionStorage.getItem("cupom"+unique[a]));
-                    
-                }
-                desconto.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(vlf).toFixed(2).toString().replace(".", ",");
-                
-            }
-            
         });
     });
 }
