@@ -12,8 +12,23 @@ $categoria_compra = json_decode($cupons['categorias'],true);
 $ex_categoria_compra = json_decode($cupons['categorias'],true);
 $qtd = $_POST['quantidade'];
 $quantidade = 0;
-unset($_POST['quantidade']);
-    foreach($_POST as $key => $value){
+$expira = "2020-11-23";
+if(empty($cupons['gasto_mi'])){
+   $min = '0'; 
+}else{
+   $min = $cupons['gasto_mi']; 
+} 
+
+if(!empty($cupons['ex_oferta'])){
+    $max = '0';
+}
+else if(empty($cupons['gasto_ma'])){
+   $max = '99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'; 
+}
+else{
+$max = $cupons['gasto_ma'];
+}
+foreach($_POST as $key => $value){
         $compra  = DBRead('ecommerce','*',"WHERE id = '{$key}'")[0];
         $categoria = DBRead('ecommerce_prod_categorias','*',"WHERE id_produto = '{$key}'")[0];
         $categoria_nome = DBRead('ecommerce_categorias','*',"WHERE id = '{$categoria['id_categoria']}'")[0];
@@ -23,6 +38,7 @@ unset($_POST['quantidade']);
                 if($compra['nome'] != $fora['id']){
                     $desconto = $cupons['valor'];
                     $quantidade += $value;
+                    $expira = $cupons['data'];
                 }
             }
         }
@@ -31,6 +47,7 @@ unset($_POST['quantidade']);
                 if($compra['nome'] == $dentro['id']){
                     $desconto = $cupons['valor']; 
                     $quantidade += $value;
+                    $expira = $cupons['data'];
                 }    
             }
         }
@@ -39,6 +56,7 @@ unset($_POST['quantidade']);
                 if($compra['nome'] != $ca_fora['id']){
                     $desconto = $cupons['valor'];
                     $quantidade += $value;
+                    $expira = $cupons['data'];
                 }
             }
         }
@@ -47,12 +65,17 @@ unset($_POST['quantidade']);
                 if($categoria_nome['nome'] == $cc['id']){
                     $desconto = $cupons['valor'];
                     $quantidade += $value;
+                    $expira = $cupons['data'];
                 }
             }
         }
     }
     $resposta = array(
         "desconto" => $quantidade * $desconto,
-        "acumular" => $cupons['uso']
+        "acumular" => $cupons['uso'],
+        'min' => $min,
+        'max' => $max,
+        'frete' => $cupons['frete'],
+        "expira" => $expira
     );
 echo json_encode($resposta);    

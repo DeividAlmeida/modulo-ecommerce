@@ -76,7 +76,7 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 		  let c = a.innerHTML = b;
 		   </script></span></td>
 	      <td class="produtos" id="cart_qtd_<?php echo $id; ?>" pdt="<?php echo $qtd[0]; ?>" vlf="<?php echo $qtd[2]; ?>" style="white-space: nowrap;">
-					<input class="cart_qtd" type="number" style="width:50px;" value="<?php echo $qtd[1]; ?>"/>
+					<input class="cart_qtd" type="number" min="1" style="width:50px;" value="<?php echo $qtd[1]; ?>"/>
 					<button class="cart_qtd_delete btn btn-sm btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 				</td>
 		<?php if ($produto['a_consultar'] <> 'S') { ?>
@@ -133,6 +133,7 @@ let existe = sessionStorage.getItem('cuponsUsados');
 if(sessionStorage.getItem('cuponsUsados') == null){ sessionStorage.setItem('cuponsUsados', '')};
 
 function Cupom(get){ 
+    let hoje = new Date();
     let desconto = document.getElementById('desconto');
     desconto.innerHTML =  "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
     let frete = document.getElementById('vl_frete');
@@ -150,12 +151,19 @@ function Cupom(get){
        form.append(itens[i].getAttribute("pdt"), parseInt(document.getElementsByClassName('cart_qtd')[i].value));
     }
     
-   
     fetch(UrlPainel+'wa/ecommerce/apis/cupons.php?id='+get, {
         method: "POST",
         body: form
     }).then( (res) => { res.json().then(data =>{
-            if(data.acumular != "on"){
+        let expira = new Date(data.expira.split('-').join('-'));
+        expira.setSeconds(expira.getSeconds() + 97199);
+        let min =  parseFloat(data.min.replace(",", "."));
+        let max = parseFloat(data.max.replace(",", "."));
+            if(data.frete == 'on' && data.desconto > 0 && expira > hoje && abate >= min && abate <= max){
+                sessionStorage.setItem("totalDesconto", "document.getElementById('vl_frete').value")
+                desconto.innerHTML = "Frete Grátis";
+            }
+            else if(data.acumular != "on" && expira > hoje && abate >= min && abate <= max){
                     cupons.push(get);
                     sessionStorage.setItem("cuponsUsados", cupons);
                     sessionStorage.setItem("cupom"+get, data.desconto);
@@ -167,12 +175,21 @@ function Cupom(get){
                     let totalDesconto = sessionStorage.getItem('totalDesconto');
                     desconto.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(totalDesconto).toFixed(2).toString().replace(".", ",");
                     v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat( abate - totalDesconto).toFixed(2).toString().replace(".", ",");
-            }else{
-                
-                sessionStorage.setItem("totalDesconto", data.desconto);
-                    let totalDesconto = sessionStorage.getItem('totalDesconto');
-                    desconto.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(totalDesconto).toFixed(2).toString().replace(".", ",");
-                    v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat( abate - totalDesconto).toFixed(2).toString().replace(".", ",");
+                }
+            else if(data.acumular == "on" && expira > hoje && abate >= min && abate <= max){
+                    sessionStorage.setItem("totalDesconto", data.desconto);
+                        let totalDesconto = sessionStorage.getItem('totalDesconto');
+                        desconto.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(totalDesconto).toFixed(2).toString().replace(".", ",");
+                        v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat( abate - totalDesconto).toFixed(2).toString().replace(".", ",");
+                }
+            else{
+                sessionStorage.setItem("totalDesconto", '0.00')
+                desconto.innerHTML = "<?php echo $config['moeda']?> "+ "0,00";
+                v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(abate).toFixed(2).toString().replace(".", ",");
+                Swal.fire({
+                          icon: 'error',
+                          title: 'Cupom inválido!!'
+                        })
             }
         });
     });
