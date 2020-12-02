@@ -15,7 +15,7 @@
   $cod_checkout  = '<div id="EcommerceCheckout" ></div>'."\n";
   $cod_checkout .= '<script type="text/javascript">EcommerceCheckout();</script>';
   
-  $cod_checkout_eu  = '<div id="EcommerceCheckoutEu" ></div>'."\n";
+  $cod_checkout_eu  = '<div id="EcommerceCheckout" ></div>'."\n";
   $cod_checkout_eu .= '<script type="text/javascript">EcommerceCheckoutEu();</script>';
 
   $cod_busca_buscador  = '<div id="EcommerceBuscador" ></div>'."\n";

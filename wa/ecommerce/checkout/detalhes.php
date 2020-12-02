@@ -139,23 +139,32 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 	              const f = document.getElementById("frt");
 	              const ff = document.getElementById("vfrt");
 	              const fff = document.getElementById("ttl");
+	              const ffff = document.getElementById("dsct");
 	              const z = sessionStorage.getItem("frete");
 	              const zz = sessionStorage.getItem("vfrete");
 	              const zzz = sessionStorage.getItem("ttl");
+	              const zzzz = parseFloat(eval(sessionStorage.getItem("totalDesconto"))).toFixed(2);
         		  f.innerHTML = z;
         		  ff.innerHTML = zz;
         		  fff.innerHTML = zzz;
+        		  ffff.innerHTML = "<?php echo $config['moeda'].' '?>"+zzzz.toString().replace(".",",");
+        		  sessionStorage.clear();
 	          </script>
 	      </td>
 	      <td></td>
 	      <td><span id="vfrt" ></span></td>
 	      <td></td>
 	  </tr>
-		<tr>
-			<td colspan="3"></td>
-			<td><strong>Total</strong></td>
-			<td><span id="ttl" ></span></td>
-		</tr>
+	  <tr>
+		<td colspan="3"></td>
+		<td><strong>Desconto</strong></td>
+		<td><span id="dsct" ></span></td>
+	  </tr>
+	  <tr>
+        <td colspan="3"></td>
+        <td><strong>Total</strong></td>
+        <td><span id="ttl" ></span></td>
+	  </tr>
 	</table>
 	</div>
 

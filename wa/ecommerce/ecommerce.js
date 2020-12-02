@@ -47,7 +47,7 @@ function EcommerceCheckoutEu(){
     cache:   false,
     url:     UrlPainel+'wa/ecommerce/checkout/eu.php',
     success: function (data) {
-      jQuery('#EcommerceCheckoutEu').html(data);
+      jQuery('#EcommerceCheckout').html(data);
     },
     error: function (data) {
       setTimeout(function(){ EcommerceCheckoutEu(); }, 5000);

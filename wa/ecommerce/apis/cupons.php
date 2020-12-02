@@ -76,6 +76,8 @@ foreach($_POST as $key => $value){
         'min' => $min,
         'max' => $max,
         'frete' => $cupons['frete'],
+        'fixo' => $cupons['valor'],
+        'tipo'=> $cupons['tipo'],
         "expira" => $expira
     );
 echo json_encode($resposta);    

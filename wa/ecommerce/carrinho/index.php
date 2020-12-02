@@ -159,14 +159,27 @@ function Cupom(get){
         expira.setSeconds(expira.getSeconds() + 97199);
         let min =  parseFloat(data.min.replace(",", "."));
         let max = parseFloat(data.max.replace(",", "."));
-            if(data.frete == 'on' && data.desconto > 0 && expira > hoje && abate >= min && abate <= max){
+        let descontoReal;
+        switch(data.tipo){
+            case '1':
+             descontoReal = (data.fixo/100)* abate;
+            break;
+            case '2':
+             descontoReal = data.fixo;
+            break;
+            case '3': 
+				descontoReal = data.desconto;
+			break;
+        }
+        
+            if(data.frete == 'on' && descontoReal > 0 && expira > hoje && abate >= min && abate <= max){
                 sessionStorage.setItem("totalDesconto", "document.getElementById('vl_frete').value")
                 desconto.innerHTML = "Frete Grátis";
             }
             else if(data.acumular != "on" && expira > hoje && abate >= min && abate <= max){
                     cupons.push(get);
                     sessionStorage.setItem("cuponsUsados", cupons);
-                    sessionStorage.setItem("cupom"+get, data.desconto);
+                    sessionStorage.setItem("cupom"+get, descontoReal);
                     let unique = [...new Set(cupons)];
                     for(a=1; a<unique.length;a++){
                         vlf += parseFloat(sessionStorage.getItem("cupom"+unique[a]));
@@ -177,7 +190,7 @@ function Cupom(get){
                     v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat( abate - totalDesconto).toFixed(2).toString().replace(".", ",");
                 }
             else if(data.acumular == "on" && expira > hoje && abate >= min && abate <= max){
-                    sessionStorage.setItem("totalDesconto", data.desconto);
+                    sessionStorage.setItem("totalDesconto", descontoReal);
                         let totalDesconto = sessionStorage.getItem('totalDesconto');
                         desconto.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(totalDesconto).toFixed(2).toString().replace(".", ",");
                         v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat( abate - totalDesconto).toFixed(2).toString().replace(".", ",");

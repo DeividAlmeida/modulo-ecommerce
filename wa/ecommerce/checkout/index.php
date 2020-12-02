@@ -288,7 +288,7 @@ $config = [];
 																					<th>Subtotal</th>
 																					<td>
 																						<span class="woocommerce-Price-amount amount">
-																							<span class="woocommerce-Price-currencySymbol" style="white-space: nowrap"><center><?php echo $config['moeda'].' '.str_replace (".", ",", $total_carrinho)  ?></center></span></td>
+																							<span class="woocommerce-Price-currencySymbol" style="white-space: nowrap"><center><?php echo $config['moeda'].' '.number_format(str_replace (".", ",", $total_carrinho), 2, ",", ".");  ?></center></span></td>
 																						</span>
 																					</td>
 																				</tr>
@@ -301,7 +301,7 @@ $config = [];
                                                                                         <?php if(!empty($deliveries)){ foreach($deliveries as $kyd => $dvy){ ?>
                                                                                         <span id="<?php echo $dvy['id']; ?>" for=""></span>
                                               <?php }} if($retirada['retirada'] == "checked") { ?>  
-																					    <label for="retirada" style="cursor:pointer; margin-left:10px;" for="retirada"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;white-space: nowrap' value="00,00"  > 
+																					    <label for="retirada" style="cursor:pointer; margin-left:10px;" for="retirada"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;white-space: nowrap' value="0,00"  > 
 																					    <b>Retirada na loja</b><br>Valor do frete: R$ 0,00 / Prazo de entrega: imediato.</label> 
                                               <script>
                                                     document.getElementById("retirada").addEventListener("change", function() {
@@ -317,15 +317,14 @@ $config = [];
                                                       document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                       document.getElementById("valor").value = b;
 													  document.getElementById("tipo_entrega").value = "Retirada na Loja";
-													  document.getElementById('d_valor').innerHTML = "<?php echo $config['moeda']. ' 0,00'?> ";
+													  document.getElementById("d_valor").innerHTML = "<?php echo $config['moeda']?> "+v.toFixed(2).toString().replace(".",",");
 													  
                                                   });
                                               </script>
                                               <?php } ?>
                                               </td>
-
-																					<td data-title="Entrega" > <span id="f_valor" ></span></td>
-																				</tr>																			
+											<td data-title="Entrega" > <span id="f_valor" ></span></td>
+										</tr>																			
 									<script> 
 									    $(document).ready(function(){
 									       let desconto = sessionStorage.getItem('totalDesconto');
@@ -440,7 +439,7 @@ $config = [];
                                     </li>
                                    <script>
                                     $('#fcheckout').submit(function(e) {
-                                    
+                                          
                                           if(document.getElementById('payment_method_deposito').checked){
 -                                            sessionStorage.setItem("vfrete", document.getElementById("f_valor").innerHTML);
 -                                            sessionStorage.setItem("frete", document.getElementById("tipo_entrega").value);
@@ -460,11 +459,12 @@ $config = [];
                                                       success: function (data) {
                                                         
                                                         jQuery('#EcommerceCheckout').html(data);
-                                                      },
+                                                         },
                                                   });
                                                 }, 
                                               });           
-                                            };
+                                            }else{sessionStorage.clear()};
+                                            document.getElementById('finalizar').innerHTML = "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
                                       });
                                     </script>
                                     <?php endif ?>
@@ -482,9 +482,9 @@ $config = [];
 									<input required type="hidden" name="valor" id="valor" value="">
 									<input  type="hidden" name="v_desconto" id="v_desconto" value="0.00">
 									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
-									<input required type="hidden" name="vl_frete" id="vl_frete" value="Frete Grátes">
+									<input required type="hidden" name="vl_frete" id="vl_frete" value="">
 									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked"  && empty($gateways) ): else: ?>
-									<center><input type="submit" id="cartCheckout"  value="Finalizar compra" ></center>
+									<center id="finalizar"><input type="submit" id="cartCheckout"  value="Finalizar compra" ></center>
 									<?php endif ?>
 								</div>
 							</div>

@@ -109,7 +109,7 @@ $endr = "
             </td>
             <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
                 <p class='MsoNormal'>
-                    <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>R$ ".
+                    <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>&nbsp;". $config['moeda'] .
                    number_format(floatval(str_replace(",", ".", $npdtb['un_valor'])), 2, ",", ".")
                     ."</span>
                 </p>
@@ -167,8 +167,24 @@ $intob = "
         </td>
         <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
             <p class='MsoNormal'>
-                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>R$ ".
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>&nbsp;". $config['moeda'] .
                    number_format(floatval(str_replace(",", ".", post('vl_frete'))), 2, ",", ".") 
+                ."</span>
+            </p>
+        </td>
+    </tr>
+        <tr>
+        <td colspan='2' style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>
+                    <b>DESCONTO</b>
+                </span>
+            </p>
+        </td>
+        <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
+            <p class='MsoNormal'>
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>&nbsp;". $config['moeda'] .
+                    number_format(floatval(str_replace(",", ".", post('v_desconto'))), 2, ",", ".")
                 ."</span>
             </p>
         </td>
@@ -183,7 +199,7 @@ $intob = "
         </td>
         <td style='border:solid #e5e5e5 1.0pt;padding:9.0pt 9.0pt 9.0pt 9.0pt;word-wrap:break-word'>
             <p class='MsoNormal'>
-                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>R$ ".
+                <span style='font-family:&quot;Helvetica&quot;,sans-serif;color:#636363'>&nbsp;". $config['moeda'] .
                     number_format(floatval(str_replace(",", ".", post('valor'))), 2, ",", ".")
                 ."</span>
             </p>
