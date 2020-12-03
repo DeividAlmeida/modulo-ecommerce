@@ -23,6 +23,9 @@
 
   $cod_busca_resultado  = '<div id="EcommerceBuscaResultado" ></div>'."\n";
   $cod_busca_resultado .= '<script type="text/javascript">EcommerceBuscaResultado();</script>';
+  
+  $cod_btn_login .= '<div id="EcommerceBtnLogin" ></div>'."\n";
+  $cod_btn_login .= '<script type="text/javascript">EcommerceBtnLogin();</script>';
 ?>
 <form id="formAtualizarConfig" method="post" action="?AtualizarConfig">
   <div class="card">
@@ -54,7 +57,11 @@
       <button id="btnCopiarCodSite5" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(5)" data-clipboard-text='<?php echo $cod_busca_resultado; ?>' type="button">
         <i class="icon icon-code"></i> Copiar Código Página Resultado Busca
       </button>
-
+        
+      <button id="btnCopiarCodSite7" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(7)" data-clipboard-text='<?php echo $cod_btn_login; ?>' type="button">
+        <i class="icon icon-code"></i> Copiar Código Botão Login
+      </button>
+        
       <button class="btn btn-primary btn-xs" onclick="AtualizarMatrizes()" type="button">
         <i class="icon icon-refresh"></i> Atualizar Matrizes da Página de Produto
       </button>

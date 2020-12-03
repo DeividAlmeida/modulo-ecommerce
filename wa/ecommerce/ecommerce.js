@@ -178,5 +178,18 @@ alerta = () =>{
           showConfirmButton: false,
           showCloseButton: true,
         });
-
 } 
+
+function EcommerceBtnLogin(){
+  $.ajax({
+    type:    "GET",
+    cache:   false,
+    url:     UrlPainel+'wa/ecommerce/btn_login',
+    success: function (data) {
+      jQuery('#EcommerceBtnLogin').html(data);
+    },
+    error: function (data) {
+      setTimeout(function(){ EcommerceBtnLogin(); }, 5000);
+    },
+  });
+}
