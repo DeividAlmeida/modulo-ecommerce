@@ -27,7 +27,7 @@
   $cod_btn_login = '<div id="EcommerceBtnLogin" ></div>'."\n";
   $cod_btn_login .= '<script type="text/javascript">EcommerceBtnLogin();</script>';
   
-  $cod_cadastro  = '<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.13/vue.min.js"></script>'."\n";
+  $cod_cadastro  = '<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>'."\n";
   $cod_cadastro .= '<div id="EcommerceCadastro" ></div>'."\n";
   $cod_cadastro .= '<script>$("#EcommerceCadastro").load("'.ConfigPainel('base_url').'wa/ecommerce/cadastro/")</script>';
 ?>
