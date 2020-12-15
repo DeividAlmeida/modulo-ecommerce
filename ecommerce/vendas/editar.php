@@ -53,6 +53,8 @@
                 <select required name="tipo_entrega" class="form-control custom-select">
                     <option value="PAC" <?php Selected($read[0]['tipo_entrega'], "PAC"); ?>>PAC</option>
                     <option value="SEDEX" <?php Selected($read[0]['tipo_entrega'], "SEDEX"); ?>>SEDEX</option>
+                    <option value="Frete Grátis" <?php Selected($read[0]['tipo_entrega'], "Frete Grátis"); ?>>Frete Grátis</option>
+                    <option value="Motoboy" <?php Selected($read[0]['tipo_entrega'], "Motoboy"); ?>>Motoboy</option>
                 </select>
             </div>                
             <div class="form-group">
