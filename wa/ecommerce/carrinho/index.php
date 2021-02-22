@@ -160,17 +160,17 @@ function Cupom(get){
         let min =  parseFloat(data.min.replace(",", "."));
         let max = parseFloat(data.max.replace(",", "."));
         let descontoReal;
-        switch(data.tipo){
-            case '1':
-             descontoReal = (data.fixo/100)* abate;
-            break;
-            case '2':
-             descontoReal = data.fixo;
-            break;
-            case '3': 
-				descontoReal = data.desconto;
-			break;
-        }
+			switch(data.tipo){
+				case '1':
+				descontoReal = (data.fixo/100)* abate;
+				break;
+				case '2':
+				descontoReal = data.fixo;
+				break;
+				case '3': 
+					descontoReal = data.desconto;
+				break;
+			}
         
             if(data.frete == 'on' && descontoReal > 0 && expira > hoje && abate >= min && abate <= max){
                 sessionStorage.setItem("totalDesconto", "document.getElementById('vl_frete').value")
