@@ -29,7 +29,7 @@
         <th scope="col" data-field="Status do Pedido" data-sortable="true"><span style="font-weight: bold; font-size:16px;">Status do Pedido<span></th>
         <?php } ?>
         <?php if(checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos', 'editar')) {?>
-        <th scope="col" data-field="<i class='fa fa-pencil'></i>" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Editar Pedido<span></th>
+        <th scope="col" data-field="<i class='fa fa-pencil'></i>" data-sortable="true" ><span style="font-weight: bold; font-size:16px;">Editar Pedito<span></th>
         <?php } ?>
     </tr>
       </thead>

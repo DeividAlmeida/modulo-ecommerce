@@ -1,0 +1,131 @@
+[28-Jul-2020 22:48:50 America/Sao_Paulo] PHP Warning:  strval() expects exactly 1 parameter, 2 given in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/functions.php on line 9
+[29-Jul-2020 14:42:49 America/Sao_Paulo] PHP Fatal error:  Unsupported operand types in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 62
+[29-Jul-2020 14:43:56 America/Sao_Paulo] PHP Fatal error:  Unsupported operand types in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 62
+[29-Jul-2020 14:44:22 America/Sao_Paulo] PHP Fatal error:  Unsupported operand types in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 62
+[29-Jul-2020 14:46:57 America/Sao_Paulo] PHP Fatal error:  Unsupported operand types in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 62
+[29-Jul-2020 14:48:15 America/Sao_Paulo] PHP Fatal error:  Unsupported operand types in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 63
+[29-Jul-2020 14:50:26 America/Sao_Paulo] PHP Fatal error:  Unsupported operand types in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 63
+[29-Jul-2020 14:51:58 America/Sao_Paulo] PHP Fatal error:  Unsupported operand types in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 62
+[29-Jul-2020 14:52:22 America/Sao_Paulo] PHP Fatal error:  Unsupported operand types in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 62
+[29-Jul-2020 15:20:37 America/Sao_Paulo] PHP Warning:  number_format() expects parameter 2 to be long, string given in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 15:20:37 America/Sao_Paulo] PHP Warning:  number_format() expects parameter 2 to be long, string given in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:20:54 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:00 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:06 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:12 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:19 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:25 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:31 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:37 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:43 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:49 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:21:55 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:01 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:07 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:13 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:19 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:25 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:31 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:37 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:43 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:49 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:22:55 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:01 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:07 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:13 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:19 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:25 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:31 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:37 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:43 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:49 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:23:55 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:01 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:07 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:13 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:19 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:25 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:31 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:37 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:43 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:49 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:24:55 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:25:01 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:25:07 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 18:25:13 UTC] PHP Parse error:  syntax error, unexpected ',' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 45
+[29-Jul-2020 15:38:25 America/Sao_Paulo] PHP Warning:  floatval() expects exactly 1 parameter, 4 given in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 15:38:25 America/Sao_Paulo] PHP Warning:  floatval() expects exactly 1 parameter, 4 given in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:40:41 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:40:47 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:40:53 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:40:58 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:41:04 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:41:09 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:41:15 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:41:21 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:41:26 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:41:33 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[29-Jul-2020 18:41:40 UTC] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 78
+[03-Sep-2020 15:09:07 America/Sao_Paulo] PHP Fatal error:  Call to undefined function CarrinhoAddQtd() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/controller.php on line 19
+[03-Sep-2020 18:33:49 UTC] PHP Fatal error:  Call to undefined function RemoveHttpS() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 85
+[03-Sep-2020 18:35:00 UTC] PHP Parse error:  syntax error, unexpected 'header' (T_STRING) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 3
+[03-Sep-2020 18:35:04 UTC] PHP Parse error:  syntax error, unexpected 'header' (T_STRING) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 3
+[03-Sep-2020 18:35:10 UTC] PHP Parse error:  syntax error, unexpected 'header' (T_STRING) in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 3
+[03-Sep-2020 18:42:34 UTC] PHP Parse error:  syntax error, unexpected '<' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 109
+[03-Sep-2020 18:42:40 UTC] PHP Parse error:  syntax error, unexpected '<' in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/index.php on line 109
+[08-Sep-2020 15:26:23 America/Sao_Paulo] PHP Warning:  require_once(database/config.painel.php): failed to open stream: No such file or directory in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:23 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'database/config.painel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:30 America/Sao_Paulo] PHP Warning:  require_once(database/config.painel.php): failed to open stream: No such file or directory in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:30 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'database/config.painel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:35 America/Sao_Paulo] PHP Warning:  require_once(database/config.painel.php): failed to open stream: No such file or directory in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:35 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'database/config.painel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:42 America/Sao_Paulo] PHP Warning:  require_once(database/config.painel.php): failed to open stream: No such file or directory in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:42 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'database/config.painel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:48 America/Sao_Paulo] PHP Warning:  require_once(database/config.painel.php): failed to open stream: No such file or directory in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:48 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'database/config.painel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:51 America/Sao_Paulo] PHP Warning:  require_once(database/config.painel.php): failed to open stream: No such file or directory in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:51 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'database/config.painel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:57 America/Sao_Paulo] PHP Warning:  require_once(database/config.painel.php): failed to open stream: No such file or directory in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:26:57 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'database/config.painel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home2/teacherfelipe/public_html/sistema/includes/header.php on line 8
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:03 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:12 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 15:27:20 America/Sao_Paulo] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home2/teacherfelipe/public_html/sistema/includes/funcoes.php on line 548
+[08-Sep-2020 18:50:27 UTC] PHP Fatal error:  Call to undefined function get() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/controller.php on line 30
+[08-Sep-2020 18:52:11 UTC] PHP Fatal error:  Call to undefined function get() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/controller.php on line 30
+[08-Sep-2020 18:52:26 UTC] PHP Fatal error:  Call to undefined function get() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/controller.php on line 30
+[08-Sep-2020 20:04:51 UTC] PHP Fatal error:  Call to undefined function get() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/controller.php on line 30
+[08-Sep-2020 20:05:21 UTC] PHP Fatal error:  Call to undefined function get() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/controller.php on line 30
+[08-Sep-2020 20:05:54 UTC] PHP Fatal error:  Call to undefined function get() in /home2/teacherfelipe/public_html/sistema/wa/ecommerce/carrinho/controller.php on line 30
+[10-Sep-2020 21:51:52 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[10-Sep-2020 21:53:17 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[10-Sep-2020 21:55:08 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[10-Sep-2020 21:56:55 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[10-Sep-2020 21:57:01 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[10-Sep-2020 21:58:04 UTC] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0

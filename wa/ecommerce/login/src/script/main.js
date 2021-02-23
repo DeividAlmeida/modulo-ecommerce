@@ -1,23 +1,10 @@
-let url = document.referrer
-let insp = new URL(url)
-let reset = insp.searchParams.get('Z')
+let url = window.parent.location.href
+let reset = window.parent.location.search.replace('?Z=', "")
 val.ver = (a) =>{ val.status = a};
 var form = new FormData();
-
-/*document.getElementsByClassName('text2')[3].addEventListener('click', ()=>{
-window.location.href = origin+'wa/ead/cadastro'
-})
-document.getElementsByClassName('ds')[0].addEventListener('click', ()=>{
-    let senha = document.getElementsByClassName('das')[0].value;
-    let a  = senha.match(/[0-9]/);
-    let b  = senha.match(/[A-Z]/);
-    let c = senha.length > 5;
-    if(a && b && c){
-
-        }else{
-            alert(a,b,c)
-        }
-    })*/
+cadastro =()=>{
+    window.location.href = origin+'wa/ecommerce/cadastro'
+}
 visivel = (a) =>{
     const icon = document.getElementById('olho');
     const campo = document.getElementById('login-password');

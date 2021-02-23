@@ -13,7 +13,7 @@
 
     var  pdt = parent.attr("pdt");
     var  vlf = parent.attr("vlf");
-
+    
     var xhttp = new XMLHttpRequest();
     xhttp.open('GET', UrlPainel+'wa/ecommerce/carrinho?Saldo='+pdt, false);
     xhttp.setRequestHeader('Content-Type',  'text/xml');

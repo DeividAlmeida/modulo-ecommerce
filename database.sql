@@ -320,6 +320,19 @@ CREATE TABLE IF NOT EXISTS `ecommerce_plugins` (
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+-- USUARIO
+CREATE TABLE IF NOT EXISTS `ecommerce_usuario` (
+    `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nome` varchar(255) DEFAULT NULL,
+    `cpf` text DEFAULT NULL,
+    `endereco` varchar(255) DEFAULT NULL,
+    `email` varchar(255) DEFAULT NULL,
+    `senha` text DEFAULT NULL,
+    `imagem` text DEFAULT NULL,  
+    `data`  date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 INSERT INTO `ecommerce_config_deposito` (`id`, `titulo`, `descricao`, `instucoes`, `detalhes`, `status`) VALUES
 (1, '', '', '', '', '');
 

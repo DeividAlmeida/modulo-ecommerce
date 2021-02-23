@@ -24,12 +24,8 @@
   $cod_busca_resultado  = '<div id="EcommerceBuscaResultado" ></div>'."\n";
   $cod_busca_resultado .= '<script type="text/javascript">EcommerceBuscaResultado();</script>';
   
-  $cod_btn_login = '<div id="EcommerceBtnLogin" ></div>'."\n";
-  $cod_btn_login .= '<script type="text/javascript">EcommerceBtnLogin();</script>';
-  
-  $cod_cadastro  = '<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>'."\n";
-  $cod_cadastro .= '<div id="EcommerceCadastro" ></div>'."\n";
-  $cod_cadastro .= '<script>$("#EcommerceCadastro").load("'.ConfigPainel('base_url').'wa/ecommerce/cadastro/")</script>';
+  $area  = '<iframe onload="frame(this)"  src="'.ConfigPainel('base_url').'wa/ecommerce/login/" ></iframe>';
+
 ?>
 <form id="formAtualizarConfig" method="post" action="?AtualizarConfig">
   <div class="card">
@@ -62,13 +58,10 @@
         <i class="icon icon-code"></i> Copiar Código Página Resultado Busca
       </button>
         
-      <button id="btnCopiarCodSite7" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(7)" data-clipboard-text='<?php echo $cod_btn_login; ?>' type="button">
-        <i class="icon icon-code"></i> Copiar Código Botão Login
+      <button id="btnCopiarCodSite7" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(7)" data-clipboard-text='<?php echo $area; ?>' type="button">
+        <i class="icon icon-code"></i> Copiar Código Página do Cliente
       </button>
         
-      <button id="btnCopiarCodSite8" class="btn btn-primary btn-xs m-1" onclick="CopiadoCodSite(8)" data-clipboard-text='<?php echo $cod_cadastro; ?>' type="button">
-        <i class="icon icon-code"></i> Copiar Código Página Cadastro
-      </button>
         
       <button class="btn btn-primary btn-xs" onclick="AtualizarMatrizes()" type="button">
         <i class="icon icon-refresh"></i> Atualizar Matrizes da Página de Produto

@@ -98,10 +98,20 @@ $UrlPage	 = 'Ecommerce.php';
 
 					<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'produto', 'adicionar')) { ?>
 					<a class="dropdown-item" href="?AdicionarProduto">Cadastrar Produto</a>
-<?php } ?>
+				<?php } ?>
 				</div>
 			</span>
-			
+
+			<span class="dropdown">
+			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'produto')) { ?>
+				<a class="btn btn-sm btn-primary" href="#" data-toggle="dropdown">Marketing</a>
+				<?php } ?>
+
+				<div class="dropdown-menu dropdown-menu-left" x-placement="bottom">
+					<a class="dropdown-item" href="?ListarCupons">Cupons de Desconto</a>
+				</div>
+			</span>			
+
 			<span class="dropdown">
 				<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'configuracao', 'acessar')) { ?>
 					<a class="btn btn-sm btn-primary" href="#" data-toggle="dropdown">Configuração</a>
@@ -170,6 +180,12 @@ $UrlPage	 = 'Ecommerce.php';
 			require_once('ecommerce/vendas/vendas.php');
 		elseif (isset($_GET['VisualizarListaMarca'])) :
 			require_once('ecommerce/listagens/item/listar_marca.php');
+		elseif (isset($_GET['ListarCupons'])) :
+			require_once('ecommerce/marketing/cupons/listar.php');
+		elseif (isset($_GET['AdicionarCupom'])) :
+			require_once('ecommerce/marketing/cupons/add.php');
+		elseif (isset($_GET['EditarCupom'])) :
+			require_once('ecommerce/marketing/cupons/editar.php');
 		else :
 			require_once('ecommerce/listagens/listar.php');
 		endif;
@@ -699,4 +715,3 @@ $UrlPage	 = 'Ecommerce.php';
 	<script src="css_js/bootstrap4-toggle.min.js"></script>
 </script>
 <?php } ?>
-		

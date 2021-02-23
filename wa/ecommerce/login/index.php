@@ -151,11 +151,12 @@ foreach ($query as $key => $row) {
                             
                         </div>
                     </form>
-                    <div  v-if="status == 'login'" class="MuiBox-root jss36 sign-up-container" onclick="val.status='reset'" >
+                    <div  v-if="status == 'login'" class="MuiBox-root jss36 sign-up-container"  >
                         <span class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSecondary MuiButton-textSizeLarge MuiButton-sizeLarge" tabindex="0" aria-disabled="false"  >
                             <span class="MuiButton-label">
-                                <a  class="sign-up text2" style="text-decoration:none" >Esqueci minha senha</a>
-                                <a  class="sign-up text2" style="text-decoration:none; visibility:hidden " >Ainda não é aluno?</a>
+                                <a  class="sign-up text2" style="text-decoration:none" onclick="val.status='reset'" >Esqueci minha senha</a>
+
+                                <a  class="sign-up text2" style="text-decoration:none; " onclick="cadastro()">Ainda não é aluno?</a>
                             </span>
                             <span class="MuiTouchRipple-root"></span>
                         </span>
