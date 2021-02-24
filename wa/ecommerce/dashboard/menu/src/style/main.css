@@ -1,0 +1,350 @@
+.jss35 {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .12);
+}
+
+.jss35 .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jss35 .avatar-icon {
+    color: #FFFFFF;
+    font-family: Material Icons;
+}
+
+.jss26 {
+    width: 100%;
+    display: flex;
+    padding: 0 16px;
+    min-height: 75px;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.jss26 .icon-toolbar {
+    margin: 0 8px;
+    padding: 8px;
+}
+
+.jss26 .logo-toolbar {
+    margin: 0 auto 0 8px;
+    display: flex;
+}
+
+.jss26 .logo-toolbar>img {
+    max-width: 150px;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+@media (max-width: 500px) {
+    .jss26 .logo-toolbar>img {
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 390px) {
+    .jss26 .logo-toolbar>img {
+        display: none;
+    }
+}
+
+.jss26 .icon-toolbar.menu {
+    margin-left: 0;
+}
+
+/* BOTÃO DE PERFIL*/
+
+.MuiPopover-paper {
+    outline: 0;
+    position: absolute;
+    max-width: calc(100% - 32px);
+    min-width: 16px;
+    max-height: calc(100% - 32px);
+    min-height: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.MuiPaper-root {
+    color: rgba(0, 0, 0, .87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background-color: #fff;
+}
+
+.MuiPaper-rounded {
+    border-radius: 4px;
+}
+
+.MuiPaper-outlined {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.jss33 .profile-infos {
+    width: 260px;
+    display: flex;
+    padding: 24px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.jss33 .profile-menu-item {
+    height: 48px;
+}
+
+.jss33 .profile-menu-item-icon {
+    color: rgba(0, 0, 0, .38);
+    display: flex;
+    margin-right: 16px;
+}
+
+.jss33 .profile-infos-avatar {
+    margin-bottom: 8px;
+}
+
+.jss33 .profile-infos-name {
+    color: #fa9c00;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.jss33 .profile-infos-email {
+    color: rgba(0, 0, 0, .60);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+
+
+.MuiDivider-root {
+    border: none;
+    height: 1px;
+    margin: 0;
+    flex-shrink: 0;
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.MuiDivider-absolute {
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+
+.MuiDivider-inset {
+    margin-left: 72px;
+}
+
+.MuiDivider-light {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.MuiDivider-middle {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.MuiDivider-vertical {
+    width: 1px;
+    height: 100%;
+}
+
+.MuiDivider-flexItem {
+    height: auto;
+    align-self: stretch;
+}
+
+.MuiMenuItem-root {
+    width: auto;
+    overflow: hidden;
+    font-size: 1rem;
+    box-sizing: border-box;
+    min-height: 48px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    padding-top: 6px;
+    white-space: nowrap;
+    letter-spacing: 0.00938em;
+    padding-bottom: 6px;
+}
+
+@media (min-width:600px) {
+    .MuiMenuItem-root {
+        min-height: auto;
+    }
+}
+
+.MuiMenuItem-dense {
+    font-size: 0.875rem;
+    min-height: auto;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+}
+
+.jss34 {
+    min-width: 36px;
+}
+
+.MuiListItem-button {
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 1000ms;
+}
+
+.MuiListItem-button:hover {
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: none) {
+    .MuiListItem-button:hover {
+        background-color: transparent;
+    }
+}
+
+.MuiListItem-gutters {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.MuiPaper-elevation8 {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+
+/* MENU VERTICAL */
+
+.MuiBackdrop-root {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    z-index: -1;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+}
+.MuiBackdrop-invisible {
+    background-color: transparent;
+}
+
+.header-container {
+    height: 64px;
+    display: flex;
+    padding: 0px 8px;
+    align-items: center;
+}
+
+.header-close {
+    margin: 0px 16px 0px 8px;
+    padding: 8px;
+}
+
+.header-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo-img {
+    max-width: 70%;
+    max-height: 56px;
+    object-fit: contain;
+}
+
+.list-title {
+    color: rgba(0,0,0, .38);
+    display: flex;
+    padding: 0px 24px;
+    margin-top: 24px;
+}
+        
+.MuiList-root {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style: none;
+}
+.MuiList-padding {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.MuiList-subheader {
+    padding-top: 0;
+}
+
+.list-channels-item-link {
+    color: rgba(0,0,0, .87);
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.list-channels-item-text {
+    color: inherit;
+    flex-grow: 1;
+}
+.list-channels-item-icon {
+    color: inherit;
+    margin: 0px 16px 0px 8px;
+    min-width: 32px;
+}
+.list-channels-item-icon-after {
+    margin: 0px 0px 0px 16px;
+}
+
+
+ .list-courses-item-text {
+color: rgba(0,0,0, .38);
+}
+ .list-courses-item-icon,  .list-courses-item-lock {
+color: rgba(0,0,0, .26);
+}
+.list-courses-item-link {
+width: 100%;
+display: flex;
+align-items: center;
+}
+.list-courses-item-icon {
+color: rgba(0,0,0, .38);
+width: 32px;
+height: 32px;
+margin: 0px 8px;
+display: flex;
+overflow: hidden;
+min-width: 32px;
+background: rgba(0,0,0, .06);
+min-height: 32px;
+align-items: center;
+border-radius: 50%;
+justify-content: center;
+}
+.list-courses-item-text {
+color: rgba(0,0,0, .60);
+margin: 0px 8px;
+flex-grow: 1;
+}
+.list-courses-item-lock {
+color: rgba(0,0,0, .38);
+}
+.list-courses-item-icon img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+#sel:hover{
+    background-color: rgba(0, 0, 0, .04) !important;
+}
+.jss39 img{
+    width:150px;
+    height:70px;
+}

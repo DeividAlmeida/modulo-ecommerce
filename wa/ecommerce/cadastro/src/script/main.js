@@ -14,12 +14,12 @@ document.getElementsByClassName('jss101')[0].addEventListener('click', ()=>{
             form.append(inputs[i].name,inputs[i].value)
         }
         form.append('imagem',inputs[0].files[0])
-        fetch(origin+'wa/ead/apis/cadastar.php',{
+        fetch(origin+'wa/ecommerce/apis/cadastar.php',{
             method: 'POST',
             body: form
         }).then(dt => dt.text()).then(data =>{
             if(data == 1){
-                window.location.href = origin+'wa/ead/dashboard/inicio/?status=curso&posicao=avancar'
+                window.location.href = origin+'wa/ecommerce/dashboard/inicio/?status=curso&posicao=avancar'
             }else{
                 swal("ERRO",data,"error")
             }

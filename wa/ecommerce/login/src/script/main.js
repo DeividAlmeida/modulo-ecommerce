@@ -29,9 +29,9 @@ valida = () =>{
     form.append("email", document.getElementById('login-email').value);
     form.append("senha", document.getElementById('login-password').value);
     form.append("manter", document.getElementById('manter').checked);
-    fetch (origin+'wa/ead/apis/autentica.php',{method: "POST", body: form}).then(x => x.text()).then(data =>{
+    fetch (origin+'wa/ecommerce/apis/autentica.php',{method: "POST", body: form}).then(x => x.text()).then(data =>{
         if(data == 1){
-            window.location.href = origin+'wa/ead/dashboard/inicio/?status=curso&posicao=avancar'
+            window.location.href = origin+'wa/ecommerce/dashboard/inicio/'
         }else{
             swal("ERRO!", data, "error"); 
         }
@@ -40,7 +40,7 @@ valida = () =>{
 recupera = ()=>{
     form.append('email',document.getElementsByClassName('recupera')[0].value)
     form.append('origin',url)
-    fetch(origin+'wa/ead/apis/recupera.php',{
+    fetch(origin+'wa/ecommerce/apis/recupera.php',{
         method:'post',
         body: form
     }).then(dt => dt.text()).then(data=>{
@@ -66,7 +66,7 @@ altera = () =>{
     }else{
        form.append('senha',senha[0].value)
        form.append('Z',reset) 
-       fetch(origin+'wa/ead/apis/altera.php',{
+       fetch(origin+'wa/ecommerce/apis/altera.php',{
            method:"post",
            body:form
        }).then(a => a.text()).then(data=>{

@@ -12,7 +12,7 @@ else if(isset($_COOKIE['Wacontroltoken'])){
     $id =  $_COOKIE['Wacontrolid'];
     $senha =  $_COOKIE['Wacontroltoken'];
 }
-if(!empty($senha)){$valida = DBRead('ead_usuario','*',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0];}
+if(!empty($senha)){$valida = DBRead('ecommerce_usuario','*',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0];}
 if(!empty($valida)){header('Location:'.ConfigPainel('base_url').'wa/ecommerce/dashboard/inicio/index.php?status=curso&posicao=avancar');}
 $query = DBRead('ecommerce_config','*');
 $wacr = [];
@@ -156,7 +156,7 @@ foreach ($query as $key => $row) {
                             <span class="MuiButton-label">
                                 <a  class="sign-up text2" style="text-decoration:none" onclick="val.status='reset'" >Esqueci minha senha</a>
 
-                                <a  class="sign-up text2" style="text-decoration:none; " onclick="cadastro()">Ainda não é aluno?</a>
+                                <a  class="sign-up text2" style="text-decoration:none; " onclick="cadastro()">Quero me cadastrar</a>
                             </span>
                             <span class="MuiTouchRipple-root"></span>
                         </span>
