@@ -3,12 +3,13 @@ header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
-$manter = $_POST['manter'];
-$email = $_POST['email'];
-$senha = md5($_POST['senha']);
+$manter = file_get_contents('php://input');
+$email = $_SERVER['PHP_AUTH_USER'];
+$senha = md5($_SERVER['PHP_AUTH_PW']);
 $valida = DBRead('ecommerce_usuario','*',"WHERE email = '{$email}' AND  senha = '{$senha}' ", "LIMIT 1")[0];
 if(empty($valida)){
-   echo 'E-mail ou senha inválido!';
+    header('HTTP/1.0 401 Unauthorized');
+    echo 'E-mail ou senha inválido!';
 }else{
     session_start();
     $id = $valida['id'];
@@ -20,4 +21,3 @@ if(empty($valida)){
     }
         echo 1;
 }
-
