@@ -1,0 +1,30 @@
+[14-Oct-2020 14:52:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DBRead() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/index.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/index.php on line 3
+[14-Oct-2020 14:54:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DBRead() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/index.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/index.php on line 3
+[14-Oct-2020 14:58:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DBRead() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/index.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/index.php on line 3
+[14-Oct-2020 15:14:59 UTC] PHP Warning:  require_once(../../includes/funcoes.php): failed to open stream: No such file or directory in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php on line 2
+[14-Oct-2020 15:14:59 UTC] PHP Fatal error:  require_once(): Failed opening required '../../includes/funcoes.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php on line 2
+[14-Oct-2020 15:15:59 UTC] PHP Warning:  require_once(../../includes/funcoes.php): failed to open stream: No such file or directory in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php on line 2
+[14-Oct-2020 15:15:59 UTC] PHP Fatal error:  require_once(): Failed opening required '../../includes/funcoes.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php on line 2
+[14-Oct-2020 15:16:04 UTC] PHP Warning:  require_once(../../includes/funcoes.php): failed to open stream: No such file or directory in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php on line 2
+[14-Oct-2020 15:16:04 UTC] PHP Fatal error:  require_once(): Failed opening required '../../includes/funcoes.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php on line 2
+[14-Oct-2020 15:18:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ConfigPainel() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php:2
+Stack trace:
+#0 {main}
+  thrown in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php on line 2
+[14-Oct-2020 15:20:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ConfigPainel() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php:2
+Stack trace:
+#0 {main}
+  thrown in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php on line 2
+[14-Oct-2020 15:20:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ConfigPainel() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php:2
+Stack trace:
+#0 {main}
+  thrown in /home2/templatesweb/public_html/wacontrol3-loja-virtual/ecommerce/plugins/delivery/motoboy/t.php on line 2

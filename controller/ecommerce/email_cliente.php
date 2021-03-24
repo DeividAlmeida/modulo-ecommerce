@@ -12,7 +12,7 @@ $mailr->IsSMTP();
 $mailr->Host = $readm['email_servidor'] ; 
  
 // Você pode alterar este parametro para o endereço de SMTP do seu provedor 
-$mailr->Port = $readm['email_porta']; 
+$mailr->Port = '587'; 
  
  
 // Usar autenticação SMTP (obrigatório) 
