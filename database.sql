@@ -325,9 +325,11 @@ CREATE TABLE IF NOT EXISTS `ecommerce_plugins` (
 CREATE TABLE IF NOT EXISTS `ecommerce_usuario` (
     `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nome` varchar(255) DEFAULT NULL,
+    `sobrenome` varchar(255) DEFAULT NULL,
     `cpf` text DEFAULT NULL,
     `endereco` varchar(255) DEFAULT NULL,
     `email` varchar(255) DEFAULT NULL,
+    `telefone` varchar(255) DEFAULT NULL,
     `senha` text DEFAULT NULL,
     `imagem` text DEFAULT NULL,  
     `data`  date DEFAULT NULL

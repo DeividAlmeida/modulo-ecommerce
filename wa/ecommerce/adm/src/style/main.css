@@ -61,8 +61,7 @@
 
 ---------------------------------------*/
 /*  1. Main Structure  */
-body:not(.no-loader) > *:not(.body-preloader) {
-    opacity: 0; }
+
   
   .gdw-loader, .ezp-spinner {
     transition: 0.5s;

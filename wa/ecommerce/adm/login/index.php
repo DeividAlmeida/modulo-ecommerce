@@ -11,7 +11,18 @@ $atual = $modulo.'_usuarios';
     #FIM
 $conf = $modulo.'_config';
 #$config =  json_encode(DBRead($conf,'*')[0]);
-
+session_start();
+if(isset($_SESSION['E-Wacontrol'])){
+    $id = $_SESSION['E-Wacontrol'][0];
+    $senha = $_SESSION['E-Wacontrol'][1];
+}
+else if(isset($_COOKIE['E-Wacontroltoken'])){
+    $id =  $_COOKIE['E-Wacontrolid'];
+    $senha =  $_COOKIE['E-Wacontroltoken'];
+}
+if(!empty($senha)){$valida = DBRead('ecommerce_usuario','*',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0];}
+if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecommerce/adm/area_usuario/index.php');}
+#if(!empty($valida)){header('Location:'.ConfigPainel('base_url').'wa/ecommerce/adm/area_usuario/index.php');}
 ?>
 <html lang="pt-BR">
     <head>
@@ -24,7 +35,7 @@ $conf = $modulo.'_config';
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-swal@1/dist/vue-swal.min.js"></script>
 </head>
-<div class="is-dropdn-click win no-loader">
+<body class="is-dropdn-click win no-loader">
        
     <div class="page-content" id="main_ecommerce">
         <div class="holder mt-0">
@@ -63,7 +74,7 @@ $conf = $modulo.'_config';
                         <h2 class="text-center">REGISTRO</h2>
                         <div class="form-wrapper">
                             <p>Ao criar uma conta em nossa loja, você poderá passar pelo processo de finalização de compra mais rápido, armazenar vários endereços de remessa, visualizar e rastrear seus pedidos em sua conta e muito mais.</p>
-                            <a href="return:false" class="btn">Crie a sua conta aqui</a>
+                            <a href="#" class="btn">Crie a sua conta aqui</a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +87,7 @@ $conf = $modulo.'_config';
         data:{
             idx:'login',
             //config:<?php #echo $config ?>,
-            origin:'<?php echo ConfigPainel('base_url') ?>'
+            origin:'<?php echo 'https://www.localhost/Wa.Control/'; #RemoveHttpS(ConfigPainel('base_url')) ?>'
         },
         methods:{
 
@@ -99,9 +110,9 @@ $conf = $modulo.'_config';
                 body: document.getElementById('checkbox1').checked 
             }).then(a=>a.text()).then(a=>{
                 if(a == 1){
-                    //window.location.href = origin+'wa/ead/dashboard/inicio/?status=curso&posicao=avancar'
-                }else{
-                    swal("ERRO!", a, "error"); 
+                    window.location.href = vue.origin+'wa/ecommerce/adm/area_usuario/'
+                }else{                    
+                    window.parent.location.assign('javascript:swal("ERRO!","'+a+'", "error")'); 
                 }
             })
         }else if(a.target.innerText == 'ENVIAR'){
@@ -112,9 +123,9 @@ $conf = $modulo.'_config';
                 body: form
             }).then(d => d.text()).then(d=>{
                 if(d == 1){
-                    swal("E-mail Enviado!", "E-mail de recuperação enviado com sucesso", "success").then((isConfirm)=>{if(isConfirm){document.location.reload(true);}})
+                    window.parent.location.assign('javascript:swal("E-mail Enviado!", "E-mail de recuperação enviado com sucesso", "success").then((isConfirm)=>{if(isConfirm){document.location.reload(true);}})')
                 }else{
-                    swal("ERRO!", d, "error"); 
+                    window.parent.location.assign('javascript:swal("ERRO!", "'+d+'", "error")'); 
                 }
             })    
         }else{
@@ -123,9 +134,9 @@ $conf = $modulo.'_config';
             let b  = senha[0].value.match(/[A-Z]/)
             let c = senha[0].value.length > 5
             if(!a || !b || !c){
-                swal({title:"Senha muito fraca!",html:true, text:"Critérios mínimos: \n 1° Uma letra maiúscula \n 2° Um número \n 3° mais de 5 dígitos.", icon:"error"});
+                window.parent.location.assign('javascript:swal({title:"Senha muito fraca!",html:true, text:"Critérios mínimos: \n 1° Uma letra maiúscula \n 2° Um número \n 3° mais de 5 dígitos.", icon:"error"})');
             }else if(senha[0].value != senha[1].value){
-                swal("ERRO","Senha incorreta","error")
+                window.parent.location.assign('javascript:swal("ERRO","Senha incorreta","error")')
             }else{
             form.append('senha',senha[0].value)
             form.append('Z',reset) 
@@ -134,16 +145,18 @@ $conf = $modulo.'_config';
                 body:form
             }).then(a => a.text()).then(data=>{
                 if(data == 1){
-                    swal("Salvo!", "Senha alterada com sucesso", "success").then((isConfirm)=>{if(isConfirm){senha[0].value = ''; vue.idx ='login';}})
+                    window.parent.location.assign('javascript:swal("Salvo!", "Senha alterada com sucesso", "success")')
+                    senha[0].value = " "; vue.idx ="login";
                 }else{
-                    swal("ERRO",data,"error")}
+                    window.parent.location.assign('swal("ERRO","'+data+'","error")')}
             })
             }
         }
     })
     //parent.document.getElementsByClassName('container')[0].style.background='red'
+//window.parent.location.assign('javascript:swal("ERRO","data","error")')
 </script> 
 <?php require_once('../../../../wa/'.$modulo .'/adm/login/src/script/wactrl.php') ?>   
 <script src="src/script/main.js"></script>
-</div>
+</body>
 </html>
