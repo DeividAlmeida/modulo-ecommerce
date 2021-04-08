@@ -142,7 +142,7 @@ if (is_array($query)) { ?>
             <!-- `preco` decimal(10,2) NOT NULL -->
             <div class="form-group">
               <label>Preço: </label>
-              <input class="form-control" name="preco" required step="0.01" type="number" min="1" value="<?php echo $dados['preco'];?>">
+              <input class="form-control" name="preco" required step="0.01" type="number" min="0" value="<?php echo $dados['preco'];?>">
             </div>
 
             <!-- `estoque` int(11) DEFAULT NULL-->
@@ -157,6 +157,14 @@ if (is_array($query)) { ?>
               <select name="diminuir_est" required class="form-control custom-select">
               <option value="sim" <?php Selected($dados['diminuir_est'], "sim"); ?>>Sim</option>
                 <option value="não" <?php Selected($dados['diminuir_est'], "não"); ?>>Não</option>
+            </select>            
+          </div>
+
+          <div class="form-group">
+            <label>Status:</label>            
+              <select name="status" required class="form-control custom-select">
+              <option value="A" <?php Selected($dados['status'], "A"); ?>>Ativo</option>
+              <option value="I" <?php Selected($dados['status'], "I"); ?>>Inativo</option>
             </select>            
           </div>            
           </div>

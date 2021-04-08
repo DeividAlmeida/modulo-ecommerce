@@ -84,7 +84,7 @@ if(!empty($_SESSION["car"])){
             <div>
               <h4 class="shop--cart-dropdown--list__title"><?php echo $produto['nome']; ?></h4>
               <div class="shop--cart-dropdown--list__qty"><?php echo $qtd[1]; ?></div>
-              <div class="shop--cart-dropdown--list__price"><?php echo $config['moeda'].' '.str_replace(".",",",$produto['preco'] * $qtd[1]); ?></div>
+              <div class="shop--cart-dropdown--list__price"><?php echo $config['moeda'].' '.floatval(str_replace(".",",",$produto['preco'] * $qtd[1])); ?></div>
             </div>
           </li>
         <?php } else { ?>

@@ -41,6 +41,7 @@ if (isset($_GET['AddProduto'])) {
     'peso'            => post('peso'),
     'comprimento'     => post('comprimento'),
     'altura'          => post('altura'),
+    'status'          => post('status'),
     'largura'         => post('largura')
   );
 
@@ -143,6 +144,7 @@ if (isset($_GET['AtualizarProduto'])) {
     'peso'            => post('peso'),
     'comprimento'     => post('comprimento'),
     'altura'          => post('altura'),
+    'status'          => post('status'),
     'largura'         => post('largura')
   );
 

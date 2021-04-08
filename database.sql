@@ -109,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce` (
   `peso` varchar(255) DEFAULT NULL,
   `comprimento` varchar(255) DEFAULT NULL,
   `altura` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
   `largura` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
