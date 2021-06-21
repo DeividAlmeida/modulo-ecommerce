@@ -2616,7 +2616,7 @@
       background-color: #fff;
       bottom: 1px;
       color: #000;
-      content: '\e921';
+      content: '';
       font-family: 'icomoon';
       font-size: 11px;
       line-height: 40px;
@@ -3176,7 +3176,7 @@
     width: 35px; }
   
   .bs-caret:after {
-    content: '\e921';
+    content: '';
     display: block;
     font-family: 'icomoon';
     font-size: 11px;
@@ -4342,7 +4342,7 @@
   .slick-slider.slick-vertical .slick-prev {
     left: 5px; }
     .slick-slider.slick-vertical .slick-prev:before {
-      content: '\e921'; }
+      content: ''; }
   
   .slick-slider.slick-vertical .slick-next {
     left: 50%;
@@ -15121,7 +15121,7 @@
     .prd-block--prv-left .slick-slider.slick-vertical .slick-prev, .prd-block--prv-right .slick-slider.slick-vertical .slick-prev {
       bottom: -15px; }
       .prd-block--prv-left .slick-slider.slick-vertical .slick-prev:before, .prd-block--prv-right .slick-slider.slick-vertical .slick-prev:before {
-        content: '\e921';
+        content: '';
         position: relative;
         top: 3px; }
     .prd-block--prv-left .slick-slider.slick-vertical .slick-next, .prd-block--prv-right .slick-slider.slick-vertical .slick-next {
@@ -15893,7 +15893,7 @@
       transition: all 0.2s ease; }
     .sidebar-block .toggle-arrow:before {
       color: #000;
-      content: "\e921"; }
+      content: ""; }
     .sidebar-block .toggle-arrow:hover:before {
       color: #27c7d8; }
   

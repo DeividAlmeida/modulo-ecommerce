@@ -328,7 +328,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce_usuario` (
     `nome` varchar(255) DEFAULT NULL,
     `sobrenome` varchar(255) DEFAULT NULL,
     `cpf` text DEFAULT NULL,
-    `endereco` varchar(255) DEFAULT NULL,
+    `endereco` text DEFAULT NULL,
     `email` varchar(255) DEFAULT NULL,
     `telefone` varchar(255) DEFAULT NULL,
     `senha` text DEFAULT NULL,

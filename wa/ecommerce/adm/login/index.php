@@ -30,10 +30,16 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://frontend.big-skins.com/goodwin-html-demo/fonts/icomoon/icomoon.css" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo ConfigPainel('base_url'); ?>wa/<?php echo $modulo ?>/adm/src/style/main.css">
         <?php require_once('../../../../wa/'.$modulo .'/adm/login/src/style/wactrl.php') ?>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-swal@1/dist/vue-swal.min.js"></script>
+        <style>
+        .senha-box{
+            display:flex
+        }
+        </style>
 </head>
 <body class="is-dropdn-click win no-loader">
        
@@ -43,7 +49,7 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
                 
             </div>
         </div>
-        <div class="holder mt-0">
+        <div class="holder mt-0" id="height">
             <div class="container">
                 <div class="row justify-content-around">
                     <div class="col-sm-6 col-md-4">
@@ -51,22 +57,23 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
                             <h2 class="text-center">ENTRAR</h2>
                             <div class="form-wrapper">
                                 <p>{{idx == 'login'?'Se você tem uma conta conosco, faça o login.':idx == 'altera'?'Insira sua nova senha':'Insira seu e-mail de recuperação'}}</p>
-                                <form >
-                                    <div class="form-group">
-                                        <input :type="idx == 'altera'? 'password':'email'" class="form-control" :placeholder="idx == 'altera'? 'Senha':'E-mail'">
-                                    </div>
-                                    <div v-if="idx == 'login'||idx == 'altera'" class="form-group">
-                                        <input type="password" class="form-control" :placeholder="idx == 'altera'? 'Confirme a Senha':'Senha'">
-                                    </div>
-                                    <p class="text-uppercase" @click="a=>idx=='login'?idx ='reset':idx='login'">
-                                        <a href="return:false" class="js-toggle-forms">{{idx == 'login'?'ESQUECEU SUA SENHA?':'VOLTAR'}}</a>
-                                    </p>
-                                    <div class="clearfix" v-if="idx == 'login'">
-                                        <input id="checkbox1" name="checkbox1" type="checkbox" > 
-                                        <label for="checkbox1">LEMBRE DE MIM</label>
-                                    </div>
-                                    <button type="button" class="btn autentica">{{idx == 'login'?'Entrar':idx == 'altera'?'Salvar':'Enviar'}}</button>
-                                </form>
+                                
+                                <div class="form-group">
+                                    <input :type="idx == 'altera'? 'password':'email'" class="form-control" :placeholder="idx == 'altera'? 'Senha':'E-mail'">
+                                </div>
+                                <div v-if="idx == 'login'||idx == 'altera'" class="form-group senha-box">
+                                    <input type="password" class="form-control" :placeholder="idx == 'altera'? 'Confirme a Senha':'Senha'">
+                                    <button type="bottom" >fds</button>
+                                </div>
+                                <p class="text-uppercase" @click="a=>idx=='login'?idx ='reset':idx='login'">
+                                    <a href="return:false" class="js-toggle-forms">{{idx == 'login'?'ESQUECEU SUA SENHA?':'VOLTAR'}}</a>
+                                </p>
+                                <div class="clearfix" v-if="idx == 'login'">
+                                    <input id="checkbox1" name="checkbox1" type="checkbox" > 
+                                    <label for="checkbox1">LEMBRE DE MIM</label>
+                                </div>
+                                <button type="button" class="btn autentica">{{idx == 'login'?'Entrar':idx == 'altera'?'Salvar':'Enviar'}}</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -89,6 +96,7 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
             //config:<?php #echo $config ?>,
             origin:'<?php echo 'https://www.localhost/Wa.Control/'; #RemoveHttpS(ConfigPainel('base_url')) ?>'
         },
+                
         methods:{
 
         }
@@ -110,8 +118,8 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
                 body: document.getElementById('checkbox1').checked 
             }).then(a=>a.text()).then(a=>{
                 if(a == 1){
-                    window.location.href = vue.origin+'wa/ecommerce/adm/area_usuario/'
-                }else{                    
+                    window.location.href = vue.origin+'wa/ecommerce/adm/area_usuario/'                    
+                }else{                                       
                     window.parent.location.assign('javascript:swal("ERRO!","'+a+'", "error")'); 
                 }
             })
@@ -148,7 +156,7 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
                     window.parent.location.assign('javascript:swal("Salvo!", "Senha alterada com sucesso", "success")')
                     senha[0].value = " "; vue.idx ="login";
                 }else{
-                    window.parent.location.assign('swal("ERRO","'+data+'","error")')}
+                    window.parent.location.assign('javascript: swal("ERRO","'+data+'","error")')}
             })
             }
         }
