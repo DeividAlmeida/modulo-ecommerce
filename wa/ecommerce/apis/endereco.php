@@ -26,12 +26,7 @@ if(isset($_GET['token']) && $_GET['token'] === $token) {
         $path = $handle->file_dst_name;
     }*/
     foreach($_POST as $chave => $vazio){
-        $erro ="campo ".$chave." está vazio";
-        if(empty($vazio)){
-            $empty = 1; echo $erro; exit;
-        }else{
-            $data[$chave] = $vazio;
-        }
+        $data[$chave] = $vazio;
     }
     $query = DBUpdate('ecommerce_usuario',$data," id = '{$id}'");
     

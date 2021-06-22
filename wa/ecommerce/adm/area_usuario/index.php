@@ -369,8 +369,7 @@ $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, c
                 new salvar(this.info.endereco.length -1 )
             },
             remove: function(i){
-                //window.parent.location.assign('javascript:swal({  title: "Are you sure?",  text: "Once deleted, you will not be able to recover this imaginary file!",  icon: "warning",  buttons: true,  dangerMode: true,}).then((willDelete) => {  if (willDelete) {    swal("Poof! Your imaginary file has been deleted!", {      icon: "success",    });  } else {    swal("Your imaginary file is safe!");  }});')                
-                window.parent.location.assign('javascript:swal("Tem certeza!!", "Deseja realmente deletar esse endereço ?", "warning",{buttons: true}).then((isConfirm)=>{if(isConfirm){document.getElementById("Eframe").src = "javascript:vue.info.endereco.splice('+i+', 1);new deletar()"}})')
+                window.parent.location.assign('javascript:swal("Tem certeza!!", "Deseja realmente deletar esse endereço ?", "warning",{buttons: true}).then((isConfirm)=>{if(isConfirm){document.getElementById("Eframe").src = "javascript:vue.info.endereco.splice('+i+', 1);new salvar()"}})')
             },
             atualiza: function(){
                 for(let i= 0; i< document.querySelectorAll('input').length; i++){
@@ -396,7 +395,7 @@ $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, c
         vue.info.endereco = JSON.parse(vue.info.endereco)   
     }
     function salvar(i){
-        if(document.getElementById("formCheckbox1").checked){          
+        if(document.getElementById("formCheckbox1") != null  && document.getElementById("formCheckbox1").checked){          
             vue.info.endereco.filter((a,b)=>{
                 
                 if(b !=i){
@@ -419,22 +418,7 @@ $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, c
                 }
             }) 
             vue.status = '' 
-    }
-    function deletar(){        
-        form.append('endereco',JSON.stringify(vue.info.endereco))
-        fetch(vue.origin+'wa/ecommerce/apis/endereco.php'+sessao,{
-                method:'post',
-                body: form
-            }).then(d => d.text()).then(d=>{
-                if(d == 1){
-                    window.parent.location.assign('javascript:swal("Salvo!", "Alterações salvas com sucesso", "success")')
-                }else{
-                    window.parent.location.assign('javascript:swal("ERRO!", "'+d+'", "error")'); 
-                }
-            }) 
-            vue.status = '' 
-    }
-    
+    } 
     </script>
     <?php require_once('../../../../wa/'.$modulo .'/adm/login/src/script/wactrl.php') ?>   
 <script src="src/script/main.js"></script>

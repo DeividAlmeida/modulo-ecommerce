@@ -7,14 +7,7 @@ require_once('../../../database/upload.class.php');
 session_start();
 $token = md5(session_id());
 if(isset($_GET['token']) && $_GET['token'] === $token) {
-    if(isset($_SESSION['E-Wacontrol'])){
-        $id = $_SESSION['E-Wacontrol'][0];
-        $senha = $_SESSION['E-Wacontrol'][1];
-    }
-    else if(isset($_COOKIE['E-Wacontroltoken'])){
-        $id =  $_COOKIE['E-Wacontrolid'];
-        $senha =  $_COOKIE['E-Wacontroltoken'];
-    }
+   
     /*if($_FILES['imagem']['name'] == null){
            $keep = DBRead('ead_usuario','*' ,"WHERE id = '{$id}'")[0];
            $path = $keep['imagem'];
@@ -25,15 +18,11 @@ if(isset($_GET['token']) && $_GET['token'] === $token) {
         $handle->Process($upload_folder);
         $path = $handle->file_dst_name;
     }*/
+    unset($_POST['email']);
     foreach($_POST as $chave => $vazio){
-        $erro ="campo ".$chave." está vazio";
-        if(empty($vazio)){
-            $empty = 1; echo $erro; exit;
-        }else{
-            $data[$chave] = $vazio;
-        }
+        $data[$chave] = $vazio;
     }
-    $query = DBUpdate('ecommerce_usuario',$data," id = '{$id}'");
+    $query = DBCreate('ecommerce_usuario', $data, true);
     
         if ($query != 0) {
             echo 1;
