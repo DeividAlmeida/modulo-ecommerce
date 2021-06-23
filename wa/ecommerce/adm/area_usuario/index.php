@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<?php
+<?php 
+session_start();
 header('Access-Control-Allow-Origin: *');
 require_once('../../../../includes/funcoes.php');
 require_once('../../../../database/config.database.php');
@@ -11,7 +11,6 @@ $atual = $modulo.'_usuarios';
     #FIM
 $conf = $modulo.'_config';
 #$config =  json_encode(DBRead($conf,'*')[0]);
-session_start();
 if(isset($_SESSION['E-Wacontrol'])){
     $id = $_SESSION['E-Wacontrol'][0];
     $senha = $_SESSION['E-Wacontrol'][1];
@@ -24,6 +23,7 @@ $valida = DBRead('ecommerce_usuario','*',"WHERE id = '{$id}' AND  senha = '{$sen
 $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, cpf, email, endereco ',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0]);
  if($senha!= null && $valida['senha'] == $senha){
 ?>
+<!DOCTYPE html>
 <html lang="pt-BR">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
@@ -350,7 +350,7 @@ $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, c
             info: <?php echo $user  ?>,
             status:'',
             //config:<?php #echo $config ?>,
-            origin:'<?php echo  'https://www.localhost/Wa.Control/'; #ConfigPainel('base_url') ?>'
+            origin:'<?php echo  ConfigPainel('base_url'); ?>'
         },
         updated: function(){
             this.$nextTick(function(){

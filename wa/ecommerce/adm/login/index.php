@@ -1,17 +1,12 @@
-
-<?php
-#header('Access-Control-Allow-Origin: *');
+<?php 
+header('Access-Control-Allow-Origin: *');
 require_once('../../../../includes/funcoes.php');
 require_once('../../../../database/config.database.php');
 require_once('../../../../database/config.php');
-    #INICIO
+session_start();
 $modulo = 'ecommerce';
 $atual = $modulo.'_usuarios';
-#$id = $_GET['id'];
-    #FIM
 $conf = $modulo.'_config';
-#$config =  json_encode(DBRead($conf,'*')[0]);
-session_start();
 if(isset($_SESSION['E-Wacontrol'])){
     $id = $_SESSION['E-Wacontrol'][0];
     $senha = $_SESSION['E-Wacontrol'][1];
@@ -21,8 +16,7 @@ else if(isset($_COOKIE['E-Wacontroltoken'])){
     $senha =  $_COOKIE['E-Wacontroltoken'];
 }
 if(!empty($senha)){$valida = DBRead('ecommerce_usuario','*',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0];}
-if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecommerce/adm/area_usuario/index.php');}
-#if(!empty($valida)){header('Location:'.ConfigPainel('base_url').'wa/ecommerce/adm/area_usuario/index.php');}
+if(!empty($valida)){header('Location:'.ConfigPainel('base_url').'wa/ecommerce/adm/area_usuario/index.php');}
 ?>
 <html lang="pt-BR">
     <head>
@@ -51,19 +45,20 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
         </div>
         <div class="holder mt-0" id="height">
             <div  class="container-fluid">
-                <div v-if="idx=='login'" class="row justify-content-around">
+                <div v-if="idx!='registro'" class="row justify-content-around">
                     <div class="col-sm-6 col-md-4">
                         <div id="loginForm">
                             <h2 class="text-center">ENTRAR</h2>
                             <div class="form-wrapper">
                                 <p>{{idx == 'login'?'Se você tem uma conta conosco, faça o login.':idx == 'altera'?'Insira sua nova senha':'Insira seu e-mail de recuperação'}}</p>
                                 
-                                <div class="form-group">
-                                    <input :type="idx == 'altera'? 'password':'email'" class="form-control" :placeholder="idx == 'altera'? 'Senha':'E-mail'">
+                                <div class="form-group senha-box">
+                                    <input id="senha4" :type="idx == 'altera'? 'password':'email'" class="form-control" :placeholder="idx == 'altera'? 'Senha':'E-mail'">
+                                    <a v-if="idx == 'altera'" style="position: relative;right: 9%;width: 0px;padding-top: 3.5%;" href="javascript:void(0)" @click="ver(4)"><i id="eye4" class="far fa-eye-slash"></i></a>
                                 </div>
                                 <div v-if="idx == 'login'||idx == 'altera'" class="form-group senha-box">
                                     <input id="senha1" type="password" class="form-control" :placeholder="idx == 'altera'? 'Confirme a Senha':'Senha'">
-                                    <a v-if="idx != 'altera'" style="position: relative;right: 9%;width: 0px;padding-top: 3.5%;" href="javascript:void(0)" @click="ver(1)"><i id="eye1" class="far fa-eye-slash"></i></a>
+                                    <a style="position: relative;right: 9%;width: 0px;padding-top: 3.5%;" href="javascript:void(0)" @click="ver(1)"><i id="eye1" class="far fa-eye-slash"></i></a>
                                 </div>
                                 <p class="text-uppercase" @click="a=>idx=='login'?idx ='reset':idx='login'">
                                     <a href="return:false" class="js-toggle-forms">{{idx == 'login'?'ESQUECEU SUA SENHA?':'VOLTAR'}}</a>
@@ -85,7 +80,7 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
                         </div>
                     </div>
                 </div>                     
-                <div v-if="idx=='registro'" class="row justify-content-center">
+                <div v-else class="row justify-content-center">
                     <div class="col-sm-10 col-md-12">
                         <h2 class="text-center">Criar Conta</h2>
                         <div class="form-wrapper">
@@ -127,12 +122,20 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
         </div>
     </div>
     <script>
+    var form = new FormData();
+    const sessao = '?token=<?php echo md5(session_id()) ?>&'
+    let url = window.parent.location.href
+    let reset = url.search('Z=')
+    let valida = url.search('X=')
+    let position = url.search('[?]')
+    let novo = url.slice(0,position)
+    var params = new URL(url);
     const vue = new Vue({
         el: '#main_<?php echo $modulo ?>',
         data:{
             idx:'login',
             //config:<?php #echo $config ?>,
-            origin:'<?php echo 'https://www.localhost/Wa.Control/'; #RemoveHttpS(ConfigPainel('base_url')) ?>'
+            origin:'<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>'
         },
                 
         methods:{
@@ -167,14 +170,14 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
                     window.parent.location.assign('javascript:swal("ERRO","Senha incorreta","error")')
                 }else if(erro){
                     window.parent.location.assign('javascript:swal("ERRO!", "Por favor preencha todos os campos", "error")'); 
-                }else{                    
+                }else{    
+                    form.append('origin',url)                
                     fetch(vue.origin+'wa/ecommerce/apis/cadastrar.php'+sessao,{
                         method:'post',
                         body: form
                     }).then(d => d.text()).then(d=>{
-                        if(d == 1){
-                            alert(10)
-                            //window.parent.location.assign('javascript:swal("E-mail Enviado!", "E-mail de recuperação enviado com sucesso", "success").then((isConfirm)=>{if(isConfirm){document.location.reload(true);}})')
+                        if(d == 1){                                                        
+                            window.parent.location.assign('javascript:swal("E-mail Enviado!", "Por favor, acesse o seu e-mail para concluir o seu cadastro!!", "success").then((isConfirm)=>{if(isConfirm){document.location.reload(true);}})')
                         }else{
                             window.parent.location.assign('javascript:swal("ERRO!", "'+d+'", "error")'); 
                         }
@@ -183,19 +186,28 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
             }
         }
     })
-    let url = window.parent.location.href
-    let reset = window.parent.location.search.replace('?Z=', "")
-    if(reset){
+
+    if(reset >0){
         vue.idx = 'altera'
+        var zid = params.searchParams.get("Z");
     }
-    var form = new FormData();
-    const sessao = '?token=<?php echo md5(session_id()) ?>&'
+     if(valida >0){
+        var aid = params.searchParams.get("X");
+        var eid = params.searchParams.get("email");
+        fetch(vue.origin+'wa/ecommerce/apis/confirma.php?id='+aid+'&email='+eid).then(a=>a.text()).then(a=>{
+                if(a == 1){
+                    window.parent.location.assign('javascript:swal("Salvo!", "Conta validade com sucesso!!", "success").then((isConfirm)=>{window.parent.location.href = "'+novo+'"})'); 
+                }else{                                       
+                    window.parent.location.assign('javascript:swal("ERRO!","'+a+'", "error")'); 
+                }
+            })
+    }
     document.getElementsByClassName('autentica')[0].addEventListener('click',a=>{
         if(a.target.innerText == 'ENTRAR'){
             fetch(vue.origin+'wa/ecommerce/apis/autentica.php',{
                 method: 'POST',
                 headers:{
-                    'Authorization': 'Basic '+btoa(document.querySelectorAll('input[type="email"]')[0].value+':'+document.querySelectorAll('input[type="password"]')[0].value),
+                    'Authorization': 'Basic '+btoa(document.querySelectorAll('input[type="email"]')[0].value+':'+document.getElementById('senha1').value),
                     'Content-Type': 'application/json',
                 },
                 body: document.getElementById('checkbox1').checked 
@@ -220,7 +232,7 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
                 }
             })    
         }else{
-            let senha = document.querySelectorAll('input[type="password"]')
+            let senha = document.querySelectorAll('input')
             let a  = senha[0].value.match(/[0-9]/)
             let b  = senha[0].value.match(/[A-Z]/)
             let c = senha[0].value.length > 5
@@ -230,14 +242,14 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
                 window.parent.location.assign('javascript:swal("ERRO","Senha incorreta","error")')
             }else{
             form.append('senha',senha[0].value)
-            form.append('Z',reset) 
+            form.append('Z',zid) 
             fetch(vue.origin+'wa/ecommerce/apis/altera.php',{
                 method:"post",
                 body:form
             }).then(a => a.text()).then(data=>{
                 if(data == 1){
-                    window.parent.location.assign('javascript:swal("Salvo!", "Senha alterada com sucesso", "success")')
-                    senha[0].value = " "; vue.idx ="login";
+                    window.parent.location.assign('javascript:swal("Salvo!", "Senha alterada com sucesso", "success").then((isConfirm)=>{window.parent.location.href = "'+novo+'"})')
+                   
                 }else{
                     window.parent.location.assign('javascript: swal("ERRO","'+data+'","error")')}
             })
@@ -245,6 +257,7 @@ if(!empty($valida)){header('Location: https://www.localhost/Wa.Control/wa/ecomme
         }
     })
    
+
 </script> 
 <?php require_once('../../../../wa/'.$modulo .'/adm/login/src/script/wactrl.php') ?>   
 <script src="src/script/main.js"></script>
