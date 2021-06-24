@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
@@ -16,6 +17,14 @@ $config = [];
   foreach ($query as $key => $row) {
     $config[$row['id']] = $row['valor'];
   }
+if(isset($_SESSION['E-Wacontrol'])){
+    $id_cliente = $_SESSION['E-Wacontrol'][0];
+}
+else if(isset($_COOKIE['E-Wacontroltoken'])){
+    $id_cliente =  $_COOKIE['E-Wacontrolid'];
+}else{
+    $id_cliente = null;
+}
 ?>
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/animate.css">
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/modal.css">
@@ -52,6 +61,7 @@ $config = [];
 											<div class="woocommerce">
 												<br>
 												<form name="checkout" method="post" class="checkout woocommerce-checkout" id="fcheckout" action="<?php echo ConfigPainel('base_url'); ?>wa/ecommerce/checkout/composer.php" enctype="multipart/form-data"  style="position: static; zoom: 1;">
+													<input name="id_cliente" type="hidden" value="<?php echo $id_cliente; ?>" />
 													<div class="row">		
 														<div class="col-lg-4" id="customer_details">
 															<div class="woocommerce-billing-fields clearfix">	
@@ -245,7 +255,7 @@ $config = [];
 																					<th class="product-total">Subtotal</th>
 																				</tr>
 																			</thead>
-                                      <?php foreach($_SESSION["car"] as $id => $qtd ){
+                                                                        <?php foreach($_SESSION["car"] as $id => $qtd ){
 																				$query = DBRead('ecommerce', '*', "WHERE id = $qtd[0]");
 																				$produto = $query[0];?>
 																				<tr class="cart_item">

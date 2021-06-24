@@ -75,12 +75,12 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 		  const b = sessionStorage.getItem("<?php echo $id ?>");
 		  let c = a.innerHTML = b;
 		   </script></span></td>
-	      <td class="produtos" id="cart_qtd_<?php echo $id; ?>" pdt="<?php echo $qtd[0]; ?>" vlf="<?php echo $qtd[2]; ?>" style="white-space: nowrap;">
-					<input class="cart_qtd" type="number" min="1" style="width:50px;" value="<?php echo $qtd[1]; ?>"/>
+	      <td id="cart_qtd_<?php echo $id; ?>" pdt="<?php echo $qtd[0]; ?>" vlf="<?php echo $qtd[2]; ?>" style="white-space: nowrap;">
+					<input class="cart_qtd" type="number" style="width:50px;" value="<?php echo $qtd[1]; ?>"/>
 					<button class="cart_qtd_delete btn btn-sm btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 				</td>
 		<?php if ($produto['a_consultar'] <> 'S') { ?>
-	      <td><?php echo $config['moeda'].' '.str_replace(".",",",$qtd[2]); ?></td>
+	      <td><?php echo $config['moeda'].''.str_replace(".",",",$qtd[2]); ?></td>
 	      <td><?php echo $config['moeda'].' '.number_format(floatval(str_replace(",", ".", $qtd[2])) * floatval(str_replace(",", ".", $qtd[1])), 2, ",", "."); ?></td>
 	  	<?php } else { ?>
 	  		<td>A Consultar</td>
@@ -88,15 +88,10 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 	  	<?php } ?>
 	    </tr>
 	  <?php } ?>
-	  <tr>
-			<td colspan="3"></td>
-			<td><strong>Desconto</strong></td>
-			<td><span id="desconto"><?php echo $config['moeda'].' '; ?>0,00</span></td>
-		</tr>
 		<tr>
 			<td colspan="3"></td>
 			<td><strong>Total</strong></td>
-			<td id="total"><?php echo $config['moeda'].' '.number_format ($total_carrinho, 2, ",", ".") ?></td>
+			<td><?php echo $config['moeda'].' '.number_format ($total_carrinho, 2, ",", ".") ?></td>
 		</tr>
 	</table>
 	</div>
@@ -104,17 +99,11 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 
 	<div class="row">
 		<div class="col-xs-6 text-left">
-			<div class="col-xs-6" >
-			    <input type="text" id="cupom">
-			</div>
-			<div class="col-xs-6">   
-			    <a id="cartCheckout" onclick="Cupom(document.getElementById('cupom').value)" class="btn btn-primary" >Adicionar cupom</a>
-			</div>
+			
 		</div>
 		<div class="col-xs-6 text-right">
 			<a id="cartCheckout" class="btn btn-primary" href="<?php echo $config['pagina_checkout']; ?>" >Finalizar Pedido</a>			
 		</div>
-
 	</div>
 
 <? } else {?>
@@ -127,85 +116,5 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/modal.css">
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/assets/css/carrinho.css">
 <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script>
-let existe = sessionStorage.getItem('cuponsUsados');
-if(sessionStorage.getItem('cuponsUsados') == null){ sessionStorage.setItem('cuponsUsados', '')};
-
-function Cupom(get){ 
-    let hoje = new Date();
-    let desconto = document.getElementById('desconto');
-    desconto.innerHTML =  "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
-    let frete = document.getElementById('vl_frete');
-    let total = document.getElementById('valor');
-    let geral = document.getElementById('valor_geral');
-    let cupons = sessionStorage.getItem("cuponsUsados").split(',');
-    let qtd = 0;
-    let vlf = 0;
-    let quantidade = document.getElementsByClassName('cart_qtd');
-    var form = new FormData();
-    let itens = document.getElementsByClassName('produtos');
-    let v_total = document.getElementById('total');
-    let abate = <?php echo $total_carrinho; ?>;
-    for(i=0; i< itens.length; i++){
-       form.append(itens[i].getAttribute("pdt"), parseInt(document.getElementsByClassName('cart_qtd')[i].value));
-    }
-    
-    fetch(UrlPainel+'wa/ecommerce/apis/cupons.php?id='+get, {
-        method: "POST",
-        body: form
-    }).then( (res) => { res.json().then(data =>{
-        let expira = new Date(data.expira.split('-').join('-'));
-        expira.setSeconds(expira.getSeconds() + 97199);
-        let min =  parseFloat(data.min.replace(",", "."));
-        let max = parseFloat(data.max.replace(",", "."));
-        let descontoReal;
-        switch(data.tipo){
-            case '1':
-                descontoReal = (data.fixo/100)* abate;
-                break;
-            case '2':
-                descontoReal = data.fixo;
-                break;
-            case '3': 
-                descontoReal = data.desconto;
-                break;
-        }
-        
-            if(data.frete == 'on' && descontoReal > 0 && expira > hoje && abate >= min && abate <= max){
-                sessionStorage.setItem("totalDesconto", "document.getElementById('vl_frete').value")
-                desconto.innerHTML = "Frete Grátis";
-            }
-            else if(data.acumular != "on" && expira > hoje && abate >= min && abate <= max){
-                    cupons.push(get);
-                    sessionStorage.setItem("cuponsUsados", cupons);
-                    sessionStorage.setItem("cupom"+get, descontoReal);
-                    let unique = [...new Set(cupons)];
-                    for(a=1; a<unique.length;a++){
-                        vlf += parseFloat(sessionStorage.getItem("cupom"+unique[a]));
-                    }
-                    sessionStorage.setItem("totalDesconto", vlf);
-                    let totalDesconto = sessionStorage.getItem('totalDesconto');
-                    desconto.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(totalDesconto).toFixed(2).toString().replace(".", ",");
-                    v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat( abate - totalDesconto).toFixed(2).toString().replace(".", ",");
-                }
-            else if(data.acumular == "on" && expira > hoje && abate >= min && abate <= max){
-                    sessionStorage.setItem("totalDesconto", descontoReal);
-                        let totalDesconto = sessionStorage.getItem('totalDesconto');
-                        desconto.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(totalDesconto).toFixed(2).toString().replace(".", ",");
-                        v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat( abate - totalDesconto).toFixed(2).toString().replace(".", ",");
-                }
-            else{
-                sessionStorage.setItem("totalDesconto", '0.00')
-                desconto.innerHTML = "<?php echo $config['moeda']?> "+ "0,00";
-                v_total.innerHTML = "<?php echo $config['moeda']?> "+ parseFloat(abate).toFixed(2).toString().replace(".", ",");
-                Swal.fire({
-                          icon: 'error',
-                          title: 'Cupom inválido!!'
-                        })
-            }
-        });
-    });
-}
-</script>
 <script src="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/assets/js/carrinho.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

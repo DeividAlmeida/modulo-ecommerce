@@ -53,16 +53,16 @@ if (isset($_POST)) {
       'valor' => post('valor'),
       'produto' => $_POST['venda'],
       'tipo_pagamento'=>post('payment_method'),
+      'id_cliente' => post('id_cliente'),
       'vl_frete' => post('vl_frete')
     );
     $query = DBCreate('ecommerce_vendas', $data, true);
     $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$query}'");
     require_once('../../../controller/ecommerce/email_vendedor.php');
     
-    if( post('payment_method') == "Depósito"){require_once('../../../controller/ecommerce/email_cliente_retirada.php');}else{
+  if( post('payment_method') == "Dep贸sito"){require_once('../../../controller/ecommerce/email_cliente_retirada.php');}else{
     require_once('../../../controller/ecommerce/email_cliente.php');
-    }
-       
+  }
 $route = post('composer');
 require($route);
 }

@@ -1,17 +1,3 @@
-frame = (a) => {
-    a.style.height= '0px';
-    a.style.height = (a.contentWindow.document.documentElement.scrollHeight+200) + 'px';
-    let border = document.createAttribute('frameborder');
-    let scroll = document.createAttribute('scrolling');
-    let widths = document.createAttribute('width');
-    border.value = '0';
-    scroll.value ='no';
-    widths.value = '100%';
-    a.setAttributeNode(border);
-    a.setAttributeNode(scroll);
-    a.setAttributeNode(widths);
-
-}
 function EcommerceListagem(id, pag){
   $.ajax({
     type: "GET",
@@ -61,7 +47,7 @@ function EcommerceCheckoutEu(){
     cache:   false,
     url:     UrlPainel+'wa/ecommerce/checkout/eu.php',
     success: function (data) {
-      jQuery('#EcommerceCheckout').html(data);
+      jQuery('#EcommerceCheckoutEu').html(data);
     },
     error: function (data) {
       setTimeout(function(){ EcommerceCheckoutEu(); }, 5000);
@@ -183,7 +169,7 @@ function CarrinhoAdd(id, carrinho_url, qtd, vlf, att){
         });
 }
 }
-alerta = () =>{
+function alerta(){
     
     Swal.fire({
           type: 'error',
@@ -192,20 +178,25 @@ alerta = () =>{
           showConfirmButton: false,
           showCloseButton: true,
         });
+
 } 
-
-function EcommerceBtnLogin(){
-  $.ajax({
-    type:    "GET",
-    cache:   false,
-    url:     UrlPainel+'wa/ecommerce/btn_login',
-    success: function (data) {
-      jQuery('#EcommerceBtnLogin').html(data);
-    },
-    error: function (data) {
-      setTimeout(function(){ EcommerceBtnLogin(); }, 5000);
-    },
-  });
+function height(i){
+    let a = document.getElementById('Eframe')
+    a.style.height= '0px';
+    a.style.height = (i+200) + 'px';
 }
-
+Eframe = (a) => {
+a.style.height= '0px';
+a.style.height = (a.contentWindow.document.documentElement.scrollHeight+200) + 'px';
+  let border = document.createAttribute('frameborder');
+  let scroll = document.createAttribute('scrolling');
+  let widths = document.createAttribute('width');
+  border.value = '0';
+  scroll.value ='no';
+  widths.value = '100%';
+  a.setAttributeNode(border);
+  a.setAttributeNode(scroll);
+  a.setAttributeNode(widths);
+  $.getScript( "https://cdn.jsdelivr.net/npm/vue-swal@1/dist/vue-swal.min.js" )
+}
 

@@ -22,6 +22,7 @@ else if(isset($_COOKIE['E-Wacontroltoken'])){
 $valida = DBRead('ecommerce_usuario','*',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0];
 $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, cpf, email, endereco ',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0]);
  if($senha!= null && $valida['senha'] == $senha){
+$pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}'"))
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -133,26 +134,16 @@ $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, c
                                             <th scope="col">Data do Pedido</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Preço Total </th>
-                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><b>175525</b> <a href="cart.html" class="ml-1">Ver Detalhes</a></td>
-                                            <td>01.02.2017</td>
-                                            <td>Shipped</td>
-                                            <td><span class="color">$1252.00</span></td>
-                                            <td><a href="#" class="btn">Comprar Novamente</a></td>
+                                        <tr v-for="pedido, p of pedidos">
+                                            <td>{{p+1}}</td>
+                                            <td><b>{{pedido.id}}</b> <a href="cart.html" class="ml-1"> Ver Detalhes</a></td>
+                                            <td>{{pedido.data}}</td>
+                                            <td>{{pedido.status.replace('_',' ')}}</td>
+                                            <td><span class="color">R$ {{pedido.valor}}</span></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><b>189067</b> <a href="cart.html" class="ml-1">Ver Detalhes</a></td>
-                                            <td>12.02.2017</td>
-                                            <td>Shipped</td>
-                                            <td><span class="color">$367.00</span></td>
-                                            <td><a href="#" class="btn">Comprar Novamente</a></td>
-                                        </tr>                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -348,6 +339,7 @@ $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, c
             idx:null,
             id:null,
             info: <?php echo $user  ?>,
+            pedidos: <?php echo $pedidos  ?>,
             status:'',
             //config:<?php #echo $config ?>,
             origin:'<?php echo  ConfigPainel('base_url'); ?>'
