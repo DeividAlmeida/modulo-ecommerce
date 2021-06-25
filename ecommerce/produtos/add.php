@@ -73,7 +73,7 @@
             <!-- `preco` decimal(10,2) NOT NULL -->
           <div class="form-group">
             <label>Preço: </label>
-            <input class="form-control" name="preco" step="0.01" type="number" min="0" required>
+            <input class="form-control" name="preco" step="0.01" type="number" min="1" required>
           </div>
 
           <div class="form-group">
@@ -98,16 +98,7 @@
               <option value="sim" selected>Sim</option>
               <option value="não">Não</option>
             </select>            
-          </div>
-
-          <div class="form-group">
-            <label>Status:</label>            
-              <select name="status" required class="form-control custom-select">
-              <option value="A" selected>Ativo</option>
-              <option value="I">Inativo</option>
-            </select>            
-          </div>
-                   
+          </div>         
         </div>        
     </div>
     <div class="row">

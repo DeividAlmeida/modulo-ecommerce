@@ -233,7 +233,8 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `rastreamento` text DEFAULT NULL,
   `cor_status` varchar(255) DEFAULT NULL,
   `vl_frete` float(50,2) DEFAULT NULL,
-  `id_cliente` int(11) DEFAULT NULL,
+  --`id_cliente` int(11) DEFAULT NULL,
+  --`view` TEXT NULL DEFAULT '0',
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -355,4 +356,4 @@ INSERT INTO `ecommerce_config_link` (`id`, `logo`, `cabecalho`, `texto`) VALUES
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 
 ALTER TABLE `ecommerce_vendas` ADD `id_cliente` INT(11) NULL AFTER `vl_frete`;
-
+ALTER TABLE `ecommerce_vendas` ADD `view` TEXT NULL DEFAULT '0' AFTER `id_cliente`;

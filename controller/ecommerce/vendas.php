@@ -1,9 +1,13 @@
-<?php // Excluir Pedido
+<?php
+// Excluir Pedido
 if (isset($_GET['deletarPedidos'])) {
   $id     = $_POST;
   foreach($_POST['id'] as $no => $post){
-  $query  = DBDelete('ecommerce_vendas',"id = '{$post}'");
-}
+      
+    $value =  DBRead('ecommerce_vendas','*',"WHERE id = '{$post}' ")[0];
+    $query = DBUpdate('ecommerce_vendas',['view'=> $value['view'].'2']," id = '{$post}' ");
+    
+    }
 }
 if (isset($_GET['editarPedido'])) {
   $id     = post('id');

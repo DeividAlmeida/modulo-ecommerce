@@ -2,7 +2,8 @@
 require_once('../../includes/funcoes.php');
 require_once('../../database/config.database.php');
 require_once('../../database/config.php');
-$query = DBRead('ecommerce_vendas', '*', 'ORDER BY id DESC');
+$two = '2';
+$query = DBRead('ecommerce_vendas', '*', "WHERE view NOT LIKE '%{$two}%' ORDER BY id DESC");
 if(!empty($query)){$last = end($query);};
 $bay = json_decode($last['produto'], true);
 if(!empty($bay)){foreach($bay as $keyl => $pdtl){$pdtl['un_valor'] += number_format(floatval(str_replace(",", ".", $pdtl['un_valor'])) * floatval(str_replace(",", ".", $pdtl['qtd'])), 2, ".", ",");  }};

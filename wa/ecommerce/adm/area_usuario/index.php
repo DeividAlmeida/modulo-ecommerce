@@ -22,7 +22,9 @@ else if(isset($_COOKIE['E-Wacontroltoken'])){
 $valida = DBRead('ecommerce_usuario','*',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0];
 $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, cpf, email, endereco ',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0]);
  if($senha!= null && $valida['senha'] == $senha){
-$pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}'"))
+$um = '1';
+$pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}' AND view NOT LIKE '%{$um}%'"));
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -144,10 +146,13 @@ $pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}'
                                             <td>{{pedido.status.replace('_',' ')}}</td>
                                             <td><span class="color">R$ {{pedido.valor}}</span></td>
                                         </tr>
+                                        <tr>
+                                            <td colspan="5" v-if="!pedidos" style="text-align: center">Não exitem pedidos no seu histórico...</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-right mt-2"><a href="#" class="btn btn--alt">Limpar Histórico</a></div>
+                            <div v-if="pedidos" class="text-right mt-2"><a onclick="limpar()" href="javascript:void(0)" class="btn btn--alt">Limpar Histórico</a></div>
                         </div>
 
                         <div class="col-md-9 aside" v-if="idx == 'endereco'">
@@ -411,6 +416,10 @@ $pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}'
             }) 
             vue.status = '' 
     } 
+    limpar = () =>{
+        window.parent.location.assign('javascript:swal("Tem certeza!!", "Deseja realmente deletar esses pedidos do seu histórico ?", "warning",{buttons: true}).then((isConfirm)=>{if(isConfirm){fetch("'+vue.origin+'wa/ecommerce/apis/limpar.php'+sessao+'").then(a=>a.text()).then(a=>{if(a == 1){ swal("Deletado!!", "Histórico de pedidos deletados com sucesso", "success");document.getElementById("Eframe").src= "javascript:vue.pedidos = false"}else{ swal("ERRO!", a, "error")} }) }})')
+    }
+    
     </script>
     <?php require_once('../../../../wa/'.$modulo .'/adm/login/src/script/wactrl.php') ?>   
 <script src="src/script/main.js"></script>
