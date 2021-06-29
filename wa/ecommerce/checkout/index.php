@@ -27,26 +27,7 @@ else if(isset($_COOKIE['E-Wacontroltoken'])){
 }
 $usuario = DBRead('ecommerce_usuario','*',"WHERE id = '{$id_cliente}'")[0];
 $enderecos = json_decode($usuario['endereco']);
-if(is_array($enderecos)){
-    foreach($enderecos as $endereco_key => $endereco){
-        if($endereco->padrao == true){
-            echo "
-            <script>
-                document.getElementById('billing_state').value ='".$endereco->estado."'
-                document.getElementById('billing_first_name').value ='".$usuario['nome']."'
-                document.getElementById('billing_last_name').value ='".$usuario['sobrenome']."'
-                document.getElementById('billing_email').value ='".$usuario['email']."'
-                document.getElementById('billing_phone').value ='".$usuario['telefone']."'
-                document.getElementById('billing_neighborhood').value ='".$endereco->bairro."'
-                document.getElementById('billing_city').value ='".$endereco->cidade."'
-                document.getElementById('billing_number').value ='".$endereco->numero."'
-                document.getElementById('cepdestino').value ='".$endereco->cep."'
-                document.getElementById('billing_address_1').value ='".$endereco->rua."'
-            </script>
-            ";
-        }
-    }
-}
+
 ?>
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/animate.css">
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/modal.css">
@@ -358,7 +339,6 @@ if(is_array($enderecos)){
 											<td data-title="Entrega" > <span id="f_valor" ></span></td>
 										</tr>																			
 									<script> 
-									    $(document).ready(function(){
 									       let desconto = sessionStorage.getItem('totalDesconto');
                                             if( desconto != null){ 
                                                 document.getElementById('v_desconto').value = eval(desconto);
@@ -366,7 +346,7 @@ if(is_array($enderecos)){
                                                 sessionStorage.setItem('totalDesconto', '0.00');
                                                 document.getElementById('d_valor').innerHTML = "<?php echo $config['moeda']." 0,00" ?>";
                                             };
-                                             $("#cepdestino").change(function(){
+                                              function main_math(){
                                                  const cep = document.getElementById('cepdestino').value;
                                                 <?php if(!empty($deliveries)){ foreach($deliveries as $keyd => $delivery){ ?>
                                                 $("<?php echo '#'.$delivery['id']; ?>").load('<?php echo ConfigPainel('base_url').$delivery['path']."/wa/index.php?peso=".$total_peso."&valorcarrinho=".$total_carrinho; ?>&id='+cep);
@@ -415,8 +395,11 @@ if(is_array($enderecos)){
                                                 document.getElementById("tipo_entrega").value = "Sedex";
                                               }
                                           <?php } ?>
-                                            });
-                                        });
+                                            }
+                                            $("#cepdestino").change(function(){
+                                                 new main_math()
+                                             });
+                                       
 							    </script>
 									<tr class="order-total">
 										<th>Total</th>
@@ -452,7 +435,7 @@ if(is_array($enderecos)){
                                         <input id="payment_method_<?php echo $plugin['nome']; ?>" type="radio" required class="input-radio" name="payment_method" value="<?php echo $plugin['titulo']; ?>" onclick="compose(<?php echo "'../../../".$plugin['path']."/wa/index.php'"; ?>)">
                                         <label for="payment_method_<?php echo $plugin['nome']; ?>" style="cursor:pointer">
                                           Pagar com <?php if(!empty($plugin['img'])) { ?>
-                                          <img style="width:auto; height:23px;" src="<?php echo RemoveHttpS(ConfigPainel('base_url')). $plugin['img'].'"/>'; } ?>
+                                          <img style="width:auto; height:23px;" src="<?php echo RemoveHttpS(ConfigPainel('base_url')). $plugin['img']; } ?>" />
                                         </label>                                                                                
                                     </li>
                                     <?php }} ?>
@@ -559,5 +542,27 @@ if(is_array($enderecos)){
 				else if(e){b.style.display = "block";g.style.display = "none";c.style.display = "block"}
 				else if(f){b.style.display = "none";g.style.display = "block";c.style.display = "none"}
       };
+     <?php 
+        if(is_array($enderecos)){
+            foreach($enderecos as $endereco_key => $endereco){
+                if($endereco->padrao == true){
+                    echo "                    
+                        document.getElementById('billing_state').value ='".$endereco->estado."'
+                        document.getElementById('billing_first_name').value ='".$usuario['nome']."'
+                        document.getElementById('billing_last_name').value ='".$usuario['sobrenome']."'
+                        document.getElementById('billing_email').value ='".$usuario['email']."'
+                        document.getElementById('billing_phone').value ='".$usuario['telefone']."'
+                        document.getElementById('billing_neighborhood').value ='".$endereco->bairro."'
+                        document.getElementById('billing_city').value ='".$endereco->cidade."'
+                        document.getElementById('billing_number').value ='".$endereco->numero."'
+                        document.getElementById('cepdestino').value ='".$endereco->cep."'
+                        document.getElementById('billing_address_1').value ='".$endereco->rua."'
+                        new main_math()
+                    ";
+                }
+            }
+        }
+      
+     ?>
       
       </script>

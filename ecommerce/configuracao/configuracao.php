@@ -24,8 +24,8 @@
   $cod_busca_resultado  = '<div id="EcommerceBuscaResultado" ></div>'."\n";
   $cod_busca_resultado .= '<script type="text/javascript">EcommerceBuscaResultado();</script>';
   
-  $area  = '<iframe onload="Eframe(this)"  src="'.RemoveHttpS(ConfigPainel('base_url')).'wa/ecommerce/login/" ></iframe>';
-
+  $area  = '<iframe onload="Eframe(this)" id="Eframe"  src="'.ConfigPainel('base_url').'wa/ecommerce/adm/login/" ></iframe>';
+  
 ?>
 <form id="formAtualizarConfig" method="post" action="?AtualizarConfig">
   <div class="card">
