@@ -24,7 +24,12 @@ $user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, c
  if($senha!= null && $valida['senha'] == $senha){
 $um = '1';
 $pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}' AND view NOT LIKE '%{$um}%'"));
+$query = DBRead('ecommerce_config','*');
 
+$config = [];
+foreach ($query as $key => $row) {
+  $config[$row['id']] = $row['valor'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -34,7 +39,7 @@ $pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}'
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo ConfigPainel('base_url'); ?>wa/<?php echo $modulo ?>/adm/src/style/main.css">
-        <?php require_once('../../../../wa/'.$modulo .'/adm/login/src/style/wactrl.php') ?>
+        <?php require_once('../../../../wa/'.$modulo .'/adm/area_usuario/src/style/wactrl.php') ?>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         
 </head>
@@ -78,9 +83,9 @@ $pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}'
                                                 <b>Telefone:</b> {{info.telefone}}
                                             </p>
                                             <div class="mt-2 clearfix">
-                                                <a href="javascript:void(0)" @click="status = 'editar'" class="link-icn js-show-form" >
-                                                <i class="icon-pencil"></i>Editar
-                                            </a>
+                                                <a href="javascript:void(0)" @click="status = 'editar'" class="ativo link-icn js-show-form" >
+                                                    <i class="icon-pencil"></i>Editar
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +146,7 @@ $pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}'
                                     <tbody>
                                         <tr v-for="pedido, p of pedidos">
                                             <td>{{p+1}}</td>
-                                            <td><b>{{pedido.id}}</b> <a href="cart.html" class="ml-1"> Ver Detalhes</a></td>
+                                            <td><b>{{pedido.id}}</b> <a href="javascript:void(0)" class="ativo ml-1"> Ver Detalhes</a></td>
                                             <td>{{pedido.data}}</td>
                                             <td>{{pedido.status.replace('_',' ')}}</td>
                                             <td><span class="color">R$ {{pedido.valor}}</span></td>
@@ -166,10 +171,10 @@ $pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}'
                                                 {{endereco.rua+' - '+endereco.numero+' - '+ endereco.bairro}}<br>
                                                 {{endereco.cep}}</p>
                                             <div class="mt-2 clearfix">
-                                                <a href="javascript: void(0)" @click="status = 'editar'; id=i" class="link-icn js-show-form" data-form="#updateAddress">
+                                                <a href="javascript: void(0)" @click="status = 'editar'; id=i" class="ativo link-icn js-show-form" data-form="#updateAddress">
                                                     <i class="icon-pencil"></i>Editar
                                                 </a> 
-                                                <a href="javascript: void(0)" @click="remove(i)" class="link-icn ml-1 float-right">
+                                                <a href="javascript: void(0)" @click="remove(i)" class="ativo link-icn ml-1 float-right">
                                                     <i class="icon-cross"></i>
                                                     Deletar
                                                 </a>

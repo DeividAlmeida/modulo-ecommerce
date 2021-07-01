@@ -659,6 +659,50 @@
           </div>
         </div>
       </div>
+       <hr/>
+
+      <h4>Configuração Área Cliente</h4>
+       <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Cor do Secundária:</label>
+            <div class="color-picker input-group colorpicker-element focused">
+              <input type="text" class="form-control" name="area_cor_second" value="<?php echo $config['area_cor_second'];?>">
+              <span class="input-group-append">
+                <span class="input-group-text add-on white">
+                  <i class="circle"></i>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Cor do Botão:</label>
+            <div class="color-picker input-group colorpicker-element focused">
+              <input type="text" class="form-control" name="area_btn_cor" value="<?php echo $config['area_btn_cor'];?>">
+              <span class="input-group-append">
+                <span class="input-group-text add-on white">
+                  <i class="circle"></i>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Cor Hover do Botão:</label>
+            <div class="color-picker input-group colorpicker-element focused">
+              <input type="text" class="form-control" name="area_hover_btn_cor" value="<?php echo $config['area_hover_btn_cor'];?>">
+              <span class="input-group-append">
+                <span class="input-group-text add-on white">
+                  <i class="circle"></i>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+       </div>
 
     <div class="card-footer white">
       <button class="btn btn-primary float-right" type="submit">Atualizar</button>

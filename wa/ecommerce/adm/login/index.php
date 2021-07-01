@@ -17,6 +17,11 @@ else if(isset($_COOKIE['E-Wacontroltoken'])){
 }
 if(!empty($senha)){$valida = DBRead('ecommerce_usuario','*',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0];}
 if(!empty($valida)){header('Location:'.ConfigPainel('base_url').'wa/ecommerce/adm/area_usuario/index.php');}
+$query = DBRead('ecommerce_config','*');
+$config = [];
+foreach ($query as $key => $row) {
+  $config[$row['id']] = $row['valor'];
+}
 ?>
 <html lang="pt-BR">
     <head>
@@ -54,14 +59,14 @@ if(!empty($valida)){header('Location:'.ConfigPainel('base_url').'wa/ecommerce/ad
                                 
                                 <div class="form-group senha-box">
                                     <input id="senha4" :type="idx == 'altera'? 'password':'email'" class="form-control" :placeholder="idx == 'altera'? 'Senha':'E-mail'">
-                                    <a v-if="idx == 'altera'" style="position: relative;right: 9%;width: 0px;padding-top: 3.5%;" href="javascript:void(0)" @click="ver(4)"><i id="eye4" class="far fa-eye-slash"></i></a>
+                                    <a v-if="idx == 'altera'" style="position: relative;right: 9%;width: 0px;padding-top: 3.5%;" href="javascript:void(0)" @click="ver(4)"><i id="eye4" class="ativo far fa-eye-slash"></i></a>
                                 </div>
                                 <div v-if="idx == 'login'||idx == 'altera'" class="form-group senha-box">
                                     <input id="senha1" type="password" class="form-control" :placeholder="idx == 'altera'? 'Confirme a Senha':'Senha'">
-                                    <a style="position: relative;right: 9%;width: 0px;padding-top: 3.5%;" href="javascript:void(0)" @click="ver(1)"><i id="eye1" class="far fa-eye-slash"></i></a>
+                                    <a style="position: relative;right: 9%;width: 0px;padding-top: 3.5%;" href="javascript:void(0)" @click="ver(1)"><i id="eye1" class="ativo far fa-eye-slash"></i></a>
                                 </div>
                                 <p class="text-uppercase" @click="a=>idx=='login'?idx ='reset':idx='login'">
-                                    <a href="return:false" class="js-toggle-forms">{{idx == 'login'?'ESQUECEU SUA SENHA?':'VOLTAR'}}</a>
+                                    <a href="return:false" class="ativo js-toggle-forms">{{idx == 'login'?'ESQUECEU SUA SENHA?':'VOLTAR'}}</a>
                                 </p>
                                 <div class="clearfix" v-if="idx == 'login'">
                                     <input id="checkbox1" name="checkbox1" type="checkbox" > 
@@ -103,13 +108,13 @@ if(!empty($valida)){header('Location:'.ConfigPainel('base_url').'wa/ecommerce/ad
                                 <div class="form-group">
                                     <input id="senha2" name="senha" type="password" class="form-control senha" placeholder="Senha">
                                     <a style="position: relative;left: 100%;width: 0px;bottom: 27px;margin-left:-25px" href="javascript:void(0)" @click="ver(2)">
-                                    <i style="position:absolute" id="eye2" class="far fa-eye-slash"></i></a>
+                                    <i style="position:absolute" id="eye2" class="ativo far fa-eye-slash"></i></a>
                                 </div>
                                 
                                 <div class="form-group">
                                     <input id="senha3" type="password" class="form-control senha" placeholder="Confirmar Senha">
                                     <a  style="position: relative;left: 100%;width: 0px;bottom: 27px;margin-left:-25px" href="javascript:void(0)" @click="ver(3)">
-                                    <i id="eye3" class="far fa-eye-slash"></i></a>
+                                    <i id="eye3" class="ativo far fa-eye-slash"></i></a>
                                 </div>
                                 <!--<div class="clearfix"><input id="checkbox1" name="checkbox1" type="checkbox" checked="checked"> <label for="checkbox1">By registering your details you agree to our Terms and Conditions and privacy and cookie policy</label></div>-->
                                 <button type="reset" @click="idx='login'" class="btn btn--alt js-close-form" data-form="#updateDetails">Cancelar</button>                             
@@ -143,10 +148,10 @@ if(!empty($valida)){header('Location:'.ConfigPainel('base_url').'wa/ecommerce/ad
                 let senha = document.getElementById('senha'+n)
                 if(senha.type == 'password'){
                     senha.type = 'text'
-                    document.getElementById('eye'+n).setAttribute('class','far fa-eye')
+                    document.getElementById('eye'+n).setAttribute('class','ativo far fa-eye')
                 }else{
                     senha.type = 'password'
-                    document.getElementById('eye'+n).setAttribute('class','far fa-eye-slash')
+                    document.getElementById('eye'+n).setAttribute('class','ativo far fa-eye-slash')
                 }
             },
             registrar: function(){

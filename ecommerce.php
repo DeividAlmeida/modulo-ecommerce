@@ -32,6 +32,7 @@ $UrlPage	 = 'Ecommerce.php';
 
 			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'pedidos')) { ?>
 					<a class="btn btn-sm btn-primary" href="?Vendas" >Pedidos</a>
+					<a class="btn btn-sm btn-primary" href="?Clientes" >Clientes</a>
 				<?php } ?>
 
 				<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'listagem')) { ?>
@@ -178,6 +179,8 @@ $UrlPage	 = 'Ecommerce.php';
 			require_once('ecommerce/listagens/item/listar.php');
 		elseif (isset($_GET['Vendas'])) :
 			require_once('ecommerce/vendas/vendas.php');
+		elseif (isset($_GET['Clientes'])) :
+			require_once('ecommerce/clientes/clientes.php');
 		elseif (isset($_GET['VisualizarListaMarca'])) :
 			require_once('ecommerce/listagens/item/listar_marca.php');
 		elseif (isset($_GET['ListarCupons'])) :
@@ -558,7 +561,7 @@ $UrlPage	 = 'Ecommerce.php';
 </script>
 		<?php } ?>
 
-<?php if (isset($_GET['Vendas'])) { ?>
+<?php if (isset($_GET['Vendas']) || isset($_GET['Clientes'])) { ?>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 	<script src="css_js/bootstrap-table.min.js"></script>

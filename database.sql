@@ -54,6 +54,9 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('carrocel_cor_hover_setas', ''),
 ('carrinho_cor_btns', ''),
 ('carrinho_cor_btn_finalizar', ''),
+('area_btn_cor', ''),
+('area_hover_btn_cor', ''),
+('area_cor_second', ''),
 ('moeda', 'R&#x00024;');
 
 

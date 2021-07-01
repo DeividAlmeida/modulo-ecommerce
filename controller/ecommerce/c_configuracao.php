@@ -59,6 +59,9 @@ else if (isset($_GET['AtualizarConfig'])) {
     'carrocel_cor_hover_setas',
     'carrinho_cor_btns',
     'carrinho_cor_btn_finalizar',
+    'area_btn_cor',
+    'area_hover_btn_cor',
+    'area_cor_second',
     'moeda'
   );
 
