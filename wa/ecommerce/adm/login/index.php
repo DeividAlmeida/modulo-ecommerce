@@ -182,7 +182,7 @@ foreach ($query as $key => $row) {
                         body: form
                     }).then(d => d.text()).then(d=>{
                         if(d == 1){                                                        
-                            window.parent.location.assign('javascript:swal("E-mail Enviado!", "Por favor, acesse o seu e-mail para concluir o seu cadastro!!", "success").then((isConfirm)=>{if(isConfirm){document.location.reload(true);}})')
+                            window.parent.location.assign('javascript:swal("Conta Criada!", "Por favor, acesse o seu e-mail para concluir o seu cadastro!!", "success").then((isConfirm)=>{if(isConfirm){document.location.reload(true);}})')
                         }else{
                             window.parent.location.assign('javascript:swal("ERRO!", "'+d+'", "error")'); 
                         }

@@ -41,7 +41,7 @@ foreach ($query as $key => $row) {
         <link rel="stylesheet" href="<?php echo ConfigPainel('base_url'); ?>wa/<?php echo $modulo ?>/adm/src/style/main.css">
         <?php require_once('../../../../wa/'.$modulo .'/adm/area_usuario/src/style/wactrl.php') ?>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-        
+        <script src='https://use.fontawesome.com/releases/v5.0.0/js/all.js'></script>
 </head>
     <body  class="is-dropdn-click win no-loader" >
         <div class="page-content" id="main_area">
@@ -141,18 +141,93 @@ foreach ($query as $key => $row) {
                                             <th scope="col">Data do Pedido</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Preço Total </th>
+                                            <th scope="col">Ações </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr v-for="pedido, p of pedidos">
+                                    <tbody v-for="pedido, p of pedidos">
+                                        <tr >
                                             <td>{{p+1}}</td>
-                                            <td><b>{{pedido.id}}</b> <a href="javascript:void(0)" class="ativo ml-1"> Ver Detalhes</a></td>
-                                            <td>{{pedido.data}}</td>
+                                            <td><b>#{{pedido.id}}</b></td>
+                                            <td>{{(new Date(pedido.data)).toISOString().match(/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}/)[0].split('-').reverse().join('/')}}</td>
                                             <td>{{pedido.status.replace('_',' ')}}</td>
-                                            <td><span class="color">R$ {{pedido.valor}}</span></td>
+                                            <td><span class="color">R$ {{pedido.valor.replace('.',',')+ " de "+qtd[p]+" produto(s)"}}</span></td>
+                                            <td><button @click="detalhes(p)" type="button"  class="btn">VISUALIZAR</button></td>
+                                        </tr>
+                                        <tr style="display:none" :id="p">
+                                            <td colspan="6" style="text-align: center">
+                                                <h2>Detalhes do Pedido</h2><hr>
+                                                <div  class="row">
+                                                    <div class="col-md-6">
+                                                        <b>PRODUTO</b>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <b>TOTAL</b>
+                                                    </div>
+                                                </div><hr>
+                                                <div  class="row" v-for="produto, pp of pedido.produto">
+                                                    <div class="col-md-6">
+                                                        {{produto.produto_pg? produto.produto_pg:produto.produto}}<b> x {{produto.qtd}}</b>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        R$ {{(parseInt(produto.qtd)*parseFloat(produto.un_valor)).toFixed(2).replace('.',',')}}
+                                                    </div>
+                                                </div><hr>
+                                                <div  class="row">
+                                                    <div class="col-md-6">
+                                                        <b>SUBTOTAL</b>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <b>R$ {{pedido.valor.replace('.',',')}}</b>
+                                                    </div>
+                                                </div><hr>
+                                                <div  class="row">
+                                                    <div class="col-md-6">
+                                                        <b>MÉTODO DE PAGAMENTO</b>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <b>{{pedido.tipo_pagamento}}</b>
+                                                    </div>
+                                                </div><hr>
+                                                <div  class="row">
+                                                    <div class="col-md-6">
+                                                        <b>TOTAL</b>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <b> R$ {{(parseFloat(pedido.valor)+parseFloat(pedido.vl_frete)).toFixed(2).replace('.',',')}}</b>
+                                                    </div>
+                                                </div><hr>
+                                                <div  class="row ">
+                                                    <div class="col-md-6">
+                                                        <b>ENDEREÇO DE FATURAMENTO</b>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <ul style=" text-align: left;list-style-type: none;padding-left: 30%;">
+                                                           <li>{{pedido.nome}}</li> 
+                                                            <li>{{pedido.tipo_pessoa == '1'? 'CPF': 'CNPJ'}} : {{pedido.id_pessoa}}</li> 
+                                                           <li>{{pedido.rua}}</li> 
+                                                           <li>{{pedido.cidade}}</li> 
+                                                           <li>{{pedido.estado}}</li> 
+                                                            <li>{{pedido.telefone}}</li><br>
+                                                           <li>{{pedido.email}}</li> 
+                                                        </ul>
+                                                    </div>
+                                                </div><hr>
+                                                <div  class="row justify-content-md-center">
+                                                    <div class="col-6">
+                                                        <div class="input-group">
+                                                            <div type="text" class="form-control" style="height:50%"><b>Cód. de rastreamento</b><br>{{pedido.rastreamento}}</div>
+                                                            <button @click="copy(p)"  type="button"  class="btn input-group-text">
+                                                                <i class="far fa-copy"></i>
+                                                            <b :id="'copiado'+p" style="color:white">Copiar</b></button>
+                                                        </div>
+                                                    </div>
+                                                    <input :id="'copy'+p" type="hidden" :value="pedido.rastreamento">
+                                                </div><hr>
+                                                
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" v-if="!pedidos" style="text-align: center">Não exitem pedidos no seu histórico...</td>
+                                            <td colspan="6" v-if="!pedidos" style="text-align: center">Não exitem pedidos no seu histórico...</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -351,6 +426,7 @@ foreach ($query as $key => $row) {
             info: <?php echo $user  ?>,
             pedidos: <?php echo $pedidos  ?>,
             status:'',
+            qtd:[],
             //config:<?php #echo $config ?>,
             origin:'<?php echo  ConfigPainel('base_url'); ?>'
         },
@@ -387,7 +463,23 @@ foreach ($query as $key => $row) {
                     window.parent.location.assign('javascript:swal("ERRO!", "'+d+'", "error")'); 
                 })
                 
+            },
+            detalhes: function(d){
+                let row = document.getElementById(d)
+                if(row.style.display=="none"){
+                   row.style.display = "" 
+                }else{
+                    row.style.display = "none" 
+                }
+                window.parent.location.assign('javascript: new height('+document.getElementsByClassName("container")[0].scrollHeight+')')
+            },
+             copy: function(d){
+                document.getElementById('copiado'+d).innerText = 'copiado'
+                let codigo = document.getElementById('copy'+d)
+                codigo.select();
+                document.execCommand("copy");
             }
+            
         }
     })
     
@@ -396,6 +488,7 @@ foreach ($query as $key => $row) {
     }else{
         vue.info.endereco = JSON.parse(vue.info.endereco)   
     }
+    
     function salvar(i){
         if(document.getElementById("formCheckbox1") != null  && document.getElementById("formCheckbox1").checked){          
             vue.info.endereco.filter((a,b)=>{
@@ -423,6 +516,12 @@ foreach ($query as $key => $row) {
     } 
     limpar = () =>{
         window.parent.location.assign('javascript:swal("Tem certeza!!", "Deseja realmente deletar esses pedidos do seu histórico ?", "warning",{buttons: true}).then((isConfirm)=>{if(isConfirm){fetch("'+vue.origin+'wa/ecommerce/apis/limpar.php'+sessao+'").then(a=>a.text()).then(a=>{if(a == 1){ swal("Deletado!!", "Histórico de pedidos deletados com sucesso", "success");document.getElementById("Eframe").src= "javascript:vue.pedidos = false"}else{ swal("ERRO!", a, "error")} }) }})')
+    }
+    for(let i = 0 ; i<vue.pedidos.length; i++){
+        let soma  = 0
+        vue.pedidos[i].produto = JSON.parse(vue.pedidos[i].produto);
+        Object.values(vue.pedidos[i].produto).find(a =>{soma +=parseInt(a.qtd)})
+        vue.qtd.push(soma)
     }
     
     </script>
