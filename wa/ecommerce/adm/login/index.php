@@ -34,6 +34,7 @@ foreach ($query as $key => $row) {
         <?php require_once('../../../../wa/'.$modulo .'/adm/login/src/style/wactrl.php') ?>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-swal@1/dist/vue-swal.min.js"></script>
+        <script src='https://use.fontawesome.com/releases/v5.0.0/js/all.js'></script>
         <style>
         .senha-box{
             display:flex
@@ -209,6 +210,7 @@ foreach ($query as $key => $row) {
     }
     document.getElementsByClassName('autentica')[0].addEventListener('click',a=>{
         if(a.target.innerText == 'ENTRAR'){
+           a.target.innerHTML= '<i class="fas fa-spinner fa-pulse fa-4x"></i>'
             fetch(vue.origin+'wa/ecommerce/apis/autentica.php',{
                 method: 'POST',
                 headers:{
@@ -216,11 +218,12 @@ foreach ($query as $key => $row) {
                     'Content-Type': 'application/json',
                 },
                 body: document.getElementById('checkbox1').checked 
-            }).then(a=>a.text()).then(a=>{
-                if(a == 1){
+            }).then(aa=>aa.text()).then(aa=>{
+                if(aa == 1){
                     window.location.href = vue.origin+'wa/ecommerce/adm/area_usuario/'                    
                 }else{                                       
-                    window.parent.location.assign('javascript:swal("ERRO!","'+a+'", "error")'); 
+                    window.parent.location.assign('javascript:swal("ERRO!","'+aa+'", "error")'); 
+                     a.target.innerHTML= 'ENTRAR'
                 }
             })
         }else if(a.target.innerText == 'ENVIAR'){

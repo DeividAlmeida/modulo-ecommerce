@@ -38,6 +38,7 @@ foreach ($query as $key => $row) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
         <link rel="stylesheet" href="<?php echo ConfigPainel('base_url'); ?>wa/<?php echo $modulo ?>/adm/src/style/main.css">
         <?php require_once('../../../../wa/'.$modulo .'/adm/area_usuario/src/style/wactrl.php') ?>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -201,7 +202,7 @@ foreach ($query as $key => $row) {
                                                         <b>ENDEREÇO DE FATURAMENTO</b>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <ul style=" text-align: left;list-style-type: none;padding-left: 30%;">
+                                                        <ul style=" text-align: left;list-style-type: none;padding-left: 40%;">
                                                            <li>{{pedido.nome}}</li> 
                                                             <li>{{pedido.tipo_pessoa == '1'? 'CPF': 'CNPJ'}} : {{pedido.id_pessoa}}</li> 
                                                            <li>{{pedido.rua}}</li> 
@@ -221,9 +222,45 @@ foreach ($query as $key => $row) {
                                                             <b :id="'copiado'+p" style="color:white">Copiar</b></button>
                                                         </div>
                                                     </div>
-                                                    <input :id="'copy'+p" type="hidden" :value="pedido.rastreamento">
+                                                    <input style=" position: absolute; top: -1000000000000px;" :id="'copy'+p" type="text" :value="pedido.rastreamento">
                                                 </div><hr>
-                                                
+                                                <div  class="row justify-content-md-center">
+                                                    <div class="col-12">
+                                                        <div class="horizontal-timeline flex-row">
+                                                            
+                                                            <div v-if="statusp[p]!=0" :class="statusp[p]>=2? 'step completed':'step current'">
+                                                                <div class="marker"></div>
+                                                                Pagamento<br/>Aprovado
+                                                            </div>
+                                                            <div v-else class="step">
+                                                                <div class="marker"></div>
+                                                                Pagamento<br/>Aprovado
+                                                            </div>
+                                                            
+                                                            <div v-if="statusp[p]<=1 " class="step">
+                                                                <div class="marker"></div>
+                                                                Enviado ao<br/>Transportador
+                                                            </div>
+                                                            <div v-else :class="statusp[p]>=3? 'step completed':'step current'">
+                                                                <div class="marker"></div>
+                                                                Enviado ao<br/>Transportador
+                                                            </div>
+                                                            
+                                                            <div  :class="statusp[p]>2? 'step completed':'step'">
+                                                                <div class="marker"></div>
+                                                                Produto em<br/>Transporte 
+                                                            </div>
+                                                            <div v-if="statusp[p]>2" :class="statusp[p]==4? 'step completed':'step current'">
+                                                                <div class="marker"></div>
+                                                                Pedido<br/>Entregue
+                                                            </div>
+                                                            <div v-else class="step">
+                                                                <div class="marker"></div>
+                                                                Pedido<br/>Entregue
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -427,6 +464,7 @@ foreach ($query as $key => $row) {
             pedidos: <?php echo $pedidos  ?>,
             status:'',
             qtd:[],
+            statusp:[],
             //config:<?php #echo $config ?>,
             origin:'<?php echo  ConfigPainel('base_url'); ?>'
         },
@@ -473,11 +511,12 @@ foreach ($query as $key => $row) {
                 }
                 window.parent.location.assign('javascript: new height('+document.getElementsByClassName("container")[0].scrollHeight+')')
             },
-             copy: function(d){
-                document.getElementById('copiado'+d).innerText = 'copiado'
-                let codigo = document.getElementById('copy'+d)
-                codigo.select();
-                document.execCommand("copy");
+             copy: function(i){
+                var copyText = document.getElementById('copy'+i);
+                document.getElementById('copiado'+i).innerText = 'copiado'
+                  copyText.select();
+                  copyText.setSelectionRange(0, 99999)
+                  document.execCommand("copy");
             }
             
         }
@@ -520,7 +559,23 @@ foreach ($query as $key => $row) {
     for(let i = 0 ; i<vue.pedidos.length; i++){
         let soma  = 0
         vue.pedidos[i].produto = JSON.parse(vue.pedidos[i].produto);
-        Object.values(vue.pedidos[i].produto).find(a =>{soma +=parseInt(a.qtd)})
+        let cancelado = 0
+        let reembolsado = 0
+        let pagamento_pendente = 1
+        let processando = 2
+        let aguardando = 2
+        let pedido_enviado = 3
+        let concluido = 4
+        Object.values(vue.pedidos[i].produto).find(a =>{
+            
+            soma +=parseInt(a.qtd)
+            
+        })
+        if(vue.pedidos[i].status){
+            vue.statusp.push(eval(vue.pedidos[i].status))
+        }else{
+            vue.statusp.push(0)
+        }
         vue.qtd.push(soma)
     }
     
