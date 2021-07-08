@@ -6,7 +6,7 @@ require_once('../../../database/config.php');
 
 $token = md5(session_id());
 if(isset($_GET['token']) && $_GET['token'] === $token) {
-    session_destroy();
+    unset($_SESSION['E-Wacontrol']);
     setcookie('E-Wacontrolid', null, -1, '/');
     setcookie('E-Wacontroltoken', null, -1, '/');
     header("location:".ConfigPainel('base_url').'wa/ecommerce/adm/login/index.php');

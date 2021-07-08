@@ -531,7 +531,7 @@ $enderecos = json_decode($usuario['endereco']);
 		</div>
 		<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
 		<script>	
-			person = (a) =>{
+			function person(a){
 				const b = 	document.getElementById("billing_cpf_field");
 				const c = 	document.getElementById("cpf");
 				const g = 	document.getElementById("cnpj");
@@ -546,7 +546,7 @@ $enderecos = json_decode($usuario['endereco']);
         if(is_array($enderecos)){
             foreach($enderecos as $endereco_key => $endereco){
                 if($endereco->padrao == true){
-                    echo "                    
+                    echo "
                         document.getElementById('billing_state').value ='".$endereco->estado."'
                         document.getElementById('billing_first_name').value ='".$usuario['nome']."'
                         document.getElementById('billing_last_name').value ='".$usuario['sobrenome']."'
@@ -557,6 +557,9 @@ $enderecos = json_decode($usuario['endereco']);
                         document.getElementById('billing_number').value ='".$endereco->numero."'
                         document.getElementById('cepdestino').value ='".$endereco->cep."'
                         document.getElementById('billing_address_1').value ='".$endereco->rua."'
+                        document.getElementById('billing_persontype').value ='".$usuario['pessoa']."'
+                        document.getElementById('billing_cpf').value = '".$usuario['id_pessoa']."'
+                        new person('".$usuario['pessoa']."')
                         new main_math()
                     ";
                 }

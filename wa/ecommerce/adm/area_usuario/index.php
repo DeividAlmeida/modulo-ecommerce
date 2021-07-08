@@ -20,7 +20,7 @@ else if(isset($_COOKIE['E-Wacontroltoken'])){
     $senha =  $_COOKIE['E-Wacontroltoken'];
 }
 $valida = DBRead('ecommerce_usuario','*',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0];
-$user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, telefone, cpf, email, endereco ',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0]);
+$user = json_encode(DBRead('ecommerce_usuario','id, nome, sobrenome, pessoa, id_pessoa, telefone, email, endereco ',"WHERE id = '{$id}' AND  senha = '{$senha}' ")[0]);
  if($senha!= null && $valida['senha'] == $senha){
 $um = '1';
 $pedidos = json_encode(DBRead('ecommerce_vendas','*',"WHERE id_cliente = '{$id}' AND view NOT LIKE '%{$um}%'"));
@@ -80,6 +80,7 @@ foreach ($query as $key => $row) {
                                             <p>
                                                 <b>Nome:</b> {{info.nome}}<br>
                                                 <b>Sobrenome:</b> {{info.sobrenome}}<br>
+                                                <b>{{info.pessoa == '1'? 'CPF': 'CNPJ'}}:</b> {{info.id_pessoa}}<br>
                                                 <b>E-mail:</b> {{info.email}}<br>
                                                 <b>Telefone:</b> {{info.telefone}}
                                             </p>
@@ -106,6 +107,23 @@ foreach ($query as $key => $row) {
                                             <label class="text-uppercase">Sobrenome:</label>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="sobrenome" v-model="info.sobrenome" :placeholder="info.sobrenome">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-sm-6">
+                                            <label class="text-uppercase">Pessoa:</label>
+                                             <div class="form-group select-wrapper">
+                                                <select class="form-control" id="pessoa" name="pessoa" v-model="info.pessoa">
+                                                    <option value="1">Pessoa Física</option>
+													<option value="2">Pessoa Jurídica</option>
+                                                </select>
+                                             </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="text-uppercase">CPF / CNPJ:</label>
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" name="id_pessoa" v-model="info.id_pessoa" :placeholder="info.id_pessoa">
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +170,7 @@ foreach ($query as $key => $row) {
                                             <td>{{(new Date(pedido.data)).toISOString().match(/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}/)[0].split('-').reverse().join('/')}}</td>
                                             <td>{{pedido.status.replace('_',' ')}}</td>
                                             <td><span class="color">R$ {{pedido.valor.replace('.',',')+ " de "+qtd[p]+" produto(s)"}}</span></td>
-                                            <td><button @click="detalhes(p)" type="button"  class="btn">VISUALIZAR</button></td>
+                                            <td><button @click="detalhes(p)" type="button" :id="'btn'+p"  class="btn">VISUALIZAR</button></td>
                                         </tr>
                                         <tr style="display:none" :id="p">
                                             <td colspan="6" style="text-align: center">
@@ -488,6 +506,7 @@ foreach ($query as $key => $row) {
                 window.parent.location.assign('javascript:swal("Tem certeza!!", "Deseja realmente deletar esse endereço ?", "warning",{buttons: true}).then((isConfirm)=>{if(isConfirm){document.getElementById("Eframe").src = "javascript:vue.info.endereco.splice('+i+', 1);new salvar()"}})')
             },
             atualiza: function(){
+                 form.append(document.querySelectorAll('select')[0].name, document.querySelectorAll('select')[0].value)
                 for(let i= 0; i< document.querySelectorAll('input').length; i++){
                     form.append(document.querySelectorAll('input')[i].name, document.querySelectorAll('input')[i].value)
                 }
@@ -504,10 +523,13 @@ foreach ($query as $key => $row) {
             },
             detalhes: function(d){
                 let row = document.getElementById(d)
+                let btn = document.getElementById('btn'+d)
                 if(row.style.display=="none"){
                    row.style.display = "" 
+                   btn.innerText = 'VOLTAR'
                 }else{
                     row.style.display = "none" 
+                     btn.innerText = 'VISUALIZAR'
                 }
                 window.parent.location.assign('javascript: new height('+document.getElementsByClassName("container")[0].scrollHeight+')')
             },
