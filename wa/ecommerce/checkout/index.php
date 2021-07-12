@@ -27,13 +27,13 @@ else if(isset($_COOKIE['E-Wacontroltoken'])){
 }
 $usuario = DBRead('ecommerce_usuario','*',"WHERE id = '{$id_cliente}'")[0];
 $enderecos = json_decode($usuario['endereco']);
-
 ?>
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/animate.css">
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/modal.css">
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/assets/css/checkout.css">
 		
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     #normal{
         position:relative;
@@ -454,31 +454,32 @@ $enderecos = json_decode($usuario['endereco']);
                                     </li>
                                    <script>
                                     $('#fcheckout').submit(function(e) {
-                                          
+                                             e.preventDefault(); 
                                           if(document.getElementById('payment_method_deposito').checked){
--                                            sessionStorage.setItem("vfrete", document.getElementById("f_valor").innerHTML);
--                                            sessionStorage.setItem("frete", document.getElementById("tipo_entrega").value);
--                                            sessionStorage.setItem("ttl", document.getElementById("total").innerHTML);
-                                              e.preventDefault();            
-                                              var adata = $(this).serializeArray();
-                                              $.ajax({
-                                                data: adata,
-                                                type:    "POST",
-                                                cache:   false,
-                                                url:     UrlPainel+'wa/ecommerce/checkout/composer.php',
-                                                success: function (adata) {
+                                              new resolveAfter2Seconds().then((res)=>{
+    -                                            sessionStorage.setItem("vfrete", document.getElementById("f_valor").innerHTML);
+    -                                            sessionStorage.setItem("frete", document.getElementById("tipo_entrega").value);
+    -                                            sessionStorage.setItem("ttl", document.getElementById("total").innerHTML);
+                                                  var adata = $(this).serializeArray();
                                                   $.ajax({
-                                                      type:    "GET",
-                                                      cache:   false,
-                                                      url:     UrlPainel+'wa/ecommerce/checkout/detalhes.php',
-                                                      success: function (data) {
-                                                        
-                                                        jQuery('#EcommerceCheckout').html(data);
-                                                         },
-                                                  });
-                                                }, 
-                                              });           
-                                            }else{sessionStorage.clear()};
+                                                    data: adata,
+                                                    type:    "POST",
+                                                    cache:   false,
+                                                    url:     UrlPainel+'wa/ecommerce/checkout/composer.php',
+                                                    success: function (adata) {
+                                                      $.ajax({
+                                                          type:    "GET",
+                                                          cache:   false,
+                                                          url:     UrlPainel+'wa/ecommerce/checkout/detalhes.php',
+                                                          success: function (data) {
+                                                            
+                                                            jQuery('#EcommerceCheckout').html(data);
+                                                             },
+                                                      });
+                                                    }, 
+                                                  });           
+                                              })
+                                            }else{sessionStorage.clear();validateMyForm()};
                                             document.getElementById('finalizar').innerHTML = "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
                                       });
                                     </script>
@@ -498,6 +499,7 @@ $enderecos = json_decode($usuario['endereco']);
 									<input  type="hidden" name="v_desconto" id="v_desconto" value="0.00">
 									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
 									<input required type="hidden" name="vl_frete" id="vl_frete" value="">
+									<input type="hidden" name="criar" id="criar" value="não">
 									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked"  && empty($gateways) ): else: ?>
 									<center id="finalizar"><input type="submit" id="cartCheckout"  value="Finalizar compra" ></center>
 									<?php endif ?>
@@ -561,11 +563,43 @@ $enderecos = json_decode($usuario['endereco']);
                         document.getElementById('billing_cpf').value = '".$usuario['id_pessoa']."'
                         new person('".$usuario['pessoa']."')
                         new main_math()
+                        function validateMyForm(){document.getElementById('fcheckout').submit()}
+                        function resolveAfter2Seconds(){ return true}
                     ";
                 }
             }
-        }
-      
-     ?>
+        }else{ ?>
+                
+                function resolveAfter2Seconds() {
+                  return new Promise(resolve => {
+                    setTimeout(() => {
+                      resolve(
+                          Swal.fire({
+                                    title: 'Você deseja que criemos uma conta automática para otimizar suas futuras compras, ou ainda prefere terminar como visitante?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Criar conta',
+                                    cancelButtonText: 'Continuar com visitante ',
+                                    confirmButtonColor: '<?php echo $config['carrinho_cor_btn_finalizar']; ?>',
+                                    cancelButtonColor: '<?php echo $config['carrinho_cor_btn_finalizar']; ?>',
+                                    reverseButtons: true
+                                }).then((result) => {
+                                  if (result.isConfirmed) {
+                                   document.getElementById('criar').value = 'sim'
+                                  }
+                                   return result.isConfirmed
+                           })
+                          );
+                    }, 1);
+                  });
+                }
+                async function validateMyForm() {
+                    var x = await resolveAfter2Seconds();
+                    document.getElementById('fcheckout').submit()
+                    return x
+                  
+                }
+    
+        <?php }?>
       
       </script>

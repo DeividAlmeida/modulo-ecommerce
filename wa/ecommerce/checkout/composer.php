@@ -30,8 +30,6 @@ $resources = array_combine(array_keys($_POST['produto']), array_map(function ($q
 },$_POST['qtd'], $_POST['produto'], $_POST['un_valor'], $_POST['produto_pg'], $_POST['id_pdt']));
 $_POST['venda'] = json_encode($resources, JSON_FORCE_OBJECT);
 
-
-
 if (isset($_POST)) {
     
     $nome = post('billing_first_name')." ".post('billing_last_name');
@@ -56,13 +54,41 @@ if (isset($_POST)) {
       'id_cliente' => post('id_cliente'),
       'vl_frete' => post('vl_frete')
     );
+
     $query = DBCreate('ecommerce_vendas', $data, true);
+    
     $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$query}'");
     require_once('../../../controller/ecommerce/email_vendedor.php');
     
-  if( post('payment_method') == "Dep贸sito"){require_once('../../../controller/ecommerce/email_cliente_retirada.php');}else{
+    if( post('payment_method') == "Depósito"){require_once('../../../controller/ecommerce/email_cliente_retirada.php');}else{
     require_once('../../../controller/ecommerce/email_cliente.php');
-  }
+    }
+    if($_POST['criar'] == 'sim'){
+        $enderecos = [[
+            'estado'=>post('billing_state'),
+            'cidade'=>post('billing_city'),
+            'rua'=>post('billing_address_1'),
+            'bairro'=>post('billing_neighborhood'),
+            'numero'=>post('billing_number'),
+            'cep'=>post('billing_postcode'),
+            'padrao'=>true
+
+        ]];
+        $enderecos = json_encode($enderecos);
+        $senha =  str_replace(" ","",$nome.rand(1,100));
+       $user = DBCreate('ecommerce_usuario', [
+            'nome'      => post('billing_first_name'),
+            'sobrenome'      => post('billing_last_name'),
+            'email' => post('billing_email'),
+            'senha' => md5($senha),
+            'telefone' => post('billing_phone'),
+            'pessoa' => post('billing_persontype'),
+            'id_pessoa' => post('id_pessoa'),
+            'endereco'=> $enderecos
+            ], true);
+            require_once('../../../controller/ecommerce/email_cliente_novo.php');
+            DBUpdate('ecommerce_vendas',['id_cliente'=> $user]," id = '{$query}'");
+    }
 $route = post('composer');
 require($route);
 }

@@ -42,7 +42,12 @@ foreach ($query as $key => $row) {
         <link rel="stylesheet" href="<?php echo ConfigPainel('base_url'); ?>wa/<?php echo $modulo ?>/adm/src/style/main.css">
         <?php require_once('../../../../wa/'.$modulo .'/adm/area_usuario/src/style/wactrl.php') ?>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-        <script src='https://use.fontawesome.com/releases/v5.0.0/js/all.js'></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+        .senha-box{
+            display:flex
+        }
+        </style>
 </head>
     <body  class="is-dropdn-click win no-loader" >
         <div class="page-content" id="main_area">
@@ -51,25 +56,12 @@ foreach ($query as $key => $row) {
                     <div class="row">
                         <div class="col-md-3 aside aside--left">
                             <div class="list-group">
-                                <a href="javascript:void(0)" @click="idx = 'pedidos'; status = ''" :class="idx == 'pedidos'?'list-group-item active':'list-group-item'">Meus Pedidos</a> 
+                                <a href="javascript:void(0)" @click="idx = 'pedidos'; status = ''" :class="idx == 'pedidos' || idx == null?'list-group-item active':'list-group-item'">Meus Pedidos</a> 
                                 <a href="javascript:void(0)" @click="idx = 'endereco'; status = ''" :class="idx == 'endereco'?'list-group-item active':'list-group-item'">Meu Endereço</a> 
                                 <a href="javascript:void(0)" @click="idx = 'perfil'; status = ''" :class="idx == 'perfil'?'list-group-item active':'list-group-item'">Perfil</a> 
                                 <a onclick="window.location.href =vue.origin+'wa/ecommerce/apis/logout.php?token=<?php echo md5(session_id()) ?>'" class="list-group-item">Sair</a>
                             </div>
                         </div>
-                        <div class="col-md-9 aside" v-if="idx == null">
-                            <h2>Seja Bem Vindo {{info.nome}} !</h2>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                                    
-
                         <div class="col-md-9 aside" v-if="idx == 'perfil'">                        
                             <div class="row" >
                                 <h2>Perfil</h2>
@@ -145,11 +137,43 @@ foreach ($query as $key => $row) {
                                         <button type="reset" @click="idx = 'perfil'; status = ''" class="btn btn--alt js-close-form" data-form="#updateDetails">Cancelar</button> 
                                         <button type="bottom" @click="atualiza()" class="btn ml-1">Atualizar</button>
                                     </div>
+                                </div>    
+                                <div class="card-body">
+                                    <h3>Alterar Senha</h3>
+                                    <div class="row mt-2">
+                                        <div class="col-sm-6">
+                                        <label class="text-uppercase">Senha Atual:</label>
+                                            <div class="form-group senha-box">
+                                                <input id="senha4" type="password" class="form-control senha" placeholder="Senha Atual">
+                                                <a  style="position: relative;right: 9%;width: 0px;padding-top: 2%;" href="javascript:void(0)" @click="ver(4)"><i id="eye4" class="ativo fa fa-eye-slash"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-sm-6">
+                                        <label class="text-uppercase">Nova Senha:</label>
+                                            <div class="form-group senha-box">
+                                                <input id="senha5" type="password" class="form-control senha" placeholder="Nova Senha">
+                                                <a  style="position: relative;right: 9%;width: 0px;padding-top: 2%;" href="javascript:void(0)" @click="ver(5)"><i id="eye5" class="ativo fa fa-eye-slash"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="text-uppercase">Confirmar Senha:</label>
+                                            <div class="form-group senha-box">
+                                                <input id="senha6" type="password" class="form-control senha" placeholder="Confirmar Senha">
+                                                <a  style="position: relative;right: 9%;width: 0px;padding-top: 2%;" href="javascript:void(0)" @click="ver(6)"><i id="eye6" class="ativo fa fa-eye-slash"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 clearfix">
+                                            <button type="reset" @click="idx = 'perfil'; status = ''" class="btn btn--alt js-close-form" data-form="#updateDetails">Cancelar</button> 
+                                            <button type="bottom" @click="altera()" class="btn ml-1">Atualizar</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-9 aside" v-if="idx == 'pedidos'">
+                        <div class="col-md-9 aside" v-if="idx == 'pedidos' || idx == null">
                             <h2>Histórico de Pedidos</h2>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-order-history">
@@ -185,7 +209,8 @@ foreach ($query as $key => $row) {
                                                 </div><hr>
                                                 <div  class="row" v-for="produto, pp of pedido.produto">
                                                     <div class="col-md-6">
-                                                        {{produto.produto_pg? produto.produto_pg:produto.produto}}<b> x {{produto.qtd}}</b>
+                                                        <span v-if="produto.produto_pg" v-html="produto.produto_pg"></span>
+                                                        <span v-else v-html="produto.produto"></span>
                                                     </div>
                                                     <div class="col-md-6">
                                                         R$ {{(parseInt(produto.qtd)*parseFloat(produto.un_valor)).toFixed(2).replace('.',',')}}
@@ -502,6 +527,16 @@ foreach ($query as $key => $row) {
                 this.info.endereco.push({ estado:a, cidade:b,  rua:c, bairro:d, numero:e, cep:f, padrao: false}) 
                 new salvar(this.info.endereco.length -1 )
             },
+            ver: function(n){
+                let senha = document.getElementById('senha'+n)
+                if(senha.type == 'password'){
+                    senha.type = 'text'
+                    document.getElementById('eye'+n).setAttribute('class','ativo fa fa-eye')
+                }else{
+                    senha.type = 'password'
+                    document.getElementById('eye'+n).setAttribute('class','ativo fa fa-eye-slash')
+                }
+            },
             remove: function(i){
                 window.parent.location.assign('javascript:swal("Tem certeza!!", "Deseja realmente deletar esse endereço ?", "warning",{buttons: true}).then((isConfirm)=>{if(isConfirm){document.getElementById("Eframe").src = "javascript:vue.info.endereco.splice('+i+', 1);new salvar()"}})')
             },
@@ -599,6 +634,30 @@ foreach ($query as $key => $row) {
             vue.statusp.push(0)
         }
         vue.qtd.push(soma)
+    }
+    function alterar(){
+        let senha = document.getElementsByClassName('senha')
+        let a  = senha[1].value.match(/[0-9]/)
+        let b  = senha[1].value.match(/[A-Z]/)
+        let c = senha[1].value.length > 5
+        if(!a || !b || !c){
+                window.parent.location.assign('javascript:swal({title:"Senha muito fraca!",html:true, text:"Critérios mínimos: \n 1° Uma letra maiúscula \n 2° Um número \n 3° mais de 5 dígitos.", icon:"error"})');
+        }else if(senha[1].value != senha[2].value){
+                window.parent.location.assign('javascript:swal("ERRO","Senha incorreta","error")')
+        }else{
+            form.append('senha',senha[0].value)
+            form.append('Z',zid) 
+            fetch(vue.origin+'wa/ecommerce/apis/altera.php',{
+                method:"post",
+                body:form
+            }).then(a => a.text()).then(data=>{
+                if(data == 1){
+                    window.parent.location.assign('javascript:swal("Salvo!", "Senha alterada com sucesso", "success").then((isConfirm)=>{window.parent.location.href = "'+novo+'"})')
+                   
+                }else{
+                    window.parent.location.assign('javascript: swal("ERRO","'+data+'","error")')}
+            })
+        }
     }
     
     </script>

@@ -34,7 +34,7 @@ foreach ($query as $key => $row) {
         <?php require_once('../../../../wa/'.$modulo .'/adm/login/src/style/wactrl.php') ?>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-swal@1/dist/vue-swal.min.js"></script>
-        <script src='https://use.fontawesome.com/releases/v5.0.0/js/all.js'></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
         .senha-box{
             display:flex

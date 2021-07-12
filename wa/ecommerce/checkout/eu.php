@@ -286,9 +286,13 @@ $config = [];
 																					<th>Subtotal</th>
 																					<td>
 																						<span class="woocommerce-Price-amount amount">
-																							<span class="woocommerce-Price-currencySymbol" style="white-space: nowrap"><center><?php echo $config['moeda'].' '.str_replace (".", ",", $total_carrinho)  ?></center></span></td>
+																							<span class="woocommerce-Price-currencySymbol" style="white-space: nowrap"><center><?php echo $config['moeda'].' '.number_format(str_replace (".", ",", $total_carrinho), 2, ",", ".");  ?></center></span></td>
 																						</span>
 																					</td>
+																				</tr>
+																				<tr class="woocommerce-shipping-totals shipping">
+																				    <td><strong><center>Desconto</center></strong> <span id="desconto"></span>
+																				    <td><span id="d_valor"></span>
 																				</tr>
 																				<tr class="woocommerce-shipping-totals shipping">
 																					<td><strong><center>Entrega</center></strong> <span id="frete"></span>
@@ -296,43 +300,54 @@ $config = [];
                                                                                         <span id="<?php echo $dvy['id']; ?>" for=""></span>
                                                                                         
                                               <?php }} if($retirada['retirada'] == "checked") { ?>  
-																					    <label for="retirada" style="cursor:pointer; margin-left:10px;" for="retirada"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;white-space: nowrap' value="00,00"  > 
+																					    <label for="retirada" style="cursor:pointer; margin-left:10px;" for="retirada"><input type="radio" name="frete" id="retirada" class="retirada" required style='cursor:pointer;white-space: nowrap' value="0,00"  > 
 																					    <b>Retirada na loja</b><br>Valor do frete: R$ 0,00 / Prazo de entrega: imediato.</label> 
                                               <script>
                                                     document.getElementById("retirada").addEventListener("change", function() {
                                                       const z = 0;
+                                                      document.getElementById("vl_frete").value = z;
+                                                      let desconto = sessionStorage.getItem('totalDesconto');
                                                       const a = document.getElementById("retirada").value;
-                                                      const b = z + <?php echo $total_carrinho; ?>;
+                                                      const v = parseFloat(document.getElementById('v_desconto').value = eval(desconto));
+                                                      const b = z - v + <?php echo $total_carrinho; ?>;
                                                       const c = b.toFixed(2).toString().replace(".",",");																					  
                                                       document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
                                                       document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                       document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                       document.getElementById("valor").value = b;
 													  document.getElementById("tipo_entrega").value = "Retirada na Loja";
-													  document.getElementById("vl_frete").value = 0;
+													  document.getElementById("d_valor").innerHTML = "<?php echo $config['moeda']?> "+v.toFixed(2).toString().replace(".",",");
                                                   });
                                               </script>
                                               <?php } ?>
                                               </td>
-
-																					<td data-title="Entrega" > <span id="f_valor" ></span></td>
-																				</tr>																			
+										<td data-title="Entrega" > <span id="f_valor" ></span></td>
+									</tr>																			
 									<script> 
 									    $(document).ready(function(){
+									        let desconto = sessionStorage.getItem('totalDesconto');
+                                            if( desconto != null){ 
+                                                document.getElementById('v_desconto').value = eval(desconto);
+                                            }else{
+                                                sessionStorage.setItem('totalDesconto', '0.00');
+                                                document.getElementById('d_valor').innerHTML = "<?php echo $config['moeda']." 0,00" ?>";
+                                            };
                                              $("#cepdestino").change(function(){
                                                  const cep = document.getElementById('cepdestino').value;
                                                 <?php if(!empty($deliveries)){ foreach($deliveries as $keyd => $delivery){ ?>
                                                 $("<?php echo '#'.$delivery['id']; ?>").load('<?php echo ConfigPainel('base_url').$delivery['path']."/wa/index.php?peso=".$total_peso."&valorcarrinho=".$total_carrinho; ?>&id='+cep);
                                                   
                                                  D<?php echo $delivery['id']; ?> = (z) =>{
+                                                    document.getElementById("vl_frete").value =  z;
                                                     const a = document.getElementById("<?php echo $delivery['nome']; ?>").value;	
-                                                    const b = z + <?php echo $total_carrinho ?>;
+                                                    const v = parseFloat(eval(desconto)).toFixed(2);
+                                                    const b = z - v + <?php echo $total_carrinho; ?>;
                                                     const c = b.toFixed(2).toString().replace(".",",");																					 
                                                     document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
                                                     document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                     document.getElementById("total").innerHTML = "<?php echo $config['moeda']?> "+ c;
                                                     document.getElementById("valor").value = b;
-                                                    document.getElementById("vl_frete").value =  z;
+                                                    document.getElementById("d_valor").innerHTML = "<?php echo $config['moeda']?> "+v.toString().replace(".",",");
                                                     document.getElementById("tipo_entrega").value = "<?php echo $delivery['titulo']; ?>";
                                                 }
                                                 <?php }} if($retirada['entrega'] == "checked") { ?>
@@ -442,7 +457,8 @@ $config = [];
                                                   });
                                                 }, 
                                               });           
-                                            };
+                                            }else{sessionStorage.clear()};
+                                            document.getElementById('finalizar').innerHTML = "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
                                       });
                                     </script>
                                     <?php endif ?>
@@ -458,10 +474,11 @@ $config = [];
 										</span>
 									</h3><br>
 									<input required type="hidden" name="valor" id="valor" value="">
+									<input  type="hidden" name="v_desconto" id="v_desconto" value="0.00">
 									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
 									<input required type="hidden" name="vl_frete" id="vl_frete" value="">
 									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked"  && empty($gateways) ): else: ?>
-									<center><input type="submit" id="cartCheckout"  value="Finalizar compra" ></center>
+									<center id="finalizar"><input type="submit" id="cartCheckout"  value="Finalizar compra" ></center>
 									<?php endif ?>
 								</div>
 							</div>
