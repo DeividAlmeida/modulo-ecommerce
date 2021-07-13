@@ -27,7 +27,4 @@ function CarrinhoRemItem($id){
 function CarrinhoUpdate($id, $ptd, $qtd, $vlf){
   $_SESSION["car"][$id] = [$vlf, $ptd, $qtd];
 
-  if($qtd <= 0){
-    unset($_SESSION["car"][$id]);
-  }
 }

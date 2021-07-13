@@ -33,6 +33,10 @@ $total_carrinho = 0;
 #cartCheckout{
 	background-color: <?php echo $config['carrinho_cor_btn_finalizar']; ?> !important;
 }
+.swal2-popup{
+    padding:50px !important;
+    width:40em !important;
+}
 </style>
 
 <div class="shop--cart">
@@ -83,10 +87,10 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 		  const b = sessionStorage.getItem("<?php echo $id ?>");
 		  let c = a.innerHTML = b;
 		   </script></span></td>
-	      <td class="produtos" id="cart_qtd_<?php echo $id; ?>" pdt="<?php echo $qtd[0]; ?>" vlf="<?php echo $qtd[2]; ?>" style="white-space: nowrap;">
-					<input class="cart_qtd" type="number" min="1" style="width:50px;" value="<?php echo $qtd[1]; ?>"/>
-					<button class="cart_qtd_delete btn btn-sm btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-				</td>
+	        <td class="produtos" id="cart_qtd_<?php echo $id; ?>" pdt="<?php echo $qtd[0]; ?>" vlf="<?php echo $qtd[2]; ?>" style="white-space: nowrap;">
+				<input class="cart_qtd" type="number" min="1" style="width:50px;" value="<?php echo $qtd[1]; ?>"/>
+				<button class="cart_qtd_delete btn btn-sm btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+			</td>
 		<?php if ($produto['a_consultar'] <> 'S') { ?>
 	      <td><?php echo $config['moeda'].' '.str_replace(".",",",$qtd[2]); ?></td>
 	      <td><?php echo $config['moeda'].' '.number_format(floatval(str_replace(",", ".", $qtd[2])) * floatval(str_replace(",", ".", $qtd[1])), 2, ",", "."); ?></td>
@@ -110,17 +114,17 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 	</div>
 
 
-	<div class="row">
+	<div class="row ">
 		<div class="col-xs-6 text-left">
-			<div class="col-xs-6" >
+			<div class="col-xs-6 hidden" >
 			    <input type="text" id="cupom">
 			</div>
-			<div class="col-xs-6">   
+			<div class="col-xs-6 hidden">   
 			    <a id="cartCheckout" onclick="Cupom(document.getElementById('cupom').value)" class="btn btn-primary" >Adicionar cupom</a>
 			</div>
 		</div>
 		<div class="col-xs-6 text-right">
-			<a id="cartCheckout" class="btn btn-primary" href="<?php echo $config['pagina_checkout']; ?>" >Finalizar Pedido</a>			
+			<a id="cartCheckout" class="btn btn-primary" onclick="conta()">Finalizar Pedido</a>			
 		</div>
 
 	</div>
@@ -135,29 +139,30 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/modal.css">
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/assets/css/carrinho.css">
 <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
-    $.getScript( "https://cdn.jsdelivr.net/npm/sweetalert2@10" ).then(
-        function conta(){ 
-            Swal.fire({
-                title: 'Com você quer comprar?',
-                showConfirmButton: false,
-                html:
-                    <?php if(is_array($usuario)){ ?>
-                     '<b>Comprar com essa conta:</b><br><br><button onclick="Swal.close()" type="button" class="swal2-confirm  swal2-styled" style="display: block;">ESCOLHER</button><br><br> '+
-                   <?php } ?>
-                     '<b>Comprar como visitante:</b><br><br>'+
-                     '<button onclick="logout()" type="button" class="swal2-confirm swal2-styled" aria-label="" style="display: block;">ESCOLHER</button><br><br>'+
-                      '<b>Comprar com outra conta:</b>'+
-                    '<input id="swal-input1" class="swal2-input" placeholder="E-mail" type="email">' +
-                    '<input id="swal-input2" class="swal2-input" placeholder="Senha" type="password">'+
-                    '<button type="button" onclick="login()" class="swal2-confirm swal2-styled" aria-label="" style="display: block;">ENTRAR</button><br><br>'
-                })
-         })
-
+<?php if(!is_array($usuario)){ ?>
+    function conta(){ 
+        Swal.fire({
+            title: 'Como você deseja comprar?',
+            showConfirmButton: false,
+            html:
+                '<b>Quero comprar como visitante:</b><br><br>'+
+                '<button id="cartCheckout" onclick="logout()" type="button" class="swal2-confirm swal2-styled" aria-label="" style="display: line-block;">Comprar como visitante</button><br><br>'+
+                '<b>Já tenho uma conta, quero fazer login:</b>'+
+                '<input id="swal-input1" class="swal2-input" placeholder="E-mail" type="email">' +
+                '<input id="swal-input2" class="swal2-input" placeholder="Senha" type="password">'+
+                '<button id="cartCheckout" type="button" onclick="login()" class="swal2-confirm swal2-styled" aria-label="" style="display: line-block;">ENTRAR</button><br><br>'
+        })
+     }
+<?php }else{ ?>
+    function conta(){
+        window.location.href ="<?php echo $config['pagina_checkout']; ?>"
+    }
+<?php } ?>
 function logout(){
-  fetch('<?php echo  ConfigPainel('base_url'); ?>wa/ecommerce/apis/logout.php?token=<?php echo md5(session_id()) ?>')
-  Swal.close()  
+  fetch('<?php echo  ConfigPainel('base_url'); ?>wa/ecommerce/apis/logout.php?token=<?php echo md5(session_id()) ?>').then(window.location.href ="<?php echo $config['pagina_checkout']; ?>")
 }
 function login(){
     fetch('<?php echo  ConfigPainel('base_url'); ?>wa/ecommerce/apis/logout.php?token=<?php echo md5(session_id()) ?>').then(next=>{
@@ -173,7 +178,7 @@ function login(){
                       icon: 'success',
                       title: "Pode comprar!!",
                       text: "Login realizado com sucesso"
-                    })               
+                    }).then(window.location.href ="<?php echo $config['pagina_checkout']; ?>")              
                 }else{ 
                     Swal.fire({
                       icon: 'error',

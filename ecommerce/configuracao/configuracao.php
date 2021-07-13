@@ -106,6 +106,15 @@
           </div>
         </div>
       </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="pagina_carrinho"> Página da Área do Cliente:</label>
+            <input type="text" name="pagina_cliente" class="form-control" value="<?php echo $config['pagina_cliente']; ?>">
+          </div>
+        </div>
+      </div>
 
       <hr/>
 

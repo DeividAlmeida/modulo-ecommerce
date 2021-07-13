@@ -55,8 +55,21 @@ $mailrs->CharSet = 'UTF-8';
  
 // Assunto da mensagem 
 $mailrs->Subject = "E-mail de Confirmação"; 
+
+$info = "Olá, ".$nome.", muito obrigado por criar uma conta em nossa loja.<br>
+Esse é um e-mail de confirmação de cadastro. Segue seus dados de acesso:<br><br>
+
+Login: ".post('billing_email')."<br>
+Senha: ".$senha."<br><br>
+
+(Sua senha pode ser alterada a qualquer momento em sua área de cliente).<br><br>
+
+Para acessar sua área do cliente onde você terá acesso a seus pedidos, endereços, perfil e muito mais, basta clicar no link abaixo e usar os dados de acesso fornecidos acima.<br>
+<a href=".$_POST['pagina_cliente'].">".$_POST['pagina_cliente']."</a>
+
+";
  
-$info = "Olá, esse é um e-mail de confirmação de cadastro. Sua senha de acesso é <b>".$senha."</b> e ela pode ser alterada a qualquer momento em sua área privada na aba perfil.";
+
      
 $mailrs->Body = $info;
 

@@ -57,6 +57,7 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('area_btn_cor', ''),
 ('area_hover_btn_cor', ''),
 ('area_cor_second', ''),
+('pagina_cliente', ''),
 ('moeda', 'R&#x00024;');
 
 
@@ -236,8 +237,6 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `rastreamento` text DEFAULT NULL,
   `cor_status` varchar(255) DEFAULT NULL,
   `vl_frete` float(50,2) DEFAULT NULL,
-  --`id_cliente` int(11) DEFAULT NULL,
-  --`view` TEXT NULL DEFAULT '0',
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

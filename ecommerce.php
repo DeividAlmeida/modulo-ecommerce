@@ -103,7 +103,7 @@ $UrlPage	 = 'Ecommerce.php';
 				</div>
 			</span>
 
-			<span class="dropdown">
+			<span class="dropdown hidden">
 			<?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'produto')) { ?>
 				<a class="btn btn-sm btn-primary" href="#" data-toggle="dropdown">Marketing</a>
 				<?php } ?>

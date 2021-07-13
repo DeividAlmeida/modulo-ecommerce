@@ -19,6 +19,7 @@ else if (isset($_GET['AtualizarConfig'])) {
   $campos = array(
     'pagina_carrinho', 
     'pagina_checkout',
+    'pagina_cliente',
     'produto_cor_texto_descricao',   
     'matriz_produto',
     'pagina_resultado_busca',

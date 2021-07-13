@@ -1,0 +1,24 @@
+[12-Jul-2021 16:27:08 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'PHPMailer' not found in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_cliente_novo.php:3
+Stack trace:
+#0 /home2/templatesweb/public_html/wacontrol3-loja-virtual/wa/ecommerce/checkout/composer.php(80): require_once()
+#1 {main}
+  thrown in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_cliente_novo.php on line 3
+[12-Jul-2021 16:30:48 America/Sao_Paulo] PHP Warning:  require_once(ecommerce/PHPMailer-master/class.phpmailer.php): failed to open stream: No such file or directory in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_cliente_novo.php on line 3
+[12-Jul-2021 16:30:48 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'ecommerce/PHPMailer-master/class.phpmailer.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_cliente_novo.php on line 3
+[12-Jul-2021 16:34:59 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'PHPMailer' not found in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_cliente_novo.php:6
+Stack trace:
+#0 /home2/templatesweb/public_html/wacontrol3-loja-virtual/wa/ecommerce/checkout/composer.php(80): require_once()
+#1 {main}
+  thrown in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_cliente_novo.php on line 6
+[12-Jul-2021 16:38:18 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function replace() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/wa/ecommerce/checkout/composer.php:78
+Stack trace:
+#0 {main}
+  thrown in /home2/templatesweb/public_html/wacontrol3-loja-virtual/wa/ecommerce/checkout/composer.php on line 78
+[12-Jul-2021 16:39:14 America/Sao_Paulo] PHP Warning:  str_replace() expects at least 3 parameters, 2 given in /home2/templatesweb/public_html/wacontrol3-loja-virtual/wa/ecommerce/checkout/composer.php on line 78
+[12-Jul-2021 16:40:34 America/Sao_Paulo] PHP Warning:  str_replace() expects at least 3 parameters, 2 given in /home2/templatesweb/public_html/wacontrol3-loja-virtual/wa/ecommerce/checkout/composer.php on line 78
+[12-Jul-2021 16:56:40 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_vendedor.php on line 62
+[12-Jul-2021 16:56:40 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_cliente.php on line 93
+[12-Jul-2021 16:56:41 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/wa/ecommerce/checkout/PagSeguro.php on line 5
+[12-Jul-2021 16:56:52 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_vendedor.php on line 62
+[12-Jul-2021 16:56:52 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/controller/ecommerce/email_cliente.php on line 93
+[12-Jul-2021 16:56:52 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in /home2/templatesweb/public_html/wacontrol3-loja-virtual/wa/ecommerce/checkout/PagSeguro.php on line 5

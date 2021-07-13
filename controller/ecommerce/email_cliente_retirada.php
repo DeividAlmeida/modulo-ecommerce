@@ -12,7 +12,7 @@ $mailr->IsSMTP();
 $mailr->Host = $readm['email_servidor'] ; 
  
 // Você pode alterar este parametro para o endereço de SMTP do seu provedor 
-$mailr->Port = '587'; 
+$mailr->Port = $readm['email_porta']; 
  
  
 // Usar autenticação SMTP (obrigatório) 
@@ -90,7 +90,13 @@ $endr = "
     CEP: ". $retirada['cep']."<br>
     Telefone: ". $retirada['telefone']."</p><br>";
     
-  $link = "<p>Você poderá acompanhar o status do seu pedido no seguinte link ".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($query)."</p>";
+ $link = "<p>
+            Acesse sua conta para acompanhar seu pedido: 
+            <br><a href=".$_POST['pagina_cliente'].">".$_POST['pagina_cliente']."</a>
+        </p>
+        <p>
+            Caso não tenha uma conta e optou por finalizar como um visitante acompanhe seu pedido pelo link:<br> ".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($query).
+        "</p>";
   
  foreach( $read  as $bb => $absb){ $npdtsb = json_decode($absb['produto'], true);foreach($npdtsb as $npdtb){; $produtob .= "
 

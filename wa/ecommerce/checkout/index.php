@@ -294,6 +294,7 @@ $enderecos = json_decode($usuario['endereco']);
 																					  $total_comprimento += $produto['comprimento'] * $qtd[1];
 																					  $total_altura += $produto['altura'] * $qtd[1];
 																					  $total_largura += $produto['largura'] * $qtd[1];
+																					  
 																				 } ?>																				
 																			</tbody>
 																			<tfoot>
@@ -301,7 +302,7 @@ $enderecos = json_decode($usuario['endereco']);
 																					<th>Subtotal</th>
 																					<td>
 																						<span class="woocommerce-Price-amount amount">
-																							<span class="woocommerce-Price-currencySymbol" style="white-space: nowrap"><center><?php echo $config['moeda'].' '.number_format(str_replace (".", ",", $total_carrinho), 2, ",", ".");  ?></center></span></td>
+																							<span class="woocommerce-Price-currencySymbol" style="white-space: nowrap"><center><?php echo $config['moeda'].' '.number_format($total_carrinho, 2, ",", ".");  ?></center></span></td>
 																						</span>
 																					</td>
 																				</tr>
@@ -347,6 +348,7 @@ $enderecos = json_decode($usuario['endereco']);
                                                 document.getElementById('d_valor').innerHTML = "<?php echo $config['moeda']." 0,00" ?>";
                                             };
                                               function main_math(){
+                                                  let desconto = sessionStorage.getItem('totalDesconto');
                                                  const cep = document.getElementById('cepdestino').value;
                                                 <?php if(!empty($deliveries)){ foreach($deliveries as $keyd => $delivery){ ?>
                                                 $("<?php echo '#'.$delivery['id']; ?>").load('<?php echo ConfigPainel('base_url').$delivery['path']."/wa/index.php?peso=".$total_peso."&valorcarrinho=".$total_carrinho; ?>&id='+cep);
@@ -369,6 +371,7 @@ $enderecos = json_decode($usuario['endereco']);
                                                 $("#frete").load('https://nameless-atoll-10880.herokuapp.com/'+cep+'<?php echo "/".$read['cep']."/".$total_peso."/".$total_comprimento."/".$total_altura."/".$total_largura; ?>');
                                                
                                               Cfrete = (z) =>{
+                                                  let desconto = sessionStorage.getItem('totalDesconto');
                                                 document.getElementById("vl_frete").value = z.toFixed(2).toString().replace(",",".");
                                                 const a = document.getElementById("normal").value;
                                                 const v = parseFloat(eval(desconto)).toFixed(2);
@@ -382,10 +385,11 @@ $enderecos = json_decode($usuario['endereco']);
                                                 document.getElementById("tipo_entrega").value = "PAC";
                                               };
                                               Cfrete1 = (z) =>{
+                                                  let desconto = sessionStorage.getItem('totalDesconto');
                                                 document.getElementById("vl_frete").value =  z.toFixed(2).toString().replace(",",".");
                                                 const a = document.getElementById("expresso").value;	
                                                 const v = parseFloat(eval(desconto)).toFixed(2);
-                                                const b = z - v + <?php echo $total_carrinho; ?>;
+                                                const b = parseFloat(z - v) + <?php echo $total_carrinho; ?>;
                                                 const c = b.toFixed(2).toString().replace(".",",");																					 
                                                 document.getElementById("f_valor").innerHTML = "<?php echo $config['moeda']?> "+a;
                                                 document.getElementById("valor_geral").innerHTML = "<?php echo $config['moeda']?> "+ c;
@@ -500,6 +504,7 @@ $enderecos = json_decode($usuario['endereco']);
 									<input required type="hidden" name="tipo_entrega" id="tipo_entrega" value="">
 									<input required type="hidden" name="vl_frete" id="vl_frete" value="">
 									<input type="hidden" name="criar" id="criar" value="não">
+									<input type="hidden" name="pagina_cliente"  value="<?php  echo $config['pagina_cliente']; ?>">
 									<?php if($deposito['status'] != "checked" && $pagseguro['status'] != "checked"  && empty($gateways) ): else: ?>
 									<center id="finalizar"><input type="submit" id="cartCheckout"  value="Finalizar compra" ></center>
 									<?php endif ?>

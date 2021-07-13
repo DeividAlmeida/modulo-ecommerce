@@ -48,8 +48,19 @@ if (isset($_GET['statusPedido'])) {
   $query  = DBUpdate('ecommerce_vendas', $data, "id = {$id}");
   $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$id}'")[0];
   $readm = DBRead('ecommerce_config_email','*',"WHERE id = '1'")[0];
-  $link = "<p> Você poderá acompanhar o status do seu pedido no seguinte link ".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($id)."</p>";
- 
+  $cf = DBRead('ecommerce_config','*');
+  $config = [];
+  foreach ($cf as $key => $row) {
+    $config[$row['id']] = $row['valor'];
+  }
+  $link = "<p>
+            Acesse sua conta para acompanhar seu pedido: 
+            <br>".$config['pagina_cliente']."
+        </p>
+        <p>
+            Caso não tenha uma conta e optou por finalizar como um visitante acompanhe seu pedido pelo link:<br> ".ConfigPainel('base_url')."wa/ecommerce/status_pedido/index.php?Z=".base64_encode($id).
+        "</p>";
+  
   if ($query != 0) {
 
 

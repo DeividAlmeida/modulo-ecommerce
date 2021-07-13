@@ -19,6 +19,7 @@ if(!empty($senha)){$valida = DBRead('ecommerce_usuario','*',"WHERE id = '{$id}' 
 if(!empty($valida)){header('Location:'.ConfigPainel('base_url').'wa/ecommerce/adm/area_usuario/index.php');}
 $query = DBRead('ecommerce_config','*');
 $config = [];
+
 foreach ($query as $key => $row) {
   $config[$row['id']] = $row['valor'];
 }

@@ -144,7 +144,7 @@ foreach ($query as $key => $row) {
                                         <div class="col-sm-6">
                                         <label class="text-uppercase">Senha Atual:</label>
                                             <div class="form-group senha-box">
-                                                <input id="senha4" type="password" class="form-control senha" placeholder="Senha Atual">
+                                                <input id="senha4" type="password" name="senha_atual" class="form-control senha" placeholder="Senha Atual">
                                                 <a  style="position: relative;right: 9%;width: 0px;padding-top: 2%;" href="javascript:void(0)" @click="ver(4)"><i id="eye4" class="ativo fa fa-eye-slash"></i></a>
                                             </div>
                                         </div>
@@ -153,7 +153,7 @@ foreach ($query as $key => $row) {
                                         <div class="col-sm-6">
                                         <label class="text-uppercase">Nova Senha:</label>
                                             <div class="form-group senha-box">
-                                                <input id="senha5" type="password" class="form-control senha" placeholder="Nova Senha">
+                                                <input id="senha5" type="password" name="nova_senha" class="form-control senha" placeholder="Nova Senha">
                                                 <a  style="position: relative;right: 9%;width: 0px;padding-top: 2%;" href="javascript:void(0)" @click="ver(5)"><i id="eye5" class="ativo fa fa-eye-slash"></i></a>
                                             </div>
                                         </div>
@@ -166,7 +166,7 @@ foreach ($query as $key => $row) {
                                         </div>
                                         <div class="mt-2 clearfix">
                                             <button type="reset" @click="idx = 'perfil'; status = ''" class="btn btn--alt js-close-form" data-form="#updateDetails">Cancelar</button> 
-                                            <button type="bottom" @click="altera()" class="btn ml-1">Atualizar</button>
+                                            <button type="bottom" onclick="alterar()" class="btn ml-1">Atualizar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -179,20 +179,20 @@ foreach ($query as $key => $row) {
                                 <table class="table table-bordered table-striped table-order-history">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Número do Pedido</th>
-                                            <th scope="col">Data do Pedido</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col"  class="esconder">#</th>
+                                            <th scope="col" >Número do Pedido</th>
+                                            <th scope="col"  class="esconder">Data do Pedido</th>
+                                            <th scope="col"  class="esconder">Status</th>
                                             <th scope="col">Preço Total </th>
                                             <th scope="col">Ações </th>
                                         </tr>
                                     </thead>
                                     <tbody v-for="pedido, p of pedidos">
                                         <tr >
-                                            <td>{{p+1}}</td>
+                                            <td  class="esconder">{{p+1}}</td>
                                             <td><b>#{{pedido.id}}</b></td>
-                                            <td>{{(new Date(pedido.data)).toISOString().match(/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}/)[0].split('-').reverse().join('/')}}</td>
-                                            <td>{{pedido.status.replace('_',' ')}}</td>
+                                            <td  class="esconder">{{(new Date(pedido.data)).toISOString().match(/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}/)[0].split('-').reverse().join('/')}}</td>
+                                            <td  class="esconder">{{pedido.status.replace('_',' ')}}</td>
                                             <td><span class="color">R$ {{pedido.valor.replace('.',',')+ " de "+qtd[p]+" produto(s)"}}</span></td>
                                             <td><button @click="detalhes(p)" type="button" :id="'btn'+p"  class="btn">VISUALIZAR</button></td>
                                         </tr>
@@ -256,12 +256,12 @@ foreach ($query as $key => $row) {
                                                         </ul>
                                                     </div>
                                                 </div><hr>
-                                                <div  class="row justify-content-md-center">
-                                                    <div class="col-6">
+                                                <div  class="row justify-content-center">
+                                                    <div class="col-md-6 col-sm-12">
                                                         <div class="input-group">
                                                             <div type="text" class="form-control" style="height:50%"><b>Cód. de rastreamento</b><br>{{pedido.rastreamento}}</div>
                                                             <button @click="copy(p)"  type="button"  class="btn input-group-text">
-                                                                <i class="far fa-copy"></i>
+                                                                <i class="fa fa-files-o"></i>
                                                             <b :id="'copiado'+p" style="color:white">Copiar</b></button>
                                                         </div>
                                                     </div>
@@ -645,14 +645,15 @@ foreach ($query as $key => $row) {
         }else if(senha[1].value != senha[2].value){
                 window.parent.location.assign('javascript:swal("ERRO","Senha incorreta","error")')
         }else{
-            form.append('senha',senha[0].value)
-            form.append('Z',zid) 
-            fetch(vue.origin+'wa/ecommerce/apis/altera.php',{
+            for(let i = 0; i < 2; i++){
+                form.append(senha[i].name, senha[i].value)
+            }
+            fetch(vue.origin+'wa/ecommerce/apis/senha.php'+sessao,{
                 method:"post",
                 body:form
             }).then(a => a.text()).then(data=>{
                 if(data == 1){
-                    window.parent.location.assign('javascript:swal("Salvo!", "Senha alterada com sucesso", "success").then((isConfirm)=>{window.parent.location.href = "'+novo+'"})')
+                    window.parent.location.assign('javascript:swal("Salvo!", "Senha alterada com sucesso", "success")')
                    
                 }else{
                     window.parent.location.assign('javascript: swal("ERRO","'+data+'","error")')}
