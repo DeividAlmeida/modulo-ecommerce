@@ -326,20 +326,6 @@ CREATE TABLE IF NOT EXISTS `ecommerce_plugins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- USUARIO
-CREATE TABLE IF NOT EXISTS `ecommerce_usuario` (
-    `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nome` varchar(255) DEFAULT NULL,
-    `sobrenome` varchar(255) DEFAULT NULL,
-    `pessoa` text DEFAULT NULL,
-    `id_pessoa` text DEFAULT NULL,
-    `endereco` text DEFAULT NULL,
-    `email` varchar(255) DEFAULT NULL,
-    `telefone` varchar(255) DEFAULT NULL,
-    `senha` text DEFAULT NULL,
-    `imagem` text DEFAULT NULL,  
-    `data`  date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `ecommerce_config_deposito` (`id`, `titulo`, `descricao`, `instucoes`, `detalhes`, `status`) VALUES
 (1, '', '', '', '', '');
@@ -356,7 +342,28 @@ INSERT INTO `ecommerce_config_email` (`id`, `nome`, `remetente`, `t_pagamento_pe
 INSERT INTO `ecommerce_config_link` (`id`, `logo`, `cabecalho`, `texto`) VALUES
 (1, '', '', '');
 
+
+-- USUARIO
+CREATE TABLE IF NOT EXISTS `ecommerce_usuario` (
+    `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nome` varchar(255) DEFAULT NULL,
+    `sobrenome` varchar(255) DEFAULT NULL,
+    `pessoa` text DEFAULT NULL,
+    `id_pessoa` text DEFAULT NULL,
+    `endereco` text DEFAULT NULL,
+    `email` varchar(255) DEFAULT NULL,
+    `telefone` varchar(255) DEFAULT NULL,
+    `senha` text DEFAULT NULL,
+    `imagem` text DEFAULT NULL,  
+    `data`  date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES 
+('pagina_cliente', ''),
+('area_btn_cor', ''),
+('area_hover_btn_cor', ''),
+('area_cor_second', '');
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 
 ALTER TABLE `ecommerce_vendas` ADD `id_cliente` INT(11) NULL AFTER `vl_frete`;
-ALTER TABLE `ecommerce_vendas` ADD `view` TEXT NULL DEFAULT '0' AFTER `id_cliente`;
+ALTER TABLE `ecommerce_vendas` ADD `view` INT(11) NULL DEFAULT '0' AFTER `id_cliente`;

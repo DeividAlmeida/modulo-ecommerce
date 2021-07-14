@@ -542,7 +542,7 @@ foreach ($query as $key => $row) {
             },
             atualiza: function(){
                  form.append(document.querySelectorAll('select')[0].name, document.querySelectorAll('select')[0].value)
-                for(let i= 0; i< document.querySelectorAll('input').length; i++){
+                for(let i= 0; i< 5; i++){
                     form.append(document.querySelectorAll('input')[i].name, document.querySelectorAll('input')[i].value)
                 }
                 
@@ -552,7 +552,7 @@ foreach ($query as $key => $row) {
                 }).then(a=>a.text()).then(a=>{
                     a == 1?
                     window.parent.location.assign('javascript:swal("Salvo!!", "Informações pessoais salvas com sucesso", "success")'):
-                    window.parent.location.assign('javascript:swal("ERRO!", "'+d+'", "error")'); 
+                    window.parent.location.assign('javascript:swal("ERRO!", "'+a+'", "error")'); 
                 })
                 
             },

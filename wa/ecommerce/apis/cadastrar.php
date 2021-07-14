@@ -5,7 +5,11 @@ require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
 require_once('../../../database/upload.class.php');
-
+$cf = DBRead('ecommerce_config','*');
+  $config = [];
+  foreach ($cf as $key => $row) {
+    $config[$row['id']] = $row['valor'];
+  }
 $token = md5(session_id());
 $_POST['senha'] = md5($_POST['senha']);
 
@@ -22,7 +26,7 @@ if(isset($_GET['token']) && $_GET['token'] === $token) {
         $path = $handle->file_dst_name;
     }*/
     $email=$_POST['email'];
-    $origin=$_POST['origin'];
+    $origin=$config['pagina_cliente'];
     unset($_POST['email']);
     unset($_POST['origin']);
     foreach($_POST as $chave => $vazio){

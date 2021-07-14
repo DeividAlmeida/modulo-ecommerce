@@ -684,6 +684,42 @@ $UrlPage	 = 'Ecommerce.php';
                 
                 });        
             });
+            
+        $('#clientes').submit(function(e) {
+            e.preventDefault();            
+            var data = $(this).serializeArray();                     				
+            swal({
+                title: "Você tem certeza?",
+                text: "Deseja realmente deletar o(s) cliente(s)?",
+                icon: "warning",
+                buttons: {
+                cancel: "Não",
+                confirm: {
+                    text: "Sim",
+                    className: "btn-primary",
+                },
+                },
+                closeOnCancel: false
+                }).then(function(isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            data: data,
+                            type: "POST",
+                            cache: false,
+                            url: "ecommerce.php?deletarCliente&Clientes", 
+                            complete: function( data ){
+                                swal("Deletados!", "Cliente(s) deletado(s).", "success");                                
+                                setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: false});});
+                                }   
+                        });
+                    } 
+                    else {
+                        swal("Cancelado", "cliente(s) permanece(m) salvo(s)", "error");
+                        setImmediate(function refreshTable() {$('#BootstrapTable').bootstrapTable('refresh', {silent: true});});
+                    }  
+                
+                });        
+            });
 
 //Alterar a Linguagem da tabele de pedidos
 

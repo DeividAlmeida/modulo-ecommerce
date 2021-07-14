@@ -3,6 +3,11 @@ header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
+$cf = DBRead('ecommerce_config','*');
+  $config = [];
+  foreach ($cf as $key => $row) {
+    $config[$row['id']] = $row['valor'];
+  }
 $email = $_POST['email'];
 $valida = DBRead('ecommerce_usuario','*',"WHERE email = '{$email}'", "LIMIT 1")[0];
 if(empty($valida)){
@@ -69,7 +74,7 @@ $mail->CharSet = 'UTF-8';
 // Assunto da mensagem 
 $mail->Subject = "Recuperação de Senha"; 
 
-$info = "Olá, esse é um e-mail para recuperar sua senha de acesso.Para recuperar sua senha basta clicar <a href='".$_POST['origin']."?Z=".base64_encode($valida['id'])."'>aqui</a>";
+$info = "Olá, esse é um e-mail para recuperar sua senha de acesso.Para recuperar sua senha basta clicar <a href='".$config['pagina_cliente']."?Z=".base64_encode($valida['id'])."'>aqui</a>";
  
 // Corpo do email 
 $mail->Body = $info; 

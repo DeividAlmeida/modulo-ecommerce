@@ -228,6 +228,7 @@ foreach ($query as $key => $row) {
                 }
             })
         }else if(a.target.innerText == 'ENVIAR'){
+             a.target.innerHTML= '<i class="fas fa-spinner fa-pulse fa-4x"></i>'
             form.append('email',document.querySelectorAll('input[type="email"]')[0].value)
             form.append('origin',url)
             fetch(vue.origin+'wa/ecommerce/apis/recupera.php',{
@@ -238,17 +239,21 @@ foreach ($query as $key => $row) {
                     window.parent.location.assign('javascript:swal("E-mail Enviado!", "E-mail de recuperação enviado com sucesso", "success").then((isConfirm)=>{if(isConfirm){document.location.reload(true);}})')
                 }else{
                     window.parent.location.assign('javascript:swal("ERRO!", "'+d+'", "error")'); 
+                    a.target.innerHTML= 'ENVIAR'
                 }
             })    
         }else{
+            a.target.innerHTML= '<i class="fas fa-spinner fa-pulse fa-4x"></i>'
             let senha = document.querySelectorAll('input')
-            let a  = senha[0].value.match(/[0-9]/)
+            let aaa  = senha[0].value.match(/[0-9]/)
             let b  = senha[0].value.match(/[A-Z]/)
             let c = senha[0].value.length > 5
-            if(!a || !b || !c){
+            if(!aaa || !b || !c){
                 window.parent.location.assign('javascript:swal({title:"Senha muito fraca!",html:true, text:"Critérios mínimos: \n 1° Uma letra maiúscula \n 2° Um número \n 3° mais de 5 dígitos.", icon:"error"})');
+                a.target.innerHTML= 'SALVAR'
             }else if(senha[0].value != senha[1].value){
                 window.parent.location.assign('javascript:swal("ERRO","Senha incorreta","error")')
+                a.target.innerHTML= 'SALVAR'
             }else{
             form.append('senha',senha[0].value)
             form.append('Z',zid) 
@@ -260,7 +265,9 @@ foreach ($query as $key => $row) {
                     window.parent.location.assign('javascript:swal("Salvo!", "Senha alterada com sucesso", "success").then((isConfirm)=>{window.parent.location.href = "'+novo+'"})')
                    
                 }else{
-                    window.parent.location.assign('javascript: swal("ERRO","'+data+'","error")')}
+                    window.parent.location.assign('javascript: swal("ERRO","'+data+'","error")')
+                     a.target.innerHTML= 'SALVAR'
+                }
             })
             }
         }

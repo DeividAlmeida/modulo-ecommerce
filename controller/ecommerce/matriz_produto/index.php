@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 define('ROOT_PATH', dirname(__FILE__));
 
 
