@@ -192,7 +192,7 @@ foreach ($query as $key => $row) {
                                             <td  class="esconder">{{p+1}}</td>
                                             <td><b>#{{pedido.id}}</b></td>
                                             <td  class="esconder">{{(new Date(pedido.data)).toISOString().match(/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}/)[0].split('-').reverse().join('/')}}</td>
-                                            <td  class="esconder">{{pedido.status.replace('_',' ')}}</td>
+                                            <td  class="esconder">{{pedido.status? pedido.status.replace('_',' '):void(0)}}</td>
                                             <td><span class="color">R$ {{pedido.valor.replace('.',',')+ " de "+qtd[p]+" produto(s)"}}</span></td>
                                             <td><button @click="detalhes(p)" type="button" :id="'btn'+p"  class="btn">VISUALIZAR</button></td>
                                         </tr>
