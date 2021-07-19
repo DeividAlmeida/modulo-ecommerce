@@ -579,7 +579,7 @@ foreach ($query as $key => $row) {
         }
     })
     
-    if(!Array.isArray(vue.info.endereco) && typeof(vue.info.endereco) != "string"){
+    if(!Array.isArray(vue.info.endereco) && typeof(vue.info.endereco) != "string" || vue.info.endereco == 'null'){
         vue.info.endereco = []
     }else{
         vue.info.endereco = JSON.parse(vue.info.endereco)   
