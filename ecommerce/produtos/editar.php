@@ -142,7 +142,7 @@ if (is_array($query)) { ?>
             <!-- `preco` decimal(10,2) NOT NULL -->
             <div class="form-group">
               <label>Preço: </label>
-              <input class="form-control" name="preco" required step="0.01" type="number" min="1" value="<?php echo $dados['preco'];?>">
+              <input class="form-control" name="preco" required step="0.01" type="number" min="0" value="<?php echo $dados['preco'];?>">
             </div>
 
             <!-- `estoque` int(11) DEFAULT NULL-->

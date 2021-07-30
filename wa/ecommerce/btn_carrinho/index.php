@@ -1,5 +1,9 @@
 <?php
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+error_reporting(0);
 header('Access-Control-Allow-Origin: *');
 require_once(dirname(__FILE__).'/../../../includes/funcoes.php');
 require_once(dirname(__FILE__).'/../../../database/config.database.php');

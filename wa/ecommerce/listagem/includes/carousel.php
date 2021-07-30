@@ -1,3 +1,4 @@
+<?php error_reporting(0); ?>
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>elementia/assets/css/owl.carousel.css">
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>elementia/css/button.css">
 <link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>elementia/css/slider.css">

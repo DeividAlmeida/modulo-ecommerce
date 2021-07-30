@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');

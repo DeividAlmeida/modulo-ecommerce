@@ -1,9 +1,13 @@
-<?php 
+<?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+error_reporting(0); 
 header('Access-Control-Allow-Origin: *');
 require_once('../../../../includes/funcoes.php');
 require_once('../../../../database/config.database.php');
 require_once('../../../../database/config.php');
-session_start();
 $modulo = 'ecommerce';
 $atual = $modulo.'_usuarios';
 $conf = $modulo.'_config';

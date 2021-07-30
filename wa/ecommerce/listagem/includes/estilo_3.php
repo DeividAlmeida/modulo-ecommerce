@@ -1,4 +1,5 @@
 <!-- External Css -->
+<?php error_reporting(0); ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <style>

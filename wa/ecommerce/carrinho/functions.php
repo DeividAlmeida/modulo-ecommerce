@@ -1,5 +1,9 @@
 <?php
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+error_reporting(0);
 
 function CarrinhoAddQtd($id, $qtd, $vlf, $att){
   $_SESSION["car"][$att] = [$id, $qtd, $vlf,];
