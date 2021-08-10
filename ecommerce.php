@@ -185,7 +185,7 @@ $UrlPage	 = 'Ecommerce.php';
 		elseif (isset($_GET['Clientes'])) :
 			require_once('ecommerce/clientes/clientes.php');
 		elseif (isset($_GET['Estoque']) && file_exists('estoque.php')) :
-			require_once('ecommerce/estoque/estoque.php');
+			require_once('ecommerce/plugins/estoque/estoque/estoque.php');
 		elseif (isset($_GET['VisualizarListaMarca'])) :
 			require_once('ecommerce/listagens/item/listar_marca.php');
 		elseif (isset($_GET['ListarCupons'])) :

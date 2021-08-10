@@ -101,7 +101,7 @@ function atualizarMatrizProduto($id_produto){
   // Salvando HTML
   $caminhos_site_url = explode('/', ConfigPainel('site_url'));
 
-  if($caminhos_site_url[3]){
+  if($caminhos_site_url[3]  && $caminhos_site_url[3] != "index.html"){
     @unlink(ROOT_PATH."/../../../../".$caminhos_site_url[3].'/'.$nome_arquivo);
 
     $arquivo = fopen(ROOT_PATH."/../../../../".$caminhos_site_url[3].'/'.$nome_arquivo, "w");
