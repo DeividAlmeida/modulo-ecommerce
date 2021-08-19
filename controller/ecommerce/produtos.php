@@ -47,11 +47,17 @@ if (isset($_GET['AddProduto'])) {
 
   // Cadastra produto e cria ID
   $id_produto = DBCreate('ecommerce', $data, true);
+  
   $zero = 0;
   $data2 = array('id_produto' => $id_produto, );
   DBUpdate('ecommerce_prod_termos', $data2, "id_produto = {$zero}");
 
+  if( file_exists('estoque.php')){
+    DBCreate('ecommerce_estoque',  ['ref'=>$id_produto,'min'=>5]);
+  }
+  
   if(!$id_produto) { Redireciona('?ListarProduto&erro'); }
+
 
   // Cadastra todas categorias informadas
   if($_POST['categorias']){
@@ -583,9 +589,6 @@ if(isset($_POST['ex_categorias'])){
         }, $_POST['ex_categorias']));
         $_POST['ex_categoria'] =    json_encode($resources3, JSON_FORCE_OBJECT);
 } 
- 
-   
-
     
   $id =  get('EditCupom');
   $data = array(

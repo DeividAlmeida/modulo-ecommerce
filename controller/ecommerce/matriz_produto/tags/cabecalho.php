@@ -129,9 +129,12 @@ ob_start();
         	<select class="form-control produto-categorias" id="mySelect<?php print_r($atributo['id']); ?>" style="width: auto" onchange="change<?php print_r($atributo['id']); ?>()">
         		<option value="" default>Escolha uma opção</option> 
         		<?php foreach ($termos as $termo) {
-        			$nome = DBRead('ecommerce_termos', 'nome', "WHERE id = {$termo['id_termo']}");?>
-        		<option value="<?php echo $termo['valor']; ?>" data-id="<?php echo $termo['id']; ?>"><?php print_r($nome[0]['nome']); ?></option>
-        		<?php }  ?>                         
+        			$nome = DBRead('ecommerce_termos', 'nome,id', "WHERE id = {$termo['id_termo']}");
+              if(!is_array(DBRead('ecommerce_estoque','*'))){?>
+        		  <option value="<?php echo $termo['valor']; ?>" data-id="<?php echo $termo['id']; ?>"><?php print_r($nome[0]['nome']); ?></option>
+            <?php }else{?>
+              <option value="<?php echo $termo['valor']; ?>" data-id="<?php echo $nome[0]['id']; ?>"><?php print_r($nome[0]['nome']); ?></option>
+        		<?php } }  ?>                         
           </select> 
           
         

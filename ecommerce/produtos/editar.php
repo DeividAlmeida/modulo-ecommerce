@@ -144,13 +144,13 @@ if (is_array($query)) { ?>
               <label>Preço: </label>
               <input class="form-control" name="preco" required step="0.01" type="number" min="0" value="<?php echo $dados['preco'];?>">
             </div>
-
-            <!-- `estoque` int(11) DEFAULT NULL-->
-          <div class="form-group">
-            <label>Estoque:</label>            
-              <input class="form-control" name="estoque" value="<?php echo $dados['estoque'];?>" type="number">            
-          </div>
-
+            <?php if(!file_exists('estoque.php')){ ?>
+              <!-- `estoque` int(11) DEFAULT NULL-->
+              <div class="form-group">
+                <label>Estoque:</label>            
+                <input class="form-control" name="estoque" value="<?php echo $dados['estoque'];?>" type="number">            
+              </div>
+           <?php } ?>
           <!-- `estoque` int(11) DEFAULT NULL-->
           <div class="form-group">
             <label>Diminuir estoque:</label>            

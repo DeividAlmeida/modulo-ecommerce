@@ -459,10 +459,11 @@ $enderecos = json_decode($usuario['endereco']);
                                           Pagar com depósito em conta bancária	
                                         </label>                                                                                
                                     </li>
+                                    <?php endif ?>
                                    <script>
                                     $('#fcheckout').submit(function(e) {
                                              e.preventDefault(); 
-                                          if(document.getElementById('payment_method_deposito').checked){
+                                          if(document.getElementById('payment_method_deposito') != void(0) && document.getElementById('payment_method_deposito').checked ){
                                               new resolveAfter2Seconds().then((res)=>{
     -                                            sessionStorage.setItem("vfrete", document.getElementById("f_valor").innerHTML);
     -                                            sessionStorage.setItem("frete", document.getElementById("tipo_entrega").value);
@@ -490,7 +491,6 @@ $enderecos = json_decode($usuario['endereco']);
                                             document.getElementById('finalizar').innerHTML = "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
                                       });
                                     </script>
-                                    <?php endif ?>
                                   </ul>
 						        <div class="form-row place-order">
 									<h3>Total Geral:&nbsp;&nbsp;

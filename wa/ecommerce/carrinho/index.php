@@ -90,7 +90,7 @@ if(isset($_SESSION["car"]) && is_array($_SESSION["car"]) && count($_SESSION["car
 		  const b = sessionStorage.getItem("<?php echo $id ?>");
 		  let c = a.innerHTML = b;
 		   </script></span></td>
-	        <td class="produtos" id="cart_qtd_<?php echo $id; ?>" pdt="<?php echo $qtd[0]; ?>" vlf="<?php echo $qtd[2]; ?>" style="white-space: nowrap;">
+	        <td class="produtos" id="cart_qtd_<?php echo $id; ?>" pdt="<?php echo $qtd[0]; ?>" vlf="<?php echo $qtd[2]; ?>" ref="<?php echo $qtd[4]; ?>" style="white-space: nowrap;">
 				<input class="cart_qtd" type="number" min="1" style="width:50px;" value="<?php echo $qtd[1]; ?>"/>
 				<button class="cart_qtd_delete btn btn-sm btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 			</td>

@@ -8,25 +8,24 @@ require_once('../../../database/config.database.php');
 require_once('../../../database/config.php');
 $query2 = DBRead('ecommerce_config','*');
 $config = [];
+$map =[];
 foreach ($query2 as $key => $row) {
 	$config[$row['id']] = $row['valor'];
 }
-
-foreach($_SESSION["car"] as $a => $b ){
-	$db = DBRead('ecommerce', '*', "WHERE id = $b[0]")[0]; 
-	$c = $db['estoque'] - $b[1];
- 
-	if($db['diminuir_est'] == "sim"){
-  
-		$data5 = array(
-		'estoque' => $c,
-		);	
-    
-   		DBUpdate('ecommerce', $data5, "id = $b[0]");  
- 	}
-
+if(!file_exists('../../../estoque.php')){
+	foreach($_SESSION["car"] as $a => $b ){
+		$db = DBRead('ecommerce', '*', "WHERE id = $b[0]")[0]; 
+		$c = $db['estoque'] - $b[1];
+	
+		if($db['diminuir_est'] == "sim"){
+	
+			$data5 = array(
+			'estoque' => $c,
+			);	
+			DBUpdate('ecommerce', $data5, "id = $b[0]");  
+		}
+	}
 }
- 
 $resources = array_combine(array_keys($_POST['produto']), array_map(function ($qtd, $produto, $un_valor, $produto_pg, $id_pdt) {
 	return compact('qtd', 'produto', 'un_valor', 'produto_pg', 'id_pdt' );
 },$_POST['qtd'], $_POST['produto'], $_POST['un_valor'], $_POST['produto_pg'], $_POST['id_pdt']));
@@ -61,7 +60,7 @@ if (isset($_POST)) {
     $read = DBRead('ecommerce_vendas','*',"WHERE id = '{$query}'");
     require_once('../../../controller/ecommerce/email_vendedor.php');
     
-    if( post('payment_method') == "Depósito"){
+    if( post('payment_method') == "Dep贸sito"){
 		require_once('../../../controller/ecommerce/email_cliente_retirada.php');
 	}else{
     	require_once('../../../controller/ecommerce/email_cliente.php');
@@ -91,6 +90,29 @@ if (isset($_POST)) {
             require_once('../../../controller/ecommerce/email_cliente_novo.php');
             DBUpdate('ecommerce_vendas',['id_cliente'=> $user]," id = '{$query}'");
     }
+	if(file_exists('../../../estoque.php')){
+		foreach($_SESSION["car"] as $a => $b ){
+			$db = DBRead('ecommerce_estoque', '*', "WHERE id = $b[3]")[0]; 
+			$c = $db['estoque'] - $b[1];
+			$produto = DBRead('ecommerce', '*', "WHERE id = $b[0]")[0]; 
+			if($produto['diminuir_est'] == "sim"){
+				$data5 = array(
+				'estoque' => $c,
+				);	
+				DBUpdate('ecommerce_estoque', $data5, "id = $b[3]"); 
+				if($c<=$db['min']){
+					if($db['nome'] == null){
+						$nome = $produto['nome'];
+					}else{
+						$nome = $db['nome'];
+					}
+					require('../../../controller/ecommerce/email_alerta.php');
+				}
+				$map[$b[3]] = $b[1];
+			}
+		}
+		DBUpdate('ecommerce_vendas',['estorno'=> json_encode($map)]," id = '{$query}'");
+	}
 	$route = post('composer');
 	require($route);
 }

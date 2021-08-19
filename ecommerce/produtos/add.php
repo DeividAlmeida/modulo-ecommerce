@@ -1,5 +1,6 @@
 <?php
-  if(!checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'produto', 'adicionar')){ Redireciona('./index.php'); }
+    error_reporting(0);
+    if(!checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'produto', 'adicionar')){ Redireciona('./index.php'); }
 ?>
 <?php $categorias = DBRead('ecommerce_categorias','*'); ?>
 <?php $marcas = DBRead('ecommerce_marcas','*'); ?>
@@ -84,13 +85,13 @@
               <?php } ?>
             </select>
           </div>
-
+        <?php if(!file_exists('estoque.php')){ ?>
           <!-- `estoque` int(11) DEFAULT NULL-->
-          <div class="form-group">
+          <div class="form-group ">
             <label>Estoque:</label>            
-              <input class="form-control" name="estoque" type="number" required>            
+              <input class="form-control" name="estoque" type="number" >            
           </div>
-
+        <?php } ?>
           <!-- `estoque` int(11) DEFAULT NULL-->
           <div class="form-group">
             <label>Diminuir estoque:</label>            
