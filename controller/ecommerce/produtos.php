@@ -5,7 +5,9 @@
 
 // Pasta para upload dos arquivos enviados
 $produto_upload_folder = 'wa/ecommerce/uploads/';
-
+if( file_exists('mercadolivre.php')){
+    $MLtoken = DBRead('ecommerce_mercadolivre', '*')[0];
+}
 function deletarProduto($id){
   // Exclui todas fotos do produto
   $lista_fotos = DBRead('ecommerce_prod_imagens','*', "WHERE id_produto = {$id}");
@@ -51,13 +53,10 @@ if (isset($_GET['AddProduto'])) {
   $zero = 0;
   $data2 = array('id_produto' => $id_produto, );
   DBUpdate('ecommerce_prod_termos', $data2, "id_produto = {$zero}");
-
   if( file_exists('estoque.php')){
     DBCreate('ecommerce_estoque',  ['ref'=>$id_produto,'min'=>5]);
   }
-  
   if(!$id_produto) { Redireciona('?ListarProduto&erro'); }
-
 
   // Cadastra todas categorias informadas
   if($_POST['categorias']){
@@ -93,12 +92,12 @@ if (isset($_GET['AddProduto'])) {
     }
   }
 
-
   // Fazendo upload das fotos arquivos
   foreach($_FILES as $chave => $valor){
     // Cria  um nome unico para o arquivo e pega ID da foto no form
-    $nome_arquivo = md5(uniqid(rand(), true));
+    $nome_arquivo = md5(uniqid(rand(), true)).'.jpg';
     $id_foto_form = str_replace("foto_","",$chave);
+      $picsource .=   '{ "source": "'.ConfigPainel('base_url').'wa/ecommerce/uploads/'.$nome_arquivo.'" },';
 
     // Tenta fazer upload da foto
     if (move_uploaded_file($_FILES[$chave]['tmp_name'], $produto_upload_folder.$nome_arquivo)) {
@@ -121,13 +120,51 @@ if (isset($_GET['AddProduto'])) {
       Redireciona('?ListarProduto&erro');
     }
   }
-
+if( file_exists('mercadolivre.php')){
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mercadolibre.com/items',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "title": "'.post('nome').'",
+        "category_id": "'.$_POST['categoria_ml'].'",
+        "price": '.post('preco').',
+        "currency_id": "BRL",
+        "available_quantity": 1,
+        "buying_mode": "buy_it_now",
+        "condition": "new",
+        "listing_type_id": "gold_special",
+        "pictures": [
+            '.$picsource.'
+        ],'.$_POST['atributos_ml'].'
+        
+    }',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$MLtoken['token'],
+        'Content-Type: application/json',
+      ),
+    ));
+    
+    $response = curl_exec($curl);
+    curl_close($curl);
+    DBUpdate('ecommerce', array('id_ml' => $response->id), "id = {$id_produto}");
+}
   try{
     atualizarMatrizProduto($id_produto);
-    Redireciona('?ListarProduto&sucesso');
+    var_dump($response);
+    #Redireciona('?ListarProduto&sucesso');
   } catch (\Exception $e) {
     Redireciona('?ListarProduto&erro');
   }
+  
+
+
 }
 
 // Atualizar Produto
@@ -431,9 +468,35 @@ if(isset($_GET['DuplicarProduto'])){
 // Excluir Produto
 if (isset($_GET['DeletarProduto'])) {
   $id     = get('DeletarProduto');
-
+   $id_ml = DBRead('ecommerce','*', "WHERE id = {$id}")[0];
+    if( file_exists('mercadolivre.php')){
+        $curl = curl_init();
+        
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.mercadolibre.com/items/'.$id_ml['id_ml'],
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'PUT',
+          CURLOPT_POSTFIELDS =>'{
+          "status":"paused"
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer '.$MLtoken['token']
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        
+        curl_close($curl);
+    }
   try{
     deletarProduto($id);
+    #var_dump($response);
     Redireciona('?ListarProduto&sucesso');
   } catch (\Exception $e) {
     Redireciona('?ListarProduto&erro');
@@ -443,15 +506,40 @@ if (isset($_GET['DeletarProduto'])) {
 // Excluir Produtos
 if (isset($_GET['ActionProduto'])) {
   $lista_ids = post('ids');
-
+  $curl = curl_init();
+  
   try{
-    foreach($lista_ids as $id){
-      deletarProduto($id);
+    foreach($lista_ids as $id){    
+        if( file_exists('mercadolivre.php')){
+            $id_ml = DBRead('ecommerce','*', "WHERE id = {$id}")[0];
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => 'https://api.mercadolibre.com/items/'.$id_ml['id_ml'],
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => '',
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 0,
+              CURLOPT_FOLLOWLOCATION => true,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => 'PUT',
+              CURLOPT_POSTFIELDS =>'{
+              "status":"paused"
+            }',
+              CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Authorization: Bearer '.$MLtoken['token']
+              ),
+            ));
+            
+            $response = curl_exec($curl);    
+        }
+            
+    deletarProduto($id);
     }
     Redireciona('?ListarProduto&sucesso');
   } catch (\Exception $e) {
     Redireciona('?ListarProduto&erro');
   }
+     curl_close($curl);
 }
 
 
@@ -589,6 +677,9 @@ if(isset($_POST['ex_categorias'])){
         }, $_POST['ex_categorias']));
         $_POST['ex_categoria'] =    json_encode($resources3, JSON_FORCE_OBJECT);
 } 
+ 
+   
+
     
   $id =  get('EditCupom');
   $data = array(
