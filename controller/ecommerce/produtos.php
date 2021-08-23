@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 //
 // PRODUTO
 //
@@ -493,6 +494,31 @@ if (isset($_GET['DeletarProduto'])) {
         $response = curl_exec($curl);
         
         curl_close($curl);
+    }if( file_exists('mercadolivre.php')){
+      $id_ml = DBRead('ecommerce','*', "WHERE id = {$id}")[0];
+        $curl = curl_init();
+        
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.mercadolibre.com/items/'.$id_ml['id_ml'],
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'PUT',
+          CURLOPT_POSTFIELDS =>'{
+          "status":"paused"
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer '.$MLtoken['token']
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        
+        curl_close($curl);
     }
   try{
     deletarProduto($id);
@@ -564,11 +590,6 @@ if (isset($_GET['DeletarFotoProduto'])) {
 
 
 if(isset($_GET['AddProdutoTermo'])){
-header('Access-Control-Allow-Origin: *');
-  require_once('../../includes/funcoes.php');
-  require_once('../../database/config.database.php');
-  require_once('../../database/config.php'); 
- 
    foreach(post('id_termo') as $termo){
     $zero = 0;
    $data = array(
@@ -582,10 +603,6 @@ header('Access-Control-Allow-Origin: *');
 }
 
 if(isset($_GET['DeletarProdutoTermo'])){
-  header('Access-Control-Allow-Origin: *');
-  require_once('../../includes/funcoes.php');
-  require_once('../../database/config.database.php');
-  require_once('../../database/config.php'); 
   $id =  get('DeletarProdutoTermo');
   DBDelete('ecommerce_prod_termos',"id = {$id}");
 
@@ -678,9 +695,6 @@ if(isset($_POST['ex_categorias'])){
         $_POST['ex_categoria'] =    json_encode($resources3, JSON_FORCE_OBJECT);
 } 
  
-   
-
-    
   $id =  get('EditCupom');
   $data = array(
     'codigo'         => post('codigo'),

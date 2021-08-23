@@ -76,9 +76,9 @@
             var dados = jQuery( this ).serialize();
             jQuery.ajax({
                type: "POST",
-               url: "<?php echo ConfigPainel('base_url'); ?>/controller/ecommerce/produtos.php?AddProdutoTermo",
+               url: "<?php echo ConfigPainel('base_url'); ?>ecommerce.php?AddProdutoTermo",
                data: dados,
-               });setTimeout(function(){$("#no-d").load('<?php echo ConfigPainel('base_url'); ?>/ecommerce/produtos/processa_termos_listados.php?radar=<?php echo $_GET['radar']; ?>', )}, 1000);               
+               });setTimeout(function(){$("#no-d").load('<?php echo ConfigPainel('base_url'); ?>ecommerce/produtos/processa_termos_listados.php?radar=<?php echo $_GET['radar']; ?>', )}, 1000);               
                 return false;
                 });
               });

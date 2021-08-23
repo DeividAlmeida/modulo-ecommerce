@@ -37,7 +37,7 @@
                             <button type="button" id="produto-rem-rv6wwqr92" class="produto-rem-form btn btn-sm btn-danger float-right"onclick="DeletarProdutoTermo<?php echo $dados['id']; ?>(this);" href="#!">Deletar</button>
                               <script>function DeletarProdutoTermo<?php echo $dados['id']; ?>(t){                    
                                         var xhttp = new XMLHttpRequest();                                        
-                                        xhttp.open("GET", "<?php echo ConfigPainel('base_url'); ?>/controller/ecommerce/produtos.php?DeletarProdutoTermo=<?php echo $dados['id']; ?>", true);
+                                        xhttp.open("GET", "<?php echo ConfigPainel('base_url'); ?>ecommerce.php?DeletarProdutoTermo=<?php echo $dados['id']; ?>", true);
                                         xhttp.send();setTimeout(function(){$("#no-d").load('<?php echo ConfigPainel('base_url'); ?>/ecommerce/produtos/processa_termos_listados.php?radar=<?php echo $_GET['radar']; ?>')}, 1000);
                                       }
                                 </script>                         

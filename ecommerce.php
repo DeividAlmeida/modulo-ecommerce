@@ -655,7 +655,7 @@ $UrlPage	 = 'Ecommerce.php';
 							if(j == 'cancelado'){
         					    swal({
                         				title: "Estorno!!",
-                        				text: "Deseja que estonemos este(s) produto(s) ao estoque?",
+                        				text: "Deseja que estornemos este(s) produto(s) ao estoque?",
                         				icon: "info",
                         				buttons: {
                         					cancel: "Não",

@@ -365,5 +365,5 @@ INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES
 ('area_cor_second', '');
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
 
-ALTER TABLE `ecommerce_vendas` ADD `id_cliente` INT(11) NULL AFTER `vl_frete`;
+ALTER TABLE `ecommerce_vendas` ADD `id_cliente` varchar(255) NULL AFTER `vl_frete`;
 ALTER TABLE `ecommerce_vendas` ADD `view` INT(11) NULL DEFAULT '0' AFTER `id_cliente`;
