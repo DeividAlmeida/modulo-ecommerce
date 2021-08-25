@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce` (
   `preco` decimal(10,2) NOT NULL,
   `etiqueta` varchar(255) DEFAULT NULL,
   `etiqueta_cor` varchar(255) DEFAULT NULL,
-  `estoque` int(11) DEFAULT NULL,
+  `estoque` varchar(255) DEFAULT NULL,
   `id_imagem_capa` int(11) DEFAULT NULL,
   `btn_texto` varchar(255) DEFAULT NULL,
   `click` int(11) DEFAULT 0,

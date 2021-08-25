@@ -665,8 +665,8 @@ $UrlPage	 = 'Ecommerce.php';
                         					},
                         				},
                         				closeOnCancel: false
-                        			}).then(function(isConfirm2) {
-        				                if (isConfirm2) {
+                        			}).then(function(isConfirm) {
+        				                if (isConfirm) {
         				                    fetch('?Estorno='+d).then(a=>{
         				                        swal("Salvo!", "Estoque atualizado com sucesso !", "success");
         				                    })

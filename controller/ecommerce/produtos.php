@@ -158,8 +158,8 @@ if( file_exists('mercadolivre.php')){
 }
   try{
     atualizarMatrizProduto($id_produto);
-    var_dump($response);
-    #Redireciona('?ListarProduto&sucesso');
+    #var_dump($response);
+    Redireciona('?ListarProduto&sucesso');
   } catch (\Exception $e) {
     Redireciona('?ListarProduto&erro');
   }

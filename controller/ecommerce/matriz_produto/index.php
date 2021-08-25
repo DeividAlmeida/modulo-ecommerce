@@ -8,12 +8,10 @@ function atualizarMatrizesTodosProdutos(){
 
   foreach ($produtos as $produto) {
     atualizarMatrizProduto($produto['id']);
-    if(is_array(DBRead('ecommerce_estoque','*'))){
       $estoque = DBRead('ecommerce_estoque', '*', "WHERE ref = '{$produto['id']}' ");
       if(!is_array($estoque)){
-           DBCreate('ecommerce_estoque',  ['ref'=>$produto['id'],'min'=>5]);
+           DBCreate('ecommerce_estoque',  ['ref'=>$produto['id']]);
       }
-    }
   }
 }
 

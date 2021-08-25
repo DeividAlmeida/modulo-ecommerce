@@ -100,6 +100,56 @@ if (isset($_POST)) {
 				'estoque' => $c,
 				);	
 				DBUpdate('ecommerce_estoque', $data5, "id = $b[3]"); 
+				
+				if(is_array(DBRead('ecommerce_mercadolivre','*'))){
+			        $MLtoken = DBRead('ecommerce_mercadolivre', '*')[0];
+                    $curl = curl_init();
+                   if(empty($db['id_va'])){
+                       $tkml = $produto['id_ml'];
+                       $body = '{
+                        "available_quantity": '.$db['estoque'].'
+                    }';
+                   }else{
+                       $tkml = $db['id_ml'];
+                        $group =  DBRead('ecommerce_estoque', '*', "WHERE id_ml = '{$db['id_ml']}' ");
+                        if(!empty($group)){
+                            foreach($group as $chave => $cod){
+                                $inside .= '{
+                                    "id": '.$cod['id_va'].',
+                                    "available_quantity": '.$cod['estoque'].'
+                	            },';
+                            }
+                        }
+                         $body = '{
+                            "variations":  [
+                            '.$inside.'
+                            ]
+                        }'; 
+                    }
+                   
+                    curl_setopt_array($curl, array(
+                      CURLOPT_URL => 'https://api.mercadolibre.com/items/'.$tkml,
+                      CURLOPT_RETURNTRANSFER => true,
+                      CURLOPT_ENCODING => '',
+                      CURLOPT_MAXREDIRS => 10,
+                      CURLOPT_TIMEOUT => 0,
+                      CURLOPT_FOLLOWLOCATION => true,
+                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                      CURLOPT_CUSTOMREQUEST => 'PUT',
+                      CURLOPT_POSTFIELDS =>$body,
+                      CURLOPT_HTTPHEADER => array(
+                        'Content-Type: application/json',
+                               'Authorization: Bearer '.$MLtoken['token'],
+                      ),
+                    ));
+                    $response = curl_exec($curl);
+                    
+                    curl_close($curl);
+				  
+				  
+				  
+				    
+				}
 				if($c<=$db['min']){
 					if($db['nome'] == null){
 						$nome = $produto['nome'];
