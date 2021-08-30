@@ -137,6 +137,7 @@ $(this).attr('class', 'shop--product '+columnClass);
 });
 }
 function CarrinhoAdd(id, carrinho_url, qtd, vlf, att){  
+  if(att === void(0)){ att = id;}
   fetch(UrlPainel+"estoque.php")
 	.then(response=>{
 		if (response.ok) {
@@ -147,7 +148,6 @@ function CarrinhoAdd(id, carrinho_url, qtd, vlf, att){
       }
       estoque(ids).then(res=>{
       if( parseInt(res.estoque) >= parseInt(qtd)){
-        if(att === void(0)){ att = id;}
           $.ajax({
         type: 	"GET",
         cache: 	false,

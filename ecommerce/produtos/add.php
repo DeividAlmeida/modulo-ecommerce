@@ -118,8 +118,8 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Categoria:</label>
-                <select name="categoria_ml" class="form-control custom-select" v-model="categoria" required onchange="atributo()">
-                    
+                <select name="categoria_ml" class="form-control custom-select"  required onchange="atributo()">
+                    <option value="" hidden selected>Selecione uma categoria do MercadoLivre</option>
                     <option value="MLB278125">Alimentos e bebidas</option>
                     <option value="MLB269961">Armários e balcões de cozinha</option>
                     <option value="MLB1275">Artigos de beleza e cuidado pessoal</option>
@@ -247,7 +247,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3" v-if="categoria=='MLB1055' || categoria=='MLB181294'">
+        <div class="col-md-3" v-if="categoria=='MLB1055' || categoria=='MLB181294' || categoria=='MLB1002'">
             <div class="form-group">
                 <label>Código universal de produto (GTIN):</label>
                 <input onchange="atributo()" class="form-control" name="GTIN" required>            
@@ -258,7 +258,7 @@
         <div class="col-md-3" v-if="categoria">
             <div class="form-group">
                 <label>Tamanho:</label>
-                <input  onchange="atributo()" class="form-control" :name="size" required> 
+                <input  onchange="atributo()" class="form-control" :type="categoria=='MLB1002'?'number':'text'" :name="size" required> 
             </div>
         </div>
         
@@ -267,6 +267,13 @@
             <div class="form-group">
                 <label>Tipo de montagem:</label>
                 <input onchange="atributo()" class="form-control" name="MOUNTING_TYPE" required>            
+            </div>
+        </div>
+        <!-- ALIMENTOS -->
+        <div class="col-md-3" v-if="categoria=='MLB278125'">
+            <div class="form-group">
+                <label>Fabricante:</label>
+                <input onchange="atributo()" class="form-control" name="MANUFACTURER" required>            
             </div>
         </div>
         
@@ -408,6 +415,7 @@
         var categoria = document.getElementsByName('categoria_ml')[0].value
         var e = document.getElementById("marca");
         var strUser = e.options[e.selectedIndex].text;
+        vue.categoria = categoria
         var att
         switch(categoria){
             case 'MLB1055':
@@ -493,7 +501,7 @@
                 vue.size = 'SIZE';
                  att = '"attributes": ['+
                         '{'+
-                           '"id": "MANUFACTURER",'+
+                           '"id": "BRAND",'+
                             '"value_name": "'+strUser+'"'+
                         '},'+
                         '{'+
@@ -507,6 +515,10 @@
                         ' {'+
                             '"id": "SIZE",'+
                            '"value_name": "'+String(document.getElementsByName('SIZE')[0].value)+'"'+
+                        '},'+
+                        ' {'+
+                            '"id": "MANUFACTURER",'+
+                           '"value_name": "'+String(document.getElementsByName('MANUFACTURER')[0].value)+'"'+
                         '}'+
                     ']'
             break;
@@ -548,7 +560,11 @@
                         '},'+
                         ' {'+
                             '"id": "DISPLAY_SIZE",'+
-                           '"value_name": "'+String(document.getElementsByName('DISPLAY_SIZE')[0].value)+'"'+
+                           '"value_name": "'+String(document.getElementsByName('DISPLAY_SIZE')[0].value)+' \\""'+
+                        '},'+
+                        '{'+
+                            '"id": "GTIN",'+
+                            '"value_name": "'+String(document.getElementsByName('GTIN')[0].value)+'"'+
                         '}'+
                     ']'
             break;
