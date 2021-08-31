@@ -221,17 +221,26 @@ function CarrinhoAdd(id, carrinho_url, qtd, vlf, att){
 })
 
 }
-function alerta(){
-
-Swal.fire({
-    type: 'error',
-    title: 'Oops...',
-    text: 'Por favor preencha todos os campos antes de efetuar a compra!',
-    showConfirmButton: false,
-    showCloseButton: true,
-  });
-
+alerta = (stt) =>{
+  if(stt == 'I'){
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Produto temporariamente inativo!',
+        showConfirmButton: false,
+        showCloseButton: true,
+      });
+  }else{
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Por favor preencha todos os campos antes de efetuar a compra!',
+        showConfirmButton: false,
+        showCloseButton: true,
+      });
+  }
 } 
+
 function height(i){
 let a = document.getElementById('Eframe')
 a.style.height= '0px';

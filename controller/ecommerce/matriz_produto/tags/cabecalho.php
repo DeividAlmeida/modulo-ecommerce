@@ -163,9 +163,10 @@ ob_start();
             var o = c / b;
             var p = o.toFixed(2);
             var f = document.getElementById("valor").setAttribute("valor-final", p);
-					if(<?php  foreach($atributos as $atributo){ print_r("document.getElementById('mySelect".$atributo['id']."').value != '' &&");  }; ?> z > 0){document.getElementById("piupiu").style.display = "inline";document.getElementById("frajola").style.display = "none";}
+            var status = '<?php echo $produto['status'] ?>'
+					if(<?php  foreach($atributos as $atributo){ print_r("document.getElementById('mySelect".$atributo['id']."').value != '' &&");  }; ?> z > 0 && status != 'I'){document.getElementById("piupiu").style.display = "inline";document.getElementById("frajola").style.display = "none";}
 					else{document.getElementById("piupiu").style.display = "none";document.getElementById("frajola").style.display = "inline";}
-				}         
+				}           
         	</script>
         <?php } } ?> 
 
@@ -173,7 +174,7 @@ ob_start();
 <span class="input-number-decrement">–</span><input class="input-number" type="text" id="quantidade" value="1" min="1" max="999"><span class="input-number-increment" style="margin-right: 30px;">+</span> <a <?php if(isset($atributos)){ echo "style='display:none;'";}else{echo "style='display:inline;'";} ?>  id="piupiu" class="shop--product-page--header__button btn btn-lg" 
 <?php echo (!empty($produto['link_venda'])) ? "href='{$produto["link_venda"]}' target='{$produto["target_link"]}'" : 'onclick="CarrinhoAdd('.$produto["id"].', '."'{$config["pagina_carrinho"]}'".', document.getElementById('."'quantidade'".').value,'.' document.getElementById('."'valor'".').getAttribute('."'valor-final'".')'; if(isset($atributos)){ echo ', document.getElementById('."'valor'".').getAttribute('."'index-final'".')';}else{echo " ";} echo ', sessionStorage.setItem(document.getElementById('."'valor'".').getAttribute('."'index-final'".'), document.getElementById('."'valor'".').getAttribute('."'id-final'".')))"'; ?>>
       <?php echo $produto['btn_texto']; ?>
-    </a><a class="shop--product-page--header__button btn btn-lg" <?php if(isset($atributos)){ echo "style='display:inline;'";}else{echo "style='display:none;'";} ?>  id="frajola" onclick="alerta()" >
+    </a><a class="shop--product-page--header__button btn btn-lg" <?php if(isset($atributos)){ echo "style='display:inline;'";}else{echo "style='display:none;'";} ?>  id="frajola" onclick="alerta('<?php echo $produto['status'] ?>')" >
       <?php echo $produto['btn_texto']; ?>
     </a>
     </div>

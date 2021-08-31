@@ -159,6 +159,13 @@ if (is_array($query)) { ?>
               <option value="sim" <?php Selected($dados['diminuir_est'], "sim"); ?>>Sim</option>
                 <option value="não" <?php Selected($dados['diminuir_est'], "não"); ?>>Não</option>
             </select>            
+          </div>
+          <div class="form-group">
+            <label>Status:</label>            
+              <select name="status" required class="form-control custom-select">
+              <option value="A" <?php Selected($dados['status'], "A"); ?>>Ativo</option>
+              <option value="I" <?php Selected($dados['status'], "I"); ?>>Inativo</option>
+            </select>            
           </div>            
           <?php if(file_exists('mercadolivre.php')){ ?>
           <!-- `estoque` int(11) DEFAULT NULL-->

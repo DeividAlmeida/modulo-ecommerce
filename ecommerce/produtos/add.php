@@ -102,6 +102,13 @@
               <option value="não">Não</option>
             </select>            
           </div> 
+          <div class="form-group">
+            <label>Status:</label>            
+              <select name="status" required class="form-control custom-select">
+              <option value="A" >Ativo</option>
+              <option value="I" >Inativo</option>
+            </select>            
+          </div>
           <?php if(file_exists('mercadolivre.php')){ ?>
           <!-- `estoque` int(11) DEFAULT NULL-->
           <div class="form-group">
