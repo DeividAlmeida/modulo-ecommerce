@@ -351,6 +351,7 @@ if (is_array($query)) { ?>
         </div>
         
         <input name="atributos_ml" type="hidden">
+        <input name="descricao_ml" type="hidden">
     </div>
         <div class="row">        
         <div class="col-md-3" >
@@ -739,6 +740,7 @@ if (is_array($query)) { ?>
                     ']'
         }
           document.getElementsByName('atributos_ml')[0].value = att
+          document.getElementsByName('descricao_ml')[0].value = tinyMCE.activeEditor.getBody().textContent;
     }
 
 </script>
