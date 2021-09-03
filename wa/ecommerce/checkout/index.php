@@ -371,7 +371,7 @@ $enderecos = json_decode($usuario['endereco']);
                                                 }
                                                 <?php }} if($retirada['entrega'] == "checked") { ?>
                                                 $("#frete").load('<?php echo ConfigPainel('base_url')?>wa/ecommerce/checkout/preload/');
-                                                $("#frete").load('https://nameless-atoll-10880.herokuapp.com/'+cep+'<?php echo "/".$read['cep']."/".$total_peso."/".$total_comprimento."/".$total_altura."/".$total_largura; ?>');
+                                                $("#frete").load('<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/apis/correios.php?destino='+cep+'&origem=<?php echo $read['cep']?>');
                                                
                                               Cfrete = (z) =>{
                                                   let desconto = sessionStorage.getItem('totalDesconto');
