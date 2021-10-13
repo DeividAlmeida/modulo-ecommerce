@@ -82,7 +82,7 @@ ob_start();
     <div class="shop--product-page--header--main-photo__wrapper">
       <img class="shop--product-page--header--main-photo__photo" src="<?php echo $url_img_capa; ?>" alt="Foto do produto <?php echo $produto['nome']; ?>" data-zoom-image="<?php echo $url_img_capa; ?>" width="100%"/>
 
-      <?php if(isset($produto['etiqueta']) && !empty($produto['etiqueta'])){ ?>
+      <?php if(is_array($produto['etiqueta']) && !empty($produto['etiqueta'])){ ?>
         <span class="shop--product-page--header--main-photo__tag"><?php echo $produto['etiqueta']; ?></span>
       <?php } ?>
     </div>
@@ -100,7 +100,7 @@ ob_start();
   </div>
   <div class="col-md-6">
     <h4 class="shop--product-page--header__name"><?php echo $produto['nome']; ?></h4>
-    <div class="shop--product-page--header__price" id="valor" <?php if(isset($atributos)){ foreach($atributos as $atributo){ print_r("data-".$atributo['id']."='0'"); print_r(" id-".$atributo['id']."='0'"); print_r(" index-".$atributo['id']."='0'");}} ?> data-valor="<?php echo floatval($produto['preco']); ?>" valor-final="<?php echo floatval($produto['preco']); ?>" quantidade="1" id-final="0" index-final="" >
+    <div class="shop--product-page--header__price" id="valor" <?php if(is_array($atributos)){ foreach($atributos as $atributo){ print_r("data-".$atributo['id']."='0'"); print_r(" id-".$atributo['id']."='0'"); print_r(" index-".$atributo['id']."='0'");}} ?> data-valor="<?php echo floatval($produto['preco']); ?>" valor-final="<?php echo floatval($produto['preco']); ?>" quantidade="1" id-final="0" index-final="" >
       <?php if($produto['a_consultar'] == 'S') {?>
         A consultar
       <?php } else { ?>
@@ -116,11 +116,11 @@ ob_start();
           <li><?php echo $categoria['nome']; ?></li><br>
         <?php } ?>        
       </ul><br>
-          <?php if(isset($marcas)){ foreach($marcas as $marca){ ?>
+          <?php if(is_array($marcas)){ foreach($marcas as $marca){ ?>
           <p><b>Marca:</b>&nbsp;<?php echo $marca['nome']; ?></p><br>
         <?php }} ?>
 
-        <?php if(isset($atributos)){ foreach($atributos as $atributo){        	
+        <?php if(is_array($atributos)){ foreach($atributos as $atributo){        	
         		$id = $atributo['id'];
         		$termos = DBRead('ecommerce_prod_termos', '*', "WHERE id_atributo = {$id} AND id_produto = {$produto['id']}");        	
         	?>
@@ -130,7 +130,7 @@ ob_start();
         		<option value="" default>Escolha uma opção</option> 
         		<?php foreach ($termos as $termo) {
         			$nome = DBRead('ecommerce_termos', 'nome,id', "WHERE id = {$termo['id_termo']}");
-              if(!is_array(DBRead('ecommerce_estoque','*'))){?>
+             if(!is_array(DBRead('ecommerce_plugins','*',"WHERE titulo = 'Estoque'" ))){?>
         		  <option value="<?php echo $termo['valor']; ?>" data-id="<?php echo $termo['id']; ?>"><?php print_r($nome[0]['nome']); ?></option>
             <?php }else{?>
               <option value="<?php echo $termo['valor']; ?>" data-id="<?php echo $nome[0]['id']; ?>"><?php print_r($nome[0]['nome']); ?></option>
@@ -163,18 +163,17 @@ ob_start();
             var o = c / b;
             var p = o.toFixed(2);
             var f = document.getElementById("valor").setAttribute("valor-final", p);
-            var status = '<?php echo $produto['status'] ?>'
-					if(<?php  foreach($atributos as $atributo){ print_r("document.getElementById('mySelect".$atributo['id']."').value != '' &&");  }; ?> z > 0 && status != 'I'){document.getElementById("piupiu").style.display = "inline";document.getElementById("frajola").style.display = "none";}
+					if(<?php  foreach($atributos as $atributo){ print_r("document.getElementById('mySelect".$atributo['id']."').value != '' &&");  }; ?> z > 0){document.getElementById("piupiu").style.display = "inline";document.getElementById("frajola").style.display = "none";}
 					else{document.getElementById("piupiu").style.display = "none";document.getElementById("frajola").style.display = "inline";}
-				}           
+				}         
         	</script>
         <?php } } ?> 
 
         
-<span class="input-number-decrement">–</span><input class="input-number" type="text" id="quantidade" value="1" min="1" max="999"><span class="input-number-increment" style="margin-right: 30px;">+</span> <a <?php if(isset($atributos)){ echo "style='display:none;'";}else{echo "style='display:inline;'";} ?>  id="piupiu" class="shop--product-page--header__button btn btn-lg" 
-<?php echo (!empty($produto['link_venda'])) ? "href='{$produto["link_venda"]}' target='{$produto["target_link"]}'" : 'onclick="CarrinhoAdd('.$produto["id"].', '."'{$config["pagina_carrinho"]}'".', document.getElementById('."'quantidade'".').value,'.' document.getElementById('."'valor'".').getAttribute('."'valor-final'".')'; if(isset($atributos)){ echo ', document.getElementById('."'valor'".').getAttribute('."'index-final'".')';}else{echo " ";} echo ', sessionStorage.setItem(document.getElementById('."'valor'".').getAttribute('."'index-final'".'), document.getElementById('."'valor'".').getAttribute('."'id-final'".')))"'; ?>>
+<span class="input-number-decrement">–</span><input class="input-number" type="text" id="quantidade" value="1" min="1" max="999"><span class="input-number-increment" style="margin-right: 30px;">+</span> <a <?php if(is_array($atributos)){ echo "style='display:none;'";}else{echo "style='display:inline;'";} ?>  id="piupiu" class="shop--product-page--header__button btn btn-lg" 
+<?php echo (!empty($produto['link_venda'])) ? "href='{$produto["link_venda"]}' target='{$produto["target_link"]}'" : 'onclick="CarrinhoAdd('.$produto["id"].', '."'{$config["pagina_carrinho"]}'".', document.getElementById('."'quantidade'".').value,'.' document.getElementById('."'valor'".').getAttribute('."'valor-final'".')'; if(is_array($atributos)){ echo ', document.getElementById('."'valor'".').getAttribute('."'index-final'".')';}else{echo " ";} echo ', sessionStorage.setItem(document.getElementById('."'valor'".').getAttribute('."'index-final'".'), document.getElementById('."'valor'".').getAttribute('."'id-final'".')))"'; ?>>
       <?php echo $produto['btn_texto']; ?>
-    </a><a class="shop--product-page--header__button btn btn-lg" <?php if(isset($atributos)){ echo "style='display:inline;'";}else{echo "style='display:none;'";} ?>  id="frajola" onclick="alerta('<?php echo $produto['status'] ?>')" >
+    </a><a class="shop--product-page--header__button btn btn-lg" <?php if(is_array($atributos)){ echo "style='display:inline;'";}else{echo "style='display:none;'";} ?>  id="frajola" onclick="alerta()" >
       <?php echo $produto['btn_texto']; ?>
     </a>
     </div>
@@ -251,7 +250,7 @@ ob_start();
           var h = "<?php echo $config['moeda'];?>";
           var a = document.getElementById("valor").getAttribute("data-valor");
           var b = document.getElementById("valor").getAttribute("quantidade");      
-		      var c = <?php if(isset($atributos)){ foreach($atributos as $atributo){ print_r("(+document.getElementById('valor').getAttribute('data-".$atributo['id']."')) * b + ");  }} ?> a * b;
+		      var c = <?php if(is_array($atributos)){ foreach($atributos as $atributo){ print_r("(+document.getElementById('valor').getAttribute('data-".$atributo['id']."')) * b + ");  }} ?> a * b;
           var t = c.toFixed(2).replace(".", ",");
           var d = document.getElementById('valor').innerHTML = h +" "+ t;
           var v = c / b;
@@ -269,7 +268,7 @@ ob_start();
           var h = "<?php echo $config['moeda'];?>";
           var a = document.getElementById("valor").getAttribute("data-valor");
           var b = document.getElementById("valor").getAttribute("quantidade");
-		      var c = <?php if(isset($atributos)){ foreach($atributos as $atributo){ print_r("(+document.getElementById('valor').getAttribute('data-".$atributo['id']."')) * b + ");  }} ?> a * b;
+		      var c = <?php if(is_array($atributos)){ foreach($atributos as $atributo){ print_r("(+document.getElementById('valor').getAttribute('data-".$atributo['id']."')) * b + ");  }} ?> a * b;
           var t = c.toFixed(2).replace(".", ",");
           var v = c / b;
           var z = v.toFixed(2).replace(".", ",");

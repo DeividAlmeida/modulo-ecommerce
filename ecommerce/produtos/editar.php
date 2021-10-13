@@ -119,7 +119,7 @@ if (is_array($query)) { ?>
             <!-- `marcas` -->
           <div class="form-group">
             <label>Marca: </label>
-            <select class="form-control produto-atributos" name="marcas[]" multiple="multiple" id="marca">
+            <select required class="form-control produto-atributos" name="marcas[]" multiple="multiple" id="marca">
               <?php foreach($marcas as $marcas){ ?>
                 <option value="<?php echo $marcas['id']; ?>"><?php echo $marcas['nome']; ?></option>
               <?php } ?>

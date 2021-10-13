@@ -6,7 +6,11 @@
 <?php $marcas = DBRead('ecommerce_marcas','*'); ?>
 <?php $atributos = DBRead('ecommerce_atributos','*'); ?>
 <?php $produtos = DBRead('ecommerce','*'); ?>
-<?php $ML = DBRead('ecommerce_mercadolivre','*')[0]; ?>
+<?php
+    if(file_exists('mercadolivre.php')){
+        $ML = DBRead('ecommerce_mercadolivre','*')[0]; 
+    }
+?>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <form method="post" action="?AddProduto" enctype="multipart/form-data" id="main">
   <div class="card">
@@ -62,7 +66,7 @@
           <!-- `marcas` -->
           <div class="form-group">
             <label>Marca: </label>
-            <select class="form-control produto-categorias" name="marcas[]" multiple="multiple" id="marca" >
+            <select required class="form-control produto-categorias" name="marcas[]" multiple="multiple" id="marca" >
               <?php foreach($marcas as $marcas){ ?>
                 <option value="<?php echo $marcas['id']; ?>"><?php echo $marcas['nome']; ?></option>
               <?php } ?>

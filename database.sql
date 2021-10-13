@@ -237,6 +237,8 @@ CREATE TABLE IF NOT EXISTS `ecommerce_vendas` (
   `rastreamento` text DEFAULT NULL,
   `cor_status` varchar(255) DEFAULT NULL,
   `vl_frete` float(50,2) DEFAULT NULL,
+  `id_cliente` varchar(255) DEFAULT NULL,
+  `view` INT(11) NULL DEFAULT '0',
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -357,13 +359,4 @@ CREATE TABLE IF NOT EXISTS `ecommerce_usuario` (
     `imagem` text DEFAULT NULL,  
     `data`  date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `ecommerce_config` (`id`, `valor`) VALUES 
-('pagina_cliente', ''),
-('area_btn_cor', ''),
-('area_hover_btn_cor', ''),
-('area_cor_second', '');
 SELECT * FROM `ecommerce_vendas` ORDER BY 'data' DESC;
-
-ALTER TABLE `ecommerce_vendas` ADD `id_cliente` varchar(255) NULL AFTER `vl_frete`;
-ALTER TABLE `ecommerce_vendas` ADD `view` INT(11) NULL DEFAULT '0' AFTER `id_cliente`;

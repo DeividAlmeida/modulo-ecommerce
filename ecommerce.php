@@ -758,8 +758,6 @@ $UrlPage	 = 'Ecommerce.php';
                 });        
             });
 
-//Alterar a Linguagem da tabele de pedidos
-
 		$(document).ready(function() {				
 			$("#BootstrapTable").DataTable({
 				"language": {
