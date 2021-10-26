@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+#error_reporting(0);
 if (isset($_GET['AdicionarItemLista'])) {
 	require_once('ecommerce/listagens/item/add.php');
 }if (isset($_GET['AdicionarMarcaLista'])) {
@@ -136,6 +136,9 @@ $UrlPage	 = 'Ecommerce.php';
 <?php if (checkPermission($PERMISSION, $_SERVER['SCRIPT_NAME'], 'codigo', 'acessar')) { ?>
 			<button class="btn btn-sm behance text-white" data-toggle="modal" data-target="#Ajuda"><i class="icon-question-circle"></i></button>
 <?php } ?>
+<?php if( file_exists('mercadolivre.php')) { ?>
+			<button class="btn btn-sm bg-danger text-white" data-toggle="modal" data-target="#MLinfo"><i class="icon-handshake-o"></i></button>
+<?php } ?>
 		</div>
 
 		<?php
@@ -219,6 +222,38 @@ $UrlPage	 = 'Ecommerce.php';
 			</div>
 		</div>
 	</div>
+    <div class="modal fade" id="MLinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content b-0">
+				<div class="modal-header r-0 bg-primary">
+					<h6 class="modal-title text-white" id="exampleModalLabel">Informações de Sobre a  API do Mercado Livre</h6>
+					<a href="#" data-dismiss="modal" aria-label="Close" class="paper-nav-toggle paper-nav-white active"><i></i></a>
+				</div>
+
+				<div class="modal-body">
+                    <p>
+						Para sincronizar seus produtos com o Mercado Livre é necessário seguir as diretrizes abaixo. Lembrando que todas as exigências são do Mercado Livre, nossa equipe não pode alterar nenhuma delas.                    </p>
+                    <p>
+                       <b>1- </b> Produto precisa ter o valor mínimo de R$ 7,00.<br>
+                       <b>2- </b>Categorias e ficha técnica não pode ser editados, caso precise mudar algo num anúncio ele
+                        precisa ser deletado e republicado.<br>
+                       <b>3-</b> Atributos precisam ter o nome predeterminado pelo mercado livre. Ex. Color é o nome
+                        permitido para o atributo de cores e Tamanho é o nome permitido para o atributo de
+                        tamanho.<br>
+                        <b>4- </b>As fotos devem seguir o padrão indicado nesse <a href="https://www.mercadolivre.com.br/ajuda/805" target="_blank">link</a>. <br>                        
+                        <b>5- </b>As marcas de publicação limitada poderão ser oferecidas somente por Lojas Oficiais e
+                        vendedores credenciados pelas marcas. Essa medida se aplica no Brasil, para Adidas
+                        e Reebok.<br>
+                        <b>6- </b>Produtos com variações devem ter sempre o mesmo valor. Ex. Sapato 37 Preto
+                        precisa custar o mesmo que o Sapato 40 Branco.<br>
+                        <b>7- </b>Se o estoque chegar ao valor 0 o anúncio será pausado automaticamente.<br>
+                        <b>8- </b>A descrição dos anúncios deve conter apenas texto. Emojis tables, tag html... não são
+                        aceitas pela api. <br>
+                    </p>
+				</div>
+			</div>
+		</div>
+    </div>
 
 	<div class="modal fade" id="Ajuda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog modal-lg" role="document">
@@ -314,6 +349,7 @@ $UrlPage	 = 'Ecommerce.php';
 				</div>
 			</div>
 		</div>
+    </div>
 
 		<?php require_once('includes/footer.php'); ?>
 
@@ -757,6 +793,8 @@ $UrlPage	 = 'Ecommerce.php';
                 
                 });        
             });
+
+//Alterar a Linguagem da tabele de pedidos
 
 		$(document).ready(function() {				
 			$("#BootstrapTable").DataTable({

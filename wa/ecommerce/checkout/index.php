@@ -3,7 +3,7 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 }
-error_reporting(0);
+#error_reporting(0);
 header('Access-Control-Allow-Origin: *');
 require_once('../../../includes/funcoes.php');
 require_once('../../../database/config.database.php');
@@ -31,11 +31,12 @@ else if(isset($_COOKIE['E-Wacontroltoken'])){
 $usuario = DBRead('ecommerce_usuario','*',"WHERE id = '{$id_cliente}'")[0];
 $enderecos = json_decode($usuario['endereco']);
 ?>
-		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/animate.css">
+			<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/animate.css">
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>epack/css/elements/modal.css">
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>css_js/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="<?php echo RemoveHttpS(ConfigPainel('base_url')); ?>wa/ecommerce/assets/css/checkout.css">
 		
+
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     #normal{
@@ -261,6 +262,7 @@ $enderecos = json_decode($usuario['endereco']);
 																					<th class="product-total">Subtotal</th>
 																				</tr>
 																			</thead>
+                                                                          <tbody>
                                                                         <?php foreach($_SESSION["car"] as $id => $qtd ){
 																				$query = DBRead('ecommerce', '*', "WHERE id = $qtd[0]");
 																				$produto = $query[0];?>
@@ -289,7 +291,7 @@ $enderecos = json_decode($usuario['endereco']);
 																				<td class="product-total">
 																					<span class="woocommerce-Price-amount amount">
 																						<span class="woocommerce-Price-currencySymbol" style="white-space: nowrap"><center><?php echo $config['moeda'].' '.number_format(floatval(str_replace(",", ".", $qtd[2])) * floatval(str_replace(",", ".", $qtd[1])), 2, ",", "."); ?></center></span></span>
-																					</span>
+																					
 																				</td>
 																				</tr>
 																				<?php $total_carrinho += floatval(str_replace(",", ".", $qtd[2])) * floatval(str_replace(",", ".", $qtd[1]));
@@ -305,9 +307,9 @@ $enderecos = json_decode($usuario['endereco']);
 																					<th>Subtotal</th>
 																					<td>
 																						<span class="woocommerce-Price-amount amount">
-																							<span class="woocommerce-Price-currencySymbol" style="white-space: nowrap"><center><?php echo $config['moeda'].' '.number_format($total_carrinho, 2, ",", ".");  ?></center></span></td>
-																						</span>
-																					</td>
+																							<span class="woocommerce-Price-currencySymbol" style="white-space: nowrap"><center><?php echo $config['moeda'].' '.number_format($total_carrinho, 2, ",", ".");  ?></center></span></span></td>
+																						
+																					
 																				</tr>
 																				<tr class="woocommerce-shipping-totals shipping">
 																				    <td><strong><center>Desconto</center></strong> <span id="desconto"></span>
@@ -437,18 +439,41 @@ $enderecos = json_decode($usuario['endereco']);
                                         </label>                                                                                
                                     </li>
                                   <?php endif ?>
-                                  <?php if(!empty($gateways)){ foreach($gateways as $keyp => $plugin){ ?>
-                                        <li class="wc_payment_method payment_method_traferencia">
-                                        <input id="payment_method_<?php echo $plugin['nome']; ?>" type="radio" required class="input-radio" name="payment_method" value="<?php echo $plugin['titulo']; ?>" onclick="compose(<?php echo "'../../../".$plugin['path']."/wa/index.php'"; ?>)">
-                                        <label for="payment_method_<?php echo $plugin['nome']; ?>" style="cursor:pointer">
-                                          Pagar com <?php if(!empty($plugin['img'])) { ?>
-                                          <img style="width:auto; height:23px;" src="<?php echo RemoveHttpS(ConfigPainel('base_url')). $plugin['img']; } ?>" />
-                                        </label>                                                                                
-                                    </li>
-                                    <?php }} ?>
+                                  	<?php 
+									if(!empty($gateways)){ 
+									  foreach($gateways as $keyp => $plugin){                                         
+										if(strpos($plugin['nome'], 'transparente')!==false){ ?>
+										<li class="wc_payment_method payment_method_traferencia">
+                                        	<input onclick="<?php echo $plugin['nome']; ?>('../../../<?php echo $plugin['path']?>/wa/')" data-toggle="modal" data-target="#<?php echo $plugin['nome']; ?>" id="payment_method_<?php echo $plugin['nome']; ?>1" type="radio" required class="input-radio" name="payment_method" value="cartão">
+                                        	<label for="payment_method_<?php echo $plugin['nome']; ?>1" style="cursor:pointer">
+                                         		Pagar com Cartão
+                                        	</label>                                                                                
+                                    	</li>
+										<li class="wc_payment_method payment_method_traferencia">
+                                        	<input value="pix" onclick="<?php echo $plugin['nome']; ?>('../../../<?php echo $plugin['path']?>/wa/')" data-toggle="modal" data-target="#<?php echo $plugin['nome']; ?>" id="payment_method_<?php echo $plugin['nome']; ?>2" type="radio" required class="input-radio" name="payment_method" >
+                                        	<label for="payment_method_<?php echo $plugin['nome']; ?>2" style="cursor:pointer">
+                                         		Pagar com Pix
+                                        	</label>                                                                                
+                                    	</li>	
+										<li class="wc_payment_method payment_method_traferencia">
+                                        	<input value="boleto" onclick="<?php echo $plugin['nome']; ?>('../../../<?php echo $plugin['path']?>/wa/')" data-toggle="modal" data-target="#<?php echo $plugin['nome']; ?>" id="payment_method_<?php echo $plugin['nome']; ?>3" type="radio" required class="input-radio" name="payment_method"  >
+                                        	<label for="payment_method_<?php echo $plugin['nome']; ?>3" style="cursor:pointer">
+                                         		Pagar com Boleto
+                                        	</label>                                                                                
+                                    	</li>										
+                                    	<?php }else {?>
+											<li class="wc_payment_method payment_method_traferencia">
+                                        		<input id="payment_method_<?php echo $plugin['nome']; ?>" type="radio" required class="input-radio" name="payment_method" value="<?php echo $plugin['titulo']; ?>" onclick="compose('../../../'<?php echo $plugin['path'] ?>'/wa/index.php')">
+                                        		<label for="payment_method_<?php echo $plugin['nome']; ?>" style="cursor:pointer">
+                                         			Pagar com <?php if(!empty($plugin['img'])) { ?>
+                                          			<img style="width:auto; height:23px;" src="<?php echo RemoveHttpS(ConfigPainel('base_url')). $plugin['img']; } ?>" />
+                                        		</label>                                                                                
+                                    		</li>
+										<?php }}}  ?>
                                     <script>
                                     compose = (a) => {
-                                    document.getElementById('composer').value=a;
+                                    document.getElementById('composer').value=a;                                      
+                                     if(document.getElementById('mptdyn')!= undefined) return document.getElementById('mpt-form').innerHTML=''
                                     }
                                     </script>
                                     <input type="hidden" id="composer" name="composer" value='PagSeguro.php'>
@@ -461,14 +486,14 @@ $enderecos = json_decode($usuario['endereco']);
                                     </li>
                                     <?php endif ?>
                                    <script>
-                                    $('#fcheckout').submit(function(e) {
+                                    $('#fcheckout').submit(function(e) {                                   
                                              e.preventDefault(); 
-                                          if(document.getElementById('payment_method_deposito') != void(0) && document.getElementById('payment_method_deposito').checked ){
-                                              new resolveAfter2Seconds().then((res)=>{
-    -                                            sessionStorage.setItem("vfrete", document.getElementById("f_valor").innerHTML);
-    -                                            sessionStorage.setItem("frete", document.getElementById("tipo_entrega").value);
-    -                                            sessionStorage.setItem("ttl", document.getElementById("total").innerHTML);
-                                                  var adata = $(this).serializeArray();
+                                          	if(document.getElementById('payment_method_deposito') != void(0) && document.getElementById('payment_method_deposito').checked){                                           
+                                              	resolveAfter2Seconds().then((res)=>{
+                                            	sessionStorage.setItem("vfrete", document.getElementById("f_valor").innerHTML);
+                                            	sessionStorage.setItem("frete", document.getElementById("tipo_entrega").value);
+    	                                        sessionStorage.setItem("ttl", document.getElementById("total").innerHTML);
+                                                var adata = $(this).serializeArray();
                                                   $.ajax({
                                                     data: adata,
                                                     type:    "POST",
@@ -479,16 +504,18 @@ $enderecos = json_decode($usuario['endereco']);
                                                           type:    "GET",
                                                           cache:   false,
                                                           url:     UrlPainel+'wa/ecommerce/checkout/detalhes.php',
-                                                          success: function (data) {
-                                                            
+                                                          success: function (data) {                                                            
                                                             jQuery('#EcommerceCheckout').html(data);
                                                              },
                                                       });
                                                     }, 
                                                   });           
                                               })
-                                            }else{sessionStorage.clear();validateMyForm()};
-                                            document.getElementById('finalizar').innerHTML = "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
+                                            }else if(document.getElementById('mptdyn')== undefined){                                         
+                                              sessionStorage.clear()
+                                              validateMyForm()
+                                            }
+                                              document.getElementById('finalizar').innerHTML = "<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i>";
                                       });
                                     </script>
                                   </ul>
@@ -518,7 +545,17 @@ $enderecos = json_decode($usuario['endereco']);
 				</div>
 			</div>
 		</div>
+                          <?php 
+                              if(!empty($gateways)){ 
+                                foreach($gateways as $keyp => $plugin){                                         
+                                  if(strpos($plugin['nome'], 'transparente')!==false){ 
+                                  require_once("../../../".$plugin['path']."/wa/index.php");
+                                  } 
+                                }
+                              }                          
+                          ?>
 	</form>
+                     	
 </div>
 							</div>
 						</article>
@@ -552,31 +589,35 @@ $enderecos = json_decode($usuario['endereco']);
 				else if(e){b.style.display = "block";g.style.display = "none";c.style.display = "block"}
 				else if(f){b.style.display = "none";g.style.display = "block";c.style.display = "none"}
       };
+          
      <?php 
         if(is_array($enderecos)){
             foreach($enderecos as $endereco_key => $endereco){
-                if($endereco->padrao == true){
-                    echo "
-                        document.getElementById('billing_state').value ='".$endereco->estado."'
-                        document.getElementById('billing_first_name').value ='".$usuario['nome']."'
-                        document.getElementById('billing_last_name').value ='".$usuario['sobrenome']."'
-                        document.getElementById('billing_email').value ='".$usuario['email']."'
-                        document.getElementById('billing_phone').value ='".$usuario['telefone']."'
-                        document.getElementById('billing_neighborhood').value ='".$endereco->bairro."'
-                        document.getElementById('billing_city').value ='".$endereco->cidade."'
-                        document.getElementById('billing_number').value ='".$endereco->numero."'
-                        document.getElementById('cepdestino').value ='".$endereco->cep."'
-                        document.getElementById('billing_address_1').value ='".$endereco->rua."'
-                        document.getElementById('billing_persontype').value ='".$usuario['pessoa']."'
-                        document.getElementById('billing_cpf').value = '".$usuario['id_pessoa']."'
-                        new person('".$usuario['pessoa']."')
+                if($endereco->padrao == true){?>                  
+                        document.getElementById('billing_state').value ='<?=$endereco->estado?>'
+                        document.getElementById('billing_first_name').value ='<?=$usuario['nome']?>'
+                        document.getElementById('billing_last_name').value ='<?=$usuario['sobrenome']?>'
+                        document.getElementById('billing_email').value ='<?=$usuario['email']?>'
+                        document.getElementById('billing_phone').value ='<?=$usuario['telefone']?>'
+                        document.getElementById('billing_neighborhood').value ='<?=$endereco->bairro?>'
+                        document.getElementById('billing_city').value ='<?=$endereco->cidade?>'
+                        document.getElementById('billing_number').value ='<?=$endereco->numero?>'
+                        document.getElementById('cepdestino').value ='<?=$endereco->cep?>'
+                        document.getElementById('billing_address_1').value ='<?=$endereco->rua?>'
+                        document.getElementById('billing_persontype').value ='<?=$usuario['pessoa']?>'
+                        document.getElementById('billing_cpf').value = '<?=$usuario['id_pessoa']?>'
+                        new person('<?=$usuario['pessoa']?>')
                         new main_math()
-                        function validateMyForm(){document.getElementById('fcheckout').submit()}
-                        function resolveAfter2Seconds(){ return true}
-                    ";
-                }
-            }
-        }else{ ?>
+                        function validateMyForm(){
+							document.getElementById('fcheckout').submit()
+						}
+						async function resolveAfter2Seconds(){
+							return true;
+						};
+					
+					<?php }
+				}
+			}else{ ?>
                 
                 function resolveAfter2Seconds() {
                   return new Promise(resolve => {

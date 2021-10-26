@@ -164,5 +164,7 @@ if (isset($_POST)) {
 		DBUpdate('ecommerce_vendas',['estorno'=> json_encode($map)]," id = '{$query}'");
 	}
 	$route = post('composer');
-	require($route);
+	if (!isset($_GET['transparente'])) {		
+		require($route);
+	}
 }
