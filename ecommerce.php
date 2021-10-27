@@ -242,8 +242,7 @@ $UrlPage	 = 'Ecommerce.php';
                         tamanho.<br>
                         <b>4- </b>As fotos devem seguir o padrão indicado nesse <a href="https://www.mercadolivre.com.br/ajuda/805" target="_blank">link</a>. <br>                        
                         <b>5- </b>As marcas de publicação limitada poderão ser oferecidas somente por Lojas Oficiais e
-                        vendedores credenciados pelas marcas. Essa medida se aplica no Brasil, para Adidas
-                        e Reebok.<br>
+                        vendedores credenciados pelas marcas. Essa medida se aplica a produtos da Adidas, Reebok, Nike...<br>
                         <b>6- </b>Produtos com variações devem ter sempre o mesmo valor. Ex. Sapato 37 Preto
                         precisa custar o mesmo que o Sapato 40 Branco.<br>
                         <b>7- </b>Se o estoque chegar ao valor 0 o anúncio será pausado automaticamente.<br>

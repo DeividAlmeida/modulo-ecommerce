@@ -29,7 +29,19 @@ $columns      = array(
   ),
   array(
     'db' => 'id',
-    'dt' => 1
+    'dt' => 1,
+    'formatter' => function ($id, $row) {
+      ob_start();
+?>
+ <?php echo $id;
+  if(file_exists('mercadolivre.php') && !empty(DBRead('ecommerce', '*', "WHERE id = '{$id}'")[0]['id_ml'])){ ?> 
+  <button type="button" class="ml-4 btn btn-sm bg-success text-white">
+      <i class="icon-handshake-o"></i>
+    </button>
+<?php
+    }
+      return ob_get_clean();
+  }
   ),
   array(
     'db' => 'id_imagem_capa',
