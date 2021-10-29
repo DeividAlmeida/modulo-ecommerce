@@ -260,3 +260,28 @@ a.setAttributeNode(scroll);
 a.setAttributeNode(widths);
 $.getScript( "https://cdn.jsdelivr.net/npm/vue-swal@1/dist/vue-swal.min.js" )
 }
+function mpstatus(a,b,d) {
+  fetch('https://api.mercadopago.com/v1/payments/'+a,{
+    method:'GET',
+    headers:{ 
+    'Authorization': 'Bearer '+b,
+    'Content-Type': 'application/x-www-form-urlencoded',
+    "accept": "application/json"
+    }
+  }).then(c=>c.json()).then(c=>{
+    console.log(c)
+    if(c.status_detail == 'accredited'){
+      Swal.fire({
+        confirmButtonColor: d,
+        title:'Sucesso!!',
+        text:'Pagamento aprovado!!!', 
+        icon:'success'
+      })  
+      document.querySelector('#EcommerceCheckout')
+        .querySelector('.card')
+        .innerHTML= ''
+    }else{
+      new mpstatus(a,b,d)
+    }
+  })
+}

@@ -123,7 +123,7 @@ $enderecos = json_decode($usuario['endereco']);
 																			<abbr class="required" title="obrigatório">*</abbr>
 																		</label>
 																		<span class="woocommerce-input-wrapper">
-																			<input pattern="[0-9]+$" required id="cepdestino" type="text" maxlength='8' minlength='8' class="input-text " name="billing_postcode" id="billing_postcode" placeholder="99999999" value="" autocomplete="postal-code">
+																			<input maxlength="8" required id="cepdestino" type="text" maxlength='8' minlength='8' class="input-text " name="billing_postcode" id="billing_postcode" placeholder="99999999" value="" autocomplete="postal-code">
 																		</span>
 																	</p>
 																	<p class="form-row form-row-last address-field validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_address_1_field" data-priority="50">
@@ -354,7 +354,7 @@ $enderecos = json_decode($usuario['endereco']);
                                             };
                                               function main_math(){
                                                   let desconto = sessionStorage.getItem('totalDesconto');
-                                                 const cep = document.getElementById('cepdestino').value;
+                                                 const cep = document.getElementById('cepdestino').value.replace('-','');
                                                 <?php if(!empty($deliveries)){ foreach($deliveries as $keyd => $delivery){ ?>
                                                 $("<?php echo '#'.$delivery['id']; ?>").load('<?php echo ConfigPainel('base_url').$delivery['path']."/wa/index.php?peso=".$total_peso."&valorcarrinho=".$total_carrinho; ?>&id='+cep);
                                                   
@@ -602,7 +602,12 @@ $enderecos = json_decode($usuario['endereco']);
                         document.getElementById('billing_neighborhood').value ='<?=$endereco->bairro?>'
                         document.getElementById('billing_city').value ='<?=$endereco->cidade?>'
                         document.getElementById('billing_number').value ='<?=$endereco->numero?>'
-                        document.getElementById('cepdestino').value ='<?=$endereco->cep?>'
+                        document.getElementById('cepdestino').value = '<?=$endereco->cep?>'
+						const inputValue2 = document.querySelector("#cepdestino");
+						let zipCode2 =inputValue2.value						
+						if(zipCode2.length === 8) {
+							inputValue2.value = `${zipCode2.substr(0,5)}-${zipCode2.substr(5,9)}`;				
+						}
                         document.getElementById('billing_address_1').value ='<?=$endereco->rua?>'
                         document.getElementById('billing_persontype').value ='<?=$usuario['pessoa']?>'
                         document.getElementById('billing_cpf').value = '<?=$usuario['id_pessoa']?>'
@@ -650,5 +655,12 @@ $enderecos = json_decode($usuario['endereco']);
                 }
     
         <?php }?>
-      
+		const inputValue = document.querySelector("#cepdestino");
+			let zipCode = "";
+			inputValue.addEventListener("keyup", () => {
+			zipCode = inputValue.value;			
+			if(zipCode.length === 8) {
+				inputValue.value = `${zipCode.substr(0,5)}-${zipCode.substr(5,9)}`;				
+			}
+		});
       </script>
