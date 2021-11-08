@@ -76,6 +76,10 @@ ob_start();
 #frajola{
 	opacity: 0.5;
 }
+.box-att{
+  display : grid !important;
+  width   : 30% !important;
+}
 </style>
 <div class="shop--product-page--header row">
   <div class="col-md-6">
@@ -124,7 +128,7 @@ ob_start();
         		$id = $atributo['id'];
         		$termos = DBRead('ecommerce_prod_termos', '*', "WHERE id_atributo = {$id} AND id_produto = {$produto['id']}");        	
         	?>
-        	<div class="form-group">
+        	<div class="form-group box-att">
         	<label> <?php print_r($atributo['nome'].":&nbsp;"); ?></label>
         	<select class="form-control produto-categorias" id="mySelect<?php print_r($atributo['id']); ?>" style="width: auto" onchange="change<?php print_r($atributo['id']); ?>()">
         		<option value="" default>Escolha uma opção</option> 
